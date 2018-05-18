@@ -33,12 +33,6 @@ namespace Admeli.Herramientas.Detalle
             InitializeComponent();
             this.list = list;
             this.productoData = productoData;
-
-
-
-
-
-
         }
 
 
@@ -97,7 +91,7 @@ namespace Admeli.Herramientas.Detalle
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Cargar Nota Salida Detalle", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Cargar Detalle", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }

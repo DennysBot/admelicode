@@ -14,6 +14,7 @@ using Entidad;
 using Newtonsoft.Json;
 using Admeli.Productos.Importar;
 using Entidad.Configuracion;
+using Admeli.Herramientas.Detalle;
 
 namespace Admeli.Productos
 {
@@ -45,13 +46,14 @@ namespace Admeli.Productos
 
         public bool lisenerKeyEvents { get; set; }
         private List<CombinacionStock> combinaciones { get; set; }
+        private List<CombinacionStock> combinacionesProducto { get; set; }
         private List<Producto> productos { get; set; }
         private List<Sucursal> listSuc { get; set; }
         private List<Sucursal> listSucCargar { get; set; }
         private List<Almacen> listAlm { get; set; }
         private List<Almacen> listAlmCargar { get; set; }
         private Producto currentProducto { get; set; }
-
+        private int index = 0;
         #region ============================== Constructor ==============================
         public UCListadoProducto()
         {
@@ -194,6 +196,16 @@ namespace Admeli.Productos
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 int idProducto = Convert.ToInt32(row.Cells["idProductoDataGridViewTextBoxColumn"].Value); // obteniedo el idCategoria del datagridview
+                int idAlmacen = Convert.ToInt32(row.Cells["idAlmacen"].Value);
+                //Prodcutos con combinacion
+                combinacionesProducto = combinaciones.Where(X => X.idPresentacion== idProducto && X.idAlmacen == idAlmacen).ToList();
+                if (combinacionesProducto.Count > 0)
+                {
+                    dataGridView.ClearSelection();
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(122, 255, 105);
+                    row.DefaultCellStyle.ForeColor = Color.Green;
+                }
+                //Productos desactivados
                 currentProducto = productos.Find(x => x.idProducto == idProducto);
                 if (currentProducto.estado == false)
                 {
@@ -412,7 +424,7 @@ namespace Admeli.Productos
 
                 // Ingresando
                 this.productos = productos_combinacion.datos;
-                this.combinaciones = productos_combinacion.combinaciones;
+                this.combinaciones = productos_combinacion.combinacion;
                 productoBindingSource.DataSource = null;
                 productoBindingSource.DataSource = productos;
                 dataGridView.Refresh();
@@ -450,7 +462,7 @@ namespace Admeli.Productos
                 paginacion.itemsCount = productos_combinacion.nro_registros;
                 paginacion.reload();
                 this.productos = productos_combinacion.datos;
-                this.combinaciones = productos_combinacion.combinaciones;
+                this.combinaciones = productos_combinacion.combinacion;
                 // Ingresando
                 productoBindingSource.DataSource = null;
                 productoBindingSource.DataSource = productos;
@@ -490,7 +502,7 @@ namespace Admeli.Productos
 
                 // Ingresando
                 this.productos = productos_combinacion.datos;
-                this.combinaciones = productos_combinacion.combinaciones;
+                this.combinaciones = productos_combinacion.combinacion;
                 productoBindingSource.DataSource = null;
                 productoBindingSource.DataSource = productos;
                 dataGridView.Refresh();
@@ -528,7 +540,7 @@ namespace Admeli.Productos
 
                 // Ingresando
                 this.productos = productos_combinacion.datos;
-                this.combinaciones = productos_combinacion.combinaciones;
+                this.combinaciones = productos_combinacion.combinacion;
                 productoBindingSource.DataSource = null;
                 productoBindingSource.DataSource = productos;
                 dataGridView.Refresh();
@@ -1045,6 +1057,40 @@ namespace Admeli.Productos
             else
             {
                 btnEliminar.Text = " Eliminar (F6)";
+            }
+        }
+
+        private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            return;
+            if (e.Button == MouseButtons.Right)
+            {
+                if (dataGridView.Rows.Count == 0 || dataGridView.CurrentRow == null)
+                {
+                    MessageBox.Show("No hay un registro seleccionado", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                index = dataGridView.CurrentRow.Index; // Identificando la fila actual del datagridview
+
+                int idPresentacion = Convert.ToInt32(dataGridView.Rows[index].Cells["idProductoDataGridViewTextBoxColumn"].Value);
+                int idAlmacen = Convert.ToInt32(dataGridView.Rows[index].Cells["idAlmacen"].Value);
+
+                Producto producto = productos.Find(X => X.idProducto== idPresentacion && X.idAlmacen == idAlmacen);
+
+                combinacionesProducto = combinaciones.Where(X => X.idPresentacion == idPresentacion && X.idAlmacen == idAlmacen).ToList();
+                if (combinacionesProducto.Count > 0)
+                {
+                    ProductoData data = new ProductoData();
+                    data.nombreProducto = producto.nombreProducto;
+                    data.almacen = producto.nombreAlmacen;
+                    data.precioVenta = producto.precioVenta;
+                    data.idAlmacen = producto.idAlmacen;
+                    data.idProducto = producto.idProducto;
+                    FormDetalleStock detalleStock = new FormDetalleStock(combinacionesProducto, data);
+                    detalleStock.ShowDialog();
+                }
+                cargarStock();
             }
         }
     }

@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCListadoProducto));
             this.panelContainer = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -161,10 +161,10 @@
             this.panel2.Controls.Add(this.panelCrud);
             this.panel2.Controls.Add(this.panelNavigation);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(210, 1);
+            this.panel2.Location = new System.Drawing.Point(242, 1);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(699, 489);
+            this.panel2.Size = new System.Drawing.Size(667, 489);
             this.panel2.TabIndex = 5;
             // 
             // panel3
@@ -172,30 +172,30 @@
             this.panel3.Controls.Add(this.dataGridView);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 107);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
-            this.panel3.Size = new System.Drawing.Size(699, 322);
+            this.panel3.Padding = new System.Windows.Forms.Padding(8);
+            this.panel3.Size = new System.Drawing.Size(667, 322);
             this.panel3.TabIndex = 0;
             // 
             // dataGridView
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.AutoGenerateColumns = false;
             this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.ColumnHeadersHeight = 26;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idProductoDataGridViewTextBoxColumn,
@@ -232,37 +232,38 @@
             this.nombreDataGridViewTextBoxColumn,
             this.codigoDataGridViewTextBoxColumn});
             this.dataGridView.DataSource = this.productoBindingSource;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.GridColor = System.Drawing.Color.Gainsboro;
             this.dataGridView.Location = new System.Drawing.Point(8, 8);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView.RowHeadersWidth = 40;
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView.RowTemplate.Height = 30;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(683, 306);
+            this.dataGridView.Size = new System.Drawing.Size(651, 306);
             this.dataGridView.TabIndex = 2;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseClick);
             // 
             // idProductoDataGridViewTextBoxColumn
             // 
@@ -562,7 +563,7 @@
             this.panelTools.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTools.Location = new System.Drawing.Point(0, 60);
             this.panelTools.Name = "panelTools";
-            this.panelTools.Size = new System.Drawing.Size(699, 47);
+            this.panelTools.Size = new System.Drawing.Size(667, 47);
             this.panelTools.TabIndex = 8;
             // 
             // panel7
@@ -571,7 +572,7 @@
             this.panel7.Controls.Add(this.label7);
             this.panel7.Controls.Add(this.textBuscar);
             this.panel7.Location = new System.Drawing.Point(25, 6);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(208, 37);
             this.panel7.TabIndex = 1;
@@ -602,7 +603,7 @@
             this.textBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBuscar.isPassword = false;
             this.textBuscar.Location = new System.Drawing.Point(0, 0);
-            this.textBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.textBuscar.Name = "textBuscar";
             this.textBuscar.Padding = new System.Windows.Forms.Padding(50, 0, 2, 3);
             this.textBuscar.Size = new System.Drawing.Size(206, 35);
@@ -631,7 +632,7 @@
             this.chkVerStock.CheckedOnColor = System.Drawing.Color.DodgerBlue;
             this.chkVerStock.ForeColor = System.Drawing.Color.White;
             this.chkVerStock.Location = new System.Drawing.Point(248, 15);
-            this.chkVerStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkVerStock.Margin = new System.Windows.Forms.Padding(4);
             this.chkVerStock.Name = "chkVerStock";
             this.chkVerStock.Size = new System.Drawing.Size(20, 20);
             this.chkVerStock.TabIndex = 15;
@@ -736,7 +737,7 @@
             this.panelCrud.Location = new System.Drawing.Point(0, 0);
             this.panelCrud.Name = "panelCrud";
             this.panelCrud.Padding = new System.Windows.Forms.Padding(10, 15, 0, 0);
-            this.panelCrud.Size = new System.Drawing.Size(699, 60);
+            this.panelCrud.Size = new System.Drawing.Size(667, 60);
             this.panelCrud.TabIndex = 20;
             // 
             // btnNuevo
@@ -868,7 +869,7 @@
             this.panelNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelNavigation.Location = new System.Drawing.Point(0, 429);
             this.panelNavigation.Name = "panelNavigation";
-            this.panelNavigation.Size = new System.Drawing.Size(699, 60);
+            this.panelNavigation.Size = new System.Drawing.Size(667, 60);
             this.panelNavigation.TabIndex = 21;
             // 
             // label2
@@ -876,7 +877,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(110)))), ((int)(((byte)(122)))));
-            this.label2.Location = new System.Drawing.Point(585, 13);
+            this.label2.Location = new System.Drawing.Point(553, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 35);
             this.label2.TabIndex = 11;
@@ -894,7 +895,7 @@
             this.lblSpeedPages.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpeedPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(110)))), ((int)(((byte)(122)))));
             this.lblSpeedPages.isPassword = false;
-            this.lblSpeedPages.Location = new System.Drawing.Point(644, 13);
+            this.lblSpeedPages.Location = new System.Drawing.Point(612, 13);
             this.lblSpeedPages.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblSpeedPages.Name = "lblSpeedPages";
             this.lblSpeedPages.Size = new System.Drawing.Size(45, 35);
@@ -915,7 +916,7 @@
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.btnPrevious);
             this.panel5.Controls.Add(this.btnNext);
-            this.panel5.Location = new System.Drawing.Point(178, 3);
+            this.panel5.Location = new System.Drawing.Point(162, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(344, 55);
             this.panel5.TabIndex = 0;
@@ -1074,10 +1075,10 @@
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.Color.LightGray;
-            this.splitter1.Location = new System.Drawing.Point(202, 1);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitter1.Location = new System.Drawing.Point(237, 1);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(2);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(8, 489);
+            this.splitter1.Size = new System.Drawing.Size(5, 489);
             this.splitter1.TabIndex = 4;
             this.splitter1.TabStop = false;
             // 
@@ -1087,9 +1088,9 @@
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(1, 1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(201, 489);
+            this.panel1.Size = new System.Drawing.Size(236, 489);
             this.panel1.TabIndex = 3;
             // 
             // panel4
@@ -1097,10 +1098,10 @@
             this.panel4.Controls.Add(this.treeViewCategoria);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 60);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.panel4.Size = new System.Drawing.Size(201, 429);
+            this.panel4.Padding = new System.Windows.Forms.Padding(10);
+            this.panel4.Size = new System.Drawing.Size(236, 429);
             this.panel4.TabIndex = 1;
             // 
             // treeViewCategoria
@@ -1112,11 +1113,11 @@
             this.treeViewCategoria.ImageList = this.imageList;
             this.treeViewCategoria.ItemHeight = 25;
             this.treeViewCategoria.Location = new System.Drawing.Point(10, 10);
-            this.treeViewCategoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.treeViewCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.treeViewCategoria.Name = "treeViewCategoria";
             this.treeViewCategoria.SelectedImageIndex = 0;
             this.treeViewCategoria.ShowNodeToolTips = true;
-            this.treeViewCategoria.Size = new System.Drawing.Size(181, 409);
+            this.treeViewCategoria.Size = new System.Drawing.Size(216, 409);
             this.treeViewCategoria.TabIndex = 0;
             this.treeViewCategoria.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewCategoria_AfterCheck);
             this.treeViewCategoria.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewCategoria_NodeMouseClick);
@@ -1136,7 +1137,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10, 15, 0, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(201, 60);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(236, 60);
             this.flowLayoutPanel1.TabIndex = 21;
             // 
             // button1
@@ -1155,7 +1156,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(78, 40);
+            this.button1.Size = new System.Drawing.Size(100, 40);
             this.button1.TabIndex = 2;
             this.button1.Text = "  Nuevo";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1175,11 +1176,11 @@
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(156)))), ((int)(((byte)(238)))));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(98, 15);
+            this.button4.Location = new System.Drawing.Point(120, 15);
             this.button4.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.button4.Name = "button4";
             this.button4.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(92, 40);
+            this.button4.Size = new System.Drawing.Size(100, 40);
             this.button4.TabIndex = 5;
             this.button4.Text = "  Actualizar";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1231,7 +1232,7 @@
             this.Controls.Add(this.panelContainer);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UCListadoProducto";
-            this.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Padding = new System.Windows.Forms.Padding(6);
             this.Size = new System.Drawing.Size(922, 503);
             this.Load += new System.EventHandler(this.UCListadoProducto_Load);
             this.panelContainer.ResumeLayout(false);

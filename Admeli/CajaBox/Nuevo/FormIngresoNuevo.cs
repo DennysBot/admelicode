@@ -28,6 +28,7 @@ namespace Admeli.CajaBox.Nuevo
         public FormIngresoNuevo()
         {
             InitializeComponent();
+            dtpFechaPago.Value = DateTime.Now;
             this.nuevo = true;
         }
 

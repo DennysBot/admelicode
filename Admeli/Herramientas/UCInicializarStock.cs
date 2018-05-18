@@ -90,7 +90,7 @@ namespace Admeli.Herramientas
                     int idPresentacion = Convert.ToInt32(row.Cells["idPresentacionDataGridViewTextBoxColumn"].Value);
                     int idAlmacen = Convert.ToInt32(row.Cells["idAlmacenDataGridViewTextBoxColumn"].Value);
 
-                    ProductoData data = productos.Find(X => X.idPresentacion == idPresentacion && X.idAlmacen== idAlmacen);
+                    //ProductoData data = productos.Find(X => X.idPresentacion == idPresentacion && X.idAlmacen== idAlmacen);
                     combinacionesProducto = combinaciones.Where(X => X.idPresentacion == idPresentacion && X.idAlmacen == idAlmacen).ToList(); ;
 
                 
