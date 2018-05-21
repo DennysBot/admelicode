@@ -37,10 +37,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.chbxEntrega = new Bunifu.Framework.UI.BunifuCheckbox();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.panelNotaEntrada = new System.Windows.Forms.Panel();
+            this.chbxEntrega = new Bunifu.Framework.UI.BunifuCheckbox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -146,7 +147,8 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
-            this.panel10.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panelNotaEntrada.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.almacenBindingSource1)).BeginInit();
@@ -185,51 +187,31 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.panel10);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panelNotaEntrada);
             this.panel1.Controls.Add(this.panel8);
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(361, 983);
+            this.panel1.Size = new System.Drawing.Size(361, 952);
             this.panel1.TabIndex = 2;
             // 
-            // panel10
+            // panel5
             // 
-            this.panel10.Controls.Add(this.chbxEntrega);
-            this.panel10.Controls.Add(this.txtDescripcion);
-            this.panel10.Controls.Add(this.label4);
-            this.panel10.Controls.Add(this.panel4);
-            this.panel10.Controls.Add(this.lbentrega);
-            this.panel10.Controls.Add(this.label7);
-            this.panel10.Controls.Add(this.cbxAlmacenEntrada);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 679);
-            this.panel10.Margin = new System.Windows.Forms.Padding(5);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(361, 299);
-            this.panel10.TabIndex = 2;
-            // 
-            // chbxEntrega
-            // 
-            this.chbxEntrega.AutoSize = true;
-            this.chbxEntrega.BackColor = System.Drawing.Color.DodgerBlue;
-            this.chbxEntrega.ChechedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(135)))), ((int)(((byte)(140)))));
-            this.chbxEntrega.Checked = true;
-            this.chbxEntrega.CheckedOnColor = System.Drawing.Color.DodgerBlue;
-            this.chbxEntrega.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxEntrega.ForeColor = System.Drawing.Color.White;
-            this.chbxEntrega.Location = new System.Drawing.Point(115, 138);
-            this.chbxEntrega.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.chbxEntrega.Name = "chbxEntrega";
-            this.chbxEntrega.Size = new System.Drawing.Size(20, 20);
-            this.chbxEntrega.TabIndex = 62;
+            this.panel5.Controls.Add(this.txtDescripcion);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 821);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(361, 131);
+            this.panel5.TabIndex = 3;
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(30, 201);
+            this.txtDescripcion.Location = new System.Drawing.Point(33, 37);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
@@ -241,13 +223,42 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 176);
+            this.label4.Location = new System.Drawing.Point(29, 14);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 19);
             this.label4.TabIndex = 13;
             this.label4.Text = "Descripcion";
             this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // panelNotaEntrada
+            // 
+            this.panelNotaEntrada.Controls.Add(this.chbxEntrega);
+            this.panelNotaEntrada.Controls.Add(this.panel4);
+            this.panelNotaEntrada.Controls.Add(this.lbentrega);
+            this.panelNotaEntrada.Controls.Add(this.label7);
+            this.panelNotaEntrada.Controls.Add(this.cbxAlmacenEntrada);
+            this.panelNotaEntrada.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelNotaEntrada.Location = new System.Drawing.Point(0, 679);
+            this.panelNotaEntrada.Margin = new System.Windows.Forms.Padding(5);
+            this.panelNotaEntrada.Name = "panelNotaEntrada";
+            this.panelNotaEntrada.Size = new System.Drawing.Size(361, 142);
+            this.panelNotaEntrada.TabIndex = 2;
+            // 
+            // chbxEntrega
+            // 
+            this.chbxEntrega.AutoSize = true;
+            this.chbxEntrega.BackColor = System.Drawing.Color.DodgerBlue;
+            this.chbxEntrega.ChechedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(135)))), ((int)(((byte)(140)))));
+            this.chbxEntrega.Checked = true;
+            this.chbxEntrega.CheckedOnColor = System.Drawing.Color.DodgerBlue;
+            this.chbxEntrega.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbxEntrega.ForeColor = System.Drawing.Color.White;
+            this.chbxEntrega.Location = new System.Drawing.Point(115, 110);
+            this.chbxEntrega.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.chbxEntrega.Name = "chbxEntrega";
+            this.chbxEntrega.Size = new System.Drawing.Size(20, 20);
+            this.chbxEntrega.TabIndex = 62;
             // 
             // panel4
             // 
@@ -288,7 +299,7 @@
             this.lbentrega.AutoSize = true;
             this.lbentrega.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbentrega.ForeColor = System.Drawing.Color.Black;
-            this.lbentrega.Location = new System.Drawing.Point(31, 138);
+            this.lbentrega.Location = new System.Drawing.Point(31, 110);
             this.lbentrega.Name = "lbentrega";
             this.lbentrega.Size = new System.Drawing.Size(71, 19);
             this.lbentrega.TabIndex = 63;
@@ -299,7 +310,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(26, 91);
+            this.label7.Location = new System.Drawing.Point(26, 63);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 19);
@@ -312,7 +323,7 @@
             this.cbxAlmacenEntrada.DisplayMember = "nombre";
             this.cbxAlmacenEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxAlmacenEntrada.FormattingEnabled = true;
-            this.cbxAlmacenEntrada.Location = new System.Drawing.Point(114, 87);
+            this.cbxAlmacenEntrada.Location = new System.Drawing.Point(114, 59);
             this.cbxAlmacenEntrada.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbxAlmacenEntrada.Name = "cbxAlmacenEntrada";
             this.cbxAlmacenEntrada.Size = new System.Drawing.Size(208, 28);
@@ -718,7 +729,7 @@
             this.splitter1.Location = new System.Drawing.Point(361, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(4);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(10, 983);
+            this.splitter1.Size = new System.Drawing.Size(10, 952);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
@@ -734,7 +745,7 @@
             this.panel2.Location = new System.Drawing.Point(371, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1409, 983);
+            this.panel2.Size = new System.Drawing.Size(1409, 952);
             this.panel2.TabIndex = 4;
             // 
             // panel13
@@ -746,7 +757,7 @@
             this.panel13.Margin = new System.Windows.Forms.Padding(4);
             this.panel13.Name = "panel13";
             this.panel13.Padding = new System.Windows.Forms.Padding(23, 18, 23, 18);
-            this.panel13.Size = new System.Drawing.Size(1316, 730);
+            this.panel13.Size = new System.Drawing.Size(1316, 699);
             this.panel13.TabIndex = 9;
             // 
             // dgvDetalleNotaSalida
@@ -820,7 +831,7 @@
             this.dgvDetalleNotaSalida.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDetalleNotaSalida.RowTemplate.Height = 30;
             this.dgvDetalleNotaSalida.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleNotaSalida.Size = new System.Drawing.Size(1270, 694);
+            this.dgvDetalleNotaSalida.Size = new System.Drawing.Size(1270, 663);
             this.dgvDetalleNotaSalida.TabIndex = 50;
             this.dgvDetalleNotaSalida.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleNotaSalida_CellDoubleClick);
             // 
@@ -1031,7 +1042,7 @@
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 11, 9, 5);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(93, 730);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(93, 699);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // btnModificar
@@ -1396,7 +1407,7 @@
             // 
             this.splitter2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 863);
+            this.splitter2.Location = new System.Drawing.Point(0, 832);
             this.splitter2.Margin = new System.Windows.Forms.Padding(5);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(1409, 12);
@@ -1409,7 +1420,7 @@
             this.panel3.Controls.Add(this.txtNombreDocumento);
             this.panel3.Controls.Add(this.flowLayoutPanel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 875);
+            this.panel3.Location = new System.Drawing.Point(0, 844);
             this.panel3.Margin = new System.Windows.Forms.Padding(5);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(17, 15, 17, 15);
@@ -1544,7 +1555,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.ClientSize = new System.Drawing.Size(1780, 983);
+            this.ClientSize = new System.Drawing.Size(1780, 952);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
@@ -1556,8 +1567,10 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormNotaSalidaNew_Load);
             this.panel1.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panelNotaEntrada.ResumeLayout(false);
+            this.panelNotaEntrada.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1608,7 +1621,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panelNotaEntrada;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel9;
@@ -1716,5 +1729,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descuentoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idVentaDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel plDventa;
+        private System.Windows.Forms.Panel panel5;
     }
 }

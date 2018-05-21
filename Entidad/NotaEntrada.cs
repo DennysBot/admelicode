@@ -71,7 +71,35 @@ namespace Entidad
         public int nro { get; set; }
         // dato solo cuando se modifica
         public string cantidadRestante { get; set; }
+
+
        
+
+
+
+        public int idDetalleNotaSalida { get; set; }
+        
+        public string variante { get; set; }
+       
+        public int idNotaSalida { get; set; }
+        public double total { get; set; }
+  
+        public int idDetalleVenta { get; set; }
+        public double precioEnvio { get; set; }
+        public double descuento { get; set; }
+     
+        public int idVenta { get; set; }
+    
+        public int idDetalleGuiaRemision { get; set; }
+        public int idGuiaRemision { get; set; }
+
+
+
+
+        
+
+
+
 
 
     }

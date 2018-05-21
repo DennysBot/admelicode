@@ -110,12 +110,12 @@ namespace Modelo
 
         //precio/producto/:idp/sucursal/:ids
 
-        public async Task<List<PresentacionV>> precioProducto(int idPresentacion, int idSucursal)
+        public async Task<List<Producto>> precioProducto(int idPresentacion, int idSucursal)
         {
             try
             {
-                // localhost/admeli/xcore/services.php/precio/producto6/producto/28
-                List<PresentacionV> list = await webService.GET<List<PresentacionV>>("precio", String.Format("producto/{0}/sucursal/{1}", idPresentacion, idSucursal));
+                // localhost/admeli/xcore/services.php/precio/producto/28
+                List<Producto> list = await webService.GET<List<Producto>>("precio", String.Format("producto/{0}/sucursal/{1}", idPresentacion, idSucursal));
                 return list;
             }
             catch (Exception ex)

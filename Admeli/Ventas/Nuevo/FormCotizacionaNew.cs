@@ -15,6 +15,7 @@ using Admeli.Compras.buscar;
 using Admeli.Compras.Buscar;
 using Admeli.Productos.Nuevo;
 using Admeli.Properties;
+using Admeli.Ventas.buscar;
 using Admeli.Ventas.Buscar;
 using Entidad;
 using Entidad.Configuracion;
@@ -65,7 +66,7 @@ namespace Admeli.Ventas.Nuevo
         private List<ProductoVenta> listProductos { get; set; }
         private DescuentoProductoReceive descuentoProducto { get; set; }
         private List<DetalleV> detalleVentas { get; set; }
-        private List<Presentacion> listPresentacion { get; set; }
+      
         private List<ImpuestoProducto> listImpuestosProducto { get; set; }
         List<DescuentoReceive> descuentoReceive { get; set; }
         List<AlternativaCombinacion> alternativaCombinacion { get; set; }
@@ -73,7 +74,7 @@ namespace Admeli.Ventas.Nuevo
 
         public UbicacionGeografica CurrentUbicacionGeografica;
         /// Llenan los datos en las interacciones en el formulario                
-        private Presentacion currentPresentacion { get; set; }
+      
         private CorrelativoCotizacion correlativoCotizacion { get; set; }
         private ProductoVenta currentProducto { get; set; }
         private ImpuestoProducto impuestoProducto { get; set; }
@@ -221,8 +222,7 @@ namespace Admeli.Ventas.Nuevo
             cargartiposDocumentos();
             cargarClientes();
             cargarCorrelactivo();
-            cargarImpuesto();
-            cargarPresentacion();
+            cargarImpuesto();          
             cargarObjetos();
             cargarFormatoDocumento();
             lisenerKeyEvents = true;
@@ -253,8 +253,10 @@ namespace Admeli.Ventas.Nuevo
 
                     lbEditar.ForeColor = Color.Red;
                     chbxEditar.Focus();
-                    break;           
-              
+                    break;
+                case Keys.F7:
+                    buscarProducto();
+                    break;
                 default:
                     if (e.Control &&  e.KeyValue ==13)
                     {
@@ -379,25 +381,7 @@ namespace Admeli.Ventas.Nuevo
             cotizacionG = new CotizacionG();
             totalCotizacion = new TotalCotizacion();
         }
-        private async void cargarPresentacion()
-        {
-            loadState(true);/// Cargar las precentaciones
-            try
-            {
-                listPresentacion = await presentacionModel.presentacionesTodas(ConfigModel.sucursal.idSucursal);
-                presentacionBindingSource.DataSource = listPresentacion;
-                cbxDescripcion.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            finally
-            {
-                if(listProductos != null)
-                 loadState(false);
-            }
-        }
+        
         private async void cargarProductos()
         {
             loadState(true);
@@ -414,8 +398,8 @@ namespace Admeli.Ventas.Nuevo
             }
             finally
             {
-                if (listPresentacion != null)
-                    loadState(false);
+               
+              loadState(false);
 
             }
         }
@@ -655,12 +639,10 @@ namespace Admeli.Ventas.Nuevo
                 else
                 {
                     // Buscar presentacion elegida
-                    int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                    Presentacion findPresentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
-
+                   
                     // Realizando el calculo
                     double precioCompra = toDouble( currentProducto.precioVenta);
-                    double cantidadUnitario = toDouble(findPresentacion.cantidadUnitaria.ToString(ConfigModel.configuracionGeneral.formatoDecimales));
+                    double cantidadUnitario = toDouble(currentProducto.cantidadUnitaria);
                     double precioUnidatio = precioCompra * cantidadUnitario;
 
                     // Imprimiendo valor
@@ -764,7 +746,44 @@ namespace Admeli.Ventas.Nuevo
 
         #region=========== METODOS DE APOYO EN EL CALCULO
 
+        public void buscarProducto()
+        {
+            try
+            {
+                FormBuscarProducto formBuscarProducto = new FormBuscarProducto(listProductos);
+                formBuscarProducto.ShowDialog();
 
+                if (formBuscarProducto.currentProducto != null)
+                {
+
+
+                    currentProducto = formBuscarProducto.currentProducto;
+                    if (currentProducto.precioVenta == null)
+                    {
+
+                        currentProducto = null;
+                        MessageBox.Show("Error:  producto seleccionado no tiene precio de venta, no se puede seleccionar", "Buscar Producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+
+                    }
+
+                    cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
+
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+
+            {
+                MessageBox.Show("Error: " + ex.Message, "Productos ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
+        }
         private void calculoSubtotal()
         {
 
@@ -1094,8 +1113,8 @@ namespace Admeli.Ventas.Nuevo
             {
                 /// Buscando el producto seleccionado
                 int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                Presentacion presentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
-                cbxCodigoProducto.SelectedValue = presentacion.idProducto;
+                currentProducto= listProductos.Find(x => x.idPresentacion == idPresentacion);
+                cbxCodigoProducto.SelectedValue = currentProducto.idProducto;
                 // Llenar los campos del producto escogido.............!!!!!
 
                 if (!enModificar) {
@@ -1130,13 +1149,12 @@ namespace Admeli.Ventas.Nuevo
                 else
                 {
                     // Buscar presentacion elegida
-                    int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                    Presentacion findPresentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
+                 
 
                     // Realizando el calculo
                     double precioCompra = toDouble( currentProducto.precioVenta);
-                    double cantidadUnitario = toDouble(findPresentacion.cantidadUnitaria.ToString(ConfigModel.configuracionGeneral.formatoDecimales));
-                    double precioUnidatio = precioCompra * cantidadUnitario;
+                    double cantidadUnitario = toDouble(currentProducto.cantidadUnitaria);
+                    double precioUnidatio = precioCompra * cantidadUnitario*valorDeCambio;
 
                     // Imprimiendo valor
                     txtPrecioUnitario.Text = darformato(precioUnidatio);
@@ -1301,6 +1319,7 @@ namespace Admeli.Ventas.Nuevo
             txtPrecioUnitario.Text = "";
             txtTotalProducto.Text = "";
             currentdetalleV = null;
+            currentProducto = null;
         }
 
 
@@ -1602,13 +1621,12 @@ namespace Admeli.Ventas.Nuevo
                     //determinamos el stock
                     //determinarStock(0);
                     /// Busqueda presentacion
-                    Presentacion findPresentacion = listPresentacion.Find(x => x.idPresentacion == Convert.ToInt32(cbxDescripcion.SelectedValue));
-
+                   
                     detalleV.idDetalleCotizacion = 0;
                     detalleV.idCotizacion = currentCotizacion != null ? currentCotizacion.idCotizacion : 0;// depende luego 
                     detalleV.cantidadUnitaria = darformato(txtCantidad.Text.Trim());
                     detalleV.codigoProducto = cbxCodigoProducto.Text.Trim();
-                    detalleV.descripcion = findPresentacion.descripcion;
+                    detalleV.descripcion = currentProducto.nombreProducto;
 
                     double descuento = toDouble(txtDescuento.Text.Trim());
                     detalleV.descuento = darformato(descuento);
@@ -1621,7 +1639,7 @@ namespace Admeli.Ventas.Nuevo
                     // si es que exite impuesto al producto 
 
                     // impuestoProducto
-                    listImpuestosProducto = await impuestoModel.impuestoProducto(findPresentacion.idProducto, ConfigModel.sucursal.idSucursal);
+                    listImpuestosProducto = await impuestoModel.impuestoProducto(currentProducto.idProducto, ConfigModel.sucursal.idSucursal);
                     // calculamos lo impuesto posibles del producto
                     double porcentual = 0;
                     double efectivo = 0;
@@ -1671,7 +1689,7 @@ namespace Admeli.Ventas.Nuevo
                     detalleV.existeStock = (stockPresentacion > 0 && stockPresentacion >= Convert.ToInt32(toDouble(txtCantidad.Text.Trim()))) ? 1 : 0;
                     ProductoVenta aux1 = listProductos.Find(x => x.idProducto == (int)cbxCodigoProducto.SelectedValue);
                     detalleV.nombreMarca = aux1.nombreMarca;
-                    detalleV.nombrePresentacion = findPresentacion.nombrePresentacion;
+                    detalleV.nombrePresentacion = currentProducto.nombreProducto;
                     detalleV.precioEnvio = "";
                     detalleV.ventaVarianteSinStock = aux1.ventaVarianteSinStock;
                     // agrgando un nuevo item a la lista
@@ -1821,7 +1839,7 @@ namespace Admeli.Ventas.Nuevo
         private void btnActulizar_Click(object sender, EventArgs e)
         {
             cargarProductos();
-            cargarPresentacion();
+           
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             enModificar = false;
@@ -1840,7 +1858,7 @@ namespace Admeli.Ventas.Nuevo
                 FormProductoNuevo formProductoNuevo = new FormProductoNuevo();
                 formProductoNuevo.ShowDialog();
                 cargarProductos();
-                cargarPresentacion();
+               
                 btnAgregar.Enabled = true;
                 btnModificar.Enabled = false;
                 enModificar = false;

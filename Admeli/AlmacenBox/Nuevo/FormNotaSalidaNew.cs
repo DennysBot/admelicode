@@ -138,13 +138,8 @@ namespace Admeli.AlmacenBox.Nuevo
             formato = "{0:n" + nroDecimales + "}";
             cargarFechaSistema();
             btnQuitar.Enabled = false;
-
-
             recuperarDatosInicialesControles();
-                  
-           
-
-
+                           
         }
 
 
@@ -183,9 +178,7 @@ namespace Admeli.AlmacenBox.Nuevo
             YbtnImportar = btnImportarVenta.Location.Y;
 
             XbtnQuitar = btnQuitar.Location.X;
-            YbtnQuitar = btnQuitar.Location.Y;
-          
-
+            YbtnQuitar = btnQuitar.Location.Y;          
             // paneles
             HpanelVenta = plDventa.Height;
             WpanelVenta = plDventa.Width;
@@ -213,6 +206,10 @@ namespace Admeli.AlmacenBox.Nuevo
                     ocultarControlesVenta();
 
                 }
+
+                // 
+                panelNotaEntrada.Size = new Size(0,0);
+                tableLayoutPanel11.ColumnCount= 4;
 
             }
 
@@ -393,7 +390,10 @@ namespace Admeli.AlmacenBox.Nuevo
             object6E = new object();
             object7E = new object();
             listElementosNotaEntrada = new List<object>();
-
+            if (nuevo)
+            {
+                cbxEstado.SelectedIndex = 2;
+            }
 
 
         }
