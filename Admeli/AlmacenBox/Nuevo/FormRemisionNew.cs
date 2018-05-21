@@ -541,6 +541,7 @@ namespace Admeli.AlmacenBox.Nuevo
         {
             FormTransporteNew formTransporteNew = new FormTransporteNew();
             formTransporteNew.ShowDialog();
+            this.reLoad();
 
         }
 
@@ -621,9 +622,9 @@ namespace Admeli.AlmacenBox.Nuevo
             guiaRemisionGuardar.origen = ubicacionGeograficaOrigen != null ? ubicacionGeograficaOrigen.idUbicacionGeografica : currentguiaRemision.origen;
             guiaRemisionGuardar.serie = txtSerie.Text;
             // datos para modifcar guia remision
-            guiaRemisionGuardar.idGuiaRemision = currentguiaRemision.idGuiaRemision;
+            guiaRemisionGuardar.idGuiaRemision = currentguiaRemision!=null?  currentguiaRemision.idGuiaRemision:0;
 
-            guiaRemisionGuardar.fecha = currentguiaRemision.fecha.date;
+            guiaRemisionGuardar.fecha = currentguiaRemision != null ? currentguiaRemision.fecha.date: guiaRemisionGuardar.fecha;
 
 
             // hallamos el ETransporte

@@ -36,7 +36,7 @@ namespace Admeli.AlmacenBox.buscar
 
      
         private string formato { get; set; }
-        private int nroDecimales = 2;
+        private int nroDecimales = ConfigModel.configuracionGeneral.numeroDecimales;
         private FechaSistema fechaSistema { get; set; }
         public  VentasNSalida currentVenta { get; set; }
 
@@ -96,40 +96,29 @@ namespace Admeli.AlmacenBox.buscar
         }
         #endregion
 
-        private void label10_Click(object sender, EventArgs e)
+        #region=========================estados=================  
+        private void loadState(bool state)
         {
-
+            appLoadState(state);
+            this.Enabled = true;
         }
 
-        private void panel6_Paint(object sender, PaintEventArgs e)
+        public void appLoadState(bool state)
         {
-
+            if (state)
+            {
+                progressStatus.Style = ProgressBarStyle.Marquee;
+                this.Cursor = Cursors.WaitCursor;
+            }
+            else
+            {
+                progressStatus.Style = ProgressBarStyle.Blocks;
+                this.Cursor = Cursors.Default;
+            }
         }
+        #endregion=========================estados=====================
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDocumentoCliente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label33_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
       
         private void dgvNotaSalida_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

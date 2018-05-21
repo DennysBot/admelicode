@@ -144,7 +144,19 @@ namespace Entidad
         public bool ventaVarianteSinStock { get; set; }
         public int idDetalleGuiaRemision { get; set; }     
         public int idGuiaRemision { get; set; }
+
+
+
+
+
+        // para la nota de entrada
+        public int idDetalleNotaEntrada { get; set; }
       
+        public int idNotaEntrada { get; set; }
+        public double cantidadRecibida { get; set; }
+       
+        public string cantidadRestante { get; set; }
+
 
     } 
 

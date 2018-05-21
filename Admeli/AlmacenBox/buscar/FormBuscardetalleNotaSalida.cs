@@ -167,7 +167,7 @@ namespace Admeli.AlmacenBox.buscar
 
         private async void cargarNotaSalidaDetalle()
         {
-
+            loadState(true);
             try
             {
                 listNotaSalidaDestalle = await NotaSalidaModel.nSalidaDetalle(currentNotaSalida != null ? currentNotaSalida.idNotaSalida : 0);
@@ -178,66 +178,46 @@ namespace Admeli.AlmacenBox.buscar
             {
                 MessageBox.Show("Error: " + ex.Message, "Cargar Nota Salida Detalle", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            finally
+            {
+
+                loadState(false);
+
+            }
 
         }
         #endregion
 
-        private void label10_Click(object sender, EventArgs e)
-        {
 
+        #region=========================estados=================  
+        private void loadState(bool state)
+        {
+            appLoadState(state);
+            this.Enabled = true;
         }
 
-        private void panel6_Paint(object sender, PaintEventArgs e)
+        public void appLoadState(bool state)
         {
-
+            if (state)
+            {
+                progressStatus.Style = ProgressBarStyle.Marquee;
+                this.Cursor = Cursors.WaitCursor;
+            }
+            else
+            {
+                progressStatus.Style = ProgressBarStyle.Blocks;
+                this.Cursor = Cursors.Default;
+            }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDocumentoCliente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label33_Click(object sender, EventArgs e)
-        {
-
-        }
+        #endregion=========================estados=====================
 
        
-
        
 
-        private void dgvNotaSalida_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            entrarGuiaremision();
+        
+        
 
-        }
-
-        private void entrarGuiaremision()
-        {
-            
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+      
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 

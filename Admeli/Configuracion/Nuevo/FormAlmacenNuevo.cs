@@ -313,6 +313,8 @@ namespace Admeli.Configuracion.Nuevo
                 progressBarApp.Style = ProgressBarStyle.Blocks;
                 Cursor.Current = Cursors.Default;
             }
+
+
         }
         #endregion
 

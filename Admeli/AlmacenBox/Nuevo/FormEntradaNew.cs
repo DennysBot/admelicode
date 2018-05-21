@@ -49,9 +49,10 @@ namespace Admeli.AlmacenBox.Nuevo
 
         AlternativaModel alternativaModel = new AlternativaModel();
         // objetos que cargan a un inicio
-        private  List<Producto> listProducto { get; set; }
+        private  List<Producto > listProducto { get; set; }
         private List<Presentacion> listPresentacion { get; set; }
-        private List<Almacen> listAlmacen { get; set; }
+        private List<Almacen> listAlmacenEntrada { get; set; }
+        private List<Almacen> listAlmacenSalida { get; set; }
         private List<AlmacenCorrelativo> listCorrelativoA { get; set; }
         private List<CargaCompraSinNota> listcargaCompraSinNota { get; set; }// detalles de compra
           
@@ -83,8 +84,8 @@ namespace Admeli.AlmacenBox.Nuevo
 
         List<FormatoDocumento> listformato;
 
-        int indice = 0;
-
+        private int indice = 0;
+        private int filtradoAlmacen = 0;
         public FormEntradaNew()
         {
             InitializeComponent();
@@ -136,7 +137,6 @@ namespace Admeli.AlmacenBox.Nuevo
             cargarObjetos();
             cargarAlmacenes();
             cargarProductos();
-            cargarPresentacion();
             cargarFormatoDocumento();
         }
 
@@ -180,7 +180,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 // serie
                 txtSerie.Text = currentNotaEntrada.serie;
                 txtCorrelativo.Text = currentNotaEntrada.correlativo;
-                cbxAlmacen.SelectedValue = currentNotaEntrada.idAlmacen;
+                cbxAlmacenEntrada.SelectedValue = currentNotaEntrada.idAlmacen;
                 dtpFechaEntrega.Value = currentNotaEntrada.fechaEntrada.date;
                 txtObservaciones.Text = currentNotaEntrada.observacion;
                 chbxEntrega.Checked = currentNotaEntrada.estadoEntrega == 1 ? true : false;
@@ -216,14 +216,48 @@ namespace Admeli.AlmacenBox.Nuevo
         }
         private async void cargarAlmacenes()
         {
+            //try
+            //{
+            //    listAlmacen = await AlmacenModel.almacenesAsignados(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
+            //    almacenBindingSource.DataSource = listAlmacen;
+            //    cbxAlmacen.SelectedIndex = 0;
+            //    currentAlmacen = listAlmacen[0];
+            //    if (nuevo)
+            //        cargarDocCorrelativo(currentAlmacen.idAlmacen);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error: " + ex.Message, "Cargar Almacenes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
+
+
             try
             {
-                listAlmacen = await AlmacenModel.almacenesAsignados(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
-                almacenBindingSource.DataSource = listAlmacen;
-                cbxAlmacen.SelectedIndex = 0;
-                currentAlmacen = listAlmacen[0];
+              
+                listAlmacenEntrada = await AlmacenModel.almacenesAsignados(0, PersonalModel.personal.idPersonal);//  para todos las asignadas al personal
+
+                almacenBindingSource.DataSource = listAlmacenEntrada;
+                cbxAlmacenEntrada.SelectedIndex = -1;
+
+                listAlmacenSalida = new List<Almacen>();
+                Almacen almacen = new Almacen();
+                almacen.idAlmacen = 0;
+                almacen.nombre = "Ninguno";
+                listAlmacenSalida.Add(almacen);
+                listAlmacenSalida.AddRange(listAlmacenEntrada);
+
+                almacenBindingSource1.DataSource = listAlmacenSalida;
+                currentAlmacen = listAlmacenEntrada.Find(X => X.idAlmacen == ConfigModel.currentIdAlmacen);
+                cbxAlmacenEntrada.SelectedValue = currentAlmacen.idAlmacen;
+                cbxAlmacenEntrada.SelectedIndex = -1;
+                cbxAlmacenEntrada.SelectedValue = 0;
                 if (nuevo)
+                {
                     cargarDocCorrelativo(currentAlmacen.idAlmacen);
+                }
+
+
+
             }
             catch (Exception ex)
             {
@@ -254,31 +288,20 @@ namespace Admeli.AlmacenBox.Nuevo
         private async void cargarProductos()
         {
             try
-            {
-                listProducto  = await productoModel.productos();
+            {              
+                listProducto = await productoModel.productos();
                 productoBindingSource.DataSource = listProducto;
                 cbxCodigoProducto.SelectedIndex = -1;
-               
+                cbxDescripcion.SelectedIndex = -1;
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Listar productos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private async void cargarPresentacion()
-        {                                                                                                    /// Cargar las precentaciones
-            try
-            {
-                listPresentacion = await presentacionModel.presentacionesTodas();
-                presentacionBindingSource.DataSource = listPresentacion;
-                cbxDescripcion.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "cargar Presentacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+      
 
 
         private async void cargarFechaSistema()
@@ -372,12 +395,30 @@ namespace Admeli.AlmacenBox.Nuevo
             cargarProductoDetalle(1);
         }
 
+        private async  void cargarPrecio()
+        {
+            try
+            {
+
+
+            }
+            catch(Exception ex)
+            {
+
+                MessageBox.Show("Error: " + ex.Message, "cargar Precio de Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+
+        }
+
+
 
         // metodos usados por lo eventos
         private void cargarProductoDetalle(int tipo)
         {
 
-            cbxUnidad.Items.Clear();
+            
             if (tipo == 0)
             {
 
@@ -385,20 +426,19 @@ namespace Admeli.AlmacenBox.Nuevo
                 try
                 {
                     /// Buscando el producto seleccionado
-                    cbxUnidad.Enabled = true;
-
+                 
                    
                     int idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue);
                     currentProducto = listProducto.Find(x => x.idProducto == idProducto);
-                    cbxUnidad.Items.Add(currentProducto.nombreProducto);
-                    cbxUnidad.SelectedIndex = 0;
-                    cbxUnidad.SelectedValue = idProducto;
-                    cargarPresentaciones(idProducto, tipo);
+                    cbxDescripcion.SelectedValue = currentProducto.idPresentacion;                               
                     cargarAlternativas(tipo);
+
+                    cargarPrecio();
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Error: " + ex.Message, "cargar producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
@@ -410,24 +450,12 @@ namespace Admeli.AlmacenBox.Nuevo
                     /// Buscando el producto seleccionado
                     /// 
                     int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                    currentPresentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
-
-                    cbxCodigoProducto.SelectedValue = currentPresentacion.idProducto;
-
-                    //int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                    //currentPresentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
-
-                
-
-                    //cbxCodigoProducto.se
-                    //cbxUnidad.Items.Add(currentProducto.nombreProducto);
-                    //cbxUnidad.SelectedIndex = 0;
-                    //cargarPresentacionDescripcion(tipo);
-                    //cargarAlternativas(tipo);
+                    currentProducto = listProducto.Find(x => Convert.ToInt32( x.idPresentacion) == idPresentacion);
+                    cbxCodigoProducto.SelectedValue = currentProducto.idProducto;               
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Error: " + ex.Message, "cargar presentacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
@@ -461,14 +489,10 @@ namespace Admeli.AlmacenBox.Nuevo
             }                                                  /// cargando las alternativas del producto
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "cargar combinaciones", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void cargarPresentacionDescripcion(int tipo)
-        {
-            cbxDescripcion.Text = currentPresentacion.nombrePresentacion;
-           
-        }
+       
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -493,8 +517,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 if (listcargaCompraSinNota == null) listcargaCompraSinNota = new List<CargaCompraSinNota>();
                 CargaCompraSinNota detalleNota = new CargaCompraSinNota();
 
-                currentPresentacion = listPresentacion.Find(x => x.idPresentacion == Convert.ToInt32(cbxDescripcion.SelectedValue));
-
+              
 
                 currentDetalleNEntrada = buscarElemento(Convert.ToInt32(cbxDescripcion.SelectedValue),(int)cbxVariacion.SelectedValue);
                 if (currentDetalleNEntrada != null)
@@ -505,7 +528,7 @@ namespace Admeli.AlmacenBox.Nuevo
 
                 }
 
-                currentProducto = listProducto.Find(x => x.idProducto == currentPresentacion.idProducto);
+               
                 // Creando la lista
                 detalleNota.cantidad = toDouble(txtCantidad.Text.Trim());
                 /// Busqueda presentacion
@@ -520,9 +543,21 @@ namespace Admeli.AlmacenBox.Nuevo
                 detalleNota.idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue);              
                 detalleNota.nombreCombinacion = cbxVariacion.Text;
                 detalleNota.nombreMarca = currentProducto.nombreMarca;
-                detalleNota.nombrePresentacion = currentPresentacion.nombrePresentacion;
+                detalleNota.nombrePresentacion = currentProducto.nombreProducto;
                 detalleNota.cantidadRecibida = toDouble(txtCantidadRecibida.Text.Trim());
-                detalleNota.estado = currentPresentacion.estado;
+                detalleNota.estado = 1;
+
+
+
+                // datos para la nota de entrada
+
+
+
+
+
+
+
+
                 // agrgando un nuevo item a la lista
                 listcargaCompraSinNota.Add(detalleNota);
                 // Refrescando la tabla
@@ -551,9 +586,8 @@ namespace Admeli.AlmacenBox.Nuevo
             cbxVariacion.SelectedIndex = -1;
             txtCantidad.Text = "";
             txtCantidadRecibida.Text = "";
-            cbxUnidad.Text = "";
-            cbxUnidad.SelectedIndex = -1;
-            cbxUnidad.Items.Clear();
+         
+            currentProducto = null;
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
@@ -567,7 +601,7 @@ namespace Admeli.AlmacenBox.Nuevo
             string date1 = String.Format("{0:u}", dtpFechaEntrega.Value);
             date1 = date1.Substring(0, date1.Length - 1);
             almacenNEntrada.fechaEntrada = date1;// probar con el otro 
-            almacenNEntrada.idAlmacen = (int)cbxAlmacen.SelectedValue;
+            almacenNEntrada.idAlmacen = (int)cbxAlmacenEntrada.SelectedValue;
             almacenNEntrada.idPersonal = PersonalModel.personal.idPersonal;
             almacenNEntrada.idTipoDocumento = 7;// nota de entrada
             almacenNEntrada.observacion = txtObservaciones.Text;
@@ -630,7 +664,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 else
                 {
 
-                    MessageBox.Show(" no cumple" + "exite: " + responseNota.existeProducto + "  producto: " + responseNota.idProducto, "verificar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("no se tiene suficente stock para los productos", "verificar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dictionary.Clear();
                     DetallesNota.Clear();
                     listint.Clear();
@@ -639,7 +673,7 @@ namespace Admeli.AlmacenBox.Nuevo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "btnGuardar_Click", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "guardar ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -661,7 +695,7 @@ namespace Admeli.AlmacenBox.Nuevo
             currentDetalleNEntrada = buscarElemento(idPresentacion,idCombinacion); // Buscando la registro especifico en la lista de registros
             
             cbxCodigoProducto.SelectedValue = currentDetalleNEntrada.idProducto;
-            cbxDescripcion.SelectedValue = currentDetalleNEntrada.idPresentacion;
+            cbxDescripcion.SelectedValue = currentDetalleNEntrada.idPresentacion.ToString(); ;
             cbxVariacion.Text = currentDetalleNEntrada.nombreCombinacion;
             txtCantidad.Text = Convert.ToInt32(currentDetalleNEntrada.cantidad).ToString();
             txtCantidadRecibida.Text =Convert.ToInt32(currentDetalleNEntrada.cantidadRecibida).ToString();
@@ -989,6 +1023,55 @@ namespace Admeli.AlmacenBox.Nuevo
 
             numberOfItemsPerPage = 0;
             numberOfItemsPrintedSoFar = 0;
+        }
+
+        private void dgvDetalleNota_KeyUp(object sender, KeyEventArgs e)
+        {
+
+
+
+        }
+
+        private void cbxCodigoProducto_KeyUp(object sender, KeyEventArgs e)
+        {
+
+
+
+        }
+
+        private void cbxAlmacenEntrada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxAlmacenEntrada.SelectedIndex == -1) return;
+            if (filtradoAlmacen == 0)
+                filtradoAlmacen = 1;
+            int idAlmacen = (int)cbxAlmacenEntrada.SelectedValue;
+
+            if (filtradoAlmacen == 1)
+            {
+
+                BindingList<Almacen> filtered = new BindingList<Almacen>(listAlmacenSalida.Where(obj => obj.idAlmacen != idAlmacen).ToList());
+                cbxAlmacenSalida.DataSource = filtered;
+                cbxAlmacenSalida.Update();
+                filtradoAlmacen = 0;
+
+            }
+        }
+
+        private void cbxAlmacenSalida_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxAlmacenSalida.SelectedIndex == -1) return;
+            if (filtradoAlmacen == 0)
+                filtradoAlmacen = 2;
+            if (filtradoAlmacen == 2)
+            {
+                int idAlmacen = (int)cbxAlmacenSalida.SelectedValue;
+                
+               
+                BindingList<Almacen> filtered = new BindingList<Almacen>(listAlmacenEntrada.Where(obj => obj.idAlmacen != idAlmacen).ToList());
+                cbxAlmacenEntrada.DataSource = filtered;
+                cbxAlmacenEntrada.Update();
+                filtradoAlmacen = 0;
+            }
         }
     }
 }

@@ -70,7 +70,7 @@ namespace Admeli.Ventas.Nuevo
         private List<ProductoVenta> listProductos { get; set; }
         private DescuentoProductoReceive descuentoProducto { get; set; }
         private List<DetalleV> detalleVentas { get; set; }
-        private List<Presentacion> listPresentacion { get; set; }
+       
         private List<ImpuestoProducto> listImpuestosProducto { get; set; }
         private List<AlmacenComra> listAlmecenes { get; set; }
         List<AlternativaCombinacion> alternativaCombinacion { get; set; }
@@ -86,6 +86,10 @@ namespace Admeli.Ventas.Nuevo
         private Venta currentVenta { get; set; }
         private DetalleV currentdetalleV { get; set; }
         private double stockPresentacion { get; set; }
+
+
+        private int cbxControlProductod { get; set; }
+
         public int nroNuevo = 0;
         private bool nuevo { get; set; }
         private bool enModificar { get; set; }
@@ -103,7 +107,7 @@ namespace Admeli.Ventas.Nuevo
 
         
         private bool lisenerKeyEvents = false;
-
+         
 
 
         // variables para poder imprimir la cotizacion
@@ -269,7 +273,7 @@ namespace Admeli.Ventas.Nuevo
             cargarClientes();
             cargarTipoComprobantes();
             cargarImpuesto();
-            cargarPresentacion();
+           
             cargarObjetos();
             cargarAlmacen();
             lisenerKeyEvents = true;
@@ -302,6 +306,9 @@ namespace Admeli.Ventas.Nuevo
                     break;
                 case Keys.F5:
                     ImportarCotizacion();
+                    break;
+                case Keys.F7:
+                    buscarProducto();
                     break;
                 default:
                     if (e.Control && e.KeyValue == 13)
@@ -559,25 +566,7 @@ namespace Admeli.Ventas.Nuevo
 
 
         }
-        private async void cargarPresentacion()
-        {                                                                                                    /// Cargar las precentaciones
-            try
-            {
-                listPresentacion = await presentacionModel.presentacionesTodas();
-                presentacionBindingSource.DataSource = listPresentacion;
-                cbxDescripcion.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            finally
-            {
-                if (listProductos != null)
-                    loadState(false);
-
-            }
-        }
+       
         private async void cargarProductos()
         {
             try
@@ -593,8 +582,8 @@ namespace Admeli.Ventas.Nuevo
             }
             finally
             {
-                if (listPresentacion != null)
-                    loadState(false);
+                
+               loadState(false);
 
             }
 
@@ -720,6 +709,7 @@ namespace Admeli.Ventas.Nuevo
         }
         private async void cargarFechaSistema()
         {
+            loadState(true);
             try
             {
                 if (!nuevo)
@@ -791,15 +781,15 @@ namespace Admeli.Ventas.Nuevo
             {
                 panelCargar.Visible = state;
                 progrestatus.Visible = state;
-
                 progrestatus.Style = ProgressBarStyle.Marquee;
+                Cursor = Cursors.WaitCursor;
             }
             else
             {
-
                 progrestatus.Style = ProgressBarStyle.Blocks;
                 progrestatus.Visible = state;
                 panelCargar.Visible = state;
+                Cursor = Cursors.Default;
             }
         }
         private void loadState(bool state)
@@ -841,7 +831,7 @@ namespace Admeli.Ventas.Nuevo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "cargar fechas del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "buscar Elemento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
             }
 
@@ -919,8 +909,22 @@ namespace Admeli.Ventas.Nuevo
             try
             {
                 /// Buscando el producto seleccionado
-                int idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue);
+                int idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue); 
+                
+
                 currentProducto = listProductos.Find(x => x.idProducto == idProducto);
+                cbxDescripcion.SelectedValue = currentProducto.idPresentacion;
+                
+               
+           
+                if (currentProducto.precioVenta == null)
+                {
+
+                    currentProducto = null;
+                    MessageBox.Show("Error:  producto seleccionado no tiene precio de venta, no se puede seleccionar", "Buscar Producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+
+                }
               
                 // Llenar los campos del producto escogido.............!!!!!
 
@@ -932,7 +936,7 @@ namespace Admeli.Ventas.Nuevo
                 }
 
                 /// Cargando presentaciones
-                cargarPresentacionesProducto();
+               
                 /// Cargando alternativas del producto
                 cargarAlternativasProducto();
                 determinarDescuentoEImpuesto();
@@ -940,7 +944,7 @@ namespace Admeli.Ventas.Nuevo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Listar producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -970,18 +974,14 @@ namespace Admeli.Ventas.Nuevo
             {
                 if (cbxDescripcion.SelectedIndex == -1)
                 {
-                    txtPrecioUnitario.Text = currentProducto.precioVenta;
+                    txtPrecioUnitario.Text =darformato( currentProducto.precioVenta);
                 }
                 else
-                {
-                    // Buscar presentacion elegida
-                    int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                    Presentacion findPresentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
-
+                {                   
                     // Realizando el calculo
-                    double precioCompra = toDouble(currentProducto.precioVenta);
+                    double precioCompra = toDouble( currentProducto.precioVenta);
 
-                    double cantidadUnitario = (double)(findPresentacion.cantidadUnitaria);
+                    double cantidadUnitario =toDouble( currentProducto.cantidadUnitaria);
                     double precioUnidatio = precioCompra * cantidadUnitario*valorDeCambio;
 
                     // Imprimiendo valor
@@ -990,7 +990,7 @@ namespace Admeli.Ventas.Nuevo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Calcular total", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Calcular precio unitario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -1037,6 +1037,7 @@ namespace Admeli.Ventas.Nuevo
             if (alternativaCombinacion[0].idCombinacionAlternativa <= 0)
                 calcularPrecioUnitarioProducto();
             calcularTotal();
+            decorationDataGridView();
         }
 
 
@@ -1151,8 +1152,13 @@ namespace Admeli.Ventas.Nuevo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "cargar fechas del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Determinar descuento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+            }
+            finally
+            {
+
+                decorationDataGridView();
             }
 
 
@@ -1270,8 +1276,10 @@ namespace Admeli.Ventas.Nuevo
             {
                 /// Buscando el producto seleccionado
                 int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                Presentacion presentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
-                cbxCodigoProducto.SelectedValue = presentacion.idProducto;
+
+                if(currentProducto==null)
+                     currentProducto = listProductos.Find(x => x.idPresentacion == idPresentacion);
+                cbxCodigoProducto.SelectedValue = currentProducto.idProducto;
                 // Llenar los campos del producto escogido.............!!!!!
                 if (!enModificar)
                 {
@@ -1288,7 +1296,7 @@ namespace Admeli.Ventas.Nuevo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error: " + ex.Message, "Listar desc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -1305,14 +1313,12 @@ namespace Admeli.Ventas.Nuevo
                 }
                 else
                 {
-                    // Buscar presentacion elegida
-                    int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                    Presentacion findPresentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
+                    
 
                     // Realizando el calculo
-                    double precioCompra = toDouble(currentProducto.precioVenta);
+                    double precioCompra = toDouble( currentProducto.precioVenta);
 
-                    double cantidadUnitario = (double)(findPresentacion.cantidadUnitaria);
+                    double cantidadUnitario =toDouble( currentProducto.cantidadUnitaria);
                     double precioUnidatio = precioCompra * cantidadUnitario* valorDeCambio;
 
                     // Imprimiendo valor
@@ -1495,25 +1501,24 @@ namespace Admeli.Ventas.Nuevo
 
 
             }
-
-
-
-
-
-
         }
 
         private void dgvDetalleCompra_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
+
+            limpiarCamposProducto();
             // Verificando la existencia de datos en el datagridview
             if (dgvDetalleOrdenCompra.Rows.Count == 0)
             {
                 MessageBox.Show("No hay un registro seleccionado", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            try
+            {
 
-            enModificar = true;
+
+             enModificar = true;
             int index = dgvDetalleOrdenCompra.CurrentRow.Index; // Identificando la fila actual del datagridview
             int idPresentacion = Convert.ToInt32(dgvDetalleOrdenCompra.Rows[index].Cells[0].Value);
             int idCombinacion = Convert.ToInt32(dgvDetalleOrdenCompra.Rows[index].Cells[1].Value);
@@ -1537,14 +1542,18 @@ namespace Admeli.Ventas.Nuevo
             cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
 
 
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: "+ ex.Message, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+           
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
-
-
-
             currentdetalleV.idCombinacionAlternativa = (int)cbxVariacion.SelectedValue;
             currentdetalleV.nombreCombinacion = cbxVariacion.Text;
             currentdetalleV.cantidad = txtCantidad.Text.Trim();
@@ -1552,7 +1561,6 @@ namespace Admeli.Ventas.Nuevo
             double descuento = toDouble(txtDescuento.Text.Trim());
             currentdetalleV.descuento = darformato(descuento);
             double precioUnitario = toDouble(txtPrecioUnitario.Text.Trim());
-
             currentdetalleV.precioVentaReal = darformato(precioUnitario);
             double precioUnitarioDescuento = precioUnitario - (descuento / 100) * precioUnitario;
             currentdetalleV.precioVenta = darformato(precioUnitarioDescuento);
@@ -1636,17 +1644,14 @@ namespace Admeli.Ventas.Nuevo
 
                 // Creando la lista
                 detalleV.cantidad = darformato(txtCantidad.Text.Trim());//1
-
                 //determinamos el stock
                 determinarStock(0);
                 /// Busqueda presentacion
-                Presentacion findPresentacion = listPresentacion.Find(x => x.idPresentacion == Convert.ToInt32(cbxDescripcion.SelectedValue));
-
                 detalleV.idDetalleVenta = 0;
                 detalleV.idVenta = 0;
                 detalleV.cantidadUnitaria = darformato(txtCantidad.Text.Trim());
                 detalleV.codigoProducto = cbxCodigoProducto.Text.Trim();
-                detalleV.descripcion = findPresentacion.descripcion;
+                detalleV.descripcion = currentProducto.nombreProducto;
 
                 double descuento = toDouble(txtDescuento.Text.Trim());
                 detalleV.descuento = darformato(descuento);
@@ -1659,7 +1664,7 @@ namespace Admeli.Ventas.Nuevo
                 // si es que exite impuesto al producto 
 
                 // impuestoProducto
-                listImpuestosProducto = await impuestoModel.impuestoProducto(findPresentacion.idProducto, ConfigModel.sucursal.idSucursal);
+                listImpuestosProducto = await impuestoModel.impuestoProducto(currentProducto.idProducto, ConfigModel.sucursal.idSucursal);
 
 
                 //listImpuesto
@@ -1716,11 +1721,11 @@ namespace Admeli.Ventas.Nuevo
 
                 detalleV.eliminar = "";
                 detalleV.existeStock = (stockPresentacion > 0 && stockPresentacion >= Convert.ToInt32(toDouble(txtCantidad.Text.Trim()))) ? 1 : 0;
-                ProductoVenta aux1 = listProductos.Find(x => x.idProducto == (int)cbxCodigoProducto.SelectedValue);
-                detalleV.nombreMarca = aux1.nombreMarca;
-                detalleV.nombrePresentacion = findPresentacion.nombrePresentacion;
+               
+                detalleV.nombreMarca = currentProducto.nombreMarca;
+                detalleV.nombrePresentacion =currentProducto.nombreProducto;
                 detalleV.precioEnvio = "0";
-                detalleV.ventaVarianteSinStock = aux1.ventaVarianteSinStock;
+                detalleV.ventaVarianteSinStock = currentProducto.ventaVarianteSinStock;
                 // agrgando un nuevo item a la lista
                 detalleVentas.Add(detalleV);
 
@@ -1802,18 +1807,7 @@ namespace Admeli.Ventas.Nuevo
         
 
         
-        private bool exitePresentacion(int idPresentacion)
-        {
-            foreach (DetalleV C in detalleVentas)
-            {
-                if (C.idPresentacion == idPresentacion)
-                    return true;
-            }
-
-            return false;
-
-        }
-
+        
         private void decorationDataGridView()
         {
         
@@ -1846,6 +1840,7 @@ namespace Admeli.Ventas.Nuevo
             txtTotalProducto.Text = "";
 
             currentdetalleV = null;
+            currentProducto = null;
         }
 
         private async void btnComprar_Click(object sender, EventArgs e)
@@ -1949,6 +1944,7 @@ namespace Admeli.Ventas.Nuevo
 
             if (abasteceReceive.abastece == 0)
             {
+                MessageBox.Show("no exite suficiente stock para hacer esta venta", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
@@ -2023,7 +2019,7 @@ namespace Admeli.Ventas.Nuevo
         {            
             
             cargarProductos();
-            cargarPresentacion();
+           
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             enModificar = false;
@@ -2040,7 +2036,7 @@ namespace Admeli.Ventas.Nuevo
             FormProductoNuevo formProductoNuevo = new FormProductoNuevo();
             formProductoNuevo.ShowDialog();
             cargarProductos();
-            cargarPresentacion();
+           
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             enModificar = false;
@@ -2208,6 +2204,46 @@ namespace Admeli.Ventas.Nuevo
         }
 
 
+        public void buscarProducto()
+        {
+            try
+            {
+                FormBuscarProducto formBuscarProducto = new FormBuscarProducto(listProductos);
+                formBuscarProducto.ShowDialog();
+
+                if (formBuscarProducto.currentProducto != null)
+                {
+                   
+
+                    currentProducto = formBuscarProducto.currentProducto;
+                    if (currentProducto.precioVenta == null)
+                    {
+
+                        currentProducto = null;
+                        MessageBox.Show("Error:  producto seleccionado no tiene precio de venta, no se puede seleccionar", "Buscar Producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                       
+                    }
+
+                    cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
+
+                }
+
+                      
+
+                
+
+            }
+            catch (Exception ex)
+
+            {
+                MessageBox.Show("Error: " + ex.Message, "Productos ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
+        }
+
+
 
         private void cargarDatosCotizacion()
         {
@@ -2300,12 +2336,12 @@ namespace Admeli.Ventas.Nuevo
             if (cbxCodigoProducto.SelectedIndex == -1) return;
             AlternativaCombinacion alternativa = alternativaCombinacion.Find(X => X.idCombinacionAlternativa == (int)cbxVariacion.SelectedValue);
             currentProducto = listProductos.Find(X => X.idProducto == (int)cbxCodigoProducto.SelectedValue);
-            double precioUnitario = toDouble(currentProducto.precioVenta) + toDouble(alternativa.precio);
+            double precioUnitario =toDouble( currentProducto.precioVenta) + toDouble(alternativa.precio);
             txtPrecioUnitario.Text = darformato(precioUnitario*valorDeCambio);
             determinarStock(0);
         }
 
-        private async void btnVenta_Click(object sender, EventArgs e)
+        private  void btnVenta_Click(object sender, EventArgs e)
         {
 
 
@@ -2439,9 +2475,10 @@ namespace Admeli.Ventas.Nuevo
                 List<verificarStockReceive> verificarStockReceive = await stockModel.verificarstockproductossucursal(verificarStock);
 
                 abasteceReceive = await stockModel.Abastece(abastece);
-
+                dato.Clear();
                 if (abasteceReceive.abastece == 0)
                 {
+                    MessageBox.Show("no exite suficiente stock para hacer esta venta", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
 
@@ -2465,13 +2502,13 @@ namespace Admeli.Ventas.Nuevo
                 {
                     if (nuevo)
                     {
-                        MessageBox.Show(response.msj, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(response.msj+ "  Satisfatoriamente", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show(response.msj, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(response.msj+" Satisfariamente", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                 }
@@ -2479,7 +2516,7 @@ namespace Admeli.Ventas.Nuevo
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Error: "+ ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Error: "+ ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 
             }

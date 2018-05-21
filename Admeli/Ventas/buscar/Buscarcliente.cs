@@ -108,7 +108,7 @@ namespace Admeli.Ventas.Buscar
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error! " + ex.Message, "Error proveedor", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Error! " + ex.Message, "Error cliente", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
         }

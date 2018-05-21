@@ -91,7 +91,7 @@
             // 
             this.panelFooter.Controls.Add(this.panel1);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(0, 452);
+            this.panelFooter.Location = new System.Drawing.Point(0, 551);
             this.panelFooter.Name = "panelFooter";
             this.panelFooter.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.panelFooter.Size = new System.Drawing.Size(1050, 49);
@@ -674,7 +674,7 @@
             this.btnGrupoNuevo.Location = new System.Drawing.Point(237, 343);
             this.btnGrupoNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.btnGrupoNuevo.Name = "btnGrupoNuevo";
-            this.btnGrupoNuevo.Size = new System.Drawing.Size(35, 32);
+            this.btnGrupoNuevo.Size = new System.Drawing.Size(35, 33);
             this.btnGrupoNuevo.TabIndex = 6;
             this.btnGrupoNuevo.Text = "+";
             this.btnGrupoNuevo.UseVisualStyleBackColor = false;
@@ -723,7 +723,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "UCClienteGeneral";
-            this.Size = new System.Drawing.Size(1050, 501);
+            this.Size = new System.Drawing.Size(1050, 600);
             this.Load += new System.EventHandler(this.UCProveedorGeneral_Load);
             this.panelFooter.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

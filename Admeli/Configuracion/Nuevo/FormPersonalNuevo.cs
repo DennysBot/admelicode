@@ -47,6 +47,8 @@ namespace Admeli.Configuracion.Nuevo
         public Responsabilidades responsabilidades { get; set; }
         public List<Sucursal> listSucursal { get; set; }
 
+        private List<DocumentoIdentificacion> listDocumentos { get; set; }
+
         Dictionary<int ,  List<Permisos>> matrizPersimos { get; set; }
         Dictionary<int, List<TreeNode>> matrizNodes { get; set; }
 
@@ -56,6 +58,7 @@ namespace Admeli.Configuracion.Nuevo
         int nroNodosVentas= 0;
         int contadorA = 0;
         int contadorP = 0;
+        int NroDigitos = 0;
         public FormPersonalNuevo()
         {
             InitializeComponent();
@@ -283,7 +286,25 @@ namespace Admeli.Configuracion.Nuevo
 
         private async void cargarDocIdentificacion()
         {
-            documentoIdentificacionBindingSource.DataSource = await documentoIdentificacion.docIdentificacionNatural();
+            try
+            {
+
+                listDocumentos = await documentoIdentificacion.docIdentificacionNatural();
+                documentoIdentificacionBindingSource.DataSource = listDocumentos;
+                cbxTipoDocumento.SelectedIndex = -1;
+                cbxTipoDocumento.SelectedIndex = 0;
+                if (!nuevo)
+                {
+                    cbxTipoDocumento.SelectedValue = currentPersonal.idDocumento;
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Cargar Documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private async Task cargarPaises()
@@ -983,6 +1004,19 @@ namespace Admeli.Configuracion.Nuevo
 
         private void cbxTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            if (cbxTipoDocumento.SelectedIndex == -1) return;
+            DocumentoIdentificacion documento=   listDocumentos.Find(X => X.idDocumento == (int)cbxTipoDocumento.SelectedValue);
+            NroDigitos = documento.numeroDigitos;
+        }
+
+        private void textNumeroDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+
+            String aux = textNumeroDocumento.Text;
+            int nroCarateres = aux.Length;
+            Validator.isNroDocumento(e, nroCarateres, NroDigitos);
 
         }
     }

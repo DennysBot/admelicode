@@ -9,7 +9,8 @@ namespace Entidad
     public class Producto
     {
         //Compra,Venta,Stock cambiado el tipo de string a Decimal
-        public int idProducto { get; set; }
+        public int idProducto { get; set; }   // porque haci  manda desde el servicio modificado 
+        public string idPresentacion { get; set; }
         public bool cantidadFraccion { get; set; }
         public string codigoBarras { get; set; }
         public string codigoProducto { get; set; }
@@ -56,6 +57,26 @@ namespace Entidad
         public int idPresentacionAfectada { get; set; }
         public int idAlmacen { get; set; }
         public string nombreAlmacen { get; set; }
+
+        private int idPresentacionint;
+        public int IdPresentacionint
+        {
+            get
+            {
+                return Int32.Parse(idPresentacion);
+
+            }
+            set
+            {
+                idPresentacion = value.ToString();
+
+            }
+
+
+        }
+            
+
+
     }
 
     public class ProductoVenta
@@ -67,8 +88,9 @@ namespace Entidad
             public int idPresentacion { get; set; }
             public bool ventaVarianteSinStock { get; set; }
             public string nombreMarca { get; set; }
+            public string precioCompra { get; set; }
+            public string cantidadUnitaria { get; set; }
 
-       
     }
 
     public class ProductoSinImpuesto

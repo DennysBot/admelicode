@@ -581,10 +581,11 @@
             this.textNumeroDocumento.Location = new System.Drawing.Point(17, 308);
             this.textNumeroDocumento.Margin = new System.Windows.Forms.Padding(5);
             this.textNumeroDocumento.Name = "textNumeroDocumento";
-            this.textNumeroDocumento.Padding = new System.Windows.Forms.Padding(3, 0, 7, 2);
+            this.textNumeroDocumento.Padding = new System.Windows.Forms.Padding(3, 3, 7, 2);
             this.textNumeroDocumento.Size = new System.Drawing.Size(439, 49);
             this.textNumeroDocumento.TabIndex = 10;
             this.textNumeroDocumento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNumeroDocumento_KeyPress);
             this.textNumeroDocumento.Validated += new System.EventHandler(this.textNumeroDocumento_Validated);
             // 
             // panel3

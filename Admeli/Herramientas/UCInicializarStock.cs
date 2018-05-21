@@ -435,8 +435,13 @@ namespace Admeli.Herramientas
             {
 
                 loadState(false);
-                if(dataGridView.Rows.Count>0)
+                if (dataGridView.Rows.Count > 0)
+                {
+                    if (dataGridView.Rows.Count > index)
+                        index = 0;
                     dataGridView.Rows[index].Selected = true;
+                }
+                   
             }
         }
 
@@ -507,7 +512,14 @@ namespace Admeli.Herramientas
             {
                 loadState(false);
                 if(dataGridView.Rows.Count> 0)
+                {
+
+                    if (dataGridView.Rows.Count > index)
+                            index = 0;
                     dataGridView.Rows[index].Selected = true;
+
+                }
+                   
             }
         }
         #endregion

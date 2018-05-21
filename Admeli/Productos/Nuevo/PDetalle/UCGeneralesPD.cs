@@ -116,7 +116,7 @@ namespace Admeli.Productos.Nuevo.PDetalle
         internal async void cargarPresentacion()
         {
             formProductoNuevo.appLoadState(true);
-            presentacionBindingSource.DataSource = await presentacionModel.presentacionesTodas();
+            presentacionBindingSource.DataSource = await presentacionModel.presentacionesTodas(ConfigModel.sucursal.idSucursal);
             //if (!formProductoNuevo.nuevo) cbxUnidadMedida.SelectedValue = formProductoNuevo.currentProducto.idUnidadMedida;
             if (!formProductoNuevo.nuevo) cbxPresentacionBase.SelectedIndex = 0;
             formProductoNuevo.appLoadState(false);

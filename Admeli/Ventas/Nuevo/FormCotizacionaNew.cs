@@ -384,7 +384,7 @@ namespace Admeli.Ventas.Nuevo
             loadState(true);/// Cargar las precentaciones
             try
             {
-                listPresentacion = await presentacionModel.presentacionesTodas();
+                listPresentacion = await presentacionModel.presentacionesTodas(ConfigModel.sucursal.idSucursal);
                 presentacionBindingSource.DataSource = listPresentacion;
                 cbxDescripcion.SelectedIndex = -1;
             }
@@ -650,7 +650,7 @@ namespace Admeli.Ventas.Nuevo
             {
                 if (cbxDescripcion.SelectedIndex == -1)
                 {
-                    txtPrecioUnitario.Text = currentProducto.precioVenta;
+                    txtPrecioUnitario.Text =darformato( currentProducto.precioVenta);
                 }
                 else
                 {
@@ -659,7 +659,7 @@ namespace Admeli.Ventas.Nuevo
                     Presentacion findPresentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
 
                     // Realizando el calculo
-                    double precioCompra = toDouble(currentProducto.precioVenta);
+                    double precioCompra = toDouble( currentProducto.precioVenta);
                     double cantidadUnitario = toDouble(findPresentacion.cantidadUnitaria.ToString(ConfigModel.configuracionGeneral.formatoDecimales));
                     double precioUnidatio = precioCompra * cantidadUnitario;
 
@@ -1125,7 +1125,7 @@ namespace Admeli.Ventas.Nuevo
             {
                 if (cbxDescripcion.SelectedIndex == -1)
                 {
-                    txtPrecioUnitario.Text = currentProducto.precioVenta;
+                    txtPrecioUnitario.Text =darformato( currentProducto.precioVenta);
                 }
                 else
                 {
@@ -1134,7 +1134,7 @@ namespace Admeli.Ventas.Nuevo
                     Presentacion findPresentacion = listPresentacion.Find(x => x.idPresentacion == idPresentacion);
 
                     // Realizando el calculo
-                    double precioCompra = toDouble(currentProducto.precioVenta);
+                    double precioCompra = toDouble( currentProducto.precioVenta);
                     double cantidadUnitario = toDouble(findPresentacion.cantidadUnitaria.ToString(ConfigModel.configuracionGeneral.formatoDecimales));
                     double precioUnidatio = precioCompra * cantidadUnitario;
 
@@ -1935,7 +1935,7 @@ namespace Admeli.Ventas.Nuevo
 
             AlternativaCombinacion alternativa = alternativaCombinacion.Find(X => X.idCombinacionAlternativa == (int)cbxVariacion.SelectedValue);
             currentProducto = listProductos.Find(X => X.idProducto == (int)cbxCodigoProducto.SelectedValue );
-            double precioUnitario = toDouble(currentProducto.precioVenta) + toDouble(alternativa.precio);
+            double precioUnitario = toDouble( currentProducto.precioVenta) + toDouble(alternativa.precio);
             txtPrecioUnitario.Text = darformato(precioUnitario);
             determinarStock(0);
             

@@ -65,11 +65,11 @@ namespace Modelo
             }
         }
 
-        public async Task<List<Presentacion>> presentacionesTodas(){
+        public async Task<List<Presentacion>> presentacionesTodas(int idSucursal){
             try
             {
                 //localhost/admeli/xcore/services.php/presentacion/producto/0
-                List<Presentacion> list = await webService.GET<List<Presentacion>>("presentacion", String.Format("producto/todas/{0}", 0));
+                List<Presentacion> list = await webService.GET<List<Presentacion>>("presentacion", String.Format("producto/todas/{0}", idSucursal));
                 return list;
             }
             catch(Exception ex)
@@ -106,5 +106,23 @@ namespace Modelo
                 throw ex;
             }
         }
+
+
+        //precio/producto/:idp/sucursal/:ids
+
+        public async Task<List<PresentacionV>> precioProducto(int idPresentacion, int idSucursal)
+        {
+            try
+            {
+                // localhost/admeli/xcore/services.php/precio/producto6/producto/28
+                List<PresentacionV> list = await webService.GET<List<PresentacionV>>("precio", String.Format("producto/{0}/sucursal/{1}", idPresentacion, idSucursal));
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

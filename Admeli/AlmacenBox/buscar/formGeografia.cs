@@ -298,8 +298,7 @@ namespace Admeli.AlmacenBox.buscar
 
         
 
-        
-
+      
         private bool validarCampos()
         {
            
@@ -354,10 +353,7 @@ namespace Admeli.AlmacenBox.buscar
             return true;
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-           
-        }
+       
         #endregion
 
         private void textTelefono_KeyPress(object sender, KeyPressEventArgs e)

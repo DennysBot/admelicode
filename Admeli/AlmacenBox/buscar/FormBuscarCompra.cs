@@ -36,15 +36,17 @@ namespace Admeli.AlmacenBox.buscar
 
      
         private string formato { get; set; }
-        private int nroDecimales = 2;
+        private int nroDecimales = ConfigModel.configuracionGeneral.numeroDecimales;
         private FechaSistema fechaSistema { get; set; }
 
 
 
         //objetos en tiempo real
         public  CompraNEntrada currentCompraNEntrada { get; set; }
-     
 
+
+
+        //progressStatus
         public FormBuscarCompra()
         {
             InitializeComponent();
@@ -89,6 +91,7 @@ namespace Admeli.AlmacenBox.buscar
 
         private async void cargarCompras()
         {
+            loadState(true);
             try
             {
                 listCompraNEntrada = await compraModel.comprasSinNota(ConfigModel.sucursal.idSucursal);
@@ -99,47 +102,37 @@ namespace Admeli.AlmacenBox.buscar
             {
                 MessageBox.Show("Error: " + ex.Message, "Cargar Compras", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            finally
+            {
 
+                loadState(false);
+            }
 
         }
         #endregion
 
-        private void label10_Click(object sender, EventArgs e)
+        #region=========================estados=================  
+        private void loadState(bool state)
         {
-
+            appLoadState(state);
+            this.Enabled = true;
         }
 
-        private void panel6_Paint(object sender, PaintEventArgs e)
+        public void appLoadState(bool state)
         {
-
+            if (state)
+            {
+                progressStatus.Style = ProgressBarStyle.Marquee;
+                this.Cursor = Cursors.WaitCursor;
+            }
+            else
+            {
+                progressStatus.Style = ProgressBarStyle.Blocks;
+                this.Cursor = Cursors.Default;
+            }
         }
+        #endregion=========================estados=====================
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDocumentoCliente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label33_Click(object sender, EventArgs e)
-        {
-
-        }
-
-      
         private void dgvNotaSalida_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             entrarGuiaremision();
@@ -154,11 +147,29 @@ namespace Admeli.AlmacenBox.buscar
                 return;
             }
 
-            int index = dgvCompras.CurrentRow.Index; // Identificando la fila actual del datagridview
-            int idCompra = Convert.ToInt32(dgvCompras.Rows[index].Cells[0].Value); // obteniedo el idRegistro del datagridview
 
-            currentCompraNEntrada = listCompraNEntrada.Find(x => x.idCompra == idCompra);         
-            this.Close();
+            loadState(true);
+            try
+            {
+
+                int index = dgvCompras.CurrentRow.Index; // Identificando la fila actual del datagridview
+                int idCompra = Convert.ToInt32(dgvCompras.Rows[index].Cells[0].Value); // obteniedo el idRegistro del datagridview
+
+                currentCompraNEntrada = listCompraNEntrada.Find(x => x.idCompra == idCompra);         
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Cargar Compra", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                loadState(false);
+
+            }
+
+        
+           
         }
 
         private void txtNroCompra_TextChanged(object sender, EventArgs e)

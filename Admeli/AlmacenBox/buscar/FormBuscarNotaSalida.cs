@@ -89,11 +89,36 @@ namespace Admeli.AlmacenBox.buscar
 
         #endregion
 
+
+        #region=========================estados=================  
+        private void loadState(bool state)
+        {
+            appLoadState(state);
+            this.Enabled = true;
+        }
+
+        public void appLoadState(bool state)
+        {
+            if (state)
+            {
+                progressStatus.Style = ProgressBarStyle.Marquee;
+                this.Cursor = Cursors.WaitCursor;
+            }
+            else
+            {
+                progressStatus.Style = ProgressBarStyle.Blocks;
+                this.Cursor = Cursors.Default;
+            }
+        }
+        #endregion=========================estados=====================
+
+
         #region ============================== Load ==============================
 
-    
+
         private async void cargarNotaSalida()
         {
+            loadState(true);
             try
             {
                 listNotasalida = await NotaSalidaModel.nSalida(ConfigModel.currentIdAlmacen);
@@ -104,44 +129,15 @@ namespace Admeli.AlmacenBox.buscar
             {
                 MessageBox.Show("Error: " + ex.Message, "Cargar Nota Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            finally
+            {
+                loadState(false);
+            }
 
         }
         #endregion
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDocumentoCliente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label33_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void btnfecha_Click(object sender, EventArgs e)
         {

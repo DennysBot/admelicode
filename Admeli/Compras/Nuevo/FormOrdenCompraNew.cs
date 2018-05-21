@@ -485,7 +485,7 @@ namespace Admeli.Compras.Nuevo
         {                                                                                                    /// Cargar las precentaciones
             try
             {
-                presentaciones = await presentacionModel.presentacionesTodas();
+                presentaciones = await presentacionModel.presentacionesTodas(ConfigModel.sucursal.idSucursal);
                 presentacionBindingSource.DataSource = presentaciones;
                 cbxDescripcion.SelectedIndex = -1;
             }
