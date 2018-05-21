@@ -87,7 +87,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
+            this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
             this.label7.Location = new System.Drawing.Point(7, 6);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
@@ -102,12 +102,12 @@
             this.cbxCategoriaPrincipal.DataSource = this.categoriaBindingSource;
             this.cbxCategoriaPrincipal.DisplayMember = "nombreCategoria";
             this.cbxCategoriaPrincipal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCategoriaPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxCategoriaPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCategoriaPrincipal.FormattingEnabled = true;
             this.cbxCategoriaPrincipal.Location = new System.Drawing.Point(10, 24);
-            this.cbxCategoriaPrincipal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxCategoriaPrincipal.Margin = new System.Windows.Forms.Padding(2);
             this.cbxCategoriaPrincipal.Name = "cbxCategoriaPrincipal";
-            this.cbxCategoriaPrincipal.Size = new System.Drawing.Size(219, 28);
+            this.cbxCategoriaPrincipal.Size = new System.Drawing.Size(219, 24);
             this.cbxCategoriaPrincipal.TabIndex = 13;
             this.cbxCategoriaPrincipal.ValueMember = "idCategoria";
             // 
@@ -122,7 +122,7 @@
             this.bunifuSeparator2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
             this.bunifuSeparator2.LineThickness = 1;
             this.bunifuSeparator2.Location = new System.Drawing.Point(0, 57);
-            this.bunifuSeparator2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuSeparator2.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuSeparator2.Name = "bunifuSeparator2";
             this.bunifuSeparator2.Size = new System.Drawing.Size(633, 12);
             this.bunifuSeparator2.TabIndex = 11;
@@ -312,7 +312,7 @@
             this.bunifuSeparator1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
             this.bunifuSeparator1.LineThickness = 1;
             this.bunifuSeparator1.Location = new System.Drawing.Point(0, 37);
-            this.bunifuSeparator1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuSeparator1.Margin = new System.Windows.Forms.Padding(4);
             this.bunifuSeparator1.Name = "bunifuSeparator1";
             this.bunifuSeparator1.Size = new System.Drawing.Size(633, 12);
             this.bunifuSeparator1.TabIndex = 1;
