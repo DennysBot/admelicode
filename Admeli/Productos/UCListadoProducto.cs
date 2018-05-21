@@ -251,10 +251,10 @@ namespace Admeli.Productos
                 listAlm = new List<Almacen>();
                 listAlmCargar = new List<Almacen>();
                 listAlm = ConfigModel.alamacenes;
-                Almacen sucursal = new Almacen();
-                sucursal.idAlmacen = 0;
-                sucursal.nombre = "Todas";
-                listAlmCargar.Add(sucursal);
+                Almacen almacen = new Almacen();
+                almacen.idAlmacen = 0;
+                almacen.nombre = "Todas";
+                listAlmCargar.Add(almacen);
                 listAlmCargar.AddRange(listAlm);
                 almacenBindingSource.DataSource = listAlmCargar;
                

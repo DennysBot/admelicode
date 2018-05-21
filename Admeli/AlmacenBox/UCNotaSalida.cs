@@ -29,6 +29,8 @@ namespace Admeli.AlmacenBox
         private List<NotaSalida> notaSalidas { get; set; }
 
         private FormPrincipal formPrincipal;
+        private List<Sucursal> listaSucursalCargar { get; set; }
+        private List<Almacen> listaAlmacen { get; set; }
         public bool lisenerKeyEvents { get; set; }
 
         #region ========================== Constructor ==========================
@@ -195,7 +197,9 @@ namespace Admeli.AlmacenBox
         {
             try
             {
-                sucursalBindingSource.DataSource = await sucursalModel.listarSucursalesActivos();
+                listaSucursalCargar = await sucursalModel.listarSucursalesActivos();
+                sucursalBindingSource.DataSource = listaSucursalCargar;
+                cbxSucursales.SelectedValue = 0;
             }
             catch (Exception ex)
             {
@@ -207,7 +211,11 @@ namespace Admeli.AlmacenBox
         {
             try
             {
-                almacenBindingSource.DataSource = await almacenModel.almacenesPorSucursales(ConfigModel.sucursal.idSucursal);
+                listaAlmacen = new List<Almacen>();
+                //almacenBindingSource.DataSource = await almacenModel.almacenesPorSucursales(ConfigModel.sucursal.idSucursal);
+                listaAlmacen = await almacenModel.almacenesPorSucursales(0);
+                almacenBindingSource.DataSource = listaAlmacen;
+                cbxAlmacenes.SelectedValue = 0;
             }
             catch (Exception ex)
             {
@@ -512,6 +520,34 @@ namespace Admeli.AlmacenBox
             }
 
 
+        }
+
+        private void cbxSucursales_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSucursales.SelectedIndex == -1)
+                return;
+
+            if ((int)cbxSucursales.SelectedValue == 0)
+            {
+                almacenBindingSource.DataSource = listaAlmacen;
+                cbxAlmacenes.SelectedIndex = -1;
+                cbxAlmacenes.SelectedValue = 0;
+            }
+            else
+            {
+                List<Almacen> listA = new List<Almacen>();
+                Almacen almacen = new Almacen();
+                almacen.idAlmacen = 0;
+                almacen.nombre = "Todos los almacenes";
+                listA.Add(almacen);
+
+
+                List<Almacen> list = listaAlmacen.Where(X => X.idSucursal == (int)cbxSucursales.SelectedValue).ToList();
+                listA.AddRange(list);
+                almacenBindingSource.DataSource = listA;
+                cbxAlmacenes.SelectedIndex = -1;
+                cbxAlmacenes.SelectedValue = 0;
+            }
         }
     }
 }

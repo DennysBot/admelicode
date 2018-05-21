@@ -160,10 +160,7 @@ namespace Admeli
 
         private void FormConfigInicial_Load(object sender, EventArgs e)
         {
-
             cargar();
-
-
         }
 
         public  async void cargar(){
@@ -196,7 +193,7 @@ namespace Admeli
             cbxPuntosVenta.SelectedIndex = -1;
             cbxAlmacenes.SelectedIndex = 0;
             btnContinuar.Enabled = true;
-
+            btnContinuar.Focus();
         }
 
         private void cbxAlmacenes_SelectedIndexChanged(object sender, EventArgs e)
