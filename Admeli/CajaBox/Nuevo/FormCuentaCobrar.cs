@@ -44,12 +44,34 @@ namespace Admeli.CajaBox.Nuevo
         private void reLoad()
         {
             loadState(false);
+            this.darFormatoDecimales();
             cargarCuentasCobrar();
             
             //Calcular totales y saldo pendientes
 
             loadState(true);
         }
+
+        private void darFormatoDecimales()
+        {
+            try
+            {
+                dgvCobros.Columns["dataGridViewTextBoxColumn3"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+                dgvCobros.Columns["montoPagarDataGridViewTextBoxColumn"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+                dgvDetalleCobro.Columns["montoDataGridViewTextBoxColumn"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+                dgvDetalleCobro.Columns["montoInteresDataGridViewTextBoxColumn"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+
+                dgvCobros.Columns["dataGridViewTextBoxColumn3"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvCobros.Columns["montoPagarDataGridViewTextBoxColumn"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvDetalleCobro.Columns["montoDataGridViewTextBoxColumn"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvDetalleCobro.Columns["montoInteresDataGridViewTextBoxColumn"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+            catch
+            {
+                MessageBox.Show("Error al dar formato a los DataGrid", "Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private async void cargarCuentasCobrar()
         {
             try
