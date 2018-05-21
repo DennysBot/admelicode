@@ -221,5 +221,12 @@ namespace Admeli
 
            
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            DrawShape drawShape = new DrawShape();
+            drawShape.lineBorder(panel2, 157, 157, 157);
+            drawShape.lineBorder(panel3, 157, 157, 157);
+        }
     }
 }

@@ -114,7 +114,7 @@ namespace Admeli.Productos
 
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
-                int idUnidadMedida = Convert.ToInt32(row.Cells[0].Value); // obteniedo el idCategoria del datagridview
+                int idUnidadMedida = Convert.ToInt32(row.Cells["idUnidadMedida"].Value); // obteniedo el idCategoria del datagridview
 
                 UnidadMedida unidadMedida = unidadesDeMedida.Find(x => x.idUnidadMedida == idUnidadMedida); // Buscando la categoria en las lista de categorias
                 if (unidadMedida.estado == 0)

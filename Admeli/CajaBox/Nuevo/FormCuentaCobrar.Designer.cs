@@ -74,10 +74,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dgvCobros = new System.Windows.Forms.DataGridView();
-            this.cobroBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.chkMostrarTodos = new Bunifu.Framework.UI.BunifuCheckbox();
             this.idCobroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.montoPagarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,6 +83,10 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cobroBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.chkMostrarTodos = new Bunifu.Framework.UI.BunifuCheckbox();
             this.panelHeader.SuspendLayout();
             this.panelFooder.SuspendLayout();
             this.panelBody.SuspendLayout();
@@ -408,7 +408,7 @@
             // btnNuevoDetalleCobro
             // 
             this.btnNuevoDetalleCobro.AutoSize = false;
-            this.btnNuevoDetalleCobro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoDetalleCobro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnNuevoDetalleCobro.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoDetalleCobro.Image")));
             this.btnNuevoDetalleCobro.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNuevoDetalleCobro.Name = "btnNuevoDetalleCobro";
@@ -421,7 +421,7 @@
             // btnEliminarDetalleCobro
             // 
             this.btnEliminarDetalleCobro.AutoSize = false;
-            this.btnEliminarDetalleCobro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarDetalleCobro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnEliminarDetalleCobro.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarDetalleCobro.Image")));
             this.btnEliminarDetalleCobro.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEliminarDetalleCobro.Name = "btnEliminarDetalleCobro";
@@ -570,45 +570,6 @@
             this.dgvCobros.TabIndex = 30;
             this.dgvCobros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCobros_CellClick);
             // 
-            // cobroBindingSource
-            // 
-            this.cobroBindingSource.DataSource = typeof(Entidad.Cobro);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.chkMostrarTodos);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(586, 54);
-            this.panel3.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(52, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 17);
-            this.label5.TabIndex = 55;
-            this.label5.Text = "Mostrar Todos";
-            // 
-            // chkMostrarTodos
-            // 
-            this.chkMostrarTodos.BackColor = System.Drawing.Color.DodgerBlue;
-            this.chkMostrarTodos.ChechedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(135)))), ((int)(((byte)(140)))));
-            this.chkMostrarTodos.Checked = true;
-            this.chkMostrarTodos.CheckedOnColor = System.Drawing.Color.DodgerBlue;
-            this.chkMostrarTodos.ForeColor = System.Drawing.Color.White;
-            this.chkMostrarTodos.Location = new System.Drawing.Point(17, 12);
-            this.chkMostrarTodos.Margin = new System.Windows.Forms.Padding(5);
-            this.chkMostrarTodos.Name = "chkMostrarTodos";
-            this.chkMostrarTodos.Size = new System.Drawing.Size(20, 20);
-            this.chkMostrarTodos.TabIndex = 53;
-            this.chkMostrarTodos.OnChange += new System.EventHandler(this.chkMostrarTodos_OnChange);
-            // 
             // idCobroDataGridViewTextBoxColumn
             // 
             this.idCobroDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -682,6 +643,45 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // cobroBindingSource
+            // 
+            this.cobroBindingSource.DataSource = typeof(Entidad.Cobro);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.chkMostrarTodos);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(586, 54);
+            this.panel3.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(52, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 17);
+            this.label5.TabIndex = 55;
+            this.label5.Text = "Mostrar Todos";
+            // 
+            // chkMostrarTodos
+            // 
+            this.chkMostrarTodos.BackColor = System.Drawing.Color.DodgerBlue;
+            this.chkMostrarTodos.ChechedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(135)))), ((int)(((byte)(140)))));
+            this.chkMostrarTodos.Checked = true;
+            this.chkMostrarTodos.CheckedOnColor = System.Drawing.Color.DodgerBlue;
+            this.chkMostrarTodos.ForeColor = System.Drawing.Color.White;
+            this.chkMostrarTodos.Location = new System.Drawing.Point(17, 12);
+            this.chkMostrarTodos.Margin = new System.Windows.Forms.Padding(5);
+            this.chkMostrarTodos.Name = "chkMostrarTodos";
+            this.chkMostrarTodos.Size = new System.Drawing.Size(20, 20);
+            this.chkMostrarTodos.TabIndex = 53;
+            this.chkMostrarTodos.OnChange += new System.EventHandler(this.chkMostrarTodos_OnChange);
             // 
             // FormCuentaCobrar
             // 

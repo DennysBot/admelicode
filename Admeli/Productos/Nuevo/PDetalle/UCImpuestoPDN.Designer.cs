@@ -44,6 +44,16 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvImpuestoProducto = new System.Windows.Forms.DataGridView();
+            this.idImpuestoP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreImpuestoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siglasImpuestoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorImpuestoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentualDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.porDefectoDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.estadoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enUsoDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.estadoStringDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.impuestoBindingSourceP = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnGuardarImpustos = new System.Windows.Forms.Button();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -54,6 +64,16 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dgvImpuestoTodo = new System.Windows.Forms.DataGridView();
+            this.idImpuestoT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreImpuestoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siglasImpuestoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorImpuestoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentualDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.porDefectoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enUsoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.estadoStringDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.impuestoBindingSourceT = new System.Windows.Forms.BindingSource(this.components);
             this.panel9 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevoImpuesto = new System.Windows.Forms.ToolStripButton();
@@ -66,6 +86,7 @@
             this.btnAddSucursal = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.cbxSucursal = new System.Windows.Forms.ComboBox();
+            this.sucursalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.panelFooter = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -74,31 +95,11 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.sucursalBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.impuestoBindingSourceT = new System.Windows.Forms.BindingSource(this.components);
-            this.impuestoBindingSourceP = new System.Windows.Forms.BindingSource(this.components);
-            this.idImpuestoT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreImpuestoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siglasImpuestoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valorImpuestoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentualDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.porDefectoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enUsoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.estadoStringDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idImpuestoP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreImpuestoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siglasImpuestoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valorImpuestoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentualDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.porDefectoDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.estadoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enUsoDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.estadoStringDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelItem2.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImpuestoProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.impuestoBindingSourceP)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -106,15 +107,14 @@
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImpuestoTodo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.impuestoBindingSourceT)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelIHeader2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sucursalBindingSource)).BeginInit();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sucursalBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.impuestoBindingSourceT)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.impuestoBindingSourceP)).BeginInit();
             this.SuspendLayout();
             // 
             // panelItem2
@@ -208,6 +208,81 @@
             this.dgvImpuestoProducto.Size = new System.Drawing.Size(413, 233);
             this.dgvImpuestoProducto.TabIndex = 2;
             // 
+            // idImpuestoP
+            // 
+            this.idImpuestoP.DataPropertyName = "idImpuesto";
+            this.idImpuestoP.HeaderText = "idImpuesto";
+            this.idImpuestoP.Name = "idImpuestoP";
+            this.idImpuestoP.ReadOnly = true;
+            this.idImpuestoP.Visible = false;
+            // 
+            // nombreImpuestoDataGridViewTextBoxColumn1
+            // 
+            this.nombreImpuestoDataGridViewTextBoxColumn1.DataPropertyName = "nombreImpuesto";
+            this.nombreImpuestoDataGridViewTextBoxColumn1.HeaderText = "Nombre Impuesto";
+            this.nombreImpuestoDataGridViewTextBoxColumn1.Name = "nombreImpuestoDataGridViewTextBoxColumn1";
+            this.nombreImpuestoDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // siglasImpuestoDataGridViewTextBoxColumn1
+            // 
+            this.siglasImpuestoDataGridViewTextBoxColumn1.DataPropertyName = "siglasImpuesto";
+            this.siglasImpuestoDataGridViewTextBoxColumn1.HeaderText = "siglasImpuesto";
+            this.siglasImpuestoDataGridViewTextBoxColumn1.Name = "siglasImpuestoDataGridViewTextBoxColumn1";
+            this.siglasImpuestoDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.siglasImpuestoDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // valorImpuestoDataGridViewTextBoxColumn1
+            // 
+            this.valorImpuestoDataGridViewTextBoxColumn1.DataPropertyName = "valorImpuesto";
+            this.valorImpuestoDataGridViewTextBoxColumn1.HeaderText = "valorImpuesto";
+            this.valorImpuestoDataGridViewTextBoxColumn1.Name = "valorImpuestoDataGridViewTextBoxColumn1";
+            this.valorImpuestoDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.valorImpuestoDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // porcentualDataGridViewCheckBoxColumn1
+            // 
+            this.porcentualDataGridViewCheckBoxColumn1.DataPropertyName = "porcentual";
+            this.porcentualDataGridViewCheckBoxColumn1.HeaderText = "porcentual";
+            this.porcentualDataGridViewCheckBoxColumn1.Name = "porcentualDataGridViewCheckBoxColumn1";
+            this.porcentualDataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.porcentualDataGridViewCheckBoxColumn1.Visible = false;
+            // 
+            // porDefectoDataGridViewCheckBoxColumn1
+            // 
+            this.porDefectoDataGridViewCheckBoxColumn1.DataPropertyName = "porDefecto";
+            this.porDefectoDataGridViewCheckBoxColumn1.HeaderText = "porDefecto";
+            this.porDefectoDataGridViewCheckBoxColumn1.Name = "porDefectoDataGridViewCheckBoxColumn1";
+            this.porDefectoDataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.porDefectoDataGridViewCheckBoxColumn1.Visible = false;
+            // 
+            // estadoDataGridViewTextBoxColumn1
+            // 
+            this.estadoDataGridViewTextBoxColumn1.DataPropertyName = "estado";
+            this.estadoDataGridViewTextBoxColumn1.HeaderText = "estado";
+            this.estadoDataGridViewTextBoxColumn1.Name = "estadoDataGridViewTextBoxColumn1";
+            this.estadoDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.estadoDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // enUsoDataGridViewCheckBoxColumn1
+            // 
+            this.enUsoDataGridViewCheckBoxColumn1.DataPropertyName = "enUso";
+            this.enUsoDataGridViewCheckBoxColumn1.HeaderText = "enUso";
+            this.enUsoDataGridViewCheckBoxColumn1.Name = "enUsoDataGridViewCheckBoxColumn1";
+            this.enUsoDataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.enUsoDataGridViewCheckBoxColumn1.Visible = false;
+            // 
+            // estadoStringDataGridViewTextBoxColumn1
+            // 
+            this.estadoStringDataGridViewTextBoxColumn1.DataPropertyName = "EstadoString";
+            this.estadoStringDataGridViewTextBoxColumn1.HeaderText = "EstadoString";
+            this.estadoStringDataGridViewTextBoxColumn1.Name = "estadoStringDataGridViewTextBoxColumn1";
+            this.estadoStringDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.estadoStringDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // impuestoBindingSourceP
+            // 
+            this.impuestoBindingSourceP.DataSource = typeof(Entidad.Impuesto);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnGuardarImpustos);
@@ -255,7 +330,7 @@
             // 
             this.btnProductoATodo.AutoSize = false;
             this.btnProductoATodo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnProductoATodo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductoATodo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnProductoATodo.Image = ((System.Drawing.Image)(resources.GetObject("btnProductoATodo.Image")));
             this.btnProductoATodo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnProductoATodo.Name = "btnProductoATodo";
@@ -376,6 +451,81 @@
             this.dgvImpuestoTodo.Size = new System.Drawing.Size(409, 233);
             this.dgvImpuestoTodo.TabIndex = 2;
             // 
+            // idImpuestoT
+            // 
+            this.idImpuestoT.DataPropertyName = "idImpuesto";
+            this.idImpuestoT.HeaderText = "idImpuesto";
+            this.idImpuestoT.Name = "idImpuestoT";
+            this.idImpuestoT.ReadOnly = true;
+            this.idImpuestoT.Visible = false;
+            // 
+            // nombreImpuestoDataGridViewTextBoxColumn
+            // 
+            this.nombreImpuestoDataGridViewTextBoxColumn.DataPropertyName = "nombreImpuesto";
+            this.nombreImpuestoDataGridViewTextBoxColumn.HeaderText = "Nombre Impuesto";
+            this.nombreImpuestoDataGridViewTextBoxColumn.Name = "nombreImpuestoDataGridViewTextBoxColumn";
+            this.nombreImpuestoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // siglasImpuestoDataGridViewTextBoxColumn
+            // 
+            this.siglasImpuestoDataGridViewTextBoxColumn.DataPropertyName = "siglasImpuesto";
+            this.siglasImpuestoDataGridViewTextBoxColumn.HeaderText = "siglasImpuesto";
+            this.siglasImpuestoDataGridViewTextBoxColumn.Name = "siglasImpuestoDataGridViewTextBoxColumn";
+            this.siglasImpuestoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.siglasImpuestoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // valorImpuestoDataGridViewTextBoxColumn
+            // 
+            this.valorImpuestoDataGridViewTextBoxColumn.DataPropertyName = "valorImpuesto";
+            this.valorImpuestoDataGridViewTextBoxColumn.HeaderText = "valorImpuesto";
+            this.valorImpuestoDataGridViewTextBoxColumn.Name = "valorImpuestoDataGridViewTextBoxColumn";
+            this.valorImpuestoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.valorImpuestoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // porcentualDataGridViewCheckBoxColumn
+            // 
+            this.porcentualDataGridViewCheckBoxColumn.DataPropertyName = "porcentual";
+            this.porcentualDataGridViewCheckBoxColumn.HeaderText = "porcentual";
+            this.porcentualDataGridViewCheckBoxColumn.Name = "porcentualDataGridViewCheckBoxColumn";
+            this.porcentualDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.porcentualDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // porDefectoDataGridViewCheckBoxColumn
+            // 
+            this.porDefectoDataGridViewCheckBoxColumn.DataPropertyName = "porDefecto";
+            this.porDefectoDataGridViewCheckBoxColumn.HeaderText = "porDefecto";
+            this.porDefectoDataGridViewCheckBoxColumn.Name = "porDefectoDataGridViewCheckBoxColumn";
+            this.porDefectoDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.porDefectoDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // estadoDataGridViewTextBoxColumn
+            // 
+            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "estado";
+            this.estadoDataGridViewTextBoxColumn.HeaderText = "estado";
+            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
+            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.estadoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // enUsoDataGridViewCheckBoxColumn
+            // 
+            this.enUsoDataGridViewCheckBoxColumn.DataPropertyName = "enUso";
+            this.enUsoDataGridViewCheckBoxColumn.HeaderText = "enUso";
+            this.enUsoDataGridViewCheckBoxColumn.Name = "enUsoDataGridViewCheckBoxColumn";
+            this.enUsoDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.enUsoDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // estadoStringDataGridViewTextBoxColumn
+            // 
+            this.estadoStringDataGridViewTextBoxColumn.DataPropertyName = "EstadoString";
+            this.estadoStringDataGridViewTextBoxColumn.HeaderText = "EstadoString";
+            this.estadoStringDataGridViewTextBoxColumn.Name = "estadoStringDataGridViewTextBoxColumn";
+            this.estadoStringDataGridViewTextBoxColumn.ReadOnly = true;
+            this.estadoStringDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // impuestoBindingSourceT
+            // 
+            this.impuestoBindingSourceT.DataSource = typeof(Entidad.Impuesto);
+            // 
             // panel9
             // 
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -406,7 +556,7 @@
             // btnNuevoImpuesto
             // 
             this.btnNuevoImpuesto.AutoSize = false;
-            this.btnNuevoImpuesto.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoImpuesto.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevoImpuesto.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoImpuesto.Image")));
             this.btnNuevoImpuesto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNuevoImpuesto.Name = "btnNuevoImpuesto";
@@ -419,7 +569,7 @@
             // btnActualizarImpuesto
             // 
             this.btnActualizarImpuesto.AutoSize = false;
-            this.btnActualizarImpuesto.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizarImpuesto.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnActualizarImpuesto.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarImpuesto.Image")));
             this.btnActualizarImpuesto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnActualizarImpuesto.Name = "btnActualizarImpuesto";
@@ -438,7 +588,7 @@
             // 
             this.btnTodoAProducto.AutoSize = false;
             this.btnTodoAProducto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnTodoAProducto.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTodoAProducto.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnTodoAProducto.Image = ((System.Drawing.Image)(resources.GetObject("btnTodoAProducto.Image")));
             this.btnTodoAProducto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTodoAProducto.Name = "btnTodoAProducto";
@@ -502,7 +652,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
+            this.label8.ForeColor = System.Drawing.Color.DodgerBlue;
             this.label8.Location = new System.Drawing.Point(16, 21);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
@@ -523,6 +673,10 @@
             this.cbxSucursal.TabIndex = 51;
             this.cbxSucursal.ValueMember = "idSucursal";
             this.cbxSucursal.SelectedIndexChanged += new System.EventHandler(this.cbxSucursal_SelectedIndexChanged);
+            // 
+            // sucursalBindingSource
+            // 
+            this.sucursalBindingSource.DataSource = typeof(Entidad.Sucursal);
             // 
             // label2
             // 
@@ -630,160 +784,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Impuestos";
             // 
-            // sucursalBindingSource
-            // 
-            this.sucursalBindingSource.DataSource = typeof(Entidad.Sucursal);
-            // 
-            // impuestoBindingSourceT
-            // 
-            this.impuestoBindingSourceT.DataSource = typeof(Entidad.Impuesto);
-            // 
-            // impuestoBindingSourceP
-            // 
-            this.impuestoBindingSourceP.DataSource = typeof(Entidad.Impuesto);
-            // 
-            // idImpuestoT
-            // 
-            this.idImpuestoT.DataPropertyName = "idImpuesto";
-            this.idImpuestoT.HeaderText = "idImpuesto";
-            this.idImpuestoT.Name = "idImpuestoT";
-            this.idImpuestoT.ReadOnly = true;
-            this.idImpuestoT.Visible = false;
-            // 
-            // nombreImpuestoDataGridViewTextBoxColumn
-            // 
-            this.nombreImpuestoDataGridViewTextBoxColumn.DataPropertyName = "nombreImpuesto";
-            this.nombreImpuestoDataGridViewTextBoxColumn.HeaderText = "Nombre Impuesto";
-            this.nombreImpuestoDataGridViewTextBoxColumn.Name = "nombreImpuestoDataGridViewTextBoxColumn";
-            this.nombreImpuestoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // siglasImpuestoDataGridViewTextBoxColumn
-            // 
-            this.siglasImpuestoDataGridViewTextBoxColumn.DataPropertyName = "siglasImpuesto";
-            this.siglasImpuestoDataGridViewTextBoxColumn.HeaderText = "siglasImpuesto";
-            this.siglasImpuestoDataGridViewTextBoxColumn.Name = "siglasImpuestoDataGridViewTextBoxColumn";
-            this.siglasImpuestoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.siglasImpuestoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // valorImpuestoDataGridViewTextBoxColumn
-            // 
-            this.valorImpuestoDataGridViewTextBoxColumn.DataPropertyName = "valorImpuesto";
-            this.valorImpuestoDataGridViewTextBoxColumn.HeaderText = "valorImpuesto";
-            this.valorImpuestoDataGridViewTextBoxColumn.Name = "valorImpuestoDataGridViewTextBoxColumn";
-            this.valorImpuestoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.valorImpuestoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // porcentualDataGridViewCheckBoxColumn
-            // 
-            this.porcentualDataGridViewCheckBoxColumn.DataPropertyName = "porcentual";
-            this.porcentualDataGridViewCheckBoxColumn.HeaderText = "porcentual";
-            this.porcentualDataGridViewCheckBoxColumn.Name = "porcentualDataGridViewCheckBoxColumn";
-            this.porcentualDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.porcentualDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // porDefectoDataGridViewCheckBoxColumn
-            // 
-            this.porDefectoDataGridViewCheckBoxColumn.DataPropertyName = "porDefecto";
-            this.porDefectoDataGridViewCheckBoxColumn.HeaderText = "porDefecto";
-            this.porDefectoDataGridViewCheckBoxColumn.Name = "porDefectoDataGridViewCheckBoxColumn";
-            this.porDefectoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.porDefectoDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // estadoDataGridViewTextBoxColumn
-            // 
-            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "estado";
-            this.estadoDataGridViewTextBoxColumn.HeaderText = "estado";
-            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
-            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.estadoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // enUsoDataGridViewCheckBoxColumn
-            // 
-            this.enUsoDataGridViewCheckBoxColumn.DataPropertyName = "enUso";
-            this.enUsoDataGridViewCheckBoxColumn.HeaderText = "enUso";
-            this.enUsoDataGridViewCheckBoxColumn.Name = "enUsoDataGridViewCheckBoxColumn";
-            this.enUsoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.enUsoDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // estadoStringDataGridViewTextBoxColumn
-            // 
-            this.estadoStringDataGridViewTextBoxColumn.DataPropertyName = "EstadoString";
-            this.estadoStringDataGridViewTextBoxColumn.HeaderText = "EstadoString";
-            this.estadoStringDataGridViewTextBoxColumn.Name = "estadoStringDataGridViewTextBoxColumn";
-            this.estadoStringDataGridViewTextBoxColumn.ReadOnly = true;
-            this.estadoStringDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // idImpuestoP
-            // 
-            this.idImpuestoP.DataPropertyName = "idImpuesto";
-            this.idImpuestoP.HeaderText = "idImpuesto";
-            this.idImpuestoP.Name = "idImpuestoP";
-            this.idImpuestoP.ReadOnly = true;
-            this.idImpuestoP.Visible = false;
-            // 
-            // nombreImpuestoDataGridViewTextBoxColumn1
-            // 
-            this.nombreImpuestoDataGridViewTextBoxColumn1.DataPropertyName = "nombreImpuesto";
-            this.nombreImpuestoDataGridViewTextBoxColumn1.HeaderText = "Nombre Impuesto";
-            this.nombreImpuestoDataGridViewTextBoxColumn1.Name = "nombreImpuestoDataGridViewTextBoxColumn1";
-            this.nombreImpuestoDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // siglasImpuestoDataGridViewTextBoxColumn1
-            // 
-            this.siglasImpuestoDataGridViewTextBoxColumn1.DataPropertyName = "siglasImpuesto";
-            this.siglasImpuestoDataGridViewTextBoxColumn1.HeaderText = "siglasImpuesto";
-            this.siglasImpuestoDataGridViewTextBoxColumn1.Name = "siglasImpuestoDataGridViewTextBoxColumn1";
-            this.siglasImpuestoDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.siglasImpuestoDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // valorImpuestoDataGridViewTextBoxColumn1
-            // 
-            this.valorImpuestoDataGridViewTextBoxColumn1.DataPropertyName = "valorImpuesto";
-            this.valorImpuestoDataGridViewTextBoxColumn1.HeaderText = "valorImpuesto";
-            this.valorImpuestoDataGridViewTextBoxColumn1.Name = "valorImpuestoDataGridViewTextBoxColumn1";
-            this.valorImpuestoDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.valorImpuestoDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // porcentualDataGridViewCheckBoxColumn1
-            // 
-            this.porcentualDataGridViewCheckBoxColumn1.DataPropertyName = "porcentual";
-            this.porcentualDataGridViewCheckBoxColumn1.HeaderText = "porcentual";
-            this.porcentualDataGridViewCheckBoxColumn1.Name = "porcentualDataGridViewCheckBoxColumn1";
-            this.porcentualDataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.porcentualDataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // porDefectoDataGridViewCheckBoxColumn1
-            // 
-            this.porDefectoDataGridViewCheckBoxColumn1.DataPropertyName = "porDefecto";
-            this.porDefectoDataGridViewCheckBoxColumn1.HeaderText = "porDefecto";
-            this.porDefectoDataGridViewCheckBoxColumn1.Name = "porDefectoDataGridViewCheckBoxColumn1";
-            this.porDefectoDataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.porDefectoDataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // estadoDataGridViewTextBoxColumn1
-            // 
-            this.estadoDataGridViewTextBoxColumn1.DataPropertyName = "estado";
-            this.estadoDataGridViewTextBoxColumn1.HeaderText = "estado";
-            this.estadoDataGridViewTextBoxColumn1.Name = "estadoDataGridViewTextBoxColumn1";
-            this.estadoDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.estadoDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // enUsoDataGridViewCheckBoxColumn1
-            // 
-            this.enUsoDataGridViewCheckBoxColumn1.DataPropertyName = "enUso";
-            this.enUsoDataGridViewCheckBoxColumn1.HeaderText = "enUso";
-            this.enUsoDataGridViewCheckBoxColumn1.Name = "enUsoDataGridViewCheckBoxColumn1";
-            this.enUsoDataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.enUsoDataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // estadoStringDataGridViewTextBoxColumn1
-            // 
-            this.estadoStringDataGridViewTextBoxColumn1.DataPropertyName = "EstadoString";
-            this.estadoStringDataGridViewTextBoxColumn1.HeaderText = "EstadoString";
-            this.estadoStringDataGridViewTextBoxColumn1.Name = "estadoStringDataGridViewTextBoxColumn1";
-            this.estadoStringDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.estadoStringDataGridViewTextBoxColumn1.Visible = false;
-            // 
             // UCImpuestoPDN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -800,6 +800,7 @@
             this.panel7.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvImpuestoProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.impuestoBindingSourceP)).EndInit();
             this.panel2.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
@@ -809,19 +810,18 @@
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvImpuestoTodo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.impuestoBindingSourceT)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panelIHeader2.ResumeLayout(false);
             this.panelIHeader2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sucursalBindingSource)).EndInit();
             this.panelFooter.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sucursalBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.impuestoBindingSourceT)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.impuestoBindingSourceP)).EndInit();
             this.ResumeLayout(false);
 
         }

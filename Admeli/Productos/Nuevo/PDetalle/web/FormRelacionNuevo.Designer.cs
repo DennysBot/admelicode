@@ -60,9 +60,10 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label9.Location = new System.Drawing.Point(61, 273);
+            this.label9.Location = new System.Drawing.Point(46, 222);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 19);
+            this.label9.Size = new System.Drawing.Size(52, 16);
             this.label9.TabIndex = 59;
             this.label9.Text = "Activo *";
             // 
@@ -73,8 +74,8 @@
             this.chkActivo.Checked = true;
             this.chkActivo.CheckedOnColor = System.Drawing.Color.DodgerBlue;
             this.chkActivo.ForeColor = System.Drawing.Color.White;
-            this.chkActivo.Location = new System.Drawing.Point(28, 271);
-            this.chkActivo.Margin = new System.Windows.Forms.Padding(5);
+            this.chkActivo.Location = new System.Drawing.Point(21, 220);
+            this.chkActivo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Size = new System.Drawing.Size(20, 20);
             this.chkActivo.TabIndex = 2;
@@ -83,10 +84,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label6.Location = new System.Drawing.Point(24, 342);
+            this.label6.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label6.Location = new System.Drawing.Point(18, 278);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(180, 19);
+            this.label6.Size = new System.Drawing.Size(143, 16);
             this.label6.TabIndex = 56;
             this.label6.Text = "Producto Relacionado :";
             // 
@@ -101,11 +103,11 @@
             this.textPosicion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textPosicion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textPosicion.isPassword = false;
-            this.textPosicion.Location = new System.Drawing.Point(25, 175);
-            this.textPosicion.Margin = new System.Windows.Forms.Padding(5);
+            this.textPosicion.Location = new System.Drawing.Point(19, 142);
+            this.textPosicion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textPosicion.Name = "textPosicion";
-            this.textPosicion.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.textPosicion.Size = new System.Drawing.Size(437, 43);
+            this.textPosicion.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.textPosicion.Size = new System.Drawing.Size(328, 35);
             this.textPosicion.TabIndex = 1;
             this.textPosicion.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -113,10 +115,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label3.Location = new System.Drawing.Point(21, 153);
+            this.label3.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label3.Location = new System.Drawing.Point(16, 124);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 19);
+            this.label3.Size = new System.Drawing.Size(58, 16);
             this.label3.TabIndex = 54;
             this.label3.Text = "Posición";
             // 
@@ -128,10 +131,10 @@
             this.cbxProductoRelacion.DisplayMember = "nombreProducto";
             this.cbxProductoRelacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxProductoRelacion.FormattingEnabled = true;
-            this.cbxProductoRelacion.Location = new System.Drawing.Point(28, 364);
-            this.cbxProductoRelacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxProductoRelacion.Location = new System.Drawing.Point(21, 296);
+            this.cbxProductoRelacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxProductoRelacion.Name = "cbxProductoRelacion";
-            this.cbxProductoRelacion.Size = new System.Drawing.Size(436, 32);
+            this.cbxProductoRelacion.Size = new System.Drawing.Size(328, 26);
             this.cbxProductoRelacion.TabIndex = 3;
             this.cbxProductoRelacion.ValueMember = "idProducto";
             // 
@@ -143,10 +146,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label1.Location = new System.Drawing.Point(21, 80);
+            this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label1.Location = new System.Drawing.Point(16, 65);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 19);
+            this.label1.Size = new System.Drawing.Size(94, 16);
             this.label1.TabIndex = 61;
             this.label1.Text = "Tipo Relación :";
             // 
@@ -157,10 +161,10 @@
             this.cbxTipoRelacion.DisplayMember = "nombreMarca";
             this.cbxTipoRelacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxTipoRelacion.FormattingEnabled = true;
-            this.cbxTipoRelacion.Location = new System.Drawing.Point(25, 102);
-            this.cbxTipoRelacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxTipoRelacion.Location = new System.Drawing.Point(19, 83);
+            this.cbxTipoRelacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxTipoRelacion.Name = "cbxTipoRelacion";
-            this.cbxTipoRelacion.Size = new System.Drawing.Size(436, 32);
+            this.cbxTipoRelacion.Size = new System.Drawing.Size(328, 26);
             this.cbxTipoRelacion.TabIndex = 0;
             this.cbxTipoRelacion.ValueMember = "idMarca";
             // 
@@ -168,11 +172,10 @@
             // 
             this.panelFooter.Controls.Add(this.panel1);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(0, 419);
-            this.panelFooter.Margin = new System.Windows.Forms.Padding(4);
+            this.panelFooter.Location = new System.Drawing.Point(0, 340);
             this.panelFooter.Name = "panelFooter";
             this.panelFooter.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.panelFooter.Size = new System.Drawing.Size(484, 60);
+            this.panelFooter.Size = new System.Drawing.Size(363, 49);
             this.panelFooter.TabIndex = 63;
             // 
             // panel1
@@ -180,10 +183,9 @@
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.Controls.Add(this.btnAceptar);
             this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Location = new System.Drawing.Point(37, 1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(28, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(409, 59);
+            this.panel1.Size = new System.Drawing.Size(307, 48);
             this.panel1.TabIndex = 6;
             // 
             // btnAceptar
@@ -196,10 +198,9 @@
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.ForeColor = System.Drawing.Color.White;
-            this.btnAceptar.Location = new System.Drawing.Point(13, 7);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAceptar.Location = new System.Drawing.Point(10, 6);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(203, 44);
+            this.btnAceptar.Size = new System.Drawing.Size(152, 36);
             this.btnAceptar.TabIndex = 0;
             this.btnAceptar.Text = "Guardar";
             this.btnAceptar.UseVisualStyleBackColor = false;
@@ -216,10 +217,9 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnClose.Location = new System.Drawing.Point(243, 7);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClose.Location = new System.Drawing.Point(182, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(152, 44);
+            this.btnClose.Size = new System.Drawing.Size(114, 36);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Cerrar";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -231,9 +231,8 @@
             this.panelHeader.Controls.Add(this.label4);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(484, 52);
+            this.panelHeader.Size = new System.Drawing.Size(363, 42);
             this.panelHeader.TabIndex = 62;
             // 
             // label4
@@ -241,9 +240,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label4.Location = new System.Drawing.Point(21, 16);
+            this.label4.Location = new System.Drawing.Point(16, 13);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(273, 19);
+            this.label4.Size = new System.Drawing.Size(224, 16);
             this.label4.TabIndex = 11;
             this.label4.Text = "Mantenimiento Relación Producto";
             // 
@@ -251,10 +251,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(24, 223);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(18, 181);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(206, 17);
+            this.label2.Size = new System.Drawing.Size(153, 13);
             this.label2.TabIndex = 64;
             this.label2.Text = "Orden de listado de la relación.";
             // 
@@ -262,10 +261,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(24, 299);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(18, 243);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(424, 17);
+            this.label5.Size = new System.Drawing.Size(315, 13);
             this.label5.TabIndex = 65;
             this.label5.Text = "(Si esta Desmarcado, no se mostrara esta Relación en la página.)";
             // 
@@ -276,11 +274,11 @@
             // FormRelacionNuevo
             // 
             this.AcceptButton = this.btnAceptar;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(484, 479);
+            this.ClientSize = new System.Drawing.Size(363, 389);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panelFooter);
@@ -294,7 +292,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbxProductoRelacion);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormRelacionNuevo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRelacionNuevo";

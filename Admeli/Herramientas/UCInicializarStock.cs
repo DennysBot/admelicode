@@ -641,7 +641,6 @@ namespace Admeli.Herramientas
         {
             if (e.KeyCode == Keys.Enter)
             {
-
                 paginacion.currentPage = 1;
                 cargarRegistrosBuscar();
             }

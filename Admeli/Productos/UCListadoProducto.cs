@@ -456,7 +456,7 @@ namespace Admeli.Productos
                 list.Add("id0", 0);
                 Dictionary<string, int> sendList = (ConfigModel.currentProductoCategory.Count == 0) ? list : ConfigModel.currentProductoCategory;
                 //RootObject<Producto> productos = await productoModel.productosPorCategoriaBuscar(sendList, textBuscar.Text, paginacion.currentPage, paginacion.speed);
-                RootObject<Producto,CombinacionStock> productos_combinacion= await productoModel.productosPorCategoriaBuscar(sendList, textBuscar.Text, paginacion.currentPage, paginacion.speed);                
+                RootObject<Producto,CombinacionStock> productos_combinacion= await productoModel.productosPorCategoriaBuscar(sendList, textBuscar.Text.Trim(), paginacion.currentPage, paginacion.speed);                
 
                 // actualizando datos de páginacón
                 paginacion.itemsCount = productos_combinacion.nro_registros;
@@ -531,7 +531,7 @@ namespace Admeli.Productos
                 int idAlmacen = cbxAlmacenes.SelectedIndex==-1?0:    Convert.ToInt32(cbxAlmacenes.SelectedValue);
                 int idSucursal = cbxSucursales.SelectedIndex ==-1 ? 0 : Convert.ToInt32(cbxSucursales.SelectedValue);
                 //RootObjectData productos=await productoModel.productoDatos;
-                RootObject<Producto,CombinacionStock> productos_combinacion = await productoModel.productosStockLike(sendList, textBuscar.Text, idAlmacen, idSucursal, paginacion.currentPage, paginacion.speed);
+                RootObject<Producto,CombinacionStock> productos_combinacion = await productoModel.productosStockLike(sendList, textBuscar.Text.Trim(), idAlmacen, idSucursal, paginacion.currentPage, paginacion.speed);
                 //RootObject<Producto> productos = await productoModel.productosStockLike(sendList, textBuscar.Text, idAlmacen, idSucursal, paginacion.currentPage, paginacion.speed);
 
                 // actualizando datos de páginacón
@@ -688,17 +688,30 @@ namespace Admeli.Productos
 
         private void textBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && textBuscar.Text.Trim() != "")
+            if (e.KeyCode == Keys.Enter )
             {
                 paginacion.currentPage = 1;
-                if (chkVerStock.Checked)
+                if (textBuscar.Text.Trim() != "")
                 {
-                   
-                    cargarRegistrosStockLike();
+                    if (chkVerStock.Checked)
+                    {
+                        cargarRegistrosStockLike();
+                    }
+                    else
+                    {
+                        cargarRegistrosBuscar();
+                    }
                 }
                 else
                 {
-                    cargarRegistrosBuscar();
+                    if (chkVerStock.Checked)
+                    {
+                        cargarRegistrosStock();
+                    }
+                    else
+                    {
+                        cargarRegistros();
+                    }
                 }
             }
         }
@@ -963,9 +976,6 @@ namespace Admeli.Productos
 
         private void chkActivoAlmacen_OnChange(object sender, EventArgs e)
         {
-
-
-
             paginacion.currentPage = 1;
             cargarStock();
         }

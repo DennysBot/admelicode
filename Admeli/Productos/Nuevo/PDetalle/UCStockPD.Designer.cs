@@ -51,22 +51,6 @@
             this.tabPrecios = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewPrecios = new System.Windows.Forms.DataGridView();
-            this.toolStripCrud = new System.Windows.Forms.ToolStrip();
-            this.btnModificarPrecio = new System.Windows.Forms.ToolStripButton();
-            this.btnDesactivarPrecio = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizarPrecio = new System.Windows.Forms.ToolStripButton();
-            this.panelHeaderItem1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tabStockAlmacen = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridViewStock = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnNuevoStock = new System.Windows.Forms.ToolStripButton();
-            this.btnEditarStock = new System.Windows.Forms.ToolStripButton();
-            this.btnEliminarStock = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizarStock = new System.Windows.Forms.ToolStripButton();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.idPrecioProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.utilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,7 +62,15 @@
             this.nombreSucursalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripCrud = new System.Windows.Forms.ToolStrip();
+            this.btnModificarPrecio = new System.Windows.Forms.ToolStripButton();
+            this.btnDesactivarPrecio = new System.Windows.Forms.ToolStripButton();
+            this.btnActualizarPrecio = new System.Windows.Forms.ToolStripButton();
+            this.panelHeaderItem1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabStockAlmacen = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridViewStock = new System.Windows.Forms.DataGridView();
             this.idProductoStockAlmacenDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockIdeal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +80,14 @@
             this.idProductoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idAlmacenDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnNuevoStock = new System.Windows.Forms.ToolStripButton();
+            this.btnEditarStock = new System.Windows.Forms.ToolStripButton();
+            this.btnEliminarStock = new System.Windows.Forms.ToolStripButton();
+            this.btnActualizarStock = new System.Windows.Forms.ToolStripButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,15 +95,15 @@
             this.tabPrecios.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrecios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.precioBindingSource)).BeginInit();
             this.toolStripCrud.SuspendLayout();
             this.panelHeaderItem1.SuspendLayout();
             this.tabStockAlmacen.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.precioBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -224,7 +224,7 @@
             this.tabPrecios.Controls.Add(this.panelHeaderItem1);
             this.tabPrecios.Location = new System.Drawing.Point(4, 39);
             this.tabPrecios.Name = "tabPrecios";
-            this.tabPrecios.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPrecios.Padding = new System.Windows.Forms.Padding(3);
             this.tabPrecios.Size = new System.Drawing.Size(859, 538);
             this.tabPrecios.TabIndex = 0;
             this.tabPrecios.Text = "Precios";
@@ -235,7 +235,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 89);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10);
             this.panel2.Size = new System.Drawing.Size(853, 446);
             this.panel2.TabIndex = 23;
             // 
@@ -300,257 +300,6 @@
             this.dataGridViewPrecios.Size = new System.Drawing.Size(833, 426);
             this.dataGridViewPrecios.TabIndex = 2;
             this.dataGridViewPrecios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrecios_CellDoubleClick);
-            // 
-            // toolStripCrud
-            // 
-            this.toolStripCrud.AutoSize = false;
-            this.toolStripCrud.BackColor = System.Drawing.Color.White;
-            this.toolStripCrud.GripMargin = new System.Windows.Forms.Padding(0);
-            this.toolStripCrud.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripCrud.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripCrud.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnModificarPrecio,
-            this.btnDesactivarPrecio,
-            this.btnActualizarPrecio});
-            this.toolStripCrud.Location = new System.Drawing.Point(3, 44);
-            this.toolStripCrud.Name = "toolStripCrud";
-            this.toolStripCrud.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
-            this.toolStripCrud.Size = new System.Drawing.Size(853, 45);
-            this.toolStripCrud.TabIndex = 22;
-            this.toolStripCrud.Text = "toolStrip1";
-            // 
-            // btnModificarPrecio
-            // 
-            this.btnModificarPrecio.AutoSize = false;
-            this.btnModificarPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarPrecio.Image")));
-            this.btnModificarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnModificarPrecio.Name = "btnModificarPrecio";
-            this.btnModificarPrecio.Size = new System.Drawing.Size(78, 37);
-            this.btnModificarPrecio.Text = "Detalle";
-            this.btnModificarPrecio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnModificarPrecio.ToolTipText = "Modificar registro actual (F4)";
-            // 
-            // btnDesactivarPrecio
-            // 
-            this.btnDesactivarPrecio.AutoSize = false;
-            this.btnDesactivarPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDesactivarPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnDesactivarPrecio.Image")));
-            this.btnDesactivarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDesactivarPrecio.Name = "btnDesactivarPrecio";
-            this.btnDesactivarPrecio.Size = new System.Drawing.Size(73, 37);
-            this.btnDesactivarPrecio.Text = "Desactivar";
-            this.btnDesactivarPrecio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnDesactivarPrecio.ToolTipText = "Anular(F7)";
-            // 
-            // btnActualizarPrecio
-            // 
-            this.btnActualizarPrecio.AutoSize = false;
-            this.btnActualizarPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarPrecio.Image")));
-            this.btnActualizarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizarPrecio.Name = "btnActualizarPrecio";
-            this.btnActualizarPrecio.Size = new System.Drawing.Size(79, 37);
-            this.btnActualizarPrecio.Text = "Actualizar";
-            this.btnActualizarPrecio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnActualizarPrecio.ToolTipText = "Actualizar registros (F5)\r\n";
-            // 
-            // panelHeaderItem1
-            // 
-            this.panelHeaderItem1.Controls.Add(this.label2);
-            this.panelHeaderItem1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeaderItem1.Location = new System.Drawing.Point(3, 3);
-            this.panelHeaderItem1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panelHeaderItem1.Name = "panelHeaderItem1";
-            this.panelHeaderItem1.Size = new System.Drawing.Size(853, 41);
-            this.panelHeaderItem1.TabIndex = 21;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 12);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(260, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "MANTENIMIENTO PRECIO PRODUCTO";
-            // 
-            // tabStockAlmacen
-            // 
-            this.tabStockAlmacen.BackColor = System.Drawing.Color.White;
-            this.tabStockAlmacen.Controls.Add(this.panel3);
-            this.tabStockAlmacen.Controls.Add(this.toolStrip1);
-            this.tabStockAlmacen.Controls.Add(this.panel4);
-            this.tabStockAlmacen.Location = new System.Drawing.Point(4, 39);
-            this.tabStockAlmacen.Name = "tabStockAlmacen";
-            this.tabStockAlmacen.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabStockAlmacen.Size = new System.Drawing.Size(859, 538);
-            this.tabStockAlmacen.TabIndex = 1;
-            this.tabStockAlmacen.Text = "Stock Almacen";
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dataGridViewStock);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 89);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.panel3.Size = new System.Drawing.Size(853, 446);
-            this.panel3.TabIndex = 23;
-            // 
-            // dataGridViewStock
-            // 
-            this.dataGridViewStock.AllowUserToAddRows = false;
-            this.dataGridViewStock.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridViewStock.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewStock.AutoGenerateColumns = false;
-            this.dataGridViewStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dataGridViewStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridViewStock.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewStock.ColumnHeadersHeight = 40;
-            this.dataGridViewStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idProductoStockAlmacenDataGridViewTextBoxColumn,
-            this.stock,
-            this.stockIdeal,
-            this.stockMin,
-            this.alertaStock,
-            this.nombreAlmacen,
-            this.idProductoDataGridViewTextBoxColumn1,
-            this.idAlmacenDataGridViewTextBoxColumn,
-            this.estadoDataGridViewTextBoxColumn1});
-            this.dataGridViewStock.DataSource = this.stockBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewStock.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewStock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewStock.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridViewStock.Location = new System.Drawing.Point(10, 10);
-            this.dataGridViewStock.Name = "dataGridViewStock";
-            this.dataGridViewStock.ReadOnly = true;
-            this.dataGridViewStock.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewStock.RowHeadersWidth = 40;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.dataGridViewStock.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewStock.RowTemplate.Height = 30;
-            this.dataGridViewStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewStock.Size = new System.Drawing.Size(833, 426);
-            this.dataGridViewStock.TabIndex = 2;
-            this.dataGridViewStock.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewStocks_CellDoubleClick);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.AutoSize = false;
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnNuevoStock,
-            this.btnEditarStock,
-            this.btnEliminarStock,
-            this.btnActualizarStock});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 44);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
-            this.toolStrip1.Size = new System.Drawing.Size(853, 45);
-            this.toolStrip1.TabIndex = 22;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnNuevoStock
-            // 
-            this.btnNuevoStock.AutoSize = false;
-            this.btnNuevoStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoStock.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoStock.Image")));
-            this.btnNuevoStock.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevoStock.Name = "btnNuevoStock";
-            this.btnNuevoStock.Size = new System.Drawing.Size(62, 37);
-            this.btnNuevoStock.Text = "Nuevo ";
-            this.btnNuevoStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnNuevoStock.ToolTipText = "Agregar un nuevo registro (F3)";
-            this.btnNuevoStock.Click += new System.EventHandler(this.btnNuevoStock_Click);
-            // 
-            // btnEditarStock
-            // 
-            this.btnEditarStock.AutoSize = false;
-            this.btnEditarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarStock.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarStock.Image")));
-            this.btnEditarStock.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditarStock.Name = "btnEditarStock";
-            this.btnEditarStock.Size = new System.Drawing.Size(78, 37);
-            this.btnEditarStock.Text = "Detalle";
-            this.btnEditarStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEditarStock.ToolTipText = "Modificar registro actual (F4)";
-            this.btnEditarStock.Click += new System.EventHandler(this.btnEditarStock_Click);
-            // 
-            // btnEliminarStock
-            // 
-            this.btnEliminarStock.AutoSize = false;
-            this.btnEliminarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarStock.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarStock.Image")));
-            this.btnEliminarStock.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEliminarStock.Name = "btnEliminarStock";
-            this.btnEliminarStock.Size = new System.Drawing.Size(80, 37);
-            this.btnEliminarStock.Text = "Eliminar";
-            this.btnEliminarStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEliminarStock.ToolTipText = "Eliminar registro actual (F6)";
-            this.btnEliminarStock.Click += new System.EventHandler(this.btnEliminarStock_Click);
-            // 
-            // btnActualizarStock
-            // 
-            this.btnActualizarStock.AutoSize = false;
-            this.btnActualizarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarStock.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarStock.Image")));
-            this.btnActualizarStock.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizarStock.Name = "btnActualizarStock";
-            this.btnActualizarStock.Size = new System.Drawing.Size(79, 37);
-            this.btnActualizarStock.Text = "Actualizar";
-            this.btnActualizarStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnActualizarStock.ToolTipText = "Actualizar registros (F5)\r\n";
-            this.btnActualizarStock.Click += new System.EventHandler(this.btnActualizarStock_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(853, 41);
-            this.panel4.TabIndex = 21;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 12);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(256, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "MANTENIMIENTO STOCK PRODUCTO";
             // 
             // idPrecioProductoDataGridViewTextBoxColumn
             // 
@@ -640,9 +389,164 @@
             // 
             this.precioBindingSource.DataSource = typeof(Entidad.Precio);
             // 
-            // stockBindingSource
+            // toolStripCrud
             // 
-            this.stockBindingSource.DataSource = typeof(Entidad.Stock);
+            this.toolStripCrud.AutoSize = false;
+            this.toolStripCrud.BackColor = System.Drawing.Color.White;
+            this.toolStripCrud.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStripCrud.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripCrud.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripCrud.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnModificarPrecio,
+            this.btnDesactivarPrecio,
+            this.btnActualizarPrecio});
+            this.toolStripCrud.Location = new System.Drawing.Point(3, 44);
+            this.toolStripCrud.Name = "toolStripCrud";
+            this.toolStripCrud.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
+            this.toolStripCrud.Size = new System.Drawing.Size(853, 45);
+            this.toolStripCrud.TabIndex = 22;
+            this.toolStripCrud.Text = "toolStrip1";
+            // 
+            // btnModificarPrecio
+            // 
+            this.btnModificarPrecio.AutoSize = false;
+            this.btnModificarPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnModificarPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarPrecio.Image")));
+            this.btnModificarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnModificarPrecio.Name = "btnModificarPrecio";
+            this.btnModificarPrecio.Size = new System.Drawing.Size(78, 37);
+            this.btnModificarPrecio.Text = "Detalle";
+            this.btnModificarPrecio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnModificarPrecio.ToolTipText = "Modificar registro actual (F4)";
+            // 
+            // btnDesactivarPrecio
+            // 
+            this.btnDesactivarPrecio.AutoSize = false;
+            this.btnDesactivarPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnDesactivarPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnDesactivarPrecio.Image")));
+            this.btnDesactivarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDesactivarPrecio.Name = "btnDesactivarPrecio";
+            this.btnDesactivarPrecio.Size = new System.Drawing.Size(73, 37);
+            this.btnDesactivarPrecio.Text = "Desactivar";
+            this.btnDesactivarPrecio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDesactivarPrecio.ToolTipText = "Anular(F7)";
+            // 
+            // btnActualizarPrecio
+            // 
+            this.btnActualizarPrecio.AutoSize = false;
+            this.btnActualizarPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnActualizarPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarPrecio.Image")));
+            this.btnActualizarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnActualizarPrecio.Name = "btnActualizarPrecio";
+            this.btnActualizarPrecio.Size = new System.Drawing.Size(79, 37);
+            this.btnActualizarPrecio.Text = "Actualizar";
+            this.btnActualizarPrecio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnActualizarPrecio.ToolTipText = "Actualizar registros (F5)\r\n";
+            // 
+            // panelHeaderItem1
+            // 
+            this.panelHeaderItem1.Controls.Add(this.label2);
+            this.panelHeaderItem1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeaderItem1.Location = new System.Drawing.Point(3, 3);
+            this.panelHeaderItem1.Margin = new System.Windows.Forms.Padding(2);
+            this.panelHeaderItem1.Name = "panelHeaderItem1";
+            this.panelHeaderItem1.Size = new System.Drawing.Size(853, 41);
+            this.panelHeaderItem1.TabIndex = 21;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 12);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(260, 17);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "MANTENIMIENTO PRECIO PRODUCTO";
+            // 
+            // tabStockAlmacen
+            // 
+            this.tabStockAlmacen.BackColor = System.Drawing.Color.White;
+            this.tabStockAlmacen.Controls.Add(this.panel3);
+            this.tabStockAlmacen.Controls.Add(this.toolStrip1);
+            this.tabStockAlmacen.Controls.Add(this.panel4);
+            this.tabStockAlmacen.Location = new System.Drawing.Point(4, 39);
+            this.tabStockAlmacen.Name = "tabStockAlmacen";
+            this.tabStockAlmacen.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStockAlmacen.Size = new System.Drawing.Size(859, 538);
+            this.tabStockAlmacen.TabIndex = 1;
+            this.tabStockAlmacen.Text = "Stock Almacen";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dataGridViewStock);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 89);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(10);
+            this.panel3.Size = new System.Drawing.Size(853, 446);
+            this.panel3.TabIndex = 23;
+            // 
+            // dataGridViewStock
+            // 
+            this.dataGridViewStock.AllowUserToAddRows = false;
+            this.dataGridViewStock.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridViewStock.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewStock.AutoGenerateColumns = false;
+            this.dataGridViewStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridViewStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewStock.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewStock.ColumnHeadersHeight = 40;
+            this.dataGridViewStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idProductoStockAlmacenDataGridViewTextBoxColumn,
+            this.stock,
+            this.stockIdeal,
+            this.stockMin,
+            this.alertaStock,
+            this.nombreAlmacen,
+            this.idProductoDataGridViewTextBoxColumn1,
+            this.idAlmacenDataGridViewTextBoxColumn,
+            this.estadoDataGridViewTextBoxColumn1});
+            this.dataGridViewStock.DataSource = this.stockBindingSource;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewStock.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewStock.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewStock.GridColor = System.Drawing.Color.Gainsboro;
+            this.dataGridViewStock.Location = new System.Drawing.Point(10, 10);
+            this.dataGridViewStock.Name = "dataGridViewStock";
+            this.dataGridViewStock.ReadOnly = true;
+            this.dataGridViewStock.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewStock.RowHeadersWidth = 40;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.dataGridViewStock.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewStock.RowTemplate.Height = 30;
+            this.dataGridViewStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewStock.Size = new System.Drawing.Size(833, 426);
+            this.dataGridViewStock.TabIndex = 2;
+            this.dataGridViewStock.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewStocks_CellDoubleClick);
             // 
             // idProductoStockAlmacenDataGridViewTextBoxColumn
             // 
@@ -721,6 +625,102 @@
             this.estadoDataGridViewTextBoxColumn1.ReadOnly = true;
             this.estadoDataGridViewTextBoxColumn1.Width = 70;
             // 
+            // stockBindingSource
+            // 
+            this.stockBindingSource.DataSource = typeof(Entidad.Stock);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnNuevoStock,
+            this.btnEditarStock,
+            this.btnEliminarStock,
+            this.btnActualizarStock});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 44);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
+            this.toolStrip1.Size = new System.Drawing.Size(853, 45);
+            this.toolStrip1.TabIndex = 22;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnNuevoStock
+            // 
+            this.btnNuevoStock.AutoSize = false;
+            this.btnNuevoStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnNuevoStock.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoStock.Image")));
+            this.btnNuevoStock.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevoStock.Name = "btnNuevoStock";
+            this.btnNuevoStock.Size = new System.Drawing.Size(62, 37);
+            this.btnNuevoStock.Text = "Nuevo ";
+            this.btnNuevoStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNuevoStock.ToolTipText = "Agregar un nuevo registro (F3)";
+            this.btnNuevoStock.Click += new System.EventHandler(this.btnNuevoStock_Click);
+            // 
+            // btnEditarStock
+            // 
+            this.btnEditarStock.AutoSize = false;
+            this.btnEditarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnEditarStock.Image = ((System.Drawing.Image)(resources.GetObject("btnEditarStock.Image")));
+            this.btnEditarStock.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditarStock.Name = "btnEditarStock";
+            this.btnEditarStock.Size = new System.Drawing.Size(78, 37);
+            this.btnEditarStock.Text = "Detalle";
+            this.btnEditarStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditarStock.ToolTipText = "Modificar registro actual (F4)";
+            this.btnEditarStock.Click += new System.EventHandler(this.btnEditarStock_Click);
+            // 
+            // btnEliminarStock
+            // 
+            this.btnEliminarStock.AutoSize = false;
+            this.btnEliminarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnEliminarStock.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarStock.Image")));
+            this.btnEliminarStock.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminarStock.Name = "btnEliminarStock";
+            this.btnEliminarStock.Size = new System.Drawing.Size(80, 37);
+            this.btnEliminarStock.Text = "Eliminar";
+            this.btnEliminarStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEliminarStock.ToolTipText = "Eliminar registro actual (F6)";
+            this.btnEliminarStock.Click += new System.EventHandler(this.btnEliminarStock_Click);
+            // 
+            // btnActualizarStock
+            // 
+            this.btnActualizarStock.AutoSize = false;
+            this.btnActualizarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnActualizarStock.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarStock.Image")));
+            this.btnActualizarStock.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnActualizarStock.Name = "btnActualizarStock";
+            this.btnActualizarStock.Size = new System.Drawing.Size(79, 37);
+            this.btnActualizarStock.Text = "Actualizar";
+            this.btnActualizarStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnActualizarStock.ToolTipText = "Actualizar registros (F5)\r\n";
+            this.btnActualizarStock.Click += new System.EventHandler(this.btnActualizarStock_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(853, 41);
+            this.panel4.TabIndex = 21;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 12);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(256, 17);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "MANTENIMIENTO STOCK PRODUCTO";
+            // 
             // UCStockPD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -739,6 +739,7 @@
             this.tabPrecios.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrecios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.precioBindingSource)).EndInit();
             this.toolStripCrud.ResumeLayout(false);
             this.toolStripCrud.PerformLayout();
             this.panelHeaderItem1.ResumeLayout(false);
@@ -746,12 +747,11 @@
             this.tabStockAlmacen.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.precioBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

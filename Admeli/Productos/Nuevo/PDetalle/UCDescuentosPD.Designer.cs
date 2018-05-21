@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCDescuentosPD));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelFooter = new System.Windows.Forms.Panel();
@@ -51,29 +51,10 @@
             this.tabDescuentos = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewDescuento = new System.Windows.Forms.DataGridView();
-            this.toolStripCrud = new System.Windows.Forms.ToolStrip();
-            this.btnNuevoDescuento = new System.Windows.Forms.ToolStripButton();
-            this.btnModificarDescuento = new System.Windows.Forms.ToolStripButton();
-            this.btnEliminarDescuento = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizarDescuento = new System.Windows.Forms.ToolStripButton();
-            this.panelHeaderItem1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tabOfertas = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridViewOferta = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnNuevoOferta = new System.Windows.Forms.ToolStripButton();
-            this.btnModificarOferta = new System.Windows.Forms.ToolStripButton();
-            this.btnEliminarOferta = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizarOferta = new System.Windows.Forms.ToolStripButton();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SFechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SFechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDescuentoProductoGrupoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SFechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SFechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadMinima = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadMaxima = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,7 +72,16 @@
             this.tipoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descuentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ofertaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripCrud = new System.Windows.Forms.ToolStrip();
+            this.btnNuevoDescuento = new System.Windows.Forms.ToolStripButton();
+            this.btnModificarDescuento = new System.Windows.Forms.ToolStripButton();
+            this.btnEliminarDescuento = new System.Windows.Forms.ToolStripButton();
+            this.btnActualizarDescuento = new System.Windows.Forms.ToolStripButton();
+            this.panelHeaderItem1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabOfertas = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridViewOferta = new System.Windows.Forms.DataGridView();
             this.idOfertaProductoGrupoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProductoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,6 +96,16 @@
             this.idProductoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idGrupoClienteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idSucursalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ofertaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnNuevoOferta = new System.Windows.Forms.ToolStripButton();
+            this.btnModificarOferta = new System.Windows.Forms.ToolStripButton();
+            this.btnEliminarOferta = new System.Windows.Forms.ToolStripButton();
+            this.btnActualizarOferta = new System.Windows.Forms.ToolStripButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelHeader.SuspendLayout();
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -113,15 +113,15 @@
             this.tabDescuentos.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDescuento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.descuentoBindingSource)).BeginInit();
             this.toolStripCrud.SuspendLayout();
             this.panelHeaderItem1.SuspendLayout();
             this.tabOfertas.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOferta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ofertaBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.descuentoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ofertaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -261,20 +261,20 @@
             // 
             this.dataGridViewDescuento.AllowUserToAddRows = false;
             this.dataGridViewDescuento.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridViewDescuento.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridViewDescuento.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewDescuento.AutoGenerateColumns = false;
             this.dataGridViewDescuento.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewDescuento.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewDescuento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewDescuento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewDescuento.ColumnHeadersHeight = 40;
             this.dataGridViewDescuento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDescuentoProductoGrupoDataGridViewTextBoxColumn,
@@ -298,343 +298,36 @@
             this.tipoDataGridViewTextBoxColumn,
             this.estadoDataGridViewTextBoxColumn});
             this.dataGridViewDescuento.DataSource = this.descuentoBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewDescuento.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewDescuento.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewDescuento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewDescuento.GridColor = System.Drawing.Color.Gainsboro;
             this.dataGridViewDescuento.Location = new System.Drawing.Point(10, 10);
             this.dataGridViewDescuento.Name = "dataGridViewDescuento";
             this.dataGridViewDescuento.ReadOnly = true;
             this.dataGridViewDescuento.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewDescuento.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewDescuento.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewDescuento.RowHeadersWidth = 40;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.dataGridViewDescuento.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.dataGridViewDescuento.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewDescuento.RowTemplate.Height = 30;
             this.dataGridViewDescuento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDescuento.Size = new System.Drawing.Size(942, 328);
             this.dataGridViewDescuento.TabIndex = 2;
             this.dataGridViewDescuento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDescuento_CellDoubleClick);
-            // 
-            // toolStripCrud
-            // 
-            this.toolStripCrud.AutoSize = false;
-            this.toolStripCrud.BackColor = System.Drawing.Color.White;
-            this.toolStripCrud.GripMargin = new System.Windows.Forms.Padding(0);
-            this.toolStripCrud.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripCrud.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripCrud.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnNuevoDescuento,
-            this.btnModificarDescuento,
-            this.btnEliminarDescuento,
-            this.btnActualizarDescuento});
-            this.toolStripCrud.Location = new System.Drawing.Point(3, 44);
-            this.toolStripCrud.Name = "toolStripCrud";
-            this.toolStripCrud.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
-            this.toolStripCrud.Size = new System.Drawing.Size(962, 45);
-            this.toolStripCrud.TabIndex = 22;
-            this.toolStripCrud.Text = "toolStrip1";
-            // 
-            // btnNuevoDescuento
-            // 
-            this.btnNuevoDescuento.AutoSize = false;
-            this.btnNuevoDescuento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoDescuento.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoDescuento.Image")));
-            this.btnNuevoDescuento.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevoDescuento.Name = "btnNuevoDescuento";
-            this.btnNuevoDescuento.Size = new System.Drawing.Size(62, 37);
-            this.btnNuevoDescuento.Text = "Nuevo";
-            this.btnNuevoDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnNuevoDescuento.ToolTipText = "Agregar un nuevo registro (F3)";
-            this.btnNuevoDescuento.Click += new System.EventHandler(this.btnNuevoDescuento_Click);
-            // 
-            // btnModificarDescuento
-            // 
-            this.btnModificarDescuento.AutoSize = false;
-            this.btnModificarDescuento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarDescuento.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarDescuento.Image")));
-            this.btnModificarDescuento.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnModificarDescuento.Name = "btnModificarDescuento";
-            this.btnModificarDescuento.Size = new System.Drawing.Size(78, 37);
-            this.btnModificarDescuento.Text = "Detalle";
-            this.btnModificarDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnModificarDescuento.ToolTipText = "Modificar registro actual (F4)";
-            this.btnModificarDescuento.Click += new System.EventHandler(this.btnModificarDescuento_Click);
-            // 
-            // btnEliminarDescuento
-            // 
-            this.btnEliminarDescuento.AutoSize = false;
-            this.btnEliminarDescuento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarDescuento.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarDescuento.Image")));
-            this.btnEliminarDescuento.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEliminarDescuento.Name = "btnEliminarDescuento";
-            this.btnEliminarDescuento.Size = new System.Drawing.Size(70, 37);
-            this.btnEliminarDescuento.Text = "Eliminar";
-            this.btnEliminarDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEliminarDescuento.ToolTipText = "Eliminar registro actual (F6)";
-            this.btnEliminarDescuento.Click += new System.EventHandler(this.btnEliminarDescuento_Click);
-            // 
-            // btnActualizarDescuento
-            // 
-            this.btnActualizarDescuento.AutoSize = false;
-            this.btnActualizarDescuento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarDescuento.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarDescuento.Image")));
-            this.btnActualizarDescuento.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizarDescuento.Name = "btnActualizarDescuento";
-            this.btnActualizarDescuento.Size = new System.Drawing.Size(79, 37);
-            this.btnActualizarDescuento.Text = "Actualizar";
-            this.btnActualizarDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnActualizarDescuento.ToolTipText = "Actualizar registros (F5)\r\n";
-            this.btnActualizarDescuento.Click += new System.EventHandler(this.btnActualizarDescuento_Click);
-            // 
-            // panelHeaderItem1
-            // 
-            this.panelHeaderItem1.Controls.Add(this.label2);
-            this.panelHeaderItem1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeaderItem1.Location = new System.Drawing.Point(3, 3);
-            this.panelHeaderItem1.Margin = new System.Windows.Forms.Padding(2);
-            this.panelHeaderItem1.Name = "panelHeaderItem1";
-            this.panelHeaderItem1.Size = new System.Drawing.Size(962, 41);
-            this.panelHeaderItem1.TabIndex = 21;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 12);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(295, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "MANTENIMIENTO DESCUENTO PRODUCTO";
-            // 
-            // tabOfertas
-            // 
-            this.tabOfertas.BackColor = System.Drawing.Color.White;
-            this.tabOfertas.Controls.Add(this.panel3);
-            this.tabOfertas.Controls.Add(this.toolStrip1);
-            this.tabOfertas.Controls.Add(this.panel4);
-            this.tabOfertas.Location = new System.Drawing.Point(4, 39);
-            this.tabOfertas.Name = "tabOfertas";
-            this.tabOfertas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOfertas.Size = new System.Drawing.Size(968, 440);
-            this.tabOfertas.TabIndex = 1;
-            this.tabOfertas.Text = "Ofertas";
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dataGridViewOferta);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 89);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(10);
-            this.panel3.Size = new System.Drawing.Size(962, 348);
-            this.panel3.TabIndex = 23;
-            // 
-            // dataGridViewOferta
-            // 
-            this.dataGridViewOferta.AllowUserToAddRows = false;
-            this.dataGridViewOferta.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridViewOferta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewOferta.AutoGenerateColumns = false;
-            this.dataGridViewOferta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewOferta.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridViewOferta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewOferta.ColumnHeadersHeight = 40;
-            this.dataGridViewOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idOfertaProductoGrupoDataGridViewTextBoxColumn,
-            this.codigoDataGridViewTextBoxColumn1,
-            this.nombreProductoDataGridViewTextBoxColumn1,
-            this.fechaInicioDataGridViewTextBoxColumn1,
-            this.fechaFinDataGridViewTextBoxColumn1,
-            this.descuentoOferta,
-            this.nombreSucursalDataGridViewTextBoxColumn1,
-            this.nombreGrupoDataGridViewTextBoxColumn1,
-            this.tipoDataGridViewTextBoxColumn1,
-            this.estadoDataGridViewTextBoxColumn1,
-            this.idAfectoProductoDataGridViewTextBoxColumn1,
-            this.idProductoDataGridViewTextBoxColumn1,
-            this.idGrupoClienteDataGridViewTextBoxColumn1,
-            this.idSucursalDataGridViewTextBoxColumn1});
-            this.dataGridViewOferta.DataSource = this.ofertaBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewOferta.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewOferta.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewOferta.GridColor = System.Drawing.Color.Gainsboro;
-            this.dataGridViewOferta.Location = new System.Drawing.Point(10, 10);
-            this.dataGridViewOferta.Name = "dataGridViewOferta";
-            this.dataGridViewOferta.ReadOnly = true;
-            this.dataGridViewOferta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewOferta.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewOferta.RowHeadersWidth = 40;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.dataGridViewOferta.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewOferta.RowTemplate.Height = 30;
-            this.dataGridViewOferta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOferta.Size = new System.Drawing.Size(942, 328);
-            this.dataGridViewOferta.TabIndex = 2;
-            this.dataGridViewOferta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOferta_CellDoubleClick);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.AutoSize = false;
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnNuevoOferta,
-            this.btnModificarOferta,
-            this.btnEliminarOferta,
-            this.btnActualizarOferta});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 44);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
-            this.toolStrip1.Size = new System.Drawing.Size(962, 45);
-            this.toolStrip1.TabIndex = 22;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnNuevoOferta
-            // 
-            this.btnNuevoOferta.AutoSize = false;
-            this.btnNuevoOferta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoOferta.Image")));
-            this.btnNuevoOferta.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevoOferta.Name = "btnNuevoOferta";
-            this.btnNuevoOferta.Size = new System.Drawing.Size(62, 37);
-            this.btnNuevoOferta.Text = "Nuevo";
-            this.btnNuevoOferta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnNuevoOferta.ToolTipText = "Agregar un nuevo registro (F3)";
-            this.btnNuevoOferta.Click += new System.EventHandler(this.btnNuevoOferta_Click);
-            // 
-            // btnModificarOferta
-            // 
-            this.btnModificarOferta.AutoSize = false;
-            this.btnModificarOferta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarOferta.Image")));
-            this.btnModificarOferta.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnModificarOferta.Name = "btnModificarOferta";
-            this.btnModificarOferta.Size = new System.Drawing.Size(78, 37);
-            this.btnModificarOferta.Text = "Detalle";
-            this.btnModificarOferta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnModificarOferta.ToolTipText = "Modificar registro actual (F4)";
-            this.btnModificarOferta.Click += new System.EventHandler(this.btnModificarOferta_Click);
-            // 
-            // btnEliminarOferta
-            // 
-            this.btnEliminarOferta.AutoSize = false;
-            this.btnEliminarOferta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarOferta.Image")));
-            this.btnEliminarOferta.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEliminarOferta.Name = "btnEliminarOferta";
-            this.btnEliminarOferta.Size = new System.Drawing.Size(70, 37);
-            this.btnEliminarOferta.Text = "Eliminar";
-            this.btnEliminarOferta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEliminarOferta.ToolTipText = "Eliminar registro actual (F6)";
-            this.btnEliminarOferta.Click += new System.EventHandler(this.btnEliminarOferta_Click);
-            // 
-            // btnActualizarOferta
-            // 
-            this.btnActualizarOferta.AutoSize = false;
-            this.btnActualizarOferta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarOferta.Image")));
-            this.btnActualizarOferta.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizarOferta.Name = "btnActualizarOferta";
-            this.btnActualizarOferta.Size = new System.Drawing.Size(79, 37);
-            this.btnActualizarOferta.Text = "Actualizar";
-            this.btnActualizarOferta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnActualizarOferta.ToolTipText = "Actualizar registros (F5)\r\n";
-            this.btnActualizarOferta.Click += new System.EventHandler(this.btnActualizarOferta_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(962, 41);
-            this.panel4.TabIndex = 21;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 12);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(265, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "MANTENIMIENTO OFERTA PRODUCTO";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "nombreProducto";
-            this.dataGridViewTextBoxColumn1.HeaderText = "nombreProducto";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 22;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dataGridViewTextBoxColumn1.Width = 110;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "nombreProducto";
-            this.dataGridViewTextBoxColumn2.HeaderText = "nombreProducto";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 22;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dataGridViewTextBoxColumn2.Width = 110;
-            // 
-            // SFechaInicio
-            // 
-            this.SFechaInicio.DataPropertyName = "SFechaInicio";
-            this.SFechaInicio.HeaderText = "Fecha Inicio";
-            this.SFechaInicio.Name = "SFechaInicio";
-            this.SFechaInicio.ReadOnly = true;
-            // 
-            // SFechaFin
-            // 
-            this.SFechaFin.DataPropertyName = "SFechaFin";
-            this.SFechaFin.HeaderText = "FechaFin";
-            this.SFechaFin.Name = "SFechaFin";
-            this.SFechaFin.ReadOnly = true;
             // 
             // idDescuentoProductoGrupoDataGridViewTextBoxColumn
             // 
@@ -652,6 +345,20 @@
             this.codigoDataGridViewTextBoxColumn.HeaderText = "Código";
             this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
             this.codigoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // SFechaInicio
+            // 
+            this.SFechaInicio.DataPropertyName = "SFechaInicio";
+            this.SFechaInicio.HeaderText = "Fecha Inicio";
+            this.SFechaInicio.Name = "SFechaInicio";
+            this.SFechaInicio.ReadOnly = true;
+            // 
+            // SFechaFin
+            // 
+            this.SFechaFin.DataPropertyName = "SFechaFin";
+            this.SFechaFin.HeaderText = "FechaFin";
+            this.SFechaFin.Name = "SFechaFin";
+            this.SFechaFin.ReadOnly = true;
             // 
             // cantidadMinima
             // 
@@ -784,9 +491,186 @@
             // 
             this.descuentoBindingSource.DataSource = typeof(Entidad.Descuento);
             // 
-            // ofertaBindingSource
+            // toolStripCrud
             // 
-            this.ofertaBindingSource.DataSource = typeof(Entidad.Oferta);
+            this.toolStripCrud.AutoSize = false;
+            this.toolStripCrud.BackColor = System.Drawing.Color.White;
+            this.toolStripCrud.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStripCrud.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripCrud.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripCrud.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnNuevoDescuento,
+            this.btnModificarDescuento,
+            this.btnEliminarDescuento,
+            this.btnActualizarDescuento});
+            this.toolStripCrud.Location = new System.Drawing.Point(3, 44);
+            this.toolStripCrud.Name = "toolStripCrud";
+            this.toolStripCrud.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
+            this.toolStripCrud.Size = new System.Drawing.Size(962, 45);
+            this.toolStripCrud.TabIndex = 22;
+            this.toolStripCrud.Text = "toolStrip1";
+            // 
+            // btnNuevoDescuento
+            // 
+            this.btnNuevoDescuento.AutoSize = false;
+            this.btnNuevoDescuento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoDescuento.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoDescuento.Image")));
+            this.btnNuevoDescuento.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevoDescuento.Name = "btnNuevoDescuento";
+            this.btnNuevoDescuento.Size = new System.Drawing.Size(62, 37);
+            this.btnNuevoDescuento.Text = "Nuevo";
+            this.btnNuevoDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNuevoDescuento.ToolTipText = "Agregar un nuevo registro (F3)";
+            this.btnNuevoDescuento.Click += new System.EventHandler(this.btnNuevoDescuento_Click);
+            // 
+            // btnModificarDescuento
+            // 
+            this.btnModificarDescuento.AutoSize = false;
+            this.btnModificarDescuento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnModificarDescuento.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarDescuento.Image")));
+            this.btnModificarDescuento.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnModificarDescuento.Name = "btnModificarDescuento";
+            this.btnModificarDescuento.Size = new System.Drawing.Size(78, 37);
+            this.btnModificarDescuento.Text = "Detalle";
+            this.btnModificarDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnModificarDescuento.ToolTipText = "Modificar registro actual (F4)";
+            this.btnModificarDescuento.Click += new System.EventHandler(this.btnModificarDescuento_Click);
+            // 
+            // btnEliminarDescuento
+            // 
+            this.btnEliminarDescuento.AutoSize = false;
+            this.btnEliminarDescuento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnEliminarDescuento.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarDescuento.Image")));
+            this.btnEliminarDescuento.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminarDescuento.Name = "btnEliminarDescuento";
+            this.btnEliminarDescuento.Size = new System.Drawing.Size(70, 37);
+            this.btnEliminarDescuento.Text = "Eliminar";
+            this.btnEliminarDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEliminarDescuento.ToolTipText = "Eliminar registro actual (F6)";
+            this.btnEliminarDescuento.Click += new System.EventHandler(this.btnEliminarDescuento_Click);
+            // 
+            // btnActualizarDescuento
+            // 
+            this.btnActualizarDescuento.AutoSize = false;
+            this.btnActualizarDescuento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnActualizarDescuento.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarDescuento.Image")));
+            this.btnActualizarDescuento.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnActualizarDescuento.Name = "btnActualizarDescuento";
+            this.btnActualizarDescuento.Size = new System.Drawing.Size(79, 37);
+            this.btnActualizarDescuento.Text = "Actualizar";
+            this.btnActualizarDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnActualizarDescuento.ToolTipText = "Actualizar registros (F5)\r\n";
+            this.btnActualizarDescuento.Click += new System.EventHandler(this.btnActualizarDescuento_Click);
+            // 
+            // panelHeaderItem1
+            // 
+            this.panelHeaderItem1.Controls.Add(this.label2);
+            this.panelHeaderItem1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeaderItem1.Location = new System.Drawing.Point(3, 3);
+            this.panelHeaderItem1.Margin = new System.Windows.Forms.Padding(2);
+            this.panelHeaderItem1.Name = "panelHeaderItem1";
+            this.panelHeaderItem1.Size = new System.Drawing.Size(962, 41);
+            this.panelHeaderItem1.TabIndex = 21;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 12);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(295, 17);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "MANTENIMIENTO DESCUENTO PRODUCTO";
+            // 
+            // tabOfertas
+            // 
+            this.tabOfertas.BackColor = System.Drawing.Color.White;
+            this.tabOfertas.Controls.Add(this.panel3);
+            this.tabOfertas.Controls.Add(this.toolStrip1);
+            this.tabOfertas.Controls.Add(this.panel4);
+            this.tabOfertas.Location = new System.Drawing.Point(4, 39);
+            this.tabOfertas.Name = "tabOfertas";
+            this.tabOfertas.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOfertas.Size = new System.Drawing.Size(968, 440);
+            this.tabOfertas.TabIndex = 1;
+            this.tabOfertas.Text = "Ofertas";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dataGridViewOferta);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 89);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(10);
+            this.panel3.Size = new System.Drawing.Size(962, 348);
+            this.panel3.TabIndex = 23;
+            // 
+            // dataGridViewOferta
+            // 
+            this.dataGridViewOferta.AllowUserToAddRows = false;
+            this.dataGridViewOferta.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridViewOferta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewOferta.AutoGenerateColumns = false;
+            this.dataGridViewOferta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewOferta.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewOferta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewOferta.ColumnHeadersHeight = 40;
+            this.dataGridViewOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idOfertaProductoGrupoDataGridViewTextBoxColumn,
+            this.codigoDataGridViewTextBoxColumn1,
+            this.nombreProductoDataGridViewTextBoxColumn1,
+            this.fechaInicioDataGridViewTextBoxColumn1,
+            this.fechaFinDataGridViewTextBoxColumn1,
+            this.descuentoOferta,
+            this.nombreSucursalDataGridViewTextBoxColumn1,
+            this.nombreGrupoDataGridViewTextBoxColumn1,
+            this.tipoDataGridViewTextBoxColumn1,
+            this.estadoDataGridViewTextBoxColumn1,
+            this.idAfectoProductoDataGridViewTextBoxColumn1,
+            this.idProductoDataGridViewTextBoxColumn1,
+            this.idGrupoClienteDataGridViewTextBoxColumn1,
+            this.idSucursalDataGridViewTextBoxColumn1});
+            this.dataGridViewOferta.DataSource = this.ofertaBindingSource;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewOferta.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridViewOferta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewOferta.GridColor = System.Drawing.Color.Gainsboro;
+            this.dataGridViewOferta.Location = new System.Drawing.Point(10, 10);
+            this.dataGridViewOferta.Name = "dataGridViewOferta";
+            this.dataGridViewOferta.ReadOnly = true;
+            this.dataGridViewOferta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOferta.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.dataGridViewOferta.RowHeadersWidth = 40;
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.dataGridViewOferta.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            this.dataGridViewOferta.RowTemplate.Height = 30;
+            this.dataGridViewOferta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewOferta.Size = new System.Drawing.Size(942, 328);
+            this.dataGridViewOferta.TabIndex = 2;
+            this.dataGridViewOferta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOferta_CellDoubleClick);
             // 
             // idOfertaProductoGrupoDataGridViewTextBoxColumn
             // 
@@ -895,6 +779,122 @@
             this.idSucursalDataGridViewTextBoxColumn1.ReadOnly = true;
             this.idSucursalDataGridViewTextBoxColumn1.Visible = false;
             // 
+            // ofertaBindingSource
+            // 
+            this.ofertaBindingSource.DataSource = typeof(Entidad.Oferta);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnNuevoOferta,
+            this.btnModificarOferta,
+            this.btnEliminarOferta,
+            this.btnActualizarOferta});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 44);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
+            this.toolStrip1.Size = new System.Drawing.Size(962, 45);
+            this.toolStrip1.TabIndex = 22;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnNuevoOferta
+            // 
+            this.btnNuevoOferta.AutoSize = false;
+            this.btnNuevoOferta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnNuevoOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoOferta.Image")));
+            this.btnNuevoOferta.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevoOferta.Name = "btnNuevoOferta";
+            this.btnNuevoOferta.Size = new System.Drawing.Size(62, 37);
+            this.btnNuevoOferta.Text = "Nuevo";
+            this.btnNuevoOferta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNuevoOferta.ToolTipText = "Agregar un nuevo registro (F3)";
+            this.btnNuevoOferta.Click += new System.EventHandler(this.btnNuevoOferta_Click);
+            // 
+            // btnModificarOferta
+            // 
+            this.btnModificarOferta.AutoSize = false;
+            this.btnModificarOferta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnModificarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarOferta.Image")));
+            this.btnModificarOferta.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnModificarOferta.Name = "btnModificarOferta";
+            this.btnModificarOferta.Size = new System.Drawing.Size(78, 37);
+            this.btnModificarOferta.Text = "Detalle";
+            this.btnModificarOferta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnModificarOferta.ToolTipText = "Modificar registro actual (F4)";
+            this.btnModificarOferta.Click += new System.EventHandler(this.btnModificarOferta_Click);
+            // 
+            // btnEliminarOferta
+            // 
+            this.btnEliminarOferta.AutoSize = false;
+            this.btnEliminarOferta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnEliminarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarOferta.Image")));
+            this.btnEliminarOferta.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminarOferta.Name = "btnEliminarOferta";
+            this.btnEliminarOferta.Size = new System.Drawing.Size(70, 37);
+            this.btnEliminarOferta.Text = "Eliminar";
+            this.btnEliminarOferta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEliminarOferta.ToolTipText = "Eliminar registro actual (F6)";
+            this.btnEliminarOferta.Click += new System.EventHandler(this.btnEliminarOferta_Click);
+            // 
+            // btnActualizarOferta
+            // 
+            this.btnActualizarOferta.AutoSize = false;
+            this.btnActualizarOferta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnActualizarOferta.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizarOferta.Image")));
+            this.btnActualizarOferta.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnActualizarOferta.Name = "btnActualizarOferta";
+            this.btnActualizarOferta.Size = new System.Drawing.Size(79, 37);
+            this.btnActualizarOferta.Text = "Actualizar";
+            this.btnActualizarOferta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnActualizarOferta.ToolTipText = "Actualizar registros (F5)\r\n";
+            this.btnActualizarOferta.Click += new System.EventHandler(this.btnActualizarOferta_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(962, 41);
+            this.panel4.TabIndex = 21;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.label3.Location = new System.Drawing.Point(9, 12);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(265, 17);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "MANTENIMIENTO OFERTA PRODUCTO";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "nombreProducto";
+            this.dataGridViewTextBoxColumn1.HeaderText = "nombreProducto";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 22;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn1.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "nombreProducto";
+            this.dataGridViewTextBoxColumn2.HeaderText = "nombreProducto";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 22;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn2.Width = 110;
+            // 
             // UCDescuentosPD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -913,6 +913,7 @@
             this.tabDescuentos.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDescuento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.descuentoBindingSource)).EndInit();
             this.toolStripCrud.ResumeLayout(false);
             this.toolStripCrud.PerformLayout();
             this.panelHeaderItem1.ResumeLayout(false);
@@ -920,12 +921,11 @@
             this.tabOfertas.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOferta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ofertaBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.descuentoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ofertaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

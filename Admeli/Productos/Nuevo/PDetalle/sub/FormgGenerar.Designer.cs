@@ -104,7 +104,7 @@
             this.textCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textCodigo.isPassword = false;
             this.textCodigo.Location = new System.Drawing.Point(377, 27);
-            this.textCodigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Padding = new System.Windows.Forms.Padding(2, 10, 5, 2);
             this.textCodigo.Size = new System.Drawing.Size(249, 40);
@@ -142,7 +142,7 @@
             this.textNombreCombinacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textNombreCombinacion.isPassword = false;
             this.textNombreCombinacion.Location = new System.Drawing.Point(377, 88);
-            this.textNombreCombinacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textNombreCombinacion.Margin = new System.Windows.Forms.Padding(4);
             this.textNombreCombinacion.Name = "textNombreCombinacion";
             this.textNombreCombinacion.Padding = new System.Windows.Forms.Padding(2, 10, 5, 2);
             this.textNombreCombinacion.Size = new System.Drawing.Size(249, 40);
@@ -175,7 +175,7 @@
             this.textStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textStock.isPassword = false;
             this.textStock.Location = new System.Drawing.Point(377, 216);
-            this.textStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textStock.Margin = new System.Windows.Forms.Padding(4);
             this.textStock.Name = "textStock";
             this.textStock.Padding = new System.Windows.Forms.Padding(2, 10, 5, 2);
             this.textStock.Size = new System.Drawing.Size(249, 40);
@@ -208,7 +208,7 @@
             this.textPrecio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textPrecio.isPassword = false;
             this.textPrecio.Location = new System.Drawing.Point(377, 152);
-            this.textPrecio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textPrecio.Margin = new System.Windows.Forms.Padding(4);
             this.textPrecio.Name = "textPrecio";
             this.textPrecio.Padding = new System.Windows.Forms.Padding(2, 10, 5, 2);
             this.textPrecio.Size = new System.Drawing.Size(249, 40);
@@ -241,7 +241,7 @@
             this.textStockMinimo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textStockMinimo.isPassword = false;
             this.textStockMinimo.Location = new System.Drawing.Point(377, 344);
-            this.textStockMinimo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textStockMinimo.Margin = new System.Windows.Forms.Padding(4);
             this.textStockMinimo.Name = "textStockMinimo";
             this.textStockMinimo.Padding = new System.Windows.Forms.Padding(2, 10, 5, 2);
             this.textStockMinimo.Size = new System.Drawing.Size(249, 40);
@@ -274,7 +274,7 @@
             this.textStockIdeal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textStockIdeal.isPassword = false;
             this.textStockIdeal.Location = new System.Drawing.Point(377, 280);
-            this.textStockIdeal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textStockIdeal.Margin = new System.Windows.Forms.Padding(4);
             this.textStockIdeal.Name = "textStockIdeal";
             this.textStockIdeal.Padding = new System.Windows.Forms.Padding(2, 10, 5, 2);
             this.textStockIdeal.Size = new System.Drawing.Size(249, 40);
@@ -307,7 +307,7 @@
             this.textAlertaStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textAlertaStock.isPassword = false;
             this.textAlertaStock.Location = new System.Drawing.Point(377, 408);
-            this.textAlertaStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textAlertaStock.Margin = new System.Windows.Forms.Padding(4);
             this.textAlertaStock.Name = "textAlertaStock";
             this.textAlertaStock.Padding = new System.Windows.Forms.Padding(2, 10, 5, 2);
             this.textAlertaStock.Size = new System.Drawing.Size(249, 40);
@@ -456,7 +456,7 @@
             this.progressBarApp.BackColor = System.Drawing.Color.White;
             this.progressBarApp.Dock = System.Windows.Forms.DockStyle.Top;
             this.progressBarApp.Location = new System.Drawing.Point(0, 0);
-            this.progressBarApp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBarApp.Margin = new System.Windows.Forms.Padding(2);
             this.progressBarApp.MarqueeAnimationSpeed = 10;
             this.progressBarApp.Maximum = 200;
             this.progressBarApp.Name = "progressBarApp";
