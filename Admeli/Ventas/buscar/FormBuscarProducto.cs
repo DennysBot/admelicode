@@ -222,5 +222,10 @@ namespace Admeli.Ventas.buscar
         {
             this.Close();
         }
+
+        private void txtMotivo_OnValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

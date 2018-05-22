@@ -1351,10 +1351,16 @@ namespace Admeli.AlmacenBox.Nuevo
 
             if (filtradoAlmacen == 1)
             {
-
+                int idAlmacenS = (int)cbxAlmacenSalida.SelectedValue;
+                
                 BindingList<Almacen> filtered = new BindingList<Almacen>(listAlmacenSalida.Where(obj => obj.idAlmacen != idAlmacen).ToList());
                 cbxAlmacenSalida.DataSource = filtered;
                 cbxAlmacenSalida.Update();
+
+                if (idAlmacen != idAlmacenS)
+                {
+                    cbxAlmacenSalida.SelectedValue = idAlmacenS;
+                }
                 filtradoAlmacen = 0;
 
             }
@@ -1368,11 +1374,15 @@ namespace Admeli.AlmacenBox.Nuevo
             if (filtradoAlmacen == 2)
             {
                 int idAlmacen = (int)cbxAlmacenSalida.SelectedValue;
-                
-               
+                int idAlmacenE= (int)cbxAlmacenEntrada.SelectedValue;
+
                 BindingList<Almacen> filtered = new BindingList<Almacen>(listAlmacenEntrada.Where(obj => obj.idAlmacen != idAlmacen).ToList());
                 cbxAlmacenEntrada.DataSource = filtered;
                 cbxAlmacenEntrada.Update();
+                if (idAlmacen != idAlmacenE)
+                {
+                    cbxAlmacenEntrada.SelectedValue = idAlmacenE;
+                }
                 filtradoAlmacen = 0;
             }
         }
