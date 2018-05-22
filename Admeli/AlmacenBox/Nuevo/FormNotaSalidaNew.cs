@@ -1345,11 +1345,18 @@ namespace Admeli.AlmacenBox.Nuevo
 
             if (filtradoAlmacen == 1)
             {
-
+                int idAlmacenS = (int)cbxAlmacenEntrada.SelectedValue;
                 BindingList<Almacen> filtered = new BindingList<Almacen>(listAlmacenDestino.Where(obj => obj.idAlmacen !=idAlmacen).ToList());
                 cbxAlmacenEntrada.DataSource = filtered;
                 cbxAlmacenEntrada.Update();
                 filtradoAlmacen = 0;
+
+                if (idAlmacen != idAlmacenS)
+                {
+                    cbxAlmacenEntrada.SelectedValue = idAlmacenS;
+                }
+
+
 
             }
           
@@ -1364,7 +1371,7 @@ namespace Admeli.AlmacenBox.Nuevo
             if (filtradoAlmacen == 2)
             {
                 int idAlmacen = (int)cbxAlmacenEntrada.SelectedValue;
-
+                int idAlmacenS = (int)cbxAlmacen.SelectedValue;
                 if (idAlmacen == 0)
                 {
                     txtCantidadRecibida.Enabled = false;
@@ -1383,6 +1390,12 @@ namespace Admeli.AlmacenBox.Nuevo
                 BindingList<Almacen> filtered = new BindingList<Almacen>(listAlmacenOrigen.Where(obj => obj.idAlmacen != idAlmacen).ToList());
                 cbxAlmacen.DataSource = filtered;
                 cbxAlmacen.Update();
+
+                if (idAlmacen != idAlmacenS)
+                {
+                    cbxAlmacen.SelectedValue = idAlmacenS;
+                }
+
                 filtradoAlmacen = 0;
             }
          

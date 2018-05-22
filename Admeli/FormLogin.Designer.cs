@@ -71,7 +71,6 @@
             this.textPassword.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
             this.textPassword.Size = new System.Drawing.Size(319, 46);
             this.textPassword.TabIndex = 38;
-            this.textPassword.Text = "admin";
             this.textPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // textUsuario
@@ -92,7 +91,6 @@
             this.textUsuario.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
             this.textUsuario.Size = new System.Drawing.Size(319, 46);
             this.textUsuario.TabIndex = 37;
-            this.textUsuario.Text = "admin";
             this.textUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // btnCLose
