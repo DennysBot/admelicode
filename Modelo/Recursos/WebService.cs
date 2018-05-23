@@ -26,9 +26,10 @@ namespace Modelo.Recursos
             //this.domainName = "http://190.117.145.7:8080";
             //this.directory = "service_fact_prueba/xcore/services.php";
             //Acessos a Servidor local
-
             this.domainName = "http://localhost:8080";
             this.directory = "admeli/xcore/services.php";
+
+
             this.urlBase = String.Format("{0}/{1}", domainName, directory);
         }
 
