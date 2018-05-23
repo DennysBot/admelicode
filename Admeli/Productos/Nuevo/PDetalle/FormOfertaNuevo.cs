@@ -17,12 +17,14 @@ namespace Admeli.Productos.Nuevo.PDetalle
     {
         private FormProductoNuevo formProductoNuevo;
         private Oferta currentOferta { get; set; }
+        private OfertaG currentOfertaEnv { get; set; }
         private int currentIDOferta { get; set; }
         private bool nuevo { get; set; }
 
         private SucursalModel sucursalModel = new SucursalModel();
         private GrupoClienteModel grupoClienteModel = new GrupoClienteModel();
         private ProductoModel productoModel = new ProductoModel();
+        private PresentacionModel presentacionModel = new PresentacionModel();
         private OfertaModel ofertaModel = new OfertaModel();
 
         #region ================================ Constructor ================================
@@ -35,6 +37,7 @@ namespace Admeli.Productos.Nuevo.PDetalle
         {
             InitializeComponent();
             this.formProductoNuevo = formProductoNuevo;
+            this.nuevo = true;
         }
 
         public FormOfertaNuevo(FormProductoNuevo formProductoNuevo, Oferta currentOferta)
@@ -43,6 +46,7 @@ namespace Admeli.Productos.Nuevo.PDetalle
             this.formProductoNuevo = formProductoNuevo;
             this.currentOferta = currentOferta;
             this.currentIDOferta = currentOferta.idOfertaProductoGrupo;
+            this.nuevo = false;
         }
         #endregion
 
@@ -57,18 +61,28 @@ namespace Admeli.Productos.Nuevo.PDetalle
             dtpFechaInicio.Value = DateTime.Now;
             dtpFechaFin.Value = DateTime.Now;
 
-            cargarProducto21();
+            cargarDatosModificar();
+            cargarProducto21();            
             cargarGrupoCliente();
             cargarSucursales();
         } 
         #endregion
 
         #region ================================ Loads ================================
+        private void cargarDatosModificar()
+        {
+            if (nuevo) return;
+            textCodigoOferta.Text = currentOferta.codigo;
+            textDescuento.Text = currentOferta.descuento;
+            dtpFechaInicio.Value = currentOferta.fechaInicio.date;
+            dtpFechaFin.Value = currentOferta.fechaFin.date;
+        }
         private async void cargarSucursales()
         {
             try
             {
                 sucursalBindingSource.DataSource = await sucursalModel.sucursalesPrecio(formProductoNuevo.currentIDProducto);
+                cbxSucursal.SelectedValue = currentOferta.idSucursal;
             }
             catch (Exception ex)
             {
@@ -81,6 +95,7 @@ namespace Admeli.Productos.Nuevo.PDetalle
             try
             {
                 grupoClienteBindingSource.DataSource = await grupoClienteModel.gclientes21();
+                cbxGrupoCliente.SelectedValue = currentOferta.idGrupoCliente;
             }
             catch (Exception ex)
             {
@@ -92,7 +107,9 @@ namespace Admeli.Productos.Nuevo.PDetalle
         {
             try
             {
-                productoBindingSource.DataSource = await productoModel.productos21(formProductoNuevo.currentIDProducto);
+                presentacionBindingSource.DataSource = await presentacionModel.productos21(formProductoNuevo.currentIDProducto);
+                //productoBindingSource.DataSource = await productoModel.productos21(formProductoNuevo.currentIDProducto);
+                cbxProductoAfecto.SelectedValue = currentOferta.idAfectoProducto;
             }
             catch (Exception ex)
             {
@@ -129,12 +146,12 @@ namespace Admeli.Productos.Nuevo.PDetalle
                 crearObjetoSucursal();
                 if (nuevo)
                 {
-                    Response response = await ofertaModel.guardar(currentOferta);
+                    Response response = await ofertaModel.guardar(currentOfertaEnv);
                     MessageBox.Show(response.msj, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    Response response = await ofertaModel.modificar(currentOferta);
+                    Response response = await ofertaModel.modificar(currentOfertaEnv);
                     MessageBox.Show(response.msj, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 this.Close();
@@ -148,12 +165,22 @@ namespace Admeli.Productos.Nuevo.PDetalle
 
         private void crearObjetoSucursal()
         {
-            currentOferta = new Oferta();
-            if (!nuevo) currentOferta.idOfertaProductoGrupo = currentIDOferta; // Llenar el id categoria cuando este en esdo modificar
-
-            currentOferta.codigo = textCodigoOferta.Text;
-            // currentOferta.fechaFin = dtpFechaFin.Value;
-
+            currentOfertaEnv = new OfertaG();
+            if (!nuevo)
+            {
+                currentOfertaEnv.idOfertaProductoGrupo = currentIDOferta; // Llenar el id categoria cuando este en esdo modificar
+                currentOfertaEnv.idProducto = currentOferta.idProducto;
+            }
+            currentOfertaEnv.codigo = textCodigoOferta.Text;
+            currentOfertaEnv.descuento = textDescuento.Text;
+            currentOfertaEnv.estado = Convert.ToInt32(chkEstado.Checked);
+            currentOfertaEnv.fechaFin = dtpFechaFin.Value.ToString("yyyy-MM-dd HH':'mm':'ss");
+            currentOfertaEnv.fechaInicio = dtpFechaInicio.Value.ToString("yyyy-MM-dd HH':'mm':'ss");
+            currentOfertaEnv.idAfectoProducto = (int)cbxProductoAfecto.SelectedValue;
+            currentOfertaEnv.idGrupoCliente = (int)cbxGrupoCliente.SelectedValue;
+            currentOfertaEnv.idProducto = formProductoNuevo.currentIDProducto;
+            currentOfertaEnv.idSucursal = (int)cbxSucursal.SelectedValue;
+            currentOfertaEnv.tipo = "Particular";
         }
 
         private bool validarCampos()

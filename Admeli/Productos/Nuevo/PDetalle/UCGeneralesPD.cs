@@ -293,35 +293,41 @@ namespace Admeli.Productos.Nuevo.PDetalle
 
         private async void validarProductoCodigo()
         {
-
-            // Validando si el campo esta vacia
-            if (textCodigoProducto.Text.Trim() == "")
+            try
             {
-                Validator.textboxValidateColor(textCodigoProducto, 0);
-                errorProvider1.SetError(textCodigoProducto, "Campo obligatorio");
-                this.codigoValido = false;
-                return;
+                // Validando si el campo esta vacia
+                if (textCodigoProducto.Text.Trim() == "")
+                {
+                    Validator.textboxValidateColor(textCodigoProducto, 0);
+                    errorProvider1.SetError(textCodigoProducto, "Campo obligatorio");
+                    this.codigoValido = false;
+                    return;
+                }
+
+                // Creando el objeto para enviar
+                Producto np = new Producto();
+                np.codigo = textCodigoProducto.Text;
+                np.idProducto = (formProductoNuevo.nuevo) ? 0 : formProductoNuevo.currentIDProducto;
+
+                // validando si el codigo del producto existe
+                List<Producto> list = await productoModel.validarProducto(np);
+                if (list.Count > 0)
+                {
+                    errorProvider1.SetError(textCodigoProducto, "Ya existe un producto con el mismo código.");
+                    Validator.textboxValidateColor(textCodigoProducto, 0);
+                    this.codigoValido = false;
+                    return;
+                }
+
+                // Dando el formato adecuado cuando paso toda las validaciones
+                Validator.textboxValidateColor(textCodigoProducto, 1);
+                errorProvider1.Clear();
+                this.codigoValido = true;
             }
-
-            // Creando el objeto para enviar
-            Producto np = new Producto();
-            np.codigo = textCodigoProducto.Text;
-            np.idProducto = (formProductoNuevo.nuevo) ? 0 : formProductoNuevo.currentIDProducto;
-
-            // validando si el codigo del producto existe
-            List<Producto> list = await productoModel.validarProducto(np);
-            if (list.Count > 0)
+            catch (Exception ex)
             {
-                errorProvider1.SetError(textCodigoProducto, "Ya existe un producto con el mismo código.");
-                Validator.textboxValidateColor(textCodigoProducto, 0);
-                this.codigoValido = false;
-                return;
+                MessageBox.Show("Error: " + ex.Message, "Verificar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            // Dando el formato adecuado cuando paso toda las validaciones
-            Validator.textboxValidateColor(textCodigoProducto, 1);
-            errorProvider1.Clear();
-            this.codigoValido = true;
         }
 
         /**
