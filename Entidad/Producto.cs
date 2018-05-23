@@ -63,6 +63,7 @@ namespace Entidad
         {
             get
             {
+
                 if (idPresentacion == null)
                 {
                     return 0;
@@ -71,6 +72,7 @@ namespace Entidad
                 {
                     return Int32.Parse(idPresentacion);
                 }
+
             }
             set
             {

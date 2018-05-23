@@ -36,7 +36,7 @@ namespace Admeli.Ventas.Nuevo.Detalle
 
         public Response rest { get; set; }
         public int nroMaximoCaracteres = 0;
-
+        public int idTipoDocumento = 0;
 
         #region====================Construtor=============== 
         public UCClienteGeneral()
@@ -50,12 +50,14 @@ namespace Admeli.Ventas.Nuevo.Detalle
             this.formClienteNuevo = formClienteNuevo;
 
         }
-        public UCClienteGeneral(FormClienteNuevo formClienteNuevo ,string NroDocumento)
+        public UCClienteGeneral(FormClienteNuevo formClienteNuevo ,string NroDocumento, int idTipoDocumento)
         {
             InitializeComponent();
             this.formClienteNuevo = formClienteNuevo;
             this.NroDocumento = NroDocumento;
-          
+            this.idTipoDocumento = idTipoDocumento;
+
+
         }
 
         #endregion====================Construtor=============== 
@@ -90,6 +92,8 @@ namespace Admeli.Ventas.Nuevo.Detalle
             else
             {
                 textNIdentificacion.Text = NroDocumento;
+               
+
                 textNIdentificacion.Select();
                 textNIdentificacion.Focus();
             }
@@ -119,6 +123,10 @@ namespace Admeli.Ventas.Nuevo.Detalle
             documentoIdentificacionBindingSource.DataSource = documentoIdentificaciones;
             cbxDocumento.SelectedIndex = -1;
             cbxDocumento.SelectedValue = documentoIdentificaciones[0].idDocumento;
+            if (idTipoDocumento != 0)
+            {
+                cbxDocumento.SelectedValue = idTipoDocumento;
+            }
 
             if (!formClienteNuevo.nuevo)
             {
@@ -372,6 +380,8 @@ namespace Admeli.Ventas.Nuevo.Detalle
 
                 ClienteG CG = new ClienteG();
 
+
+                DocumentoIdentificacion documentoIdentificacion = documentoIdentificaciones.Find(X => X.idDocumento == (int)cbxDocumento.SelectedValue);
                 CG.celular = textCelular.Text;
                 CG.direccion = textDireccion.Text;
                 CG.email = textEmail.Text;
@@ -388,12 +398,15 @@ namespace Admeli.Ventas.Nuevo.Detalle
                 CG.observacion = txtDatosEnvio.Text;
                 CG.sexo = cbxSexo.Text;
                 CG.telefono = textTelefono.Text;
-                CG.tipoDocumento = "Natural";
+
+
+                CG.tipoDocumento = documentoIdentificacion.tipoDocumento;// 
                 CG.zipCode = textZipCode.Text;
                 rest = await clienteModel.guardar(CG);
                 if (rest.id > 0)
                 {
                     MessageBox.Show(rest.msj, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.formClienteNuevo.rest = rest;
                     this.formClienteNuevo.Close();
 
                 }
@@ -421,6 +434,9 @@ namespace Admeli.Ventas.Nuevo.Detalle
                 Response respuesta1 = await locationModel.guardarUbigeo(UG);
 
                 Cliente CG = new Cliente();
+
+                DocumentoIdentificacion documentoIdentificacion = documentoIdentificaciones.Find(X => X.idDocumento == (int)cbxDocumento.SelectedValue);
+
                 CG.idCliente = formClienteNuevo.currentCliente.idCliente;
                 CG.celular = textCelular.Text;
                 CG.direccion = textDireccion.Text;
@@ -438,9 +454,9 @@ namespace Admeli.Ventas.Nuevo.Detalle
                 CG.observacion = txtDatosEnvio.Text;
                 CG.sexo = cbxSexo.Text;
                 CG.telefono = textTelefono.Text;
-                CG.tipoDocumento = "Natural";// es detalle q falta aclarar
+                CG.tipoDocumento = CG.tipoDocumento = documentoIdentificacion.tipoDocumento;;// es detalle q falta aclarar
                 CG.zipCode = textZipCode.Text;
-                Response rest = await clienteModel.modificar(CG);
+                rest = await clienteModel.modificar(CG);
                 if (rest.id > 0)
                 {
                     MessageBox.Show(rest.msj, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);

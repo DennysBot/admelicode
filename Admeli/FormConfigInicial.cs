@@ -67,7 +67,7 @@ namespace Admeli
                         while (true)
                         {
                             Thread.Sleep(50);
-                            if (nLoads >= 1) // IMPORTANTE IMPORTANTE el numero tiene que ser igual al numero de web service que se este llamando
+                            if (nLoads >= 4) // IMPORTANTE IMPORTANTE el numero tiene que ser igual al numero de web service que se este llamando
                             {
                                 break;
                             }
@@ -109,10 +109,35 @@ namespace Admeli
             loadState("asignacion del personal");
             await configModel.loadAsignacionPersonales(PersonalModel.personal.idPersonal, ConfigModel.sucursal.idSucursal);
             this.nLoads++;
-
-
+            loadCajaSesion();
+            loadPuntoDeVenta();
+            loadAlmacenes();
             // await configModel.loadCierreIngresoEgreso(1, ConfigModel.cajaSesion.idCajaSesion); // Falta Buscar de donde viene el primer parametro
         }
+
+
+        private async void loadCajaSesion()
+        {
+            await configModel.loadCajaSesion(ConfigModel.asignacionPersonal.idAsignarCaja);
+            this.nLoads++;
+            loadState("caja session");
+        }
+
+        private async void loadPuntoDeVenta()
+        {
+            await configModel.loadPuntoDeVenta(PersonalModel.personal.idPersonal, ConfigModel.sucursal.idSucursal);
+            this.nLoads++;
+            loadState("puntos de venta");
+        }
+
+        private async void loadAlmacenes()
+        {
+            await configModel.loadAlmacenes(PersonalModel.personal.idPersonal, ConfigModel.sucursal.idSucursal);
+            this.nLoads++;
+            loadState("almacenes");
+        }
+
+
         private void loadState(string message)
         {
             progressbar.Value += 10;

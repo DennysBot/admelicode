@@ -375,6 +375,7 @@ namespace Admeli.CajaBox.Nuevo
             }
             finally
             {
+                await configModel.loadCajaSesion(ConfigModel.asignacionPersonal.idAsignarCaja);
                 bloquear(false);
             }
         }

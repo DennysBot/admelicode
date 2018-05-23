@@ -1907,7 +1907,7 @@ namespace Admeli.Ventas.Nuevo
 
 
                         //llenamos los datos en FormproveerdorNuevo
-                        FormClienteNuevo formClienteNuevo = new FormClienteNuevo(aux);
+                        FormClienteNuevo formClienteNuevo = new FormClienteNuevo(aux, (int)cbxTipoDocumento.SelectedValue);
                         formClienteNuevo.ShowDialog();
                         
                         Response response = formClienteNuevo.uCClienteGeneral.rest;

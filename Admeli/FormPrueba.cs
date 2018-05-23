@@ -132,16 +132,21 @@ namespace Admeli
 
             y = lbTotalEfectivo.Location.Y + 50;
            
-            if (ConfigModel.cajaSesion != null)
+            if (ConfigModel.cajaSesion != null && ConfigModel.cajaIniciada)
             {
-
-               foreach(Moneda  M in   await cajaModel.cierreCajaIngresoMenosEgreso(1, ConfigModel.cajaSesion.idCajaSesion)){
+                panelTotal.Controls.Clear();
+                foreach (Moneda  M in   await cajaModel.cierreCajaIngresoMenosEgreso(1, ConfigModel.cajaSesion.idCajaSesion)){
 
                     createElementsMoneda(y, M);
                     y += 22;
 
                 }
 
+            }
+            else
+            {
+                
+                panelTotal.Controls.Clear();
             }
            
 

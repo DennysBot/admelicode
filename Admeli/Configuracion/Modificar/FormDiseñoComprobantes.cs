@@ -46,6 +46,11 @@ namespace Admeli.Configuracion.Modificar
         DataGridView detalle; 
         bool moverCuadro = false;
         int posicionX, posicionY;
+        int flag = 0;
+
+        // menu para los controles 
+
+        ContextMenuStrip contextMenuStrip { get; set; }
         public FormDiseñoComprobantes()
         {
             InitializeComponent();
@@ -102,6 +107,12 @@ namespace Admeli.Configuracion.Modificar
         {
 
             InitializeComponent();
+
+
+
+
+            contextMenuStrip = new ContextMenuStrip();
+            //contextMenuStrip.ad
             this.listData = listData;
 
             //
@@ -1862,6 +1873,7 @@ namespace Admeli.Configuracion.Modificar
                           
 
                         aux.label.Text = doc.value;
+                        aux.label.ContextMenuStrip = this.contextMenuStrip1;
                         aux.usado = 3;
                         aux.nombre = doc.value;
                         aux.label.AutoSize = false;
@@ -1879,6 +1891,7 @@ namespace Admeli.Configuracion.Modificar
                        
                         this.panel4.Controls.Add(aux.label);
                         ResizeableControl rc = new ResizeableControl(aux.label);
+                        
                         listaElemtos.Add(rc);
 
                         
@@ -1887,18 +1900,25 @@ namespace Admeli.Configuracion.Modificar
                         detalle.Location = new Point(doc.x, doc.y);
                         detalle.Size = new Size((int)doc.w, (int)doc.h);
                         detalle.Name = doc.formato;
-                        detalleBtn.usado = 3;
-                        
+                        detalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        //detalle.col
+                        detalle.ContextMenuStrip = this.contextMenuStrip1;
+                        this.detalle.DoubleClick += new System.EventHandler(this.detalle_DoubleClick);
+                        this.detalle.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
 
-
+                        detalleBtn.usado = 3;                       
                         this.panel4.Controls.Add(detalle);
-                         rc = new ResizeableControl(detalle);
+                         rc = new ResizeableControl(detalle,1);
                         listaElemtos.Add(rc);
                         break;
                     case "ListGridField":
                         vineta aux1 = buscarVineta(doc.formato, listGridField);
                         aux1.usado =3;
+                       // falta los tamños
+
                         detalle.Columns.Add(doc.formato,doc.value);
+                        detalle.Columns[doc.formato].Width = (int)doc.w;
+
                         break;
                     case "Img":
 
@@ -1908,7 +1928,7 @@ namespace Admeli.Configuracion.Modificar
                       //  cuadro.Image = Image.FromFile(imagen);
                         cuadro.Location = new Point(doc.x, doc.y);
                         cuadro.BackColor = Color.Green;
-
+                        cuadro.ContextMenuStrip = contextMenuStrip1;
                        
                         cuadro.Size = new Size((int)doc.w, (int)doc.h);
                         this.panel4.Controls.Add(cuadro);
@@ -2461,6 +2481,15 @@ namespace Admeli.Configuracion.Modificar
             return false;
         }
 
+
+        private string AHex(Color color)
+        {
+
+          
+
+            string hex = color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
+            return "#" + hex;
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             //
@@ -2481,7 +2510,7 @@ namespace Admeli.Configuracion.Modificar
                 if (v.usado == 3)
                 {
                     FormatoDocumento nuevoFormato = new FormatoDocumento();
-                    nuevoFormato.color = v.label.BackColor.ToString();
+                    nuevoFormato.color = AHex(v.label.BackColor);
                     nuevoFormato.formato = "";
                     nuevoFormato.tipo = "Label";
                     nuevoFormato.h = v.label.Height;
@@ -2495,14 +2524,14 @@ namespace Admeli.Configuracion.Modificar
             }
             FormatoDocumento nuevo1 = new FormatoDocumento();
 
-            nuevo1.color = detalle.BackColor.ToString();
+            nuevo1.color = AHex(detalle.BackgroundColor);
             nuevo1.formato = "";
             nuevo1.tipo = "ListGrid";
             nuevo1.h = detalle.Height;
             nuevo1.w = detalle.Width;
             nuevo1.x = detalle.Location.X;
             nuevo1.y = detalle.Location.Y;
-            
+            nuevo1.value = detalle.Name; 
             listFormato.Add(nuevo1);
 
             foreach (vineta v1 in listGridField)
@@ -2510,7 +2539,7 @@ namespace Admeli.Configuracion.Modificar
                 if (v1.usado == 3)
                 {
                     FormatoDocumento nuevoFormato = new FormatoDocumento();
-                    nuevoFormato.color = v1.label.BackColor.ToString();
+                    nuevoFormato.color = AHex(v1.label.BackColor);
                     nuevoFormato.formato = v1.label.Text;
                     nuevoFormato.tipo = "ListGridField";
                     nuevoFormato.h = v1.label.Height;
@@ -2523,13 +2552,14 @@ namespace Admeli.Configuracion.Modificar
                 }
             }
 
+
             FormatoDocumento nuevo2 = new FormatoDocumento();
             foreach (vineta v1 in listLabel)
             {
                 if (v1.nombre != "")
                 {
                     FormatoDocumento nuevoFormato = new FormatoDocumento();
-                    nuevoFormato.color = v1.label.BackColor.ToString();
+                    nuevoFormato.color = AHex(v1.label.BackColor);
                     nuevoFormato.formato = v1.label.Text;
                     nuevoFormato.tipo = "Label";
                     nuevoFormato.h = v1.label.Height;
@@ -2559,7 +2589,7 @@ namespace Admeli.Configuracion.Modificar
             //pagina
 
             FormatoDocumento nuevoFormato1 = new FormatoDocumento();
-            nuevoFormato1.color = panel4.BackColor.ToString();
+            nuevoFormato1.color = AHex(panel4.BackColor);
             nuevoFormato1.formato = panel4.Text;
             nuevoFormato1.tipo = "Pagina";
             nuevoFormato1.h = panel4.Height;
@@ -2567,19 +2597,34 @@ namespace Admeli.Configuracion.Modificar
             nuevoFormato1.x = panel4.Location.X;
             nuevoFormato1.y = panel4.Location.Y;
             nuevoFormato1.value = "Pagina";
-            listFormato.Add(nuevoFormato1);
-            
-
-
-                nuevo.formatoDocumento = JsonConvert.SerializeObject(listFormato);
-
+            listFormato.Add(nuevoFormato1);          
+            nuevo.formatoDocumento = JsonConvert.SerializeObject(listFormato);
             modificarformato(nuevo);
             redimensionar(redi);
         }
         public async void modificarformato( FormatoDoc nuevo)
         {
-            TipoDocumentoModel aux=new TipoDocumentoModel();
-             await aux.modificarFormato(nuevo);
+            try
+            {
+
+              TipoDocumentoModel aux=new TipoDocumentoModel();
+              Response response= await aux.modificarFormato(nuevo);
+                if (response.id > 0)
+                {
+
+                    MessageBox.Show(response.msj+" satisfactoriamente , el formato se cargara al reiniciar sesión", "Guardar Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+                }
+
+            }
+            catch(Exception ex )
+            {
+                MessageBox.Show("Error: " + ex.Message, "Guardar Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+            
+           
 
         }
         public async void redimensionar(Redimensionar nuevo)
@@ -2705,5 +2750,73 @@ namespace Admeli.Configuracion.Modificar
             return false;
         }
 
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem dd = sender as ToolStripMenuItem;
+
+            ContextMenuStrip contextMenuStrip = (ContextMenuStrip)dd.Owner;
+            Control control = contextMenuStrip.SourceControl;
+            this.panel4.Controls.Remove(control);
+
+
+        }
+
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+            fontDialog.ShowColor = true;
+            fontDialog.ShowApply = true;
+            fontDialog.ShowEffects = true;
+            fontDialog.ShowHelp = true;
+            fontDialog.MinSize = 7;
+            fontDialog.MaxSize = 40;
+
+
+            if (fontDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ToolStripMenuItem dd = sender as ToolStripMenuItem;
+
+                ContextMenuStrip contextMenuStrip = (ContextMenuStrip)dd.Owner;
+                Control control = contextMenuStrip.SourceControl;
+                control.Font = fontDialog.Font;
+                control.ForeColor = fontDialog.Color;
+
+            }
+        }
+
+        private void detalle_DoubleClick(object sender, EventArgs e)
+        {
+            if (flag == 0)
+            {
+
+                rc = new ResizeableControl(detalle);
+                flag++;
+            }
+            else
+            {
+
+                detalle.MouseDown -= new System.Windows.Forms.MouseEventHandler(rc.mControl_MouseDown);
+                detalle.MouseUp -= new System.Windows.Forms.MouseEventHandler(rc.mControl_MouseUp);
+                detalle.MouseMove -= new System.Windows.Forms.MouseEventHandler(rc.mControl_MouseMove);
+                detalle.MouseLeave -= new System.EventHandler(rc.mControl_MouseLeave);
+                flag = 0;
+            }
+            
+        }
+
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("¿Desea eliminar  esta columna?", sender.ToString(),
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dialog == DialogResult.No)
+            {
+
+             
+                return;
+            }
+            detalle.Columns[e.ColumnIndex].Visible = false;
+            
+        }
     }
 }

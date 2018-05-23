@@ -1438,5 +1438,13 @@ namespace Admeli.AlmacenBox.Nuevo
                 txtCantidadRecibida.Text =  cantidad.ToString();
             }
         }
+
+        private void cbxCodigoProducto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
     }
 }

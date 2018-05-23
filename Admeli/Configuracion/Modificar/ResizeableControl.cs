@@ -21,13 +21,13 @@ namespace Admeli.Configuracion.Modificar
 
         private Control mControl;
         private bool mMouseDown = false;
-        private EdgeEnum mEdge = EdgeEnum.None;
+        public EdgeEnum mEdge = EdgeEnum.None;
         private int mWidth = 8;
         private bool mOutlineDrawn = false;
         int mouseX;
         int mouseY;
 
-        private enum EdgeEnum
+        public enum EdgeEnum
         {
             None,
             Right,
@@ -53,8 +53,19 @@ namespace Admeli.Configuracion.Modificar
             mControl.MouseMove += new System.Windows.Forms.MouseEventHandler(mControl_MouseMove);
             mControl.MouseLeave += new System.EventHandler(mControl_MouseLeave);
         }
+        public ResizeableControl(Control Control,int estado)
+        {
+            mControl = Control;
 
-        private void mControl_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+            mControl.MouseDown -= new System.Windows.Forms.MouseEventHandler(mControl_MouseDown);
+            mControl.MouseUp -= new System.Windows.Forms.MouseEventHandler(mControl_MouseUp);
+            mControl.MouseMove -= new System.Windows.Forms.MouseEventHandler(mControl_MouseMove);
+            mControl.MouseLeave -= new System.EventHandler(mControl_MouseLeave);
+        }
+
+
+
+        public void mControl_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             //this.pPantallaVentas.Refresh();
             mouseX = e.X;
@@ -65,7 +76,7 @@ namespace Admeli.Configuracion.Modificar
             }
         }
 
-        private void mControl_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        public void mControl_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             mMouseDown = false;
         }
@@ -73,7 +84,7 @@ namespace Admeli.Configuracion.Modificar
 
 
         private Control SelControl;
-        private void mControl_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        public void mControl_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Control c = ((Control)sender);
             Graphics g = c.CreateGraphics();
@@ -232,7 +243,7 @@ namespace Admeli.Configuracion.Modificar
 
         }
 
-        private void mControl_MouseLeave(object sender, System.EventArgs e)
+        public void mControl_MouseLeave(object sender, System.EventArgs e)
         {
 
             Control c = ((Control)sender);
