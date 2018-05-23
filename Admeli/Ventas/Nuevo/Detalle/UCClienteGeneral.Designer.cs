@@ -91,7 +91,7 @@
             // 
             this.panelFooter.Controls.Add(this.panel1);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(0, 551);
+            this.panelFooter.Location = new System.Drawing.Point(0, 553);
             this.panelFooter.Name = "panelFooter";
             this.panelFooter.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.panelFooter.Size = new System.Drawing.Size(1050, 49);
@@ -170,7 +170,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label9.Location = new System.Drawing.Point(389, 404);
+            this.label9.Location = new System.Drawing.Point(342, 404);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 19);
@@ -184,7 +184,7 @@
             this.chkEstado.Checked = true;
             this.chkEstado.CheckedOnColor = System.Drawing.Color.DodgerBlue;
             this.chkEstado.ForeColor = System.Drawing.Color.White;
-            this.chkEstado.Location = new System.Drawing.Point(363, 403);
+            this.chkEstado.Location = new System.Drawing.Point(316, 403);
             this.chkEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkEstado.Name = "chkEstado";
             this.chkEstado.Size = new System.Drawing.Size(20, 20);
@@ -248,7 +248,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label1.Location = new System.Drawing.Point(349, 130);
+            this.label1.Location = new System.Drawing.Point(302, 130);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 19);
@@ -266,7 +266,7 @@
             this.textCelular.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCelular.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textCelular.isPassword = false;
-            this.textCelular.Location = new System.Drawing.Point(353, 149);
+            this.textCelular.Location = new System.Drawing.Point(306, 149);
             this.textCelular.Margin = new System.Windows.Forms.Padding(4);
             this.textCelular.Name = "textCelular";
             this.textCelular.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -279,7 +279,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label2.Location = new System.Drawing.Point(349, 190);
+            this.label2.Location = new System.Drawing.Point(302, 190);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 19);
@@ -297,7 +297,7 @@
             this.textZipCode.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textZipCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textZipCode.isPassword = false;
-            this.textZipCode.Location = new System.Drawing.Point(353, 213);
+            this.textZipCode.Location = new System.Drawing.Point(306, 213);
             this.textZipCode.Margin = new System.Windows.Forms.Padding(4);
             this.textZipCode.Name = "textZipCode";
             this.textZipCode.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -328,7 +328,7 @@
             this.textDireccion.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textDireccion.isPassword = false;
-            this.textDireccion.Location = new System.Drawing.Point(701, 343);
+            this.textDireccion.Location = new System.Drawing.Point(609, 343);
             this.textDireccion.Margin = new System.Windows.Forms.Padding(4);
             this.textDireccion.Name = "textDireccion";
             this.textDireccion.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -374,7 +374,7 @@
             this.cbxNivel3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxNivel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxNivel3.FormattingEnabled = true;
-            this.cbxNivel3.Location = new System.Drawing.Point(701, 279);
+            this.cbxNivel3.Location = new System.Drawing.Point(609, 279);
             this.cbxNivel3.Name = "cbxNivel3";
             this.cbxNivel3.Size = new System.Drawing.Size(256, 28);
             this.cbxNivel3.TabIndex = 15;
@@ -390,7 +390,7 @@
             this.lblNivel3.AutoSize = true;
             this.lblNivel3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNivel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.lblNivel3.Location = new System.Drawing.Point(699, 257);
+            this.lblNivel3.Location = new System.Drawing.Point(607, 257);
             this.lblNivel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNivel3.Name = "lblNivel3";
             this.lblNivel3.Size = new System.Drawing.Size(50, 19);
@@ -405,7 +405,7 @@
             this.cbxNivel2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxNivel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxNivel2.FormattingEnabled = true;
-            this.cbxNivel2.Location = new System.Drawing.Point(701, 212);
+            this.cbxNivel2.Location = new System.Drawing.Point(609, 212);
             this.cbxNivel2.Name = "cbxNivel2";
             this.cbxNivel2.Size = new System.Drawing.Size(256, 28);
             this.cbxNivel2.TabIndex = 14;
@@ -422,7 +422,7 @@
             this.lblNivel2.AutoSize = true;
             this.lblNivel2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNivel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.lblNivel2.Location = new System.Drawing.Point(699, 190);
+            this.lblNivel2.Location = new System.Drawing.Point(607, 190);
             this.lblNivel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNivel2.Name = "lblNivel2";
             this.lblNivel2.Size = new System.Drawing.Size(50, 19);
@@ -437,7 +437,7 @@
             this.cbxNivel1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxNivel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxNivel1.FormattingEnabled = true;
-            this.cbxNivel1.Location = new System.Drawing.Point(701, 152);
+            this.cbxNivel1.Location = new System.Drawing.Point(609, 152);
             this.cbxNivel1.Name = "cbxNivel1";
             this.cbxNivel1.Size = new System.Drawing.Size(256, 28);
             this.cbxNivel1.TabIndex = 13;
@@ -454,7 +454,7 @@
             this.lblNivel1.AutoSize = true;
             this.lblNivel1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNivel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.lblNivel1.Location = new System.Drawing.Point(697, 130);
+            this.lblNivel1.Location = new System.Drawing.Point(605, 130);
             this.lblNivel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNivel1.Name = "lblNivel1";
             this.lblNivel1.Size = new System.Drawing.Size(50, 19);
@@ -469,7 +469,7 @@
             this.cbxPaises.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxPaises.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxPaises.FormattingEnabled = true;
-            this.cbxPaises.Location = new System.Drawing.Point(701, 89);
+            this.cbxPaises.Location = new System.Drawing.Point(609, 89);
             this.cbxPaises.Name = "cbxPaises";
             this.cbxPaises.Size = new System.Drawing.Size(256, 28);
             this.cbxPaises.TabIndex = 12;
@@ -485,7 +485,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label11.Location = new System.Drawing.Point(697, 67);
+            this.label11.Location = new System.Drawing.Point(605, 67);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(42, 19);
@@ -497,7 +497,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label6.Location = new System.Drawing.Point(699, 320);
+            this.label6.Location = new System.Drawing.Point(607, 320);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 19);
@@ -513,7 +513,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label8.Location = new System.Drawing.Point(349, 61);
+            this.label8.Location = new System.Drawing.Point(302, 61);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(69, 19);
@@ -531,7 +531,7 @@
             this.textTelefono.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textTelefono.isPassword = false;
-            this.textTelefono.Location = new System.Drawing.Point(353, 84);
+            this.textTelefono.Location = new System.Drawing.Point(306, 84);
             this.textTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.textTelefono.Name = "textTelefono";
             this.textTelefono.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -640,7 +640,7 @@
             // txtDatosEnvio
             // 
             this.txtDatosEnvio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDatosEnvio.Location = new System.Drawing.Point(353, 275);
+            this.txtDatosEnvio.Location = new System.Drawing.Point(306, 275);
             this.txtDatosEnvio.Multiline = true;
             this.txtDatosEnvio.Name = "txtDatosEnvio";
             this.txtDatosEnvio.Size = new System.Drawing.Size(267, 101);
@@ -651,7 +651,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.label14.Location = new System.Drawing.Point(349, 253);
+            this.label14.Location = new System.Drawing.Point(302, 253);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(119, 19);
@@ -674,7 +674,7 @@
             this.btnGrupoNuevo.Location = new System.Drawing.Point(237, 343);
             this.btnGrupoNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.btnGrupoNuevo.Name = "btnGrupoNuevo";
-            this.btnGrupoNuevo.Size = new System.Drawing.Size(35, 33);
+            this.btnGrupoNuevo.Size = new System.Drawing.Size(35, 35);
             this.btnGrupoNuevo.TabIndex = 6;
             this.btnGrupoNuevo.Text = "+";
             this.btnGrupoNuevo.UseVisualStyleBackColor = false;
@@ -723,7 +723,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "UCClienteGeneral";
-            this.Size = new System.Drawing.Size(1050, 600);
+            this.Size = new System.Drawing.Size(1050, 602);
             this.Load += new System.EventHandler(this.UCProveedorGeneral_Load);
             this.panelFooter.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

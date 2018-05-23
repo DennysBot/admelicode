@@ -65,7 +65,7 @@ namespace Admeli.CajaBox
 
                 // Verificar caja
                 this.verificarCaja();
-                formPrincipal.cargarDatosAsideRight();
+                
             }
             lisenerKeyEvents = true; // Active lisener key events
         }
@@ -188,7 +188,9 @@ namespace Admeli.CajaBox
             }
             finally
             {
+                this.formPrincipal.cargarDatosAsideRight();
                 loadState(false);
+              
             }
         }
         #endregion

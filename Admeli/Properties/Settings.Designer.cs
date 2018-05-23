@@ -22,5 +22,17 @@ namespace Admeli.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool percy {
+            get {
+                return ((bool)(this["percy"]));
+            }
+            set {
+                this["percy"] = value;
+            }
+        }
     }
 }

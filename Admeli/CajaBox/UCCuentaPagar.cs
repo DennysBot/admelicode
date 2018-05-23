@@ -94,6 +94,7 @@ namespace Admeli.CajaBox
             }
             finally
             {
+                this.formPrincipal.cargarDatosAsideRight();
                 loadState(false);
             }
 

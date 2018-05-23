@@ -121,11 +121,10 @@
             this.label31 = new System.Windows.Forms.Label();
             this.tableLayoutPanel26 = new System.Windows.Forms.TableLayoutPanel();
             this.cbxDescripcion = new System.Windows.Forms.ComboBox();
-            this.presentacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label30 = new System.Windows.Forms.Label();
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
             this.cbxCodigoProducto = new System.Windows.Forms.ComboBox();
-            this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label29 = new System.Windows.Forms.Label();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -146,6 +145,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.chbxPagarCompra = new Bunifu.Framework.UI.BunifuCheckbox();
             this.chbxNotaEntrada = new Bunifu.Framework.UI.BunifuCheckbox();
+            this.presentacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.detalleCompraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.responsabilidadesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
@@ -176,13 +176,13 @@
             this.tableLayoutPanel27.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaCombinacionBindingSource)).BeginInit();
             this.tableLayoutPanel26.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).BeginInit();
-            this.tableLayoutPanel25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
+            this.tableLayoutPanel25.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.detalleCompraBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.responsabilidadesBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -1271,8 +1271,10 @@
             // 
             // cbxDescripcion
             // 
-            this.cbxDescripcion.DataSource = this.presentacionBindingSource;
-            this.cbxDescripcion.DisplayMember = "nombrePresentacion";
+            this.cbxDescripcion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbxDescripcion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxDescripcion.DataSource = this.productoBindingSource;
+            this.cbxDescripcion.DisplayMember = "nombreProducto";
             this.cbxDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbxDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxDescripcion.FormattingEnabled = true;
@@ -1284,9 +1286,9 @@
             this.cbxDescripcion.ValueMember = "idPresentacion";
             this.cbxDescripcion.SelectedIndexChanged += new System.EventHandler(this.cbxDescripcion_SelectedIndexChanged);
             // 
-            // presentacionBindingSource
+            // productoBindingSource
             // 
-            this.presentacionBindingSource.DataSource = typeof(Entidad.Presentacion);
+            this.productoBindingSource.DataSource = typeof(Entidad.Producto);
             // 
             // label30
             // 
@@ -1320,6 +1322,8 @@
             // 
             // cbxCodigoProducto
             // 
+            this.cbxCodigoProducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbxCodigoProducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxCodigoProducto.DataSource = this.productoBindingSource;
             this.cbxCodigoProducto.DisplayMember = "codigoProducto";
             this.cbxCodigoProducto.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1332,10 +1336,6 @@
             this.cbxCodigoProducto.TabIndex = 23;
             this.cbxCodigoProducto.ValueMember = "idProducto";
             this.cbxCodigoProducto.SelectedIndexChanged += new System.EventHandler(this.cbxCodigoProducto_SelectedIndexChanged);
-            // 
-            // productoBindingSource
-            // 
-            this.productoBindingSource.DataSource = typeof(Entidad.Producto);
             // 
             // label29
             // 
@@ -1603,6 +1603,10 @@
             this.chbxNotaEntrada.Size = new System.Drawing.Size(20, 20);
             this.chbxNotaEntrada.TabIndex = 55;
             // 
+            // presentacionBindingSource
+            // 
+            this.presentacionBindingSource.DataSource = typeof(Entidad.Presentacion);
+            // 
             // detalleCompraBindingSource
             // 
             this.detalleCompraBindingSource.DataSource = typeof(Entidad.DetalleCompra);
@@ -1674,16 +1678,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.alternativaCombinacionBindingSource)).EndInit();
             this.tableLayoutPanel26.ResumeLayout(false);
             this.tableLayoutPanel26.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.tableLayoutPanel25.ResumeLayout(false);
             this.tableLayoutPanel25.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.detalleCompraBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.responsabilidadesBindingSource)).EndInit();
             this.ResumeLayout(false);

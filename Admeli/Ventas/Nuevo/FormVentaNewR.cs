@@ -132,7 +132,7 @@ namespace Admeli.Ventas.Nuevo
 
 
             formato = "{0:n" + nroDecimales + "}";
-            if (ConfigModel.cajaSesion == null)
+            if (!ConfigModel.cajaIniciada)
             {
                 chbxPagarCompra.Checked = false;
                 chbxPagarCompra.Enabled = false;
@@ -684,6 +684,7 @@ namespace Admeli.Ventas.Nuevo
                 if (!nuevo)
                 {
 
+                    cbxTipoMoneda.Text = currentVenta.moneda;
                     Moneda moneda = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
                     cbxTipoMoneda.Text = currentVenta.moneda;
                     txtObservaciones.Text = currentVenta.observacion;
@@ -698,6 +699,7 @@ namespace Admeli.Ventas.Nuevo
                     lbSubtotal.Text = moneda.simbolo + ". " + darformato(subTotal);
                     double impuesto = total - subTotal;
                     lbImpuesto.Text = moneda.simbolo + ". " + darformato(impuesto);
+                    valorDeCambio = 1;
 
                 }
 
@@ -1003,7 +1005,7 @@ namespace Admeli.Ventas.Nuevo
 
             try
             {
-                alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(cbxCodigoProducto.SelectedValue));
+                alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(cbxDescripcion.SelectedValue));
                 alternativaCombinacionBindingSource.DataSource = alternativaCombinacion;
                 cbxVariacion.SelectedIndex = -1;
                 if (!seleccionado)
@@ -1526,11 +1528,11 @@ namespace Admeli.Ventas.Nuevo
             currentdetalleV = buscarElemento(idPresentacion, idCombinacion);
             // obteniedo el idRegistro del datagridview
             txtCantidad.Text = darformato(toDouble(currentdetalleV.cantidad));
-            cbxCodigoProducto.Text = currentdetalleV.codigoProducto;
-            cbxDescripcion.Text = currentdetalleV.descripcion;
+            cbxCodigoProducto.SelectedValue = currentdetalleV.idProducto;
+            cbxDescripcion.SelectedValue = currentdetalleV.idPresentacion;
             txtCantidad.Text = darformato(toDouble(currentdetalleV.cantidad));
 
-            cbxVariacion.Text = currentdetalleV.nombreCombinacion;
+            cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
             txtPrecioUnitario.Text = darformato(currentdetalleV.precioVentaReal);
             txtDescuento.Text = darformato(currentdetalleV.descuento);
             txtTotalProducto.Text = darformato(currentdetalleV.totalGeneral);
@@ -1752,8 +1754,8 @@ namespace Admeli.Ventas.Nuevo
 
 
                 }
-            else
-            {
+                else
+                {
 
                 MessageBox.Show("Error: elemento no seleccionado", "agregar Elemento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                  tab= 1;
@@ -2077,10 +2079,10 @@ namespace Admeli.Ventas.Nuevo
                 else
                 {
                     //llenamos los datos en FormproveerdorNuevo
-                    FormClienteNuevo formClienteNuevo = new FormClienteNuevo(aux);
+                    FormClienteNuevo formClienteNuevo = new FormClienteNuevo(aux,(int)cbxTipoDocumento.SelectedValue);
                     formClienteNuevo.ShowDialog();
                     cargarClientes();
-                    Response response = formClienteNuevo.uCClienteGeneral.rest;
+                    Response response = formClienteNuevo.rest;
                     if (response != null)
                         if (response.id > 0)
                         {
@@ -2250,10 +2252,11 @@ namespace Admeli.Ventas.Nuevo
 
             cbxNombreRazonCliente.SelectedValue = currentCotizacion.idCliente;
             cbxTipoMoneda.Text = currentCotizacion.moneda;
+          
             cargarCotizacion();
 
             // resultados
-            Moneda moneda = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
+            Moneda moneda = monedas.Find(X => X.moneda == cbxTipoMoneda.Text);
             cbxTipoMoneda.Text = currentCotizacion.moneda;          
             this.Descuento = toDouble(currentCotizacion.descuento);
 
@@ -3017,65 +3020,66 @@ namespace Admeli.Ventas.Nuevo
             if (cbxTipoMoneda.SelectedIndex == -1)
                 return;
 
-           Moneda monedaCambio = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
+          
+                Moneda monedaCambio = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
 
-            CambioMoneda cambio = new CambioMoneda();
-            cambio.idMonedaActual = monedaActual.idMoneda;
-            cambio.idMonedaCambio = monedaCambio.idMoneda;
+                CambioMoneda cambio = new CambioMoneda();
+                cambio.idMonedaActual = monedaActual.idMoneda;
+                cambio.idMonedaCambio = monedaCambio.idMoneda;
 
 
-           ValorcambioMoneda valorcambioMoneda=await monedaModel.cambiarMoneda(cambio);
 
-            valorDeCambio = toDouble(valorcambioMoneda.cambioMonedaCambio) / toDouble(valorcambioMoneda.cambioMonedaActual);
+               ValorcambioMoneda valorcambioMoneda=await monedaModel.cambiarMoneda(cambio);
 
-            if (detalleVentas != null)
-            {
+                valorDeCambio = toDouble(valorcambioMoneda.cambioMonedaCambio) / toDouble(valorcambioMoneda.cambioMonedaActual);
 
-                if (detalleVentas.Count > 0)
+                if (nuevo)
                 {
-
-                    foreach(DetalleV v in detalleVentas)
+                    if (detalleVentas != null)
                     {
-                        v.precioEnvio = cambiarValor(v.precioEnvio, valorDeCambio);
-                        v.precioUnitario = cambiarValor(v.precioUnitario, valorDeCambio);
-                        v.precioVenta = cambiarValor(v.precioVenta, valorDeCambio);
-                        v.precioVentaReal = cambiarValor(v.precioVentaReal, valorDeCambio);
-                        v.total = cambiarValor(v.total, valorDeCambio);
-                        v.totalGeneral = cambiarValor(v.totalGeneral, valorDeCambio);
-                        v.descuento = cambiarValor(v.descuento, valorDeCambio);
-                       
+
+                        if (detalleVentas.Count > 0)
+                        {
+
+                            foreach (DetalleV v in detalleVentas)
+                            {
+                                v.precioEnvio = cambiarValor(v.precioEnvio, valorDeCambio);
+                                v.precioUnitario = cambiarValor(v.precioUnitario, valorDeCambio);
+                                v.precioVenta = cambiarValor(v.precioVenta, valorDeCambio);
+                                v.precioVentaReal = cambiarValor(v.precioVentaReal, valorDeCambio);
+                                v.total = cambiarValor(v.total, valorDeCambio);
+                                v.totalGeneral = cambiarValor(v.totalGeneral, valorDeCambio);
+                                v.descuento = cambiarValor(v.descuento, valorDeCambio);
+
+                            }
+
+                            detalleVBindingSource.DataSource = null;
+                            detalleVBindingSource.DataSource = detalleVentas;
+                            calculoSubtotal();
+
+                            descuentoTotal();
+
+
+                            decorationDataGridView();
+
+
+
+                        }
                     }
 
-                    detalleVBindingSource.DataSource = null;
-                    detalleVBindingSource.DataSource = detalleVentas;
-                    calculoSubtotal();
+                    if (cbxCodigoProducto.SelectedIndex != -1)
+                    {
 
-                    descuentoTotal();
-
-                  
-                    decorationDataGridView();
+                        txtPrecioUnitario.Text = cambiarValor(txtPrecioUnitario.Text, valorDeCambio);
 
 
-
+                    }
                 }
-            }
+                monedaActual = monedaCambio;
+
 
             
-
-
-
-
-
-
-            if (cbxCodigoProducto.SelectedIndex != -1)
-            {
-
-                txtPrecioUnitario.Text = cambiarValor(txtPrecioUnitario.Text, valorDeCambio);
-
-
-            }
-
-            monedaActual = monedaCambio;
+         
 
             //Moneda moneda=monedas.Find(X.)
 

@@ -22,25 +22,7 @@ namespace Admeli
             // 
             // bunifuMetroTextbox1
             // 
-            txtprueba = new Bunifu.Framework.UI.BunifuMetroTextbox();
-
-            txtprueba.BorderColorFocused = System.Drawing.Color.Blue;
-            txtprueba.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            txtprueba.BorderColorMouseHover = System.Drawing.Color.Blue;
-            txtprueba.BorderThickness = 3;
-            txtprueba.Cursor = System.Windows.Forms.Cursors.IBeam;
-            txtprueba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            txtprueba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            txtprueba.isPassword = false;
-            txtprueba.Location = new System.Drawing.Point(53, 156);
-            txtprueba.Margin = new System.Windows.Forms.Padding(4);
-            txtprueba.Name = "bunifuMetroTextbox1";
-            txtprueba.Size = new System.Drawing.Size(370, 64);
-            txtprueba.TabIndex = 5;
-            txtprueba.Text = "s";
-            txtprueba.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            this.Controls.Add(this.txtprueba);
+          
 
 
 
@@ -53,7 +35,67 @@ namespace Admeli
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            textBox1.Focus();
+            //textBox1.Focus();
         }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem dd = sender as ToolStripMenuItem;
+
+            ContextMenuStrip  contextMenuStrip  =(ContextMenuStrip)   dd.Owner;
+            Control control = contextMenuStrip.SourceControl;
+            this.Controls.Remove(control);
+        }
+
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+            fontDialog.ShowColor = true;
+            fontDialog.ShowApply = true;
+            fontDialog.ShowEffects = true;
+            fontDialog.ShowHelp = true;
+            fontDialog.MinSize = 7;
+            fontDialog.MaxSize = 40;
+
+
+            if (fontDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ToolStripMenuItem dd = sender as ToolStripMenuItem;
+
+                ContextMenuStrip contextMenuStrip = (ContextMenuStrip)dd.Owner;
+                Control control = contextMenuStrip.SourceControl;
+                control.Font = fontDialog.Font;
+                control.ForeColor = fontDialog.Color;
+
+            }
+
+
+            Color myColor = Color.FromArgb(255, 181, 178);
+
+            string hex = myColor.R.ToString("X2") + myColor.G.ToString("X2") + myColor.B.ToString("X2");
+        }
+
+        private void propertyGrid1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            propertyGrid1.SelectedObject = dataGridView1.Columns;
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            dataGridView1.Columns[e.ColumnIndex].Visible= false;
+            propertyGrid1.SelectedObject = dataGridView1;
+        }
+    
     }
 }

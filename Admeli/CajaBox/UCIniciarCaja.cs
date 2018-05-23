@@ -103,6 +103,7 @@ namespace Admeli.CajaBox
             }
             finally
             {
+                this.formPrincipal.cargarDatosAsideRight();
                 loadState(false);
             }
         }
@@ -192,7 +193,7 @@ namespace Admeli.CajaBox
         private async void verificarEstadoCaja()
         {
             await configModel.loadCajaSesion(ConfigModel.asignacionPersonal.idAsignarCaja);
-            if (ConfigModel.cajaSesion != null)
+            if (ConfigModel.cajaSesion != null &&  ConfigModel.cajaIniciada)
             {
                 if (ConfigModel.cajaSesion.idCajaSesion > 0)
                 {
@@ -349,6 +350,7 @@ namespace Admeli.CajaBox
             {
                 // Recargar Datos despues de iniciar la caja
                 await configModel.loadCajaSesion(ConfigModel.asignacionPersonal.idAsignarCaja);
+                this.formPrincipal.cargarDatosAsideRight();
                 loadState(false);
                 this.reLoad();
             }

@@ -23,16 +23,20 @@ namespace Admeli.Ventas.Nuevo
         internal Cliente currentCliente;
 
         private string nroDocumento;
+        private int idTipoDocumento { get; set; }
+
+        public Response rest { get; set; }
         public FormClienteNuevo()
         {
             InitializeComponent();
             this.nuevo = true;
         }
-        public FormClienteNuevo(string NroDocumento)
+        public FormClienteNuevo(string NroDocumento, int idTipoDocumento)
         {
             InitializeComponent();
             this.nuevo = true;
             this.nroDocumento = NroDocumento;
+            this.idTipoDocumento = idTipoDocumento;
             enVentas = true;
         }
 
@@ -76,7 +80,7 @@ namespace Admeli.Ventas.Nuevo
                         if (enVentas)
                         {
 
-                            this.uCClienteGeneral = new UCClienteGeneral(this, nroDocumento);
+                            this.uCClienteGeneral = new UCClienteGeneral(this, nroDocumento , idTipoDocumento);
                             this.panelMainNP.Controls.Add(uCClienteGeneral);
                             this.uCClienteGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
                             this.uCClienteGeneral.Location = new System.Drawing.Point(0, 0);

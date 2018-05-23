@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCotizacionaNew));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelDatos = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.Observaciones = new System.Windows.Forms.Label();
@@ -135,11 +135,10 @@
             this.label31 = new System.Windows.Forms.Label();
             this.tableLayoutPanel26 = new System.Windows.Forms.TableLayoutPanel();
             this.cbxDescripcion = new System.Windows.Forms.ComboBox();
-            this.presentacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productoVentaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label30 = new System.Windows.Forms.Label();
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
             this.cbxCodigoProducto = new System.Windows.Forms.ComboBox();
-            this.productoVentaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label29 = new System.Windows.Forms.Label();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panelFooter = new System.Windows.Forms.Panel();
@@ -172,6 +171,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
+            this.presentacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
@@ -204,9 +204,8 @@
             this.tableLayoutPanel27.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaCombinacionBindingSource)).BeginInit();
             this.tableLayoutPanel26.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).BeginInit();
-            this.tableLayoutPanel25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productoVentaBindingSource)).BeginInit();
+            this.tableLayoutPanel25.SuspendLayout();
             this.panelFooter.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -217,6 +216,7 @@
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -752,20 +752,20 @@
             // 
             this.dgvDetalleOrdenCompra.AllowUserToAddRows = false;
             this.dgvDetalleOrdenCompra.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvDetalleOrdenCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle86.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvDetalleOrdenCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle86;
             this.dgvDetalleOrdenCompra.AutoGenerateColumns = false;
             this.dgvDetalleOrdenCompra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetalleOrdenCompra.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDetalleOrdenCompra.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleOrdenCompra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle87.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle87.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle87.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle87.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle87.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle87.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle87.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleOrdenCompra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle87;
             this.dgvDetalleOrdenCompra.ColumnHeadersHeight = 43;
             this.dgvDetalleOrdenCompra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idPresentacionDataGridViewTextBoxColumn,
@@ -794,14 +794,14 @@
             this.eliminarDataGridViewTextBoxColumn,
             this.existeStockDataGridViewTextBoxColumn});
             this.dgvDetalleOrdenCompra.DataSource = this.detalleVBindingSource;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleOrdenCompra.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle88.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle88.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle88.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle88.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle88.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle88.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle88.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleOrdenCompra.DefaultCellStyle = dataGridViewCellStyle88;
             this.dgvDetalleOrdenCompra.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetalleOrdenCompra.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvDetalleOrdenCompra.Location = new System.Drawing.Point(23, 18);
@@ -809,17 +809,17 @@
             this.dgvDetalleOrdenCompra.Name = "dgvDetalleOrdenCompra";
             this.dgvDetalleOrdenCompra.ReadOnly = true;
             this.dgvDetalleOrdenCompra.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleOrdenCompra.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle89.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle89.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle89.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle89.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle89.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle89.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleOrdenCompra.RowHeadersDefaultCellStyle = dataGridViewCellStyle89;
             this.dgvDetalleOrdenCompra.RowHeadersWidth = 40;
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.dgvDetalleOrdenCompra.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle90.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.dgvDetalleOrdenCompra.RowsDefaultCellStyle = dataGridViewCellStyle90;
             this.dgvDetalleOrdenCompra.RowTemplate.Height = 30;
             this.dgvDetalleOrdenCompra.Size = new System.Drawing.Size(1365, 472);
             this.dgvDetalleOrdenCompra.TabIndex = 300;
@@ -1504,9 +1504,9 @@
             this.cbxDescripcion.TextChanged += new System.EventHandler(this.cbxDescripcion_TextChanged);
             this.cbxDescripcion.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxDescripcion_KeyUp);
             // 
-            // presentacionBindingSource
+            // productoVentaBindingSource
             // 
-            this.presentacionBindingSource.DataSource = typeof(Entidad.Presentacion);
+            this.productoVentaBindingSource.DataSource = typeof(Entidad.ProductoVenta);
             // 
             // label30
             // 
@@ -1558,10 +1558,6 @@
             this.cbxCodigoProducto.ValueMember = "idProducto";
             this.cbxCodigoProducto.SelectedIndexChanged += new System.EventHandler(this.cbxCodigoProducto_SelectedIndexChanged);
             this.cbxCodigoProducto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxCodigoProducto_KeyUp);
-            // 
-            // productoVentaBindingSource
-            // 
-            this.productoVentaBindingSource.DataSource = typeof(Entidad.ProductoVenta);
             // 
             // label29
             // 
@@ -1970,6 +1966,10 @@
             this.splitter3.TabIndex = 500;
             this.splitter3.TabStop = false;
             // 
+            // presentacionBindingSource
+            // 
+            this.presentacionBindingSource.DataSource = typeof(Entidad.Presentacion);
+            // 
             // productoBindingSource
             // 
             this.productoBindingSource.DataSource = typeof(Entidad.Producto);
@@ -2044,10 +2044,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.alternativaCombinacionBindingSource)).EndInit();
             this.tableLayoutPanel26.ResumeLayout(false);
             this.tableLayoutPanel26.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoVentaBindingSource)).EndInit();
             this.tableLayoutPanel25.ResumeLayout(false);
             this.tableLayoutPanel25.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productoVentaBindingSource)).EndInit();
             this.panelFooter.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -2063,6 +2062,7 @@
             this.panel12.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.ResumeLayout(false);
 

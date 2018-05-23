@@ -66,11 +66,12 @@
             this.errorProvider1.SetIconPadding(this.textPassword, -30);
             this.textPassword.isPassword = true;
             this.textPassword.Location = new System.Drawing.Point(659, 234);
-            this.textPassword.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textPassword.Margin = new System.Windows.Forms.Padding(5);
             this.textPassword.Name = "textPassword";
             this.textPassword.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
             this.textPassword.Size = new System.Drawing.Size(319, 46);
             this.textPassword.TabIndex = 38;
+            this.textPassword.Text = "admin";
             this.textPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // textUsuario
@@ -86,11 +87,12 @@
             this.errorProvider1.SetIconPadding(this.textUsuario, -30);
             this.textUsuario.isPassword = false;
             this.textUsuario.Location = new System.Drawing.Point(659, 169);
-            this.textUsuario.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textUsuario.Margin = new System.Windows.Forms.Padding(5);
             this.textUsuario.Name = "textUsuario";
             this.textUsuario.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
             this.textUsuario.Size = new System.Drawing.Size(319, 46);
             this.textUsuario.TabIndex = 37;
+            this.textUsuario.Text = "admin";
             this.textUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // btnCLose
@@ -101,7 +103,7 @@
             this.btnCLose.Image = ((System.Drawing.Image)(resources.GetObject("btnCLose.Image")));
             this.btnCLose.ImageActive = null;
             this.btnCLose.Location = new System.Drawing.Point(936, 15);
-            this.btnCLose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCLose.Margin = new System.Windows.Forms.Padding(4);
             this.btnCLose.Name = "btnCLose";
             this.btnCLose.Size = new System.Drawing.Size(61, 68);
             this.btnCLose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -124,7 +126,7 @@
             this.progressbar.BackColor = System.Drawing.Color.White;
             this.progressbar.BorderRadius = 5;
             this.progressbar.Location = new System.Drawing.Point(472, 482);
-            this.progressbar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.progressbar.Margin = new System.Windows.Forms.Padding(5);
             this.progressbar.MaximumValue = 100;
             this.progressbar.Name = "progressbar";
             this.progressbar.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(202)))), ((int)(((byte)(59)))));
@@ -137,7 +139,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.White;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(664, 239);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(37, 37);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -149,7 +151,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.White;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(664, 174);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(37, 37);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -168,7 +170,7 @@
             this.btnLogin.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(659, 299);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(319, 46);
             this.btnLogin.TabIndex = 39;
@@ -227,7 +229,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
