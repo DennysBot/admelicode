@@ -12,12 +12,12 @@ namespace Modelo
     {
         private WebService webService = new WebService();
 
-        public async Task<Response> guardar(Oferta param)
+        public async Task<Response> guardar<T>(T param)
         {
             try
             {
                 // localhost:8080/admeli/xcore2/xcore/services.php/oferta/guardar
-                return await webService.POST<Oferta,Response>("oferta", "guardar", param);
+                return await webService.POST<T,Response>("oferta", "guardar", param);
             }
             catch (Exception ex)
             {
@@ -36,12 +36,12 @@ namespace Modelo
                 throw ex;
             }
         }
-        public async Task<Response> modificar(Oferta param)
+        public async Task<Response> modificar<T>(T param)
         {
             try
             {
                 // localhost:8080/admeli/xcore2/xcore/services.php/oferta/modificar
-                return await webService.POST<Oferta,Response>("oferta", "modificar", param);
+                return await webService.POST<T,Response>("oferta", "modificar", param);
             }
             catch (Exception ex)
             {

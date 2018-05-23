@@ -63,8 +63,14 @@ namespace Entidad
         {
             get
             {
-                return Int32.Parse(idPresentacion);
-
+                if (idPresentacion == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return Int32.Parse(idPresentacion);
+                }
             }
             set
             {
