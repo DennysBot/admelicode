@@ -318,7 +318,11 @@ namespace Admeli.Configuracion.Modificar
             aux.nombre = "Nombre Documento";
             aux.label.BackColor = colorFondo("#EDA50A");
             vinetas.Add(aux);
-
+            aux = new vineta();
+            aux.label.Text = "Descripción Empresa";
+            aux.nombre = "Descripción Empresa";
+            aux.label.BackColor = colorFondo("#EDA50A");
+            vinetas.Add(aux);
 
 
             /*
@@ -447,7 +451,11 @@ namespace Admeli.Configuracion.Modificar
             aux.nombre = "Moneda";
             aux.label.BackColor = colorFondo("#0AED24");
             vinetas.Add(aux);
-
+            aux = new vineta();
+            aux.label.Text = "Descripción Empresa";
+            aux.nombre = "Descripción Empresa";
+            aux.label.BackColor = colorFondo("#EDA50A");
+            vinetas.Add(aux);
 
             /*
             serieCorrelativo = new Label();
@@ -565,7 +573,11 @@ namespace Admeli.Configuracion.Modificar
             aux.label.BackColor = colorFondo("#EDA50A");
             vinetas.Add(aux);
 
-
+            aux = new vineta();
+            aux.label.Text = "Descripción Empresa";
+            aux.nombre = "Descripción Empresa";
+            aux.label.BackColor = colorFondo("#EDA50A");
+            vinetas.Add(aux);
 
             /*
             serieCorrelativo = new Label();
@@ -682,7 +694,11 @@ namespace Admeli.Configuracion.Modificar
             aux.nombre = "Nombre Documento";
             aux.label.BackColor = colorFondo("#EDA50A");
             vinetas.Add(aux);
-
+            aux = new vineta();
+            aux.label.Text = "Descripción Empresa";
+            aux.nombre = "Descripción Empresa";
+            aux.label.BackColor = colorFondo("#EDA50A");
+            vinetas.Add(aux);
 
 
             /*
@@ -1034,10 +1050,13 @@ namespace Admeli.Configuracion.Modificar
             aux.nombre = "Nombre Documento";
             aux.label.BackColor = colorFondo("#EDA50A");
             vinetas.Add(aux);
+            aux = new vineta();
+            aux.label.Text = "Descripción Empresa";
+            aux.nombre = "Descripción Empresa";
+            aux.label.BackColor = colorFondo("#EDA50A");
+            vinetas.Add(aux);
 
 
-
-            
             //celeste
             /*
             aux = new vineta();
@@ -1853,6 +1872,19 @@ namespace Admeli.Configuracion.Modificar
         }
         private void crearListGrid10() { }
         #endregion==================
+
+
+
+        private void darFontControl (Label d, string[] formatos )
+        {
+            if (formatos.Count() > 0)
+            {
+                
+
+            }
+            
+
+        }
         public void agregarElementos()
         {
             
@@ -1864,14 +1896,14 @@ namespace Admeli.Configuracion.Modificar
                 switch (tipo)
                 {
                     case "Label":
-                        vineta aux=buscarVineta(doc.value,vinetas);
+                        vineta aux = buscarVineta(doc.value, vinetas);
 
                         if (aux == null)
-                         {
+                        {
                             aux = new vineta();
-                         }
-                          
-
+                        }
+                        string[] formato = doc.formato.Split('/');
+                        darFontControl(aux.label, formato);
                         aux.label.Text = doc.value;
                         aux.label.ContextMenuStrip = this.contextMenuStrip1;
                         aux.usado = 3;
@@ -1882,41 +1914,44 @@ namespace Admeli.Configuracion.Modificar
                         aux.label.BackColor = colorFondo(doc.color);
                         aux.label.Location = new System.Drawing.Point(doc.x, doc.y);
                         aux.label.Size = new System.Drawing.Size((int)doc.w, (int)doc.h);
-                       
+
                         //   aux.label.
 
 
 
                         aux.label.TabIndex = 5;
-                       
+
                         this.panel4.Controls.Add(aux.label);
                         ResizeableControl rc = new ResizeableControl(aux.label);
-                        
+
                         listaElemtos.Add(rc);
 
-                        
-                     break;
+
+                        break;
                     case "ListGrid":
                         detalle.Location = new Point(doc.x, doc.y);
-                        detalle.Size = new Size((int)doc.w, (int)doc.h);
+
                         detalle.Name = doc.formato;
-                        detalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        detalle.Size = new Size((int)doc.w, (int)doc.h);
+
                         //detalle.col
                         detalle.ContextMenuStrip = this.contextMenuStrip1;
                         this.detalle.DoubleClick += new System.EventHandler(this.detalle_DoubleClick);
                         this.detalle.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
 
-                        detalleBtn.usado = 3;                       
+                        detalleBtn.usado = 3;
                         this.panel4.Controls.Add(detalle);
-                         rc = new ResizeableControl(detalle,1);
+                        rc = new ResizeableControl(detalle, 1);
                         listaElemtos.Add(rc);
                         break;
                     case "ListGridField":
                         vineta aux1 = buscarVineta(doc.formato, listGridField);
-                        aux1.usado =3;
-                       // falta los tamños
+                        aux1.usado = 3;
+                        // falta los tamños
 
-                        detalle.Columns.Add(doc.formato,doc.value);
+                        detalle.Columns.Add(doc.formato, doc.value);
+
                         detalle.Columns[doc.formato].Width = (int)doc.w;
 
                         break;
@@ -1927,7 +1962,7 @@ namespace Admeli.Configuracion.Modificar
                         //string imagen = "E:\\code\\AdmeliWin\\Recursos\\Darck\\box_gray_icon.png";
                       //  cuadro.Image = Image.FromFile(imagen);
                         cuadro.Location = new Point(doc.x, doc.y);
-                        cuadro.BackColor = Color.Green;
+                        cuadro.BackColor = colorFondo(doc.color);
                         cuadro.ContextMenuStrip = contextMenuStrip1;
                        
                         cuadro.Size = new Size((int)doc.w, (int)doc.h);
@@ -2509,6 +2544,7 @@ namespace Admeli.Configuracion.Modificar
             {
                 if (v.usado == 3)
                 {
+                    string dd = JsonConvert.SerializeObject(v.label.Font.Clone());
                     FormatoDocumento nuevoFormato = new FormatoDocumento();
                     nuevoFormato.color = AHex(v.label.BackColor);
                     nuevoFormato.formato = "";
@@ -2540,14 +2576,17 @@ namespace Admeli.Configuracion.Modificar
                 {
                     FormatoDocumento nuevoFormato = new FormatoDocumento();
                     nuevoFormato.color = AHex(v1.label.BackColor);
+
+                    
                     nuevoFormato.formato = v1.label.Text;
                     nuevoFormato.tipo = "ListGridField";
                     nuevoFormato.h = v1.label.Height;
-                    nuevoFormato.w = v1.label.Width;
+                    nuevoFormato.w = detalle.Columns[v1.nombre].Width; 
                     nuevoFormato.x = v1.label.Location.X;
                     nuevoFormato.y = v1.label.Location.Y;
                     nuevoFormato.value = v1.nombre;
-                    listFormato.Add(nuevoFormato);
+                    if (detalle.Columns[v1.nombre].Visible)
+                        listFormato.Add(nuevoFormato);
 
                 }
             }
@@ -2575,18 +2614,23 @@ namespace Admeli.Configuracion.Modificar
             // label adicionales
 
 
-            /*
-            panel3.Controls.Find()
-            nuevo1.color = cuadro.BackColor.ToString();
-            nuevo1.formato = "";
-            nuevo1.tipo = "Img";
-            nuevo1.h = cuadro.Height;
-            nuevo1.w = cuadro.Width;
-            nuevo1.x = cuadro.Location.X;
-            nuevo1.y = cuadro.Location.Y;
-            nuevo1.value = "Imagen";
-            listFormato.Add(nuevo1);*/
-            //pagina
+
+            FormatoDocumento nuevoCuadro = new FormatoDocumento();
+
+            if (panel4.Controls.Contains(cuadro))
+            {
+                nuevoCuadro.color = AHex(cuadro.BackColor);
+                nuevoCuadro.formato = "";
+                nuevoCuadro.tipo = "Img";
+                nuevoCuadro.h = cuadro.Height;
+                nuevoCuadro.w = cuadro.Width;
+                nuevoCuadro.x = cuadro.Location.X;
+                nuevoCuadro.y = cuadro.Location.Y;
+                nuevoCuadro.value = "Imagen";
+                listFormato.Add(nuevoCuadro);
+            }
+           
+           // pagina
 
             FormatoDocumento nuevoFormato1 = new FormatoDocumento();
             nuevoFormato1.color = AHex(panel4.BackColor);
@@ -2594,8 +2638,8 @@ namespace Admeli.Configuracion.Modificar
             nuevoFormato1.tipo = "Pagina";
             nuevoFormato1.h = panel4.Height;
             nuevoFormato1.w = panel4.Width;
-            nuevoFormato1.x = panel4.Location.X;
-            nuevoFormato1.y = panel4.Location.Y;
+            nuevoFormato1.x = 0;
+            nuevoFormato1.y = 0;
             nuevoFormato1.value = "Pagina";
             listFormato.Add(nuevoFormato1);          
             nuevo.formatoDocumento = JsonConvert.SerializeObject(listFormato);
@@ -2613,7 +2657,6 @@ namespace Admeli.Configuracion.Modificar
                 {
 
                     MessageBox.Show(response.msj+" satisfactoriamente , el formato se cargara al reiniciar sesión", "Guardar Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
 
                 }
 
@@ -2756,9 +2799,24 @@ namespace Admeli.Configuracion.Modificar
 
             ContextMenuStrip contextMenuStrip = (ContextMenuStrip)dd.Owner;
             Control control = contextMenuStrip.SourceControl;
+
+
+
+            vineta Aux = vinetas.Find(X => X.nombre == control.Text);
+            if (Aux != null)
+            {
+                Aux.usado = 0;
+
+            }
+            Aux = listLabel.Find(X => X.nombre == control.Text);
+            if (Aux != null)
+            {
+                Aux.usado = 0;
+
+            }
             this.panel4.Controls.Remove(control);
-
-
+            panel1.Controls.Clear();
+            cargarNoSeleccionados();
         }
 
         private void editarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2770,6 +2828,7 @@ namespace Admeli.Configuracion.Modificar
             fontDialog.ShowHelp = true;
             fontDialog.MinSize = 7;
             fontDialog.MaxSize = 40;
+            
 
 
             if (fontDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)

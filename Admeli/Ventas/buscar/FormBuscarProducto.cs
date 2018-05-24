@@ -140,7 +140,15 @@ namespace Admeli.Ventas.buscar
         private void txtMotivo_KeyUp(object sender, KeyEventArgs e)
         {
 
-           
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (listProductosfiltrada.Count == 1)
+                {
+
+                    cargarProducto();
+                }
+
+            }
 
             string textBuscar = txtMotivo.Text;
             if (textBuscar.Length == 0) return;
@@ -170,6 +178,9 @@ namespace Admeli.Ventas.buscar
             BindingList<ProductoVenta> filtered = new BindingList<ProductoVenta>(listProductosfiltrada);
             productoVentaBindingSource.DataSource = filtered;
             dgvProductos.Update();
+
+
+           
         }
 
         private void Filtrar(string val)
@@ -226,6 +237,39 @@ namespace Admeli.Ventas.buscar
         private void txtMotivo_OnValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvProductos_Enter(object sender, EventArgs e)
+        {
+
+            if (listProductosfiltrada.Count == 1)
+            {
+
+                cargarProducto();
+            }
+        }
+
+        private void FormBuscarProducto_MouseClick(object sender, MouseEventArgs e)
+        {
+           
+        }
+
+        private void FormBuscarProducto_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void FormBuscarProducto_Enter(object sender, EventArgs e)
+        {
+            //if (e.KeyCode == Keys.Enter && !faltaCliente && !faltaProducto)
+            //{
+            //    this.SelectNextControl((Control)sender, true, true, true, true);
+            //}
+            if (listProductosfiltrada.Count == 1)
+            {
+
+                cargarProducto();
+            }
         }
     }
 }
