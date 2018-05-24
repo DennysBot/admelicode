@@ -39,12 +39,12 @@ namespace Modelo
 
         //descuento/editar/todo
 
-        public async Task<Response> modificar(Descuento param)
+        public async Task<Response> modificar(DescuentoEnviar param)
         {
             try
             {
                 // localhost:8080/admeli/xcore2/xcore/services.php/descuento/modificar
-                return await webService.POST<Descuento,Response>("descuento", "modificar", param);
+                return await webService.POST<DescuentoEnviar,Response>("descuento", "modificar", param);
             }
             catch (Exception ex)
             {
