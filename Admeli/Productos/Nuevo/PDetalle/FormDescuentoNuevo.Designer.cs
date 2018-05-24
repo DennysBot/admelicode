@@ -48,7 +48,6 @@
             this.textDescuento = new Bunifu.Framework.UI.BunifuMetroTextbox();
             this.sucursalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grupoClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAddSucursal = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.cbxSucursal = new System.Windows.Forms.ComboBox();
@@ -56,19 +55,20 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cbxGrupoCliente = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cbProductoAfecto = new System.Windows.Forms.ComboBox();
+            this.cbxProductoAfecto = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.presentacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelFooter.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sucursalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoClienteBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelFooter
@@ -170,7 +170,7 @@
             this.chkEstado.CheckedOnColor = System.Drawing.Color.DodgerBlue;
             this.chkEstado.ForeColor = System.Drawing.Color.White;
             this.chkEstado.Location = new System.Drawing.Point(334, 286);
-            this.chkEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkEstado.Margin = new System.Windows.Forms.Padding(4);
             this.chkEstado.Name = "chkEstado";
             this.chkEstado.Size = new System.Drawing.Size(20, 20);
             this.chkEstado.TabIndex = 38;
@@ -199,7 +199,7 @@
             this.textCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textCodigo.isPassword = false;
             this.textCodigo.Location = new System.Drawing.Point(13, 79);
-            this.textCodigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.textCodigo.Size = new System.Drawing.Size(621, 35);
@@ -230,7 +230,7 @@
             this.textMinimaVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textMinimaVenta.isPassword = false;
             this.textMinimaVenta.Location = new System.Drawing.Point(12, 209);
-            this.textMinimaVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textMinimaVenta.Margin = new System.Windows.Forms.Padding(4);
             this.textMinimaVenta.Name = "textMinimaVenta";
             this.textMinimaVenta.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.textMinimaVenta.Size = new System.Drawing.Size(300, 35);
@@ -261,7 +261,7 @@
             this.textMaximaVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textMaximaVenta.isPassword = false;
             this.textMaximaVenta.Location = new System.Drawing.Point(333, 209);
-            this.textMaximaVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textMaximaVenta.Margin = new System.Windows.Forms.Padding(4);
             this.textMaximaVenta.Name = "textMaximaVenta";
             this.textMaximaVenta.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.textMaximaVenta.Size = new System.Drawing.Size(300, 35);
@@ -292,7 +292,7 @@
             this.textDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textDescuento.isPassword = false;
             this.textDescuento.Location = new System.Drawing.Point(12, 278);
-            this.textDescuento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textDescuento.Margin = new System.Windows.Forms.Padding(4);
             this.textDescuento.Name = "textDescuento";
             this.textDescuento.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.textDescuento.Size = new System.Drawing.Size(300, 35);
@@ -306,10 +306,6 @@
             // grupoClienteBindingSource
             // 
             this.grupoClienteBindingSource.DataSource = typeof(Entidad.GrupoCliente);
-            // 
-            // productoBindingSource
-            // 
-            this.productoBindingSource.DataSource = typeof(Entidad.Producto);
             // 
             // btnAddSucursal
             // 
@@ -350,7 +346,7 @@
             this.cbxSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSucursal.FormattingEnabled = true;
             this.cbxSucursal.Location = new System.Drawing.Point(11, 410);
-            this.cbxSucursal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxSucursal.Margin = new System.Windows.Forms.Padding(2);
             this.cbxSucursal.Name = "cbxSucursal";
             this.cbxSucursal.Size = new System.Drawing.Size(260, 26);
             this.cbxSucursal.TabIndex = 85;
@@ -395,7 +391,7 @@
             this.cbxGrupoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxGrupoCliente.FormattingEnabled = true;
             this.cbxGrupoCliente.Location = new System.Drawing.Point(332, 349);
-            this.cbxGrupoCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxGrupoCliente.Margin = new System.Windows.Forms.Padding(2);
             this.cbxGrupoCliente.Name = "cbxGrupoCliente";
             this.cbxGrupoCliente.Size = new System.Drawing.Size(260, 26);
             this.cbxGrupoCliente.TabIndex = 82;
@@ -413,20 +409,20 @@
             this.label9.TabIndex = 81;
             this.label9.Text = "Producto Afecto";
             // 
-            // cbProductoAfecto
+            // cbxProductoAfecto
             // 
-            this.cbProductoAfecto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cbProductoAfecto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbProductoAfecto.DataSource = this.productoBindingSource;
-            this.cbProductoAfecto.DisplayMember = "nombreProducto";
-            this.cbProductoAfecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbProductoAfecto.FormattingEnabled = true;
-            this.cbProductoAfecto.Location = new System.Drawing.Point(11, 349);
-            this.cbProductoAfecto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cbProductoAfecto.Name = "cbProductoAfecto";
-            this.cbProductoAfecto.Size = new System.Drawing.Size(299, 26);
-            this.cbProductoAfecto.TabIndex = 80;
-            this.cbProductoAfecto.ValueMember = "idProducto";
+            this.cbxProductoAfecto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbxProductoAfecto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxProductoAfecto.DataSource = this.presentacionBindingSource;
+            this.cbxProductoAfecto.DisplayMember = "nombrePresentacion";
+            this.cbxProductoAfecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxProductoAfecto.FormattingEnabled = true;
+            this.cbxProductoAfecto.Location = new System.Drawing.Point(11, 349);
+            this.cbxProductoAfecto.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxProductoAfecto.Name = "cbxProductoAfecto";
+            this.cbxProductoAfecto.Size = new System.Drawing.Size(299, 26);
+            this.cbxProductoAfecto.TabIndex = 80;
+            this.cbxProductoAfecto.ValueMember = "idPresentacion";
             // 
             // label8
             // 
@@ -474,6 +470,10 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // presentacionBindingSource
+            // 
+            this.presentacionBindingSource.DataSource = typeof(Entidad.Presentacion);
+            // 
             // FormDescuentoNuevo
             // 
             this.AcceptButton = this.btnAceptar;
@@ -493,7 +493,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cbxGrupoCliente);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.cbProductoAfecto);
+            this.Controls.Add(this.cbxProductoAfecto);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textDescuento);
             this.Controls.Add(this.label2);
@@ -517,8 +517,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sucursalBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoClienteBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -544,7 +544,6 @@
         private Bunifu.Framework.UI.BunifuMetroTextbox textDescuento;
         private System.Windows.Forms.BindingSource sucursalBindingSource;
         private System.Windows.Forms.BindingSource grupoClienteBindingSource;
-        private System.Windows.Forms.BindingSource productoBindingSource;
         private System.Windows.Forms.Button btnAddSucursal;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbxSucursal;
@@ -552,11 +551,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbxGrupoCliente;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cbProductoAfecto;
+        private System.Windows.Forms.ComboBox cbxProductoAfecto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dtpFechaFin;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtpFechaInicio;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.BindingSource presentacionBindingSource;
     }
 }

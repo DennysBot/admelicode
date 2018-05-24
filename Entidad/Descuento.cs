@@ -72,7 +72,6 @@ namespace Entidad
         public string nombre { get; set; }
         public int idAfectoProducto { get; set; }
 
-        public int idProducto { get; set; }
         public int idPresentacion { get; set; }
         public string nombreSucursal { get; set; }
         public object nombreProducto { get; set; }
