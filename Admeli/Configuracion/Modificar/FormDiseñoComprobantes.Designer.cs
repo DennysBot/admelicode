@@ -52,7 +52,7 @@
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 74);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(267, 464);
             this.panel1.TabIndex = 2;
@@ -63,7 +63,7 @@
             this.panel3.BackColor = System.Drawing.Color.DarkGray;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(267, 74);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1096, 464);
             this.panel3.TabIndex = 3;
@@ -80,7 +80,7 @@
             this.flowLayoutPanel1.Controls.Add(this.button6);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1363, 74);
@@ -124,7 +124,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
             this.button2.Name = "button2";
             this.button2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(168, 49);
+            this.button2.Size = new System.Drawing.Size(175, 49);
             this.button2.TabIndex = 5;
             this.button2.Text = "  Guardar  Modelo";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -144,7 +144,7 @@
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(110)))), ((int)(((byte)(122)))));
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(439, 12);
+            this.button1.Location = new System.Drawing.Point(446, 12);
             this.button1.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -168,7 +168,7 @@
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(110)))), ((int)(((byte)(122)))));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(620, 12);
+            this.button3.Location = new System.Drawing.Point(627, 12);
             this.button3.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
             this.button3.Name = "button3";
             this.button3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -192,7 +192,7 @@
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(110)))), ((int)(((byte)(122)))));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(760, 12);
+            this.button4.Location = new System.Drawing.Point(767, 12);
             this.button4.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
             this.button4.Name = "button4";
             this.button4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -207,7 +207,7 @@
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Location = new System.Drawing.Point(953, 12);
+            this.menuStrip1.Location = new System.Drawing.Point(960, 12);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(202, 24);
@@ -226,7 +226,7 @@
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(110)))), ((int)(((byte)(122)))));
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(1155, 12);
+            this.button6.Location = new System.Drawing.Point(1162, 12);
             this.button6.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -245,19 +245,19 @@
             this.eliminarToolStripMenuItem,
             this.editarToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(133, 52);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // editarToolStripMenuItem
             // 
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.editarToolStripMenuItem.Text = "Editar";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 

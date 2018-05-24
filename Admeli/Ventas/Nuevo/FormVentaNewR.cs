@@ -152,7 +152,7 @@ namespace Admeli.Ventas.Nuevo
             lbSubtotal.Text = "s/" + ". " + darformato(0);
             lbDescuentoVenta.Text = "s/" + ". " + darformato(0);
             lbImpuesto.Text = "s/" + ". " + darformato(0);
-            lbTotalVentas.Text = "s/" + ". " + darformato(0);
+            lbTotal.Text = "s/" + ". " + darformato(0);
 
         }
 
@@ -693,7 +693,7 @@ namespace Admeli.Ventas.Nuevo
                     lbDescuentoVenta.Text = moneda.simbolo + ". " + darformato(Descuento);
 
                     this.total = toDouble(currentVenta.total);
-                    lbTotalVentas.Text = moneda.simbolo + ". " + darformato(total);
+                    lbTotal.Text = moneda.simbolo + ". " + darformato(total);
 
                     this.subTotal = toDouble(currentVenta.subTotal);
                     lbSubtotal.Text = moneda.simbolo + ". " + darformato(subTotal);
@@ -871,7 +871,7 @@ namespace Admeli.Ventas.Nuevo
 
                 // determinar impuesto de cada producto
                 this.total = TotalLocal;
-                lbTotalVentas.Text = moneda.simbolo + ". " + darformato(TotalLocal);
+                lbTotal.Text = moneda.simbolo + ". " + darformato(TotalLocal);
             }
             catch (Exception ex)
             {
@@ -1005,7 +1005,7 @@ namespace Admeli.Ventas.Nuevo
 
             try
             {
-                alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(cbxDescripcion.SelectedValue));
+                alternativaCombinacion = await alternativaModel.cAlternativa31(currentProducto.idPresentacion);
                 alternativaCombinacionBindingSource.DataSource = alternativaCombinacion;
                 cbxVariacion.SelectedIndex = -1;
                 if (!seleccionado)
@@ -1234,7 +1234,7 @@ namespace Admeli.Ventas.Nuevo
                 {
                     foreach (DetalleV V in detalleVentas)
                     {
-                        if (V.idPresentacion == (int)cbxDescripcion.SelectedValue && V.idCombinacionAlternativa == (int)cbxVariacion.SelectedValue)
+                        if (V.idPresentacion == currentProducto.idPresentacion && V.idCombinacionAlternativa == (int)cbxVariacion.SelectedValue)
                         {
                             stockDetalle = toDouble(V.cantidad);
                         }
@@ -1338,7 +1338,7 @@ namespace Admeli.Ventas.Nuevo
             try
             {
                 /// cargando las alternativas del producto
-                alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(cbxDescripcion.SelectedValue));
+                alternativaCombinacion = await alternativaModel.cAlternativa31(currentProducto.idPresentacion);
                 alternativaCombinacionBindingSource.DataSource = alternativaCombinacion;
                 cbxVariacion.SelectedIndex = -1;
                 if (!seleccionado)
@@ -1623,8 +1623,7 @@ namespace Admeli.Ventas.Nuevo
             bool seleccionado = false;
             if (cbxCodigoProducto.SelectedValue != null)
                 seleccionado = true;
-            if (cbxDescripcion.SelectedValue != null)
-                seleccionado = true;
+            
             // if(idProducto)
 
 
@@ -1633,7 +1632,7 @@ namespace Admeli.Ventas.Nuevo
                 if (detalleVentas == null) detalleVentas = new List<DetalleV>();
                 DetalleV detalleV = new DetalleV();
 
-                DetalleV aux = buscarElemento((int)cbxDescripcion.SelectedValue, (int)cbxVariacion.SelectedValue);
+                DetalleV aux = buscarElemento(currentProducto.idPresentacion, (int)cbxVariacion.SelectedValue);
                 if (aux != null)
                 {
 
@@ -1653,7 +1652,7 @@ namespace Admeli.Ventas.Nuevo
                 detalleV.idVenta = 0;
                 detalleV.cantidadUnitaria = darformato(txtCantidad.Text.Trim());
                 detalleV.codigoProducto = cbxCodigoProducto.Text.Trim();
-                detalleV.descripcion = currentProducto.nombreProducto;
+                detalleV.descripcion =cbxDescripcion.Text;
 
                 double descuento = toDouble(txtDescuento.Text.Trim());
                 detalleV.descuento = darformato(descuento);
@@ -1712,12 +1711,12 @@ namespace Admeli.Ventas.Nuevo
 
                 detalleV.estado = 1;//5
                 detalleV.idCombinacionAlternativa = Convert.ToInt32(cbxVariacion.SelectedValue);//7
-                detalleV.idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                detalleV.idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue);
+                detalleV.idPresentacion = currentProducto.idPresentacion;
+                detalleV.idProducto = currentProducto.idProducto;
                 detalleV.idSucursal = ConfigModel.sucursal.idSucursal;
                 detalleV.nombreCombinacion = cbxVariacion.Text;
                 detalleV.nombreMarca = currentProducto.nombreMarca;
-                detalleV.nombrePresentacion = cbxDescripcion.Text;
+                detalleV.nombrePresentacion = currentProducto.nombreProducto;
                 detalleV.nro = 1;
                 // determinar el impuesto                 
 
@@ -2263,7 +2262,7 @@ namespace Admeli.Ventas.Nuevo
             lbDescuentoVenta.Text = moneda.simbolo + ". " + darformato(Descuento);
 
             this.total = toDouble(currentCotizacion.total);
-            lbTotalVentas.Text = moneda.simbolo + ". " + darformato(total);
+            lbTotal.Text = moneda.simbolo + ". " + darformato(total);
 
             this.subTotal = toDouble(currentCotizacion.subTotal);
             lbSubtotal.Text = moneda.simbolo + ". " + darformato(subTotal);
@@ -2669,41 +2668,41 @@ namespace Admeli.Ventas.Nuevo
                         {
 
                             point1 = dictionary["codigoProducto"];
-                            e.Graphics.DrawString(detalleVentas[i].codigoProducto, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].codigoProducto, new Font("Arial", 8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
 
                         if (dictionary.ContainsKey("nombreCombinacion"))
                         {
                             point1 = dictionary["nombreCombinacion"];
-                            e.Graphics.DrawString(detalleVentas[i].nombreCombinacion, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].nombreCombinacion, new Font("Arial", 8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
 
                         }
                         if (dictionary.ContainsKey("cantidad"))
                         {
                             point1 = dictionary["cantidad"];
-                            e.Graphics.DrawString(detalleVentas[i].cantidad, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].cantidad, new Font("Arial",8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
 
                         if (dictionary.ContainsKey("nombrePresentacion"))
                         {
                             point1 = dictionary["nombrePresentacion"];
-                            e.Graphics.DrawString(detalleVentas[i].nombrePresentacion, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].nombrePresentacion, new Font("Arial",8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
                         if (dictionary.ContainsKey("descripcion"))
                         {
                             point1 = dictionary["descripcion"];
-                            e.Graphics.DrawString(detalleVentas[i].descripcion, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].descripcion, new Font("Arial", 8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
 
                         }
                         if (dictionary.ContainsKey("nombreMarca"))
                         {
                             point1 = dictionary["nombreMarca"];
-                            e.Graphics.DrawString(detalleVentas[i].nombreMarca, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].nombreMarca, new Font("Arial", 8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
                         if (dictionary.ContainsKey("precioUnitario"))
                         {
                             point1 = dictionary["precioUnitario"];
-                            e.Graphics.DrawString(detalleVentas[i].precioUnitario, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].precioUnitario, new Font("Arial",8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
 
                         if (dictionary.ContainsKey("total"))
@@ -2711,13 +2710,13 @@ namespace Admeli.Ventas.Nuevo
                             point1 = dictionary["total"];
 
 
-                            e.Graphics.DrawString(detalleVentas[i].total, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].total, new Font("Arial", 8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
                         if (dictionary.ContainsKey("precioVenta"))
                         {
 
                             point1 = dictionary["precioVenta"];
-                            e.Graphics.DrawString(detalleVentas[i].precioVenta, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(detalleVentas[i].precioVenta, new Font("Arial",8, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
 
                         }
                         YI += 30;
@@ -2761,7 +2760,6 @@ namespace Admeli.Ventas.Nuevo
                                 if (doc.value == "Total")
                                 {
                                     e.Graphics.DrawString(doc.value + ": " + textBox.Text, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(doc.x - 5, doc.y));
-
 
                                 }
                                 else
