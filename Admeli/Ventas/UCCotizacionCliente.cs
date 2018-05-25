@@ -140,11 +140,21 @@ namespace Admeli.Ventas
         #endregion
 
         #region ======================= Loads =======================
-        private async void cargarSucursales()
+        private void cargarSucursales()
         {
             try
             {
-                sucursalBindingSource.DataSource = await sucursalModel.listarSucursalesActivos();
+                List<Sucursal> listSucCargar = new List<Sucursal>();
+                List<Sucursal> listSuc = ConfigModel.listSucursales;
+                Sucursal sucursal = new Sucursal();
+                sucursal.idSucursal = 0;
+                sucursal.nombre = "Todas las sucursales";
+                listSucCargar.Add(sucursal);
+                listSucCargar.AddRange(listSuc);
+                sucursalBindingSource.DataSource = listSucCargar;                
+                cbxSucursales.SelectedValue = 0;
+
+                //sucursalBindingSource.DataSource = await sucursalModel.listarSucursalesActivos();
             }
             catch (Exception ex)
             {
@@ -156,7 +166,21 @@ namespace Admeli.Ventas
         {
             try
             {
-                personalBindingSource.DataSource = await personalModel.listarPersonalAlmacen(ConfigModel.sucursal.idSucursal);
+                //Si el personal logeado es gerente o administrador debe listar a todos los cliente
+                if(ConfigModel.asignacionPersonal.idPuntoGerencia != 0 || ConfigModel.asignacionPersonal.idPuntoAdministracion != 0)
+                {
+                    personalBindingSource.DataSource = await personalModel.listarPersonalAlmacen(ConfigModel.sucursal.idSucursal);
+                }
+                else
+                {
+                    List<Personal> listaPersonal = new List<Personal>();
+                    Personal personal = new Personal();
+                    personal.idPersonal = PersonalModel.personal.idPersonal;
+                    personal.nombres = PersonalModel.personal.nombres;
+                    listaPersonal.Add(personal);
+                    personalBindingSource.DataSource = listaPersonal;
+                    cbxPersonales.SelectedIndex = 0;
+                }
             }
             catch (Exception ex)
             {

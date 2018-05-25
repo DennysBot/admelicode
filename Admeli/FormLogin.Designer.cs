@@ -65,14 +65,12 @@
             this.textPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.errorProvider1.SetIconPadding(this.textPassword, -30);
             this.textPassword.isPassword = true;
-
             this.textPassword.Location = new System.Drawing.Point(494, 190);
-            this.textPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textPassword.Margin = new System.Windows.Forms.Padding(4);
             this.textPassword.Name = "textPassword";
             this.textPassword.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.textPassword.Size = new System.Drawing.Size(239, 37);
             this.textPassword.TabIndex = 38;
-            this.textPassword.Text = "admin";
             this.textPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // textUsuario
@@ -87,14 +85,12 @@
             this.textUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.errorProvider1.SetIconPadding(this.textUsuario, -30);
             this.textUsuario.isPassword = false;
-
             this.textUsuario.Location = new System.Drawing.Point(494, 137);
-            this.textUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.textUsuario.Name = "textUsuario";
             this.textUsuario.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.textUsuario.Size = new System.Drawing.Size(239, 37);
             this.textUsuario.TabIndex = 37;
-            this.textUsuario.Text = "admin";
             this.textUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // btnCLose
@@ -104,7 +100,6 @@
             this.btnCLose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCLose.Image = ((System.Drawing.Image)(resources.GetObject("btnCLose.Image")));
             this.btnCLose.ImageActive = null;
-
             this.btnCLose.Location = new System.Drawing.Point(702, 12);
             this.btnCLose.Name = "btnCLose";
             this.btnCLose.Size = new System.Drawing.Size(46, 55);
@@ -126,9 +121,8 @@
             // 
             this.progressbar.BackColor = System.Drawing.Color.White;
             this.progressbar.BorderRadius = 5;
-
             this.progressbar.Location = new System.Drawing.Point(354, 392);
-            this.progressbar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressbar.Margin = new System.Windows.Forms.Padding(4);
             this.progressbar.MaximumValue = 100;
             this.progressbar.Name = "progressbar";
             this.progressbar.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(202)))), ((int)(((byte)(59)))));
@@ -140,9 +134,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.White;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-
             this.pictureBox3.Location = new System.Drawing.Point(498, 194);
-
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(28, 30);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -153,7 +145,6 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.White;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-
             this.pictureBox2.Location = new System.Drawing.Point(498, 141);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(28, 30);
@@ -172,7 +163,6 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-
             this.btnLogin.Location = new System.Drawing.Point(494, 243);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(239, 37);

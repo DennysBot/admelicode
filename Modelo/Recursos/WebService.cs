@@ -24,12 +24,12 @@ namespace Modelo.Recursos
         {
             //Accesos a Servidor Remoto de Prueba
             //this.domainName = "http://190.117.145.7:8080";
-<<<<<<< HEAD
+
+            //this.directory = "service_fact_pegaso/xcore/services.php";
+
 
             ////this.directory = "service_fact_test/xcore/services.php";
-=======
-            //this.directory = "service_fact_test/xcore/services.php";
->>>>>>> e4d97db1d94203d834da727b31b76236b009a2c3
+
 
             //this.directory = "service_fact_prueba/xcore/services.php";
             //Acessos a Servidor local

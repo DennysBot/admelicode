@@ -190,9 +190,19 @@ namespace Admeli.AlmacenBox
         {
             try
             {
-                listaSucursalCargar = await sucursalModel.listarSucursalesActivos();
-                sucursalBindingSource.DataSource = listaSucursalCargar;
+                List<Sucursal> listSucCargar = new List<Sucursal>();
+                List<Sucursal> listSuc = ConfigModel.listSucursales;
+                Sucursal sucursal = new Sucursal();
+                sucursal.idSucursal = 0;
+                sucursal.nombre = "Todas las sucursales";
+                listSucCargar.Add(sucursal);
+                listSucCargar.AddRange(listSuc);
+                sucursalBindingSource.DataSource = listSucCargar;
                 cbxSucursales.SelectedValue = 0;
+
+                //listaSucursalCargar = await sucursalModel.listarSucursalesActivos();
+                //sucursalBindingSource.DataSource = listaSucursalCargar;
+                //cbxSucursales.SelectedValue = 0;
             }
             catch (Exception ex)
             {
@@ -204,11 +214,22 @@ namespace Admeli.AlmacenBox
         {
             try
             {
+
                 listaAlmacen = new List<Almacen>();
-                //almacenBindingSource.DataSource = await almacenModel.almacenesPorSucursales(ConfigModel.sucursal.idSucursal);
-                listaAlmacen = await almacenModel.almacenesPorSucursales(0);
+                List<Almacen> listaAlm = new List<Almacen>();
+                listaAlmacen = ConfigModel.alamacenes;
+                Almacen almacen = new Almacen();
+                almacen.idAlmacen = 0;
+                almacen.nombre = "Todos los almacenes";
+                listaAlmacen.Add(almacen);
+                listaAlmacen.AddRange(listaAlm);
                 almacenBindingSource.DataSource = listaAlmacen;
+                cbxAlmacenes.SelectedIndex = -1;
                 cbxAlmacenes.SelectedValue = 0;
+
+                //listaAlmacen = await almacenModel.almacenesPorSucursales(0);
+                //almacenBindingSource.DataSource = listaAlmacen;
+                //cbxAlmacenes.SelectedValue = 0;
             }
             catch (Exception ex)
             {

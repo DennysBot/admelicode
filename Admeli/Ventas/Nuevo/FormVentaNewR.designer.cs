@@ -1732,6 +1732,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(123, 97);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 66;
+
             this.pictureBox1.TabStop = false;
             // 
             // lbTotal
