@@ -352,7 +352,7 @@ namespace Admeli.Herramientas
                 MessageBox.Show("Error: " + ex.Message, "Listar sucursales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private  void cargarAlmacenes()
+        private  async void cargarAlmacenes()
         {
             // Cargando el combobox de personales
             loadState(true);
@@ -360,7 +360,8 @@ namespace Admeli.Herramientas
             {
                 listAlm = new List<Almacen>();
                 listAlmCargar = new List<Almacen>();
-                listAlm = ConfigModel.alamacenes;
+                listAlm = await almacenModel.almacenesAsignados(0, PersonalModel.personal.idPersonal);//  para todos las asignadas al personal
+
                 Almacen sucursal = new Almacen();
                 sucursal.idAlmacen = 0;
                 sucursal.nombre = "Todas";

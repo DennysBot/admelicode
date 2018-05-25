@@ -625,17 +625,30 @@ namespace Admeli.AlmacenBox.Nuevo
 
 
 
+            if(listcargaCompraSinNota==null)
+            {
+                listcargaCompraSinNota = new List<CargaCompraSinNota>();
+                return;
+            }
+            if (listcargaCompraSinNota.Count==0)
+            {
+
+                MessageBox.Show("no hay productos seleccionados", "Detalle de Nota", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbxCodigoProducto.Focus();
+                return;
+            }
+
             ResponseNotaGuardar notaGuardar = null;
             ResponseNotaGuardar notaGuardarE = null;
             ResponseNotaSalida responseNotaSalida = null;
 
             int numert = 0;
 
+            loadState(true);
 
-
-
+            string date1;
             //datos de nota de Salida
-            if (nuevo)
+            if (nuevo&& cbxAlmacenSalida.SelectedIndex!=0)
             {
                 comprobarNotaS.idVenta = 0;
                 comprobarNotaS.idNotaSalida = 0;
@@ -660,7 +673,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 }
 
                 almacenSalida.estadoEnvio = estado;
-                string date1 = String.Format("{0:u}", dtpFechaEntrega.Value);
+                date1 = String.Format("{0:u}", dtpFechaEntrega.Value);
                 date1 = date1.Substring(0, date1.Length - 1);
                 almacenSalida.fechaSalida = date1;
                 almacenSalida.idAlmacen = (int)cbxAlmacenSalida.SelectedValue;
@@ -725,15 +738,13 @@ namespace Admeli.AlmacenBox.Nuevo
             // datos de nota de salida
 
 
-            if (notaGuardar != null || !nuevo)
-            {
 
                 comprobarNota.idCompra = currentCompraNEntrada != null ? currentCompraNEntrada.idCompra : 0;
                 comprobarNota.idNotaEntrada = currentNotaEntrada != null ? currentNotaEntrada.idNotaEntrada : 0;// en modificar puede variar         
                 almacenNEntrada.estadoEntrega = chbxEntrega.Checked ? 1 : 0;
 
                 almacenNEntrada.idNotaEntrada = currentNotaEntrada != null ? currentNotaEntrada.idNotaEntrada : 0; ;
-                string date1 = String.Format("{0:u}", dtpFechaEntrega.Value);
+                date1 = String.Format("{0:u}", dtpFechaEntrega.Value);
                 date1 = date1.Substring(0, date1.Length - 1);
                 almacenNEntrada.fechaEntrada = date1;// probar con el otro 
                 almacenNEntrada.idAlmacen = (int)cbxAlmacenEntrada.SelectedValue;
@@ -817,7 +828,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 }
 
 
-            }
+            
 
 
             if (notaGuardar != null)
@@ -827,7 +838,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 {
 
 
-                    DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + ConfigModel.alamacenes.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre,
+                    DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + listAlmacenSalida.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre,
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (dialog == DialogResult.No)
                     {
@@ -857,6 +868,14 @@ namespace Admeli.AlmacenBox.Nuevo
 
 
             }
+            else
+            {
+                MessageBox.Show("solo se guardo la Nota de Entrada ", "guardar " + listAlmacenSalida.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            }
+
+            loadState(false);
         }
 
 
@@ -1121,6 +1140,7 @@ namespace Admeli.AlmacenBox.Nuevo
         {
             cbxCodigoProducto.SelectedIndex = -1;
             cbxDescripcion.SelectedIndex = -1;
+            cbxDescripcion.Text = "";
             cbxVariacion.SelectedIndex = -1;
             txtCantidad.Text = "";
             txtCantidadRecibida.Text = "";        
@@ -1128,7 +1148,7 @@ namespace Admeli.AlmacenBox.Nuevo
             currentNotaEntrada = null;
         }
 
-        private async void btnGuardar_Click(object sender, EventArgs e)
+        private  void btnGuardar_Click(object sender, EventArgs e)
         {
             hacerNotas();
         }

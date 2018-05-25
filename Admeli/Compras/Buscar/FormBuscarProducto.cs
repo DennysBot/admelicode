@@ -139,8 +139,16 @@ namespace Admeli.Productos.buscar
 
         private void txtMotivo_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (listProductosfiltrada.Count == 1)
+                {
 
-           
+                    cargarProducto();
+                }
+
+            }
+
 
             string textBuscar = txtMotivo.Text;
             if (textBuscar.Length == 0) return;

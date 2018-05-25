@@ -242,7 +242,7 @@ namespace Admeli.Productos
             }
         }
 
-        private  void cargarAlmacenes()
+        private async void cargarAlmacenes()
         {
             // Cargando el combobox de personales
             loadState(true);
@@ -250,7 +250,8 @@ namespace Admeli.Productos
             {
                 listAlm = new List<Almacen>();
                 listAlmCargar = new List<Almacen>();
-                listAlm = ConfigModel.alamacenes;
+                listAlm =  await almacenModel.almacenesAsignados(0, PersonalModel.personal.idPersonal);//  para todos las asignadas al personal
+                
                 Almacen almacen = new Almacen();
                 almacen.idAlmacen = 0;
                 almacen.nombre = "Todas";
