@@ -1736,21 +1736,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(92, 79);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 66;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lbTotal
-            // 
-
-            this.lbTotalVentas.AutoSize = true;
-            this.lbTotalVentas.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
-            this.lbTotalVentas.Location = new System.Drawing.Point(49, 126);
-            this.lbTotalVentas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbTotalVentas.Name = "lbTotalVentas";
-            this.lbTotalVentas.Size = new System.Drawing.Size(146, 34);
-            this.lbTotalVentas.TabIndex = 65;
-            this.lbTotalVentas.Text = "S/. 250.00";
-            this.lbTotalVentas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pictureBox1.TabStop = false;           
 
             // 
             // label7

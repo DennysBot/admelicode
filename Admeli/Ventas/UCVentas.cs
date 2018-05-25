@@ -11,6 +11,7 @@ using Admeli.Componentes;
 using Admeli.Ventas.Nuevo;
 using Modelo;
 using Entidad;
+using Entidad.Configuracion;
 
 namespace Admeli.Ventas
 {
@@ -184,7 +185,16 @@ namespace Admeli.Ventas
         {
             try
             {
-                sucursalBindingSource.DataSource = await sucursalModel.listarSucursalesActivos();
+                List<Sucursal> listSucCargar = new List<Sucursal>();
+                List<Sucursal> listSuc = ConfigModel.listSucursales;
+                Sucursal sucursal = new Sucursal();
+                sucursal.idSucursal = 0;
+                sucursal.nombre = "Todas las sucursales";
+                listSucCargar.Add(sucursal);
+                listSucCargar.AddRange(listSuc);
+                sucursalBindingSource.DataSource = listSucCargar;
+                cbxSucursales.SelectedValue = 0;
+                //sucursalBindingSource.DataSource = await sucursalModel.listarSucursalesActivos();
             }
             catch (Exception ex)
             {
@@ -197,7 +207,21 @@ namespace Admeli.Ventas
         {
             try
             {
-                personalBindingSource.DataSource = await personalModel.listarPersonalAlmacen(ConfigModel.sucursal.idSucursal);
+                //Si el personal logeado es gerente o administrador debe listar a todos los personales
+                if (ConfigModel.asignacionPersonal.idPuntoGerencia != 0 || ConfigModel.asignacionPersonal.idPuntoAdministracion != 0)
+                {
+                    personalBindingSource.DataSource = await personalModel.listarPersonalAlmacen(ConfigModel.sucursal.idSucursal);
+                }
+                else
+                {
+                    List<Personal> listaPersonal = new List<Personal>();
+                    Personal personal = new Personal();
+                    personal.idPersonal = PersonalModel.personal.idPersonal;
+                    personal.nombres = PersonalModel.personal.nombres;
+                    listaPersonal.Add(personal);
+                    personalBindingSource.DataSource = listaPersonal;
+                    cbxPersonales.SelectedIndex = 0;
+                }
             }
             catch (Exception ex)
             {
@@ -207,9 +231,21 @@ namespace Admeli.Ventas
 
         private async void cargarPuntosVenta( int idSucursal)
         {
-
-             puntoDeVentaBindingSource.DataSource=await  puntoVentaModel.puntoVentasyTodos(idSucursal);
-
+            try
+            {
+                List<PuntoDeVenta> listaPuntoVenta = new List<PuntoDeVenta>();
+                PuntoDeVenta puntoVenta = new PuntoDeVenta();
+                puntoVenta.idPuntoVenta = 0;
+                puntoVenta.nombre = "Todos los puntos de venta";
+                listaPuntoVenta.Add(puntoVenta);
+                listaPuntoVenta.AddRange(ConfigModel.puntosDeVenta);
+                puntoDeVentaBindingSource.DataSource = listaPuntoVenta;
+                //puntoDeVentaBindingSource.DataSource=await  puntoVentaModel.puntoVentasyTodos(idSucursal);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -499,7 +535,37 @@ namespace Admeli.Ventas
         private  async void cbxSucursales_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxSucursales.SelectedIndex == -1) return;
-            puntoDeVentaBindingSource.DataSource = await puntoVentaModel.puntoVentasyTodos((int)cbxSucursales.SelectedValue);
+
+            if ((int)cbxSucursales.SelectedValue == 0)
+            {
+
+                List<PuntoDeVenta> listaPuntoVenta = new List<PuntoDeVenta>();
+                PuntoDeVenta puntoVenta = new PuntoDeVenta();
+                puntoVenta.idPuntoVenta = 0;
+                puntoVenta.nombre = "Todos los puntos de venta";
+                listaPuntoVenta.Add(puntoVenta);
+                listaPuntoVenta.AddRange(ConfigModel.puntosDeVenta);
+                puntoDeVentaBindingSource.DataSource = listaPuntoVenta;
+                cbxPuntosVenta.SelectedIndex = -1;
+                cbxPuntosVenta.SelectedValue = 0;
+            }
+            else
+            {
+                List<PuntoDeVenta> listaPuntoVenta = new List<PuntoDeVenta>();
+                PuntoDeVenta puntoVenta = new PuntoDeVenta();
+                puntoVenta.idPuntoVenta = 0;
+                puntoVenta.nombre = "Todos los puntos de venta";
+                listaPuntoVenta.Add(puntoVenta);
+
+                List<PuntoDeVenta> lista = ConfigModel.puntosDeVenta.Where(X => X.idSucursal == (int)cbxSucursales.SelectedValue).ToList();
+                listaPuntoVenta.AddRange(lista);
+                puntoDeVentaBindingSource.DataSource = listaPuntoVenta;
+                cbxPuntosVenta.SelectedIndex = -1;
+                cbxPuntosVenta.SelectedValue = 0;
+
+            }
+            //puntoDeVentaBindingSource.DataSource = await puntoVentaModel.puntoVentasyTodos((int)cbxSucursales.SelectedValue);
+
         }
 
         private void textBuscar_OnValueChanged(object sender, EventArgs e)
