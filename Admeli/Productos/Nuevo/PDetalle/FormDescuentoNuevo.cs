@@ -25,6 +25,7 @@ namespace Admeli.Productos.Nuevo.PDetalle
         private GrupoClienteModel grupoClienteModel = new GrupoClienteModel();
         private ProductoModel productoModel = new ProductoModel();
         private DescuentoModel descuentoModel = new DescuentoModel();
+        private PresentacionModel presentacionModel = new PresentacionModel();
 
         #region ====================== Constructor ======================
         public FormDescuentoNuevo()
@@ -36,6 +37,9 @@ namespace Admeli.Productos.Nuevo.PDetalle
         {
             InitializeComponent();
             this.formProductoNuevo = formProductoNuevo;
+            this.currentDescuento = new DescuentoEnviar();
+            currentDescuento.idSucursal = ConfigModel.sucursal.idSucursal;
+            currentDescuento.idAfectoProducto = 0;
             nuevo = true;
         }
 
@@ -55,7 +59,6 @@ namespace Admeli.Productos.Nuevo.PDetalle
             this.currentDescuento.idDescuentoProductoGrupo = currentDescuentoR.idDescuentoProductoGrupo;
             this.currentDescuento.idGrupoCliente = currentDescuentoR.idGrupoCliente;
             this.currentDescuento.idPresentacion = currentDescuentoR.idPresentacion;
-            this.currentDescuento.idProducto = currentDescuentoR.idProducto;
             this.currentDescuento.idSucursal = currentDescuentoR.idSucursal;
             nuevo = false;
         }
@@ -71,7 +74,7 @@ namespace Admeli.Productos.Nuevo.PDetalle
         {
             dtpFechaInicio.Value = DateTime.Now;
             dtpFechaFin.Value = DateTime.Now;
-
+            cargarDatosModificar();
             cargarProducto21();
             cargarGrupoCliente();
             cargarSucursales();
@@ -79,11 +82,24 @@ namespace Admeli.Productos.Nuevo.PDetalle
         #endregion
 
         #region ================================ Loads ================================
+        private void cargarDatosModificar()
+        {
+            if (nuevo) return;
+            textCodigo.Text = currentDescuento.codigo;
+            textMaximaVenta.Text = currentDescuento.cantidadMaxima;
+            textMinimaVenta.Text = currentDescuento.cantidadMinima;
+            textDescuento.Text = currentDescuento.descuento;
+            chkEstado.Checked = Convert.ToBoolean(currentDescuento.estado);
+            dtpFechaInicio.Value = Convert.ToDateTime(currentDescuento.fechaInicio);
+            dtpFechaFin.Value = Convert.ToDateTime(currentDescuento.fechaFin);
+        }
+
         private async void cargarSucursales()
         {
             try
             {
                 sucursalBindingSource.DataSource = await sucursalModel.sucursalesPrecio(formProductoNuevo.currentIDProducto);
+                cbxSucursal.SelectedValue = currentDescuento.idSucursal;
             }
             catch (Exception ex)
             {
@@ -96,6 +112,8 @@ namespace Admeli.Productos.Nuevo.PDetalle
             try
             {
                 grupoClienteBindingSource.DataSource = await grupoClienteModel.gclientes21();
+                if (nuevo) { cbxGrupoCliente.SelectedIndex = 0; }
+                else { cbxGrupoCliente.SelectedValue = currentDescuento.idGrupoCliente; }
             }
             catch (Exception ex)
             {
@@ -107,7 +125,9 @@ namespace Admeli.Productos.Nuevo.PDetalle
         {
             try
             {
-                productoBindingSource.DataSource = await productoModel.productos21(formProductoNuevo.currentIDProducto);
+                presentacionBindingSource.DataSource = await presentacionModel.productos21(formProductoNuevo.currentIDProducto);
+                //productoBindingSource.DataSource = await productoModel.productos21(formProductoNuevo.currentIDProducto);
+                cbxProductoAfecto.SelectedValue = currentDescuento.idAfectoProducto;
             }
             catch (Exception ex)
             {
@@ -144,36 +164,13 @@ namespace Admeli.Productos.Nuevo.PDetalle
                 crearObjetoSucursal();
                 if (nuevo)
                 {
-                    currentDescuento = new DescuentoEnviar();
-                    
-                    string dateFin = String.Format("{0:u}", dtpFechaFin.Value);
-                    dateFin = dateFin.Substring(0, dateFin.Length - 1);
-
-                    string dateInicio = String.Format("{0:u}", dtpFechaInicio.Value);
-                    dateInicio = dateInicio.Substring(0, dateInicio.Length - 1);
-                   
-
-                    // asignar al decuento
-                    currentDescuento.cantidadMaxima = textMaximaVenta.Text.Trim();
-                    currentDescuento.cantidadMinima = textMinimaVenta.Text.Trim();
-                    currentDescuento.codigo = textCodigo.Text.Trim();
-                    currentDescuento.descuento = textDescuento.Text.Trim();
-                    currentDescuento.estado = 1;
-                    currentDescuento.fechaFin = dateFin;
-                    currentDescuento.fechaInicio = dateInicio;
-                    currentDescuento.idAfectoProducto = 0;
-                    currentDescuento.tipo = "General";
-                    currentDescuento.idGrupoCliente =(int) cbxGrupoCliente.SelectedValue;
-                    currentDescuento.idSucursal = (int)cbxSucursal.SelectedValue;
-                    currentDescuento.idPresentacion = formProductoNuevo.currentIDProducto;
 
                     Response response = await descuentoModel.guardar(currentDescuento);
                     MessageBox.Show(response.msj, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    //Response response = await descuentoModel.modificar(currentDescuento);
-                    Response response=null;
+                    Response response = await descuentoModel.modificar(currentDescuento);
                     MessageBox.Show(response.msj, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 this.Close();
@@ -187,14 +184,23 @@ namespace Admeli.Productos.Nuevo.PDetalle
 
         private void crearObjetoSucursal()
         {
-           /* currentAlternativa = new Alternativa();
-            if (!nuevo) currentAlternativa.idAlternativa = currentIDAlternativa; // Llenar el id categoria cuando este en esdo modificar
+            string dateFin = String.Format("{0:u}", dtpFechaFin.Value);
+            dateFin = dateFin.Substring(0, dateFin.Length - 1);
+            string dateInicio = String.Format("{0:u}", dtpFechaInicio.Value);
+            dateInicio = dateInicio.Substring(0, dateInicio.Length - 1);
 
-            currentAlternativa.descripcionAlternativa = textValorVariante.Text;
-            currentAlternativa.estado = 1;
-            currentAlternativa.ordenPosicion = Convert.ToInt32(textPosicion.Text);
-            currentAlternativa.seleccionado = chkEsSeleccionado.Checked;
-            currentAlternativa.idVariante = this.idVariante;*/
+            currentDescuento.cantidadMaxima = textMaximaVenta.Text.Trim();
+            currentDescuento.cantidadMinima = textMinimaVenta.Text.Trim();
+            currentDescuento.codigo = textCodigo.Text.Trim();
+            currentDescuento.descuento = textDescuento.Text.Trim();
+            currentDescuento.estado = Convert.ToInt32(chkEstado.Checked);
+            currentDescuento.fechaFin = dateFin;
+            currentDescuento.fechaInicio = dateInicio;
+            currentDescuento.idAfectoProducto = (int)cbxProductoAfecto.SelectedValue;
+            currentDescuento.idGrupoCliente = (int)cbxGrupoCliente.SelectedValue;
+            currentDescuento.idPresentacion = formProductoNuevo.currentIDProducto;
+            currentDescuento.idSucursal = (int)cbxSucursal.SelectedValue;
+            currentDescuento.tipo = "Particular";
         }
 
         private bool validarCampos()

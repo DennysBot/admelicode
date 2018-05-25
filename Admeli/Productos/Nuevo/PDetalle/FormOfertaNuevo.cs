@@ -37,7 +37,10 @@ namespace Admeli.Productos.Nuevo.PDetalle
         {
             InitializeComponent();
             this.formProductoNuevo = formProductoNuevo;
+            this.currentOferta = new Oferta();
             this.nuevo = true;
+            currentOferta.idSucursal = ConfigModel.sucursal.idSucursal;
+            currentOferta.idAfectoProducto = 0;
         }
 
         public FormOfertaNuevo(FormProductoNuevo formProductoNuevo, Oferta currentOferta)
@@ -76,6 +79,7 @@ namespace Admeli.Productos.Nuevo.PDetalle
             textDescuento.Text = currentOferta.descuento;
             dtpFechaInicio.Value = currentOferta.fechaInicio.date;
             dtpFechaFin.Value = currentOferta.fechaFin.date;
+            chkEstado.Checked = Convert.ToBoolean(currentOferta.estado);
         }
         private async void cargarSucursales()
         {
@@ -95,7 +99,8 @@ namespace Admeli.Productos.Nuevo.PDetalle
             try
             {
                 grupoClienteBindingSource.DataSource = await grupoClienteModel.gclientes21();
-                cbxGrupoCliente.SelectedValue = currentOferta.idGrupoCliente;
+                if (nuevo) { cbxGrupoCliente.SelectedIndex = 0; }
+                else { cbxGrupoCliente.SelectedValue = currentOferta.idGrupoCliente; }
             }
             catch (Exception ex)
             {
@@ -169,7 +174,6 @@ namespace Admeli.Productos.Nuevo.PDetalle
             if (!nuevo)
             {
                 currentOfertaEnv.idOfertaProductoGrupo = currentIDOferta; // Llenar el id categoria cuando este en esdo modificar
-                currentOfertaEnv.idProducto = currentOferta.idProducto;
             }
             currentOfertaEnv.codigo = textCodigoOferta.Text;
             currentOfertaEnv.descuento = textDescuento.Text;
@@ -178,7 +182,7 @@ namespace Admeli.Productos.Nuevo.PDetalle
             currentOfertaEnv.fechaInicio = dtpFechaInicio.Value.ToString("yyyy-MM-dd HH':'mm':'ss");
             currentOfertaEnv.idAfectoProducto = (int)cbxProductoAfecto.SelectedValue;
             currentOfertaEnv.idGrupoCliente = (int)cbxGrupoCliente.SelectedValue;
-            currentOfertaEnv.idProducto = formProductoNuevo.currentIDProducto;
+            currentOfertaEnv.idPresentacion = formProductoNuevo.currentIDProducto;
             currentOfertaEnv.idSucursal = (int)cbxSucursal.SelectedValue;
             currentOfertaEnv.tipo = "Particular";
         }

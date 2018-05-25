@@ -34,7 +34,7 @@ namespace Entidad
         public int idAfectoProducto { get; set; }
         public string fechaInicio { get; set; }
         public string fechaFin { get; set; }
-        public int idProducto { get; set; }
+        public int idPresentacion { get; set; }
         public int idGrupoCliente { get; set; }
         public int idSucursal { get; set; }
         public string nombreSucursal { get; set; }

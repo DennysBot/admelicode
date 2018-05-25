@@ -1099,9 +1099,17 @@ namespace Admeli.Compras.Nuevo
         private async void btnComprar_Click(object sender, EventArgs e)
         {
 
-            if(currentProveedor==null)
-            {
 
+            hacerCompra();
+
+
+        }
+
+        private async void hacerCompra()
+        {
+
+            if (currentProveedor == null)
+            {
 
                 MessageBox.Show("no hay ningun proveedor seleccionado", "proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
@@ -1125,20 +1133,20 @@ namespace Admeli.Compras.Nuevo
             date = date.Substring(0, date.Length - 1);
             compraC.idCompra = currentCompra != null ? currentCompra.idCompra : 0; ;
             compraC.numeroDocumento = "0";//lo textNordocumento
-            compraC.rucDni =  currentProveedor.ruc;
+            compraC.rucDni = currentProveedor.ruc;
             compraC.direccion = currentProveedor.direccion;
-            
+
             compraC.formaPago = "EFECTIVO";
             compraC.fechaPago = date;
             compraC.fechaFacturacion = date1;
-            compraC.descuento = lbDescuentoCompras.Text.Trim() != "" ? this.Descuento: 0;//
-            compraC.tipoCompra = "Con productos";        
-            compraC.subTotal = lbSubtotal.Text.Trim() != "" ? this.subTotal : 0;           
+            compraC.descuento = lbDescuentoCompras.Text.Trim() != "" ? this.Descuento : 0;//
+            compraC.tipoCompra = "Con productos";
+            compraC.subTotal = lbSubtotal.Text.Trim() != "" ? this.subTotal : 0;
             compraC.total = this.total;
             compraC.observacion = txtObservaciones.Text;
             compraC.estado = 1;
-            compraC.idProveedor =  currentProveedor.idProveedor ;
-            compraC.nombreProveedor =  currentProveedor.razonSocial ;
+            compraC.idProveedor = currentProveedor.idProveedor;
+            compraC.nombreProveedor = currentProveedor.razonSocial;
             compraC.idPago = currentCompra != null ? currentCompra.idPago : 0; ;
             compraC.idPersonal = PersonalModel.personal.idPersonal;
             compraC.tipoCambio = 1;
@@ -1148,13 +1156,13 @@ namespace Admeli.Compras.Nuevo
             compraC.idSucursal = ConfigModel.sucursal.idSucursal;
             compraC.nombreLabel = aux.nombreLabel;
             compraC.vendedor = PersonalModel.personal.nombres;
-            compraC.nroOrdenCompra = txtNroOrdenCompra.Text.Trim();           
+            compraC.nroOrdenCompra = txtNroOrdenCompra.Text.Trim();
             compraC.moneda = moneda.moneda;
-            compraC.idCompra = currentCompra != null ? currentCompra.idCompra : 0;           
+            compraC.idCompra = currentCompra != null ? currentCompra.idCompra : 0;
             //detalle
             foreach (DetalleC detalle in detalleC)
             {
-                
+
                 DatoNotaEntradaC notaEntrada = new DatoNotaEntradaC();
                 notaEntrada.idProducto = detalle.idProducto;
                 notaEntrada.cantidad = detalle.cantidad;
@@ -1174,7 +1182,7 @@ namespace Admeli.Compras.Nuevo
             notaentrada.datoNotaEntrada = datoNotaEntradaC;
             notaentrada.generarNotaEntrada = chbxNotaEntrada.Checked == true ? 1 : 0;
             notaentrada.idCompra = currentCompra != null ? currentCompra.idPago : 0; ;
-            notaentrada.idTipoDocumento =(int) cbxTipoDocumento.SelectedValue;
+            notaentrada.idTipoDocumento = (int)cbxTipoDocumento.SelectedValue;
             notaentrada.idPersonal = PersonalModel.personal.idPersonal;
             compraTotal = new compraTotal();
             compraTotal.detalle = detalleC;
@@ -1186,11 +1194,11 @@ namespace Admeli.Compras.Nuevo
             try
             {
 
-                 await compraModel.ralizarCompra(compraTotal);
+                await compraModel.ralizarCompra(compraTotal);
 
 
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("error:  " + ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -1205,13 +1213,9 @@ namespace Admeli.Compras.Nuevo
 
             }
             else
-            MessageBox.Show("Datos  modificador", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Datos  modificador", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
-
-
-
         }
-
        
 
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
