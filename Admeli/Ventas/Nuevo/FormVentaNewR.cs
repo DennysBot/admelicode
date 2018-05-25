@@ -571,7 +571,10 @@ namespace Admeli.Ventas.Nuevo
         {
             try
             {
-                listProductos = await productoModel.productos(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
+
+               
+
+                listProductos = await productoModel.productos(ConfigModel.sucursal.idSucursal, ConfigModel.currentIdAlmacen);// ver como funciona
                 productoVentaBindingSource.DataSource = listProductos;
                 cbxCodigoProducto.SelectedIndex = -1;
                 cbxDescripcion.SelectedIndex = -1;
@@ -981,7 +984,7 @@ namespace Admeli.Ventas.Nuevo
                 else
                 {                   
                     // Realizando el calculo
-                    double precioCompra = toDouble( currentProducto.precioVenta);
+                    double precioCompra =toDouble( currentProducto.precioVenta);
 
                     double cantidadUnitario =toDouble( currentProducto.cantidadUnitaria);
                     double precioUnidatio = precioCompra * cantidadUnitario*valorDeCambio;
@@ -1311,7 +1314,7 @@ namespace Admeli.Ventas.Nuevo
             {
                 if (cbxDescripcion.SelectedIndex == -1)
                 {
-                    txtPrecioUnitario.Text = currentProducto.precioVenta;
+                    txtPrecioUnitario.Text =darformato( currentProducto.precioVenta);
                 }
                 else
                 {
@@ -1833,7 +1836,7 @@ namespace Admeli.Ventas.Nuevo
         {
             cbxCodigoProducto.SelectedIndex = -1;
             cbxDescripcion.SelectedIndex = -1;
-
+            cbxDescripcion.Text = "";
             cbxVariacion.SelectedIndex = -1;
             txtCantidad.Text = "";
             txtDescuento.Text = "";
@@ -2338,7 +2341,7 @@ namespace Admeli.Ventas.Nuevo
             if (cbxCodigoProducto.SelectedIndex == -1) return;
             AlternativaCombinacion alternativa = alternativaCombinacion.Find(X => X.idCombinacionAlternativa == (int)cbxVariacion.SelectedValue);
             currentProducto = listProductos.Find(X => X.idProducto == (int)cbxCodigoProducto.SelectedValue);
-            double precioUnitario =toDouble( currentProducto.precioVenta) + toDouble(alternativa.precio);
+            double precioUnitario =toDouble( currentProducto.precioVenta)+ toDouble(alternativa.precio);
             txtPrecioUnitario.Text = darformato(precioUnitario*valorDeCambio);
             determinarStock(0);
         }
@@ -2478,11 +2481,18 @@ namespace Admeli.Ventas.Nuevo
 
                 abasteceReceive = await stockModel.Abastece(abastece);
                 dato.Clear();
-                if (abasteceReceive.abastece == 0)
+                if (chbxNotaEntrada.Checked)
                 {
-                    MessageBox.Show("no exite suficiente stock para hacer esta venta", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    return;
+
+                    if (abasteceReceive.abastece == 0)
+                    {
+                        MessageBox.Show("no exite suficiente stock para hacer esta venta", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
+
+
                 }
+                
 
                 DialogResult dialog = MessageBox.Show("¿Desea guardar ya no se podra modificar ?", "Venta",
                                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -2645,7 +2655,8 @@ namespace Admeli.Ventas.Nuevo
 
             }
 
-            Point point = dictionary["codigoProducto"];
+            KeyValuePair<string, Point> primero  = dictionary.First();
+            Point point = primero.Value;
             int YI = point.Y + 30;
             Point point1 = new Point();
 

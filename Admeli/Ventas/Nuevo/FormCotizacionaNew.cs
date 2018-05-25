@@ -641,7 +641,7 @@ namespace Admeli.Ventas.Nuevo
                     // Buscar presentacion elegida
                    
                     // Realizando el calculo
-                    double precioCompra = toDouble( currentProducto.precioVenta);
+                    double precioCompra = toDouble(currentProducto.precioVenta);
                     double cantidadUnitario = toDouble(currentProducto.cantidadUnitaria);
                     double precioUnidatio = precioCompra * cantidadUnitario;
 
@@ -1953,7 +1953,7 @@ namespace Admeli.Ventas.Nuevo
 
             AlternativaCombinacion alternativa = alternativaCombinacion.Find(X => X.idCombinacionAlternativa == (int)cbxVariacion.SelectedValue);
             currentProducto = listProductos.Find(X => X.idProducto == (int)cbxCodigoProducto.SelectedValue );
-            double precioUnitario = toDouble( currentProducto.precioVenta) + toDouble(alternativa.precio);
+            double precioUnitario =toDouble(  currentProducto.precioVenta) + toDouble(alternativa.precio);
             txtPrecioUnitario.Text = darformato(precioUnitario);
             determinarStock(0);
             

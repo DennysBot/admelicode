@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Admeli.Componentes;
 using Admeli.Compras.Buscar;
+using Admeli.Productos.buscar;
 using Admeli.Productos.Nuevo;
 using Entidad;
 using Entidad.Configuracion;
@@ -85,7 +86,7 @@ namespace Admeli.Compras.Nuevo
         private double impuesto = 0;
         private double total = 0;
 
-
+        private bool lisenerKeyEvents = true;
         #region ================================ Constructor================================
         public FormCompraN()
         {
@@ -172,6 +173,12 @@ namespace Admeli.Compras.Nuevo
             }
 
             AddButtonColumn();
+            this.ParentChanged += ParentChange; // Evetno que se dispara cuando el padre cambia // Este eveto se usa para desactivar lisener key events de este modulo
+            if (TopLevelControl is Form) // Escuchando los eventos del formulario padre
+            {
+                (TopLevelControl as Form).KeyPreview = true;
+                TopLevelControl.KeyUp += TopLevelControl_KeyUp;
+            }
 
         }
 
@@ -196,7 +203,49 @@ namespace Admeli.Compras.Nuevo
           
         }
         #endregion
+        #region ======================== KEYBOARD ========================
+        // Evento que se dispara cuando el padre cambia
+        private void ParentChange(object sender, EventArgs e)
+        {
+            // cambiar la propiedad de lisenerKeyEvents de este modulo
+            if (lisenerKeyEvents) lisenerKeyEvents = false;
+        }
 
+        // Escuchando los Eventos de teclado
+        private void TopLevelControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!lisenerKeyEvents) return;
+            switch (e.KeyCode)
+            {
+                case Keys.F2: // productos
+                    cbxCodigoProducto.Focus();
+                    break;
+                case Keys.F3:
+                    txtRuc.Focus();
+                    break;
+                case Keys.F4:
+                    cbxTipoDocumento.Focus();
+                    break;
+                case Keys.F5:
+                    importarOrdenCompra();
+                    break;
+                case Keys.F7:
+                    buscarProducto();
+                    break;
+                default:
+                    if (e.Control && e.KeyValue == 13)
+                    {
+                        //hacerVenta();
+                    }
+
+                    break;
+            }
+
+
+
+
+        }
+        #endregion
         #region ============================== Load ==============================   
 
 
@@ -319,6 +368,7 @@ namespace Admeli.Compras.Nuevo
 
         private async void listarDatosProveedorCompra()
         {
+            loadState(true);
             try
             {
 
@@ -338,6 +388,14 @@ namespace Admeli.Compras.Nuevo
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "cargar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+
+                if (productos != null)
+                {
+                    loadState(false);
+                }
             }
 
 
@@ -387,6 +445,8 @@ namespace Admeli.Compras.Nuevo
 
         private async void cargarProductos()
         {
+
+            loadState(true);
             try
             {
                 productos = await productoModel.productos();
@@ -397,6 +457,11 @@ namespace Admeli.Compras.Nuevo
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Listar Productos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+
+                loadState(false);
             }
         }
 
@@ -423,9 +488,65 @@ namespace Admeli.Compras.Nuevo
 
         #endregion
 
+        #region =========================== Estados ===========================
+
+        public void appLoadState(bool state)
+        {
+            if (state)
+            {
+                
+                progresStatus.Visible = state;
+                progresStatus.Style = ProgressBarStyle.Marquee;
+                Cursor = Cursors.WaitCursor;
+            }
+            else
+            {
+                progresStatus.Style = ProgressBarStyle.Blocks;
+                progresStatus.Visible = state;
+              
+                Cursor = Cursors.Default;
+            }
+        }
+        private void loadState(bool state)
+        {
+            appLoadState(state);
+            this.Enabled = !state;
+        }
+        #endregion
+
         #region=========== METODOS DE APOYO EN EL CALCULO
 
+        public void buscarProducto()
+        {
+            try
+            {
+                FormBuscarProducto formBuscarProducto = new FormBuscarProducto(productos);
+                formBuscarProducto.ShowDialog();
 
+                if (formBuscarProducto.currentProducto != null)
+                {
+
+
+                    currentProducto = formBuscarProducto.currentProducto;
+
+
+                    cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
+
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+
+            {
+                MessageBox.Show("Error: " + ex.Message, "Productos ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
+        }
         private async void calculoSubtotal()
         {
             if (cbxTipoMoneda.SelectedValue == null)
@@ -978,9 +1099,17 @@ namespace Admeli.Compras.Nuevo
         private async void btnComprar_Click(object sender, EventArgs e)
         {
 
-            if(currentProveedor==null)
-            {
 
+            hacerCompra();
+
+
+        }
+
+        private async void hacerCompra()
+        {
+
+            if (currentProveedor == null)
+            {
 
                 MessageBox.Show("no hay ningun proveedor seleccionado", "proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
@@ -1004,20 +1133,20 @@ namespace Admeli.Compras.Nuevo
             date = date.Substring(0, date.Length - 1);
             compraC.idCompra = currentCompra != null ? currentCompra.idCompra : 0; ;
             compraC.numeroDocumento = "0";//lo textNordocumento
-            compraC.rucDni =  currentProveedor.ruc;
+            compraC.rucDni = currentProveedor.ruc;
             compraC.direccion = currentProveedor.direccion;
-            
+
             compraC.formaPago = "EFECTIVO";
             compraC.fechaPago = date;
             compraC.fechaFacturacion = date1;
-            compraC.descuento = lbDescuentoCompras.Text.Trim() != "" ? this.Descuento: 0;//
-            compraC.tipoCompra = "Con productos";        
-            compraC.subTotal = lbSubtotal.Text.Trim() != "" ? this.subTotal : 0;           
+            compraC.descuento = lbDescuentoCompras.Text.Trim() != "" ? this.Descuento : 0;//
+            compraC.tipoCompra = "Con productos";
+            compraC.subTotal = lbSubtotal.Text.Trim() != "" ? this.subTotal : 0;
             compraC.total = this.total;
             compraC.observacion = txtObservaciones.Text;
             compraC.estado = 1;
-            compraC.idProveedor =  currentProveedor.idProveedor ;
-            compraC.nombreProveedor =  currentProveedor.razonSocial ;
+            compraC.idProveedor = currentProveedor.idProveedor;
+            compraC.nombreProveedor = currentProveedor.razonSocial;
             compraC.idPago = currentCompra != null ? currentCompra.idPago : 0; ;
             compraC.idPersonal = PersonalModel.personal.idPersonal;
             compraC.tipoCambio = 1;
@@ -1027,13 +1156,13 @@ namespace Admeli.Compras.Nuevo
             compraC.idSucursal = ConfigModel.sucursal.idSucursal;
             compraC.nombreLabel = aux.nombreLabel;
             compraC.vendedor = PersonalModel.personal.nombres;
-            compraC.nroOrdenCompra = txtNroOrdenCompra.Text.Trim();           
+            compraC.nroOrdenCompra = txtNroOrdenCompra.Text.Trim();
             compraC.moneda = moneda.moneda;
-            compraC.idCompra = currentCompra != null ? currentCompra.idCompra : 0;           
+            compraC.idCompra = currentCompra != null ? currentCompra.idCompra : 0;
             //detalle
             foreach (DetalleC detalle in detalleC)
             {
-                
+
                 DatoNotaEntradaC notaEntrada = new DatoNotaEntradaC();
                 notaEntrada.idProducto = detalle.idProducto;
                 notaEntrada.cantidad = detalle.cantidad;
@@ -1053,7 +1182,7 @@ namespace Admeli.Compras.Nuevo
             notaentrada.datoNotaEntrada = datoNotaEntradaC;
             notaentrada.generarNotaEntrada = chbxNotaEntrada.Checked == true ? 1 : 0;
             notaentrada.idCompra = currentCompra != null ? currentCompra.idPago : 0; ;
-            notaentrada.idTipoDocumento =(int) cbxTipoDocumento.SelectedValue;
+            notaentrada.idTipoDocumento = (int)cbxTipoDocumento.SelectedValue;
             notaentrada.idPersonal = PersonalModel.personal.idPersonal;
             compraTotal = new compraTotal();
             compraTotal.detalle = detalleC;
@@ -1065,11 +1194,11 @@ namespace Admeli.Compras.Nuevo
             try
             {
 
-                 await compraModel.ralizarCompra(compraTotal);
+                await compraModel.ralizarCompra(compraTotal);
 
 
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("error:  " + ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -1084,13 +1213,9 @@ namespace Admeli.Compras.Nuevo
 
             }
             else
-            MessageBox.Show("Datos  modificador", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Datos  modificador", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
-
-
-
         }
-
        
 
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
@@ -1123,6 +1248,15 @@ namespace Admeli.Compras.Nuevo
         private void btnImportarOrdenCompra_Click(object sender, EventArgs e)
         {
 
+
+            importarOrdenCompra();
+
+
+        }
+
+       private void importarOrdenCompra()
+        {
+
             try
             {
 
@@ -1133,10 +1267,10 @@ namespace Admeli.Compras.Nuevo
                 if (aux != null)
                 {
                     txtNroOrdenCompra.Text = aux.serie + " - " + aux.correlativo;
-                    currentProveedor = proveedores.Find(X => X.ruc == aux.rucDni);               
+                    currentProveedor = proveedores.Find(X => X.ruc == aux.rucDni);
                     txtDireccionProveedor.Text = currentProveedor.direccion;
-                    cbxProveedor.SelectedValue = currentProveedor.idProveedor;              
-                    currentCompra = comprasAll.Find(X=>X.idCompra==aux.idCompra);
+                    cbxProveedor.SelectedValue = currentProveedor.idProveedor;
+                    currentCompra = comprasAll.Find(X => X.idCompra == aux.idCompra);
                     txtObservaciones.Text = currentCompra.observacion;
                     detalleCompraBindingSource.DataSource = null;
                     dgvDetalleCompra.Refresh();
@@ -1144,28 +1278,24 @@ namespace Admeli.Compras.Nuevo
                         detalleC.Clear();// limpiamos la lista de detalle productos
                     detalleC = new List<DetalleC>();
 
-                   
-                  
+
+
                     this.reLoad();
                     listarDetalleCompraByIdCompra();
                     listarDatosProveedorCompra();
                     // Calculo de totales y subtotales
                     calculoSubtotal();
-                    calcularDescuento();                
+                    calcularDescuento();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
-                MessageBox.Show("Error: "+ ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Error: " + ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
 
-
-
         }
-
-       
 
         
 

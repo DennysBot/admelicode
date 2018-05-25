@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Admeli.AlmacenBox.buscar;
 using Admeli.Componentes;
 using Admeli.Properties;
+using Admeli.Ventas.buscar;
 using Entidad;
 using Entidad.Configuracion;
 using Modelo;
@@ -129,7 +130,7 @@ namespace Admeli.AlmacenBox.Nuevo
         private int YbtnImportar = 0;
         private int XbtnQuitar = 0;
         private int YbtnQuitar = 0;
-
+        private bool lisenerKeyEvents = true;
 
         public FormNotaSalidaNew()
         {
@@ -211,6 +212,12 @@ namespace Admeli.AlmacenBox.Nuevo
                 panelNotaEntrada.Size = new Size(0,0);
                 tableLayoutPanel11.ColumnCount= 4;
 
+            }
+            this.ParentChanged += ParentChange; // Evetno que se dispara cuando el padre cambia // Este eveto se usa para desactivar lisener key events de este modulo
+            if (TopLevelControl is Form) // Escuchando los eventos del formulario padre
+            {
+                (TopLevelControl as Form).KeyPreview = true;
+                TopLevelControl.KeyUp += TopLevelControl_KeyUp;
             }
 
         }
@@ -399,6 +406,7 @@ namespace Admeli.AlmacenBox.Nuevo
         }
         private async void cargarAlmacenes()
         {
+            loadState(true);
             try
             {
                 //listAlmacen = await AlmacenModel.almacenesAsignados(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
@@ -436,7 +444,12 @@ namespace Admeli.AlmacenBox.Nuevo
             {
                 MessageBox.Show("Error: " + ex.Message, "Cargar Almacenes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            finally
+            {
+                if (listProducto != null)
+                    loadState(true);
 
+            }
 
         }
         private async void cargarDocCorrelativo(int idAlmacen)
@@ -458,7 +471,7 @@ namespace Admeli.AlmacenBox.Nuevo
         {
             try
             {
-                listProducto  = await productoModel.productos(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal );
+                listProducto  = await productoModel.productos(ConfigModel.sucursal.idSucursal, ConfigModel.currentIdAlmacen );
                 productoVentaBindingSource.DataSource = listProducto;
                 cbxCodigoProducto.SelectedIndex = -1;
                 cbxDescripcion.SelectedIndex = -1;
@@ -466,6 +479,12 @@ namespace Admeli.AlmacenBox.Nuevo
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                if (listAlmacenOrigen != null)
+                    loadState(false);
+
             }
         }
 
@@ -486,9 +505,83 @@ namespace Admeli.AlmacenBox.Nuevo
         }
         #endregion
 
-     
+
+        #region ======================== KEYBOARD ========================
+        // Evento que se dispara cuando el padre cambia
+        private void ParentChange(object sender, EventArgs e)
+        {
+            // cambiar la propiedad de lisenerKeyEvents de este modulo
+            if (lisenerKeyEvents) lisenerKeyEvents = false;
+        }
+
+        // Escuchando los Eventos de teclado
+        private void TopLevelControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!lisenerKeyEvents) return;
+            switch (e.KeyCode)
+            {
+                case Keys.F2: // productos
+                    cbxCodigoProducto.Focus();
+                    break;
+                case Keys.F3:
+                    cbxAlmacen.Focus();
+                    break;
+                case Keys.F4:
+                    cbxAlmacenEntrada.Focus();
+                    break;
+                case Keys.F5:
+                    ImportarVenta();
+                    break;
+                case Keys.F7:
+                    buscarProducto();
+                    break;
+                default:
+                    if (e.Control && e.KeyValue == 13)
+                    {
+                        hacerNota();
+                    }
+
+                    break;
+            }
+
+
+
+
+        }
+        #endregion
+        #region =========================== Estados ===========================
+
+        public void appLoadState(bool state)
+        {
+            if (state)
+            {
+
+                progresStatus.Visible = state;
+                progresStatus.Style = ProgressBarStyle.Marquee;
+                Cursor = Cursors.WaitCursor;
+            }
+            else
+            {
+                progresStatus.Style = ProgressBarStyle.Blocks;
+                progresStatus.Visible = state;
+
+                Cursor = Cursors.Default;
+            }
+        }
+        private void loadState(bool state)
+        {
+
+            appLoadState(state);
+            this.Enabled = !state;
+        }
+        #endregion
+
 
         private void btnImportarVenta_Click(object sender, EventArgs e)
+        {
+            ImportarVenta();
+        }
+        private void ImportarVenta()
         {
             FormBuscarVentas formBuscarVentas = new FormBuscarVentas();
             formBuscarVentas.ShowDialog();
@@ -502,9 +595,46 @@ namespace Admeli.AlmacenBox.Nuevo
                 mostrarControlesVenta();
                 btnQuitar.Enabled = true;
             }
+
         }
+        public void buscarProducto()
+        {
+            try
+            {
+                FormBuscarProducto formBuscarProducto = new FormBuscarProducto(listProducto);
+                formBuscarProducto.ShowDialog();
+
+                if (formBuscarProducto.currentProducto != null)
+                {
 
 
+                    currentProducto = formBuscarProducto.currentProducto;
+                    if (currentProducto.precioVenta == null)
+                    {
+
+                        currentProducto = null;
+                        MessageBox.Show("Error:  producto seleccionado no tiene precio de venta, no se puede seleccionar", "Buscar Producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+
+                    }
+
+                    cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
+
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+
+            {
+                MessageBox.Show("Error: " + ex.Message, "Productos ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
+        }
         private  async void  cargarDetalle(int idVenta)
         {
             try
@@ -636,7 +766,7 @@ namespace Admeli.AlmacenBox.Nuevo
                     detalleNota.nro = 1;
                     detalleNota.precioEnvio = 0;
                     detalleNota.descuento = 0;// ver en detalle al guardar
-                    detalleNota.total = toDouble(txtCantidad.Text.Trim()) * toDouble(currentProducto.precioVenta);
+                    detalleNota.total = toDouble(txtCantidad.Text.Trim()) *toDouble(currentProducto.precioVenta);
                     detalleNota.alternativas = "";// falta ver este detalle
                     detalleNota.idNotaSalida = currentNotaSalida != null ? currentNotaSalida.idNotaSalida : 0;
                     detalleNota.nombrePresentacion = currentProducto.nombreProducto;
@@ -678,7 +808,7 @@ namespace Admeli.AlmacenBox.Nuevo
 
                 MessageBox.Show("Error: elemento no seleccionado", "agregar Elemento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
+           
 
         }
 
@@ -687,6 +817,7 @@ namespace Admeli.AlmacenBox.Nuevo
         {
             cbxCodigoProducto.SelectedIndex = -1;
             cbxDescripcion.SelectedIndex = -1;
+            cbxDescripcion.Text = "";
             cbxVariacion.SelectedIndex = -1;
             txtCantidad.Text = "";
             txtCantidadRecibida.Text = "";
@@ -728,7 +859,7 @@ namespace Admeli.AlmacenBox.Nuevo
             currentProducto = listProducto.Find(X => X.idPresentacion == currentdetalleNotaSalida.idPresentacion);
             currentdetalleNotaSalida.cantidad = toDouble(txtCantidad.Text);
             currentdetalleNotaSalida.cantidadUnitaria = toDouble(txtCantidad.Text);
-            currentdetalleNotaSalida.total = toDouble(txtCantidad.Text) * toDouble(currentProducto.precioVenta);
+            currentdetalleNotaSalida.total = toDouble(txtCantidad.Text) *toDouble( currentProducto.precioVenta);
             currentdetalleNotaSalida.nombreCombinacion = cbxVariacion.Text;
             currentdetalleNotaSalida.idCombinacionAlternativa =(int) cbxVariacion.SelectedValue;
             currentdetalleNotaSalida.cantidadRecibida = toDouble(txtCantidadRecibida.Text);
@@ -750,11 +881,31 @@ namespace Admeli.AlmacenBox.Nuevo
       
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
+            hacerNota();
+        }
+        private async void hacerNota()
+        {
             // comprobamos la nota 
+
+
+            if (listDetalleNotaSalida == null)
+            {
+                listDetalleNotaSalida = new List<DetalleNotaSalida>();
+                return;
+            }
+            if (listDetalleNotaSalida.Count == 0)
+            {
+
+                MessageBox.Show("no hay productos seleccionados", "Detalle de Nota", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbxCodigoProducto.Focus();
+                return;
+            }
+
             ResponseNotaGuardar notaGuardar = null;
             ResponseNotaGuardar notaGuardarE = null;
             ResponseNotaSalida responseNotaSalida = null;
             bool modificar = false;
+            loadState(true);
             if (nuevo)
             {
                 comprobarNota.idVenta = currentVenta != null ? currentVenta.idVenta : 0;
@@ -770,7 +921,7 @@ namespace Admeli.AlmacenBox.Nuevo
 
             almacenSalida.descripcion = txtDescripcion.Text;
             almacenSalida.destino = txtDireccionDestino.Text;
-            almacenSalida.idNotaSalida= currentNotaSalida != null ? currentNotaSalida.idNotaSalida : 0;
+            almacenSalida.idNotaSalida = currentNotaSalida != null ? currentNotaSalida.idNotaSalida : 0;
 
             int estado = 0;
             switch (cbxEstado.Text)
@@ -787,7 +938,7 @@ namespace Admeli.AlmacenBox.Nuevo
 
 
             }
-           
+
             almacenSalida.estadoEnvio = estado;
             string date1 = String.Format("{0:u}", dtpFechaEntrega.Value);
             date1 = date1.Substring(0, date1.Length - 1);
@@ -799,9 +950,9 @@ namespace Admeli.AlmacenBox.Nuevo
 
             int numert = 0;
             foreach (DetalleNotaSalida detalle in listDetalleNotaSalida)
-            {              
+            {
                 List<object> listaux = new List<object>();
-               
+
                 listaux.Add(detalle.idProducto);
                 listaux.Add(detalle.idCombinacionAlternativa);
                 int cantidad = Convert.ToInt32(detalle.cantidad, CultureInfo.GetCultureInfo("en-US"));
@@ -818,9 +969,9 @@ namespace Admeli.AlmacenBox.Nuevo
             comprobarNota.dato = listint;
             try
             {
-               responseNotaSalida = await notaSalidaModel.verifcar(comprobarNota);
+                responseNotaSalida = await notaSalidaModel.verifcar(comprobarNota);
 
-                if (responseNotaSalida.cumple.cumple == 1  && responseNotaSalida.abastece.abastece==1)
+                if (responseNotaSalida.cumple.cumple == 1 && responseNotaSalida.abastece.abastece == 1)
                 {
 
 
@@ -832,12 +983,12 @@ namespace Admeli.AlmacenBox.Nuevo
                     listElementosNotaSalida.Add(object5);
                     listElementosNotaSalida.Add(object6);
                     listElementosNotaSalida.Add(object7);
-                   
+
                     if (nuevo)
                     {
                         notaGuardar = await notaSalidaModel.guardar(listElementosNotaSalida);
 
-                        
+
                     }
                     else
                     {
@@ -845,7 +996,7 @@ namespace Admeli.AlmacenBox.Nuevo
                         modificar = true;
                     }
 
-                   
+
 
                 }
                 else
@@ -866,15 +1017,15 @@ namespace Admeli.AlmacenBox.Nuevo
 
             // para generar la nota de entrada
 
-          
-            if (nuevo && (int)cbxAlmacenEntrada.SelectedValue!=0 && notaGuardar!=null)
+
+            if (nuevo && (int)cbxAlmacenEntrada.SelectedValue != 0 && notaGuardar != null)
             {
 
-                comprobarNotaE.idCompra = 0 ;//
-                comprobarNotaE.idNotaEntrada =  0;// en modificar puede variar         
+                comprobarNotaE.idCompra = 0;//
+                comprobarNotaE.idNotaEntrada = 0;// en modificar puede variar         
                 almacenNEntrada.estadoEntrega = chbxEntrega.Checked ? 1 : 0;
 
-                almacenNEntrada.idNotaEntrada =  0 ;
+                almacenNEntrada.idNotaEntrada = 0;
                 date1 = String.Format("{0:u}", dtpFechaEntrega.Value);
                 date1 = date1.Substring(0, date1.Length - 1);
                 almacenNEntrada.fechaEntrada = date1;// probar con el otro 
@@ -883,7 +1034,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 almacenNEntrada.idTipoDocumento = 7;// nota de entrada
                 almacenNEntrada.observacion = txtDescripcion.Text;
 
-                compraEntradaGuardar.idCompra =0;
+                compraEntradaGuardar.idCompra = 0;
 
                 numert = 0;
                 foreach (DetalleNotaSalida detalle in listDetalleNotaSalida)
@@ -917,7 +1068,7 @@ namespace Admeli.AlmacenBox.Nuevo
                         listElementosNotaEntrada.Add(object5E);
                         listElementosNotaEntrada.Add(object6E);
                         listElementosNotaEntrada.Add(object7E);
-                         notaGuardarE = null;
+                        notaGuardarE = null;
                         if (nuevo)
                         {
                             notaGuardarE = await entradaModel.guardar(listElementosNotaEntrada);
@@ -930,8 +1081,8 @@ namespace Admeli.AlmacenBox.Nuevo
 
                         if (notaGuardarE.id > 0)
                         {
-                            MessageBox.Show(notaGuardar.msj+" "+"corectamente", "guardar Nota Entrada - "+ ConfigModel.alamacenes.Find(X => X.idAlmacen == (int)cbxAlmacenEntrada.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            
+                            MessageBox.Show(notaGuardar.msj + " " + "corectamente", "guardar Nota Entrada - " + ConfigModel.alamacenes.Find(X => X.idAlmacen == (int)cbxAlmacenEntrada.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
                         }
 
@@ -952,7 +1103,7 @@ namespace Admeli.AlmacenBox.Nuevo
                     MessageBox.Show("Error: " + ex.Message, "Guardar Nota  de Entrada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-               
+
 
 
 
@@ -960,15 +1111,15 @@ namespace Admeli.AlmacenBox.Nuevo
 
 
 
-            if(notaGuardar != null)
+            if (notaGuardar != null)
             {
 
-                if (notaGuardar.id > 0 )
+                if (notaGuardar.id > 0)
                 {
                     if (!modificar)
                     {
 
-                        DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - "+ConfigModel.alamacenes.Find(X=>X.idAlmacen== (int)cbxAlmacen.SelectedValue).nombre,
+                        DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + ConfigModel.alamacenes.Find(X => X.idAlmacen == (int)cbxAlmacen.SelectedValue).nombre,
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                         if (dialog == DialogResult.No)
                         {
@@ -1004,20 +1155,15 @@ namespace Admeli.AlmacenBox.Nuevo
 
 
             }
-           
+
             // para generar la nota de entrada
 
             // comprobamos la nota             
 
-
-
-
-
-
-
-
-
+            loadState(false);
         }
+
+
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
@@ -1317,7 +1463,7 @@ namespace Admeli.AlmacenBox.Nuevo
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
-        {
+            {
 
         }
 
@@ -1440,6 +1586,120 @@ namespace Admeli.AlmacenBox.Nuevo
         }
 
         private void cbxCodigoProducto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void cbxDescripcion_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void cbxVariacion_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void txtCantidad_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                if (txtCantidadRecibida.Enabled)
+                    this.SelectNextControl((Control)sender, true, true, true, true);
+                else
+                    btnAgregar.Focus();
+            }
+        }
+
+        private void txtCantidadRecibida_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                btnAgregar.Focus();
+            }
+        }
+
+        private void btnAgregar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void cbxAlmacen_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void dtpFechaEntrega_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void dtpFechaEntrega_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void cbxEstado_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void txtDireccionDestino_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void txtMotivo_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void cbxAlmacenEntrada_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void chbxEntrega_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void txtDescripcion_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

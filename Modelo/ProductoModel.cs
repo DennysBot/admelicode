@@ -162,6 +162,21 @@ namespace Modelo
                 throw ex;
             }
         }
+        public async Task<RootObject<ProductoVenta, CombinacionStock>> productosVentaStock(Dictionary<string, int> dictionary, string like, int idAlmacen, int idSucursal, int page, int items)
+        {
+            try
+            {
+                // www.lineatienda.com/services.php/productos/categoria/stock/1/100/1/1
+                Dictionary<string, int>[] dataSend = { dictionary };
+
+                RootObject<ProductoVenta, CombinacionStock> productos = await webService.POST<Dictionary<string, int>[], RootObject<ProductoVenta, CombinacionStock>>("productos", String.Format("categoria/stock/{0}/{1}/{2}/{3}", page, items, idAlmacen, idSucursal), dataSend);
+                return productos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<RootObject<Producto, CombinacionStock>> productosStockLike(Dictionary<string, int> dictionary, string like, int idAlmacen, int idSucursal, int page, int items)
         {
             try
@@ -288,6 +303,20 @@ namespace Modelo
             {
                 // localhost/admeli/xcore/services.php/productos41/categoria
                 List<Producto> list = await webService.GET<List<Producto>>("productos41", "categoria");
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<ProductoVenta>> productosVenta(int idAlmacen)
+        {
+            try
+            {
+                // localhost/admeli/xcore/services.php//productosVenta/Almacen/:idAlmacen
+                List<ProductoVenta> list = await webService.GET<List<ProductoVenta>>("productosVenta", String.Format("Almacen/{0}", idAlmacen));
                 return list;
             }
             catch (Exception ex)

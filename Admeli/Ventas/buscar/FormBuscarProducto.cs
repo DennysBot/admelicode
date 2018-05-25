@@ -60,7 +60,7 @@ namespace Admeli.Ventas.buscar
         {
             cargarNotaSalidaDetalle();
 
-
+            darFormatoDecimales();
         }
 
 
@@ -82,6 +82,9 @@ namespace Admeli.Ventas.buscar
                
                 productoVentaBindingSource.DataSource = listProductos;
                 listProductosfiltrada = listProductos;
+
+                ProductoVenta productoVenta = listProductos[0];
+                lbl.Text = ConfigModel.alamacenes.Find(X=>X.idAlmacen==ConfigModel.currentIdAlmacen).nombre;
             }
             catch (Exception ex)
             {
@@ -94,6 +97,17 @@ namespace Admeli.Ventas.buscar
 
             }
 
+        }
+
+
+        private void darFormatoDecimales()
+        {
+           
+            dgvProductos.Columns["precioVenta"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+            dgvProductos.Columns["stock"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+           
+            dgvProductos.Columns["precioVenta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductos.Columns["stock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
         #endregion
 
