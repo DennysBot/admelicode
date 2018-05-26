@@ -159,9 +159,16 @@ namespace Admeli.AlmacenBox.buscar
 
         private void txtCliente_TextChanged(object sender, EventArgs e)
         {
-            BindingList<NotaSalidaR> filtered = new BindingList<NotaSalidaR>(listNotasalida.Where(obj => obj.rucDni.Contains(txtCliente.Text.Trim())|| obj.nombreCliente.ToUpper().Contains(txtCliente.Text.ToUpper())).ToList());
-            notaSalidaRBindingSource.DataSource = filtered;
-            dgvNotaSalida.Update();
+            try
+            {
+                List<NotaSalidaR> listNotasalidaNoNull = listNotasalida.Where(obj=>obj.rucDni!=null || obj.nombreCliente!=null).ToList();
+                BindingList<NotaSalidaR> filtered = new BindingList<NotaSalidaR>(listNotasalidaNoNull.Where(obj => obj.rucDni.Contains(txtCliente.Text.Trim()) || obj.nombreCliente.ToUpper().Contains(txtCliente.Text.ToUpper())).ToList());
+                notaSalidaRBindingSource.DataSource = filtered;
+                dgvNotaSalida.Update();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void txtMotivo_TextChanged(object sender, EventArgs e)
