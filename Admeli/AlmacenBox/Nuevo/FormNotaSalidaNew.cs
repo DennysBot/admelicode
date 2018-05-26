@@ -1013,6 +1013,9 @@ namespace Admeli.AlmacenBox.Nuevo
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "guardar Nota Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dictionary.Clear();
+                DetallesNotaSalida.Clear();
+                listint.Clear();
             }
 
             // para generar la nota de entrada
@@ -1054,9 +1057,10 @@ namespace Admeli.AlmacenBox.Nuevo
 
                 }
                 comprobarNotaE.dato = listintE;
+                ResponseNota responseNota = null;
                 try
                 {
-                    ResponseNota responseNota = await entradaModel.verifcar(comprobarNotaE);
+                    responseNota = await entradaModel.verifcar(comprobarNotaE);
 
                     if (responseNota.cumple == 1)
                     {
@@ -1101,6 +1105,10 @@ namespace Admeli.AlmacenBox.Nuevo
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Guardar Nota  de Entrada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dictionaryE.Clear();
+                    DetallesNota.Clear();
+                    listintE.Clear();
+                    responseNota = new ResponseNota();
                 }
 
 
@@ -1127,13 +1135,22 @@ namespace Admeli.AlmacenBox.Nuevo
                             this.Close();
                             return;
                         }
+                        try
+                        {
 
-                        // currentNotaSalida= 
                         List<NotaSalidaR> listNotasalida3 = await notaSalidaModel.nSalida((int)cbxAlmacen.SelectedValue);
 
                         FormRemisionNew formRemisionNew = new FormRemisionNew(listNotasalida3.Find(X => X.idNotaSalida == notaGuardar.id));
                         formRemisionNew.ShowDialog();
                         this.Close();
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message, "cargar guia de remision", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        }
+                        // currentNotaSalida= 
+                       
 
                     }
                     else

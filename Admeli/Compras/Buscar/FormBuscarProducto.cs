@@ -137,6 +137,19 @@ namespace Admeli.Productos.buscar
 
         }
 
+
+
+        private string quitarC(string  texto)
+        {
+
+
+            string textoNormalizado = texto.Normalize(NormalizationForm.FormD);
+            //coincide todo lo que no sean letras y números ascii o espacio
+            //y lo reemplazamos por una cadena vacía.
+            Regex reg = new Regex("[^a-zA-Z0-9 ]");
+            return reg.Replace(textoNormalizado, "");
+
+        }
         private void txtMotivo_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -163,7 +176,7 @@ namespace Admeli.Productos.buscar
                 string palabra = list[i];
                 if (palabra != "")
                 {
-                    List<Producto> listventa = listProductos.Where(obj => obj.nombreProducto.ToUpper().Contains(palabra.Trim().ToUpper())).ToList();
+                    List<Producto> listventa = listProductos.Where(obj =>quitarC( obj.nombreProducto).ToUpper().Contains(quitarC(palabra.Trim()).ToUpper())).ToList();
                     matrizProducto.Add(listventa);
                 }
             }

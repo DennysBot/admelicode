@@ -362,10 +362,11 @@ namespace Admeli.Compras.buscar
         private async  void btnAceptar_Click(object sender, EventArgs e)
         {
 
-           
+            if (cbxNivel1.SelectedIndex == -1)
+                return;
 
 
-            Nivel3 pais3 = null;
+                Nivel3 pais3 = null;
             Pais pais  = cbxPaises.Items[cbxPaises.SelectedIndex] as Pais;
             Nivel1 pais1 = cbxNivel1.Items[cbxNivel1.SelectedIndex] as Nivel1;
             Nivel2 pais2 = cbxNivel2.Items[cbxNivel2.SelectedIndex] as Nivel2;

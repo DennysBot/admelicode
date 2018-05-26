@@ -147,8 +147,8 @@
             this.btnVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbTotal = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lbImpuesto = new System.Windows.Forms.Label();
             this.lbDescuentoVenta = new System.Windows.Forms.Label();
@@ -244,7 +244,7 @@
             this.panelDatos.Controls.Add(this.panel6);
             this.panelDatos.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelDatos.Location = new System.Drawing.Point(0, 0);
-            this.panelDatos.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelDatos.Margin = new System.Windows.Forms.Padding(5);
             this.panelDatos.Name = "panelDatos";
             this.panelDatos.Size = new System.Drawing.Size(417, 750);
             this.panelDatos.TabIndex = 2;
@@ -273,7 +273,7 @@
             this.btnImportarCotizacion.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImportarCotizacion.ForeColor = System.Drawing.Color.White;
             this.btnImportarCotizacion.Location = new System.Drawing.Point(28, 27);
-            this.btnImportarCotizacion.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnImportarCotizacion.Margin = new System.Windows.Forms.Padding(5);
             this.btnImportarCotizacion.Name = "btnImportarCotizacion";
             this.btnImportarCotizacion.Size = new System.Drawing.Size(357, 42);
             this.btnImportarCotizacion.TabIndex = 412;
@@ -297,7 +297,7 @@
             // 
             this.txtObservaciones.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtObservaciones.Location = new System.Drawing.Point(27, 102);
-            this.txtObservaciones.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtObservaciones.Margin = new System.Windows.Forms.Padding(5);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
             this.txtObservaciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -420,7 +420,7 @@
             this.txtCorrelativo.Enabled = false;
             this.txtCorrelativo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorrelativo.Location = new System.Drawing.Point(148, 138);
-            this.txtCorrelativo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtCorrelativo.Margin = new System.Windows.Forms.Padding(5);
             this.txtCorrelativo.Name = "txtCorrelativo";
             this.txtCorrelativo.Size = new System.Drawing.Size(139, 26);
             this.txtCorrelativo.TabIndex = 408;
@@ -442,7 +442,7 @@
             this.txtSerie.Enabled = false;
             this.txtSerie.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSerie.Location = new System.Drawing.Point(21, 138);
-            this.txtSerie.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtSerie.Margin = new System.Windows.Forms.Padding(5);
             this.txtSerie.Name = "txtSerie";
             this.txtSerie.Size = new System.Drawing.Size(105, 26);
             this.txtSerie.TabIndex = 11;
@@ -520,7 +520,7 @@
             this.panel9.Controls.Add(this.label16);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel9.Margin = new System.Windows.Forms.Padding(5);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(396, 53);
             this.panel9.TabIndex = 0;
@@ -561,7 +561,7 @@
             this.panel6.Controls.Add(this.panel7);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel6.Margin = new System.Windows.Forms.Padding(5);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(396, 263);
             this.panel6.TabIndex = 0;
@@ -578,7 +578,7 @@
             this.btnBuscarCliente.ForeColor = System.Drawing.Color.White;
             this.btnBuscarCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarCliente.Image")));
             this.btnBuscarCliente.Location = new System.Drawing.Point(347, 169);
-            this.btnBuscarCliente.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnBuscarCliente.Margin = new System.Windows.Forms.Padding(5);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
             this.btnBuscarCliente.Size = new System.Drawing.Size(31, 28);
             this.btnBuscarCliente.TabIndex = 404;
@@ -706,7 +706,7 @@
             this.panel7.Controls.Add(this.label9);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel7.Margin = new System.Windows.Forms.Padding(5);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(396, 53);
             this.panel7.TabIndex = 0;
@@ -740,7 +740,7 @@
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(417, 0);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(5);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(9, 750);
             this.splitter1.TabIndex = 3;
@@ -756,7 +756,7 @@
             this.panel2.Controls.Add(this.panelFooter);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(426, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1413, 750);
             this.panel2.TabIndex = 4;
@@ -768,7 +768,7 @@
             this.panelInfo.Controls.Add(this.dgvDetalleOrdenCompra);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelInfo.Location = new System.Drawing.Point(0, 133);
-            this.panelInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelInfo.Margin = new System.Windows.Forms.Padding(5);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Padding = new System.Windows.Forms.Padding(23, 18, 23, 18);
             this.panelInfo.Size = new System.Drawing.Size(1320, 358);
@@ -779,7 +779,7 @@
             this.panelCargar.Controls.Add(this.progrestatus);
             this.panelCargar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelCargar.Location = new System.Drawing.Point(23, 320);
-            this.panelCargar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelCargar.Margin = new System.Windows.Forms.Padding(5);
             this.panelCargar.Name = "panelCargar";
             this.panelCargar.Size = new System.Drawing.Size(1274, 20);
             this.panelCargar.TabIndex = 301;
@@ -788,7 +788,7 @@
             // 
             this.progrestatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progrestatus.Location = new System.Drawing.Point(0, 0);
-            this.progrestatus.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.progrestatus.Margin = new System.Windows.Forms.Padding(5);
             this.progrestatus.Name = "progrestatus";
             this.progrestatus.Size = new System.Drawing.Size(1274, 20);
             this.progrestatus.TabIndex = 0;
@@ -1547,7 +1547,7 @@
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(352, 65);
             this.label30.TabIndex = 2;
-            this.label30.Text = "Descripción(F7)";
+            this.label30.Text = "Descripción (F7)";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel25
@@ -1651,7 +1651,7 @@
             this.btnImprimir.ForeColor = System.Drawing.Color.White;
             this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
             this.btnImprimir.Location = new System.Drawing.Point(12, 11);
-            this.btnImprimir.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(5);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(193, 60);
             this.btnImprimir.TabIndex = 12;
@@ -1707,8 +1707,8 @@
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.Controls.Add(this.pictureBox1);
             this.panel11.Controls.Add(this.lbTotal);
+            this.panel11.Controls.Add(this.pictureBox1);
             this.panel11.Controls.Add(this.label7);
             this.panel11.Controls.Add(this.lbImpuesto);
             this.panel11.Controls.Add(this.lbDescuentoVenta);
@@ -1718,10 +1718,22 @@
             this.panel11.Controls.Add(this.label1);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(591, 15);
-            this.panel11.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel11.Margin = new System.Windows.Forms.Padding(5);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(439, 219);
+            this.panel11.Size = new System.Drawing.Size(450, 219);
             this.panel11.TabIndex = 17;
+            // 
+            // lbTotal
+            // 
+            this.lbTotal.AutoSize = true;
+            this.lbTotal.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
+            this.lbTotal.Location = new System.Drawing.Point(95, 155);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(190, 44);
+            this.lbTotal.TabIndex = 67;
+            this.lbTotal.Text = "S/. 250.00";
+            this.lbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
             // 
@@ -1732,23 +1744,14 @@
             this.pictureBox1.Size = new System.Drawing.Size(123, 97);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 66;
-
             this.pictureBox1.TabStop = false;
-            // 
-            // lbTotal
-            // 
-            this.lbTotal.Location = new System.Drawing.Point(133, 163);
-            this.lbTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(133, 28);
-            this.lbTotal.TabIndex = 67;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(79, 137);
+            this.label7.Location = new System.Drawing.Point(32, 123);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(107, 19);
             this.label7.TabIndex = 64;
@@ -1760,7 +1763,7 @@
             this.lbImpuesto.AutoSize = true;
             this.lbImpuesto.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbImpuesto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(57)))), ((int)(((byte)(57)))));
-            this.lbImpuesto.Location = new System.Drawing.Point(159, 105);
+            this.lbImpuesto.Location = new System.Drawing.Point(157, 87);
             this.lbImpuesto.Name = "lbImpuesto";
             this.lbImpuesto.Size = new System.Drawing.Size(85, 19);
             this.lbImpuesto.TabIndex = 63;
@@ -1772,7 +1775,7 @@
             this.lbDescuentoVenta.AutoSize = true;
             this.lbDescuentoVenta.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDescuentoVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(57)))), ((int)(((byte)(57)))));
-            this.lbDescuentoVenta.Location = new System.Drawing.Point(159, 28);
+            this.lbDescuentoVenta.Location = new System.Drawing.Point(157, 29);
             this.lbDescuentoVenta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDescuentoVenta.Name = "lbDescuentoVenta";
             this.lbDescuentoVenta.Size = new System.Drawing.Size(85, 19);
@@ -1785,7 +1788,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(62, 105);
+            this.label3.Location = new System.Drawing.Point(59, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 19);
             this.label3.TabIndex = 61;
@@ -1809,7 +1812,7 @@
             this.lbSubtotal.AutoSize = true;
             this.lbSubtotal.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(57)))), ((int)(((byte)(57)))));
-            this.lbSubtotal.Location = new System.Drawing.Point(159, 68);
+            this.lbSubtotal.Location = new System.Drawing.Point(157, 56);
             this.lbSubtotal.Name = "lbSubtotal";
             this.lbSubtotal.Size = new System.Drawing.Size(85, 19);
             this.lbSubtotal.TabIndex = 59;
@@ -1821,7 +1824,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(68, 66);
+            this.label1.Location = new System.Drawing.Point(67, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 19);
             this.label1.TabIndex = 58;
@@ -2339,7 +2342,6 @@
         private System.Windows.Forms.Button btnImportarCotizacion;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lbImpuesto;
         private System.Windows.Forms.Label lbDescuentoVenta;
@@ -2408,5 +2410,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalGeneralDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn eliminarDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn existeStockDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lbTotal;
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Admeli.Componentes;
 using Admeli.Compras.buscar;
 using Admeli.Compras.Buscar;
+using Admeli.Productos.buscar;
 using Admeli.Productos.Nuevo;
 using Entidad;
 using Entidad.Configuracion;
@@ -99,7 +100,7 @@ namespace Admeli.Compras.Nuevo
         private double Descuento = 0;
         private double impuesto = 0;
         private double total = 0;
-        
+        private bool lisenerKeyEvents =true;
         public FormOrdenCompraNew()
         {
             InitializeComponent();
@@ -128,7 +129,7 @@ namespace Admeli.Compras.Nuevo
             lbSubtotal.Text = "s/" + ". " + darformato(0);
             lbDescuentoCompras.Text = "s/" + ". " + darformato(0);
             lbImpuesto.Text = "s/" + ". " + darformato(0);
-            lbTotalCompra.Text = "s/" + ". " + darformato(0);
+            lbTotal.Text = "s/" + ". " + darformato(0);
 
         }
         private string darformato(object dato)
@@ -187,6 +188,13 @@ namespace Admeli.Compras.Nuevo
             AddButtonColumn();
 
             btnModificar.Enabled = false;
+
+            this.ParentChanged += ParentChange; // Evetno que se dispara cuando el padre cambia // Este eveto se usa para desactivar lisener key events de este modulo
+            if (TopLevelControl is Form) // Escuchando los eventos del formulario padre
+            {
+                (TopLevelControl as Form).KeyPreview = true;
+                TopLevelControl.KeyUp += TopLevelControl_KeyUp;
+            }
         }
         private void reLoad()
         {
@@ -199,23 +207,90 @@ namespace Admeli.Compras.Nuevo
            
         }
         #endregion
+        #region ======================== KEYBOARD ========================
+        // Evento que se dispara cuando el padre cambia
+        private void ParentChange(object sender, EventArgs e)
+        {
+            // cambiar la propiedad de lisenerKeyEvents de este modulo
+            if (lisenerKeyEvents) lisenerKeyEvents = false;
+        }
+
+        // Escuchando los Eventos de teclado
+        private void TopLevelControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!lisenerKeyEvents) return;
+            switch (e.KeyCode)
+            {
+                case Keys.F2: // productos
+                    cbxCodigoProducto.Focus();
+                    break;
+                case Keys.F3:
+                    txtRuc.Focus();
+                    break;
+                case Keys.F4:
+                    btnBuscarLugar.Focus();
+                    break;
+                case Keys.F5:
+                    ComprarOrden();
+                    break;
+                case Keys.F7:
+                    buscarProducto();
+                    break;
+                default:
+                    if (e.Control && e.KeyValue == 13)
+                    {
+                        hacerOrdenCompra();
+                    }
+            
+
+                    break;
+            }
 
 
-       
 
+
+        }
+        #endregion
+
+
+        #region =========================== Estados ===========================
+
+        public void appLoadState(bool state)
+        {
+            if (state)
+            {
+
+                progresStatus.Visible = state;
+                progresStatus.Style = ProgressBarStyle.Marquee;
+                Cursor = Cursors.WaitCursor;
+            }
+            else
+            {
+                progresStatus.Style = ProgressBarStyle.Blocks;
+                progresStatus.Visible = state;
+
+                Cursor = Cursors.Default;
+            }
+        }
+        private void loadState(bool state)
+        {
+            appLoadState(state);
+            this.Enabled = !state;
+        }
+        #endregion
 
 
 
 
         #region ============================== Load ==============================
 
-       
+
 
 
         private async void cargarProveedores(bool nuevo)
         {
 
-
+            loadState(true);
             try
             {   proveedores = await proveedorModel.listaProveedores();
                 proveedorBindingSource.DataSource = proveedores;
@@ -242,6 +317,12 @@ namespace Admeli.Compras.Nuevo
             {
                 MessageBox.Show("Error: " + ex.Message, "cargar Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            finally
+            {
+                loadState(false);
+
+            }
+            
            
 
         }
@@ -495,14 +576,50 @@ namespace Admeli.Compras.Nuevo
             }
         }
 
-     
-       
+
+
 
         #endregion
 
         #region=========== METODOS DE APOYO EN EL CALCULO
 
+        public void buscarProducto()
+        {
+            loadState(true);
+            try
+            {
+                FormBuscarProducto formBuscarProducto = new FormBuscarProducto(productos);
+                formBuscarProducto.ShowDialog();
 
+                if (formBuscarProducto.currentProducto != null)
+                {
+
+
+                    currentProducto = formBuscarProducto.currentProducto;
+
+
+                    cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
+
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+
+            {
+                MessageBox.Show("Error: " + ex.Message, "Productos ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+            finally
+            {
+
+                loadState(false);
+            }
+
+        }
         private async void calculoSubtotal()
         {
             try
@@ -566,7 +683,7 @@ namespace Admeli.Compras.Nuevo
 
             // determinar impuesto de cada producto
             this.total = impuesto + subTotalLocal;
-            lbTotalCompra.Text = moneda.simbolo + ". " + darformato(total);
+            lbTotal.Text = moneda.simbolo + ". " + darformato(total);
 
 
             }
@@ -611,17 +728,15 @@ namespace Admeli.Compras.Nuevo
                 {
                     if (cbxDescripcion.SelectedIndex == -1)
                     {
-                        txtPrecioUnitario.Text = currentProducto.precioCompra.ToString(ConfigModel.configuracionGeneral.formatoDecimales);
+                        txtPrecioUnitario.Text =darformato( currentProducto.precioCompra);
                     }
                     else
                     {
                         // Buscar presentacion elegida
-                        int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                        Presentacion findPresentacion = presentaciones.Find(x => x.idPresentacion == idPresentacion);
-
+                       
                         // Realizando el calculo
-                        double precioCompra = double.Parse(currentProducto.precioCompra.ToString(ConfigModel.configuracionGeneral.formatoDecimales));
-                        double cantidadUnitario = double.Parse(findPresentacion.cantidadUnitaria.ToString(ConfigModel.configuracionGeneral.formatoDecimales));
+                        double precioCompra = (double) currentProducto.precioCompra;
+                        double cantidadUnitario = 1;
                         double precioUnidatio = precioCompra * cantidadUnitario;
 
                         // Imprimiendo valor
@@ -641,13 +756,10 @@ namespace Admeli.Compras.Nuevo
                 {
 
                     // Buscar presentacion elegida
-                    int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                    Presentacion findPresentacion = presentaciones.Find(x => x.idPresentacion == idPresentacion);
-                    Producto findProducto = productos.Find(x => x.idProducto == findPresentacion.idProducto);
-                    cbxCodigoProducto.Text = findProducto.codigoProducto;
+
                     // Realizando el calculo
-                    double precioCompra = double.Parse(findProducto.precioCompra.ToString(ConfigModel.configuracionGeneral.formatoDecimales));
-                    double cantidadUnitario = double.Parse(findPresentacion.cantidadUnitaria.ToString(ConfigModel.configuracionGeneral.formatoDecimales));
+                    double precioCompra = (double)currentProducto.precioCompra;
+                    double cantidadUnitario = 1;
                     double precioUnidatio = precioCompra * cantidadUnitario;
 
                     // Imprimiendo valor
@@ -940,6 +1052,9 @@ namespace Admeli.Compras.Nuevo
             if (cbxDescripcion.SelectedValue != null)
                 seleccionado = true;
 
+            try
+            {
+
             if (seleccionado)
             {
 
@@ -949,7 +1064,7 @@ namespace Admeli.Compras.Nuevo
                 if (detalleA == null) detalleA = new List<DetalleOrden>();
                 DetalleOrden detalleCompra = new DetalleOrden();
 
-                DetalleOrden find = buscarElemento(Convert.ToInt32(cbxDescripcion.SelectedValue), (int)cbxVariacion.SelectedValue);
+                DetalleOrden find = buscarElemento(Convert.ToInt32(currentProducto.idPresentacion), (int)cbxVariacion.SelectedValue);
 
 
                 if (find!=null)
@@ -960,9 +1075,9 @@ namespace Admeli.Compras.Nuevo
 
                 }
                 // Creando la lista
-                detalleCompra.cantidad = Int32.Parse(txtCantidad.Text.Trim(), CultureInfo.GetCultureInfo("en-US"));
+                detalleCompra.cantidad = toDouble(txtCantidad.Text);
                 /// Busqueda presentacion
-                Presentacion findPresentacion = presentaciones.Find(x => x.idPresentacion == Convert.ToInt32(cbxDescripcion.SelectedValue));
+
                 detalleCompra.cantidadUnitaria = toDouble( txtCantidad.Text);
                 detalleCompra.codigoProducto = cbxCodigoProducto.Text.Trim();
                 detalleCompra.descripcion = cbxDescripcion.Text.Trim();
@@ -971,7 +1086,7 @@ namespace Admeli.Compras.Nuevo
                 detalleCompra.idCombinacionAlternativa = Convert.ToInt32(cbxVariacion.SelectedValue);
                 detalleCompra.idCompra = 0;
                 detalleCompra.idDetalleCompra = 0;
-                detalleCompra.idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
+                detalleCompra.idPresentacion = Convert.ToInt32(currentProducto.idPresentacion);
                 detalleCompra.idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue);
                 detalleCompra.idSucursal = ConfigModel.sucursal.idSucursal;
                 detalleCompra.nombreCombinacion = cbxVariacion.Text;
@@ -1000,6 +1115,17 @@ namespace Admeli.Compras.Nuevo
                 MessageBox.Show("Error: elemento no seleccionado", "agregar Elemento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            }
+            catch (Exception  ex)
+            {
+
+                MessageBox.Show("Error: " + ex.Message, "agregar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+            }
+
+           
+
 
         }
 
@@ -1017,8 +1143,7 @@ namespace Admeli.Compras.Nuevo
                     int idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue);
                     currentProducto = productos.Find(x => x.idProducto == idProducto);
 
-                    
-                    cargarPresentaciones(idProducto, tipo);
+                                      
                     cargarAlternativas(tipo);
                 }
                 catch (Exception ex)
@@ -1034,9 +1159,8 @@ namespace Admeli.Compras.Nuevo
                 {
                     /// Buscando el producto seleccionado
                     int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
-                    currentPresentacion = presentaciones.Find(x => x.idPresentacion == idPresentacion);
-                    cargarPresentacionDescripcion(tipo);
-                    cargarAlternativas(tipo);
+                    currentProducto = productos.Find(x => x.idPresentacion == idPresentacion.ToString());
+                    
                 }
                 catch (Exception ex)
                 {
@@ -1072,7 +1196,7 @@ namespace Admeli.Compras.Nuevo
         {
             if (cbxCodigoProducto.SelectedIndex == -1) return; /// validacion
             try {
-                List<AlternativaCombinacion> alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(cbxCodigoProducto.SelectedValue));
+                List<AlternativaCombinacion> alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32( currentProducto.idPresentacion));
                 alternativaCombinacionBindingSource.DataSource = alternativaCombinacion;
                 /// calculos
                 calcularPrecioUnitario(tipo);
@@ -1100,16 +1224,23 @@ namespace Admeli.Compras.Nuevo
         {
             calcularTotal();
         }      
-        private async void btnComprar_Click(object sender, EventArgs e)
+        private  void btnComprar_Click(object sender, EventArgs e)
         {
 
+            hacerOrdenCompra();
+        } 
+        
+
+
+        private async void hacerOrdenCompra()
+        {
             if (nroNuevo != 1)
             {
                 //pago
                 pagoA.estado = 1;// 8 si
                 pagoA.estadoPago = 1;//ver que significado
-                // Moneda aux = monedaBindingSource.;
-                
+                                     // Moneda aux = monedaBindingSource.;
+
 
                 Moneda currentMoneda = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
                 //  Moneda aux = monedaBindingSource.List[i] as Moneda;
@@ -1124,16 +1255,26 @@ namespace Admeli.Compras.Nuevo
                 date = date.Substring(0, date.Length - 1);
                 compraA.descuento = this.Descuento;//CAMBIAR SEGUN DATOS
 
-                if(currentProveedor==null)
+                if (currentProveedor == null)
                 {
                     //validar 
                     MessageBox.Show("no hay ningun proveedor seleccionado", "proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    txtRuc.Focus();
                     return;
 
 
                 }
-                compraA.direccion = currentProveedor .direccion ;
+                if(detalleA==null || detalleA.Count == 0)
+                {
+                    MessageBox.Show("no hay ningun proveedor seleccionado", "proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    cbxCodigoProducto.Focus();
+                    return;
+
+                    
+                }
+
+
+                compraA.direccion = currentProveedor.direccion;
                 compraA.direccionEntrega = txtDireccionEntrega.Text;
                 compraA.estado = 8;//es una orden de compra que no ha sido asignado a una compra
                 compraA.fechaFacturacion = date; // la fecha data en  dptfecha Entrega
@@ -1141,7 +1282,7 @@ namespace Admeli.Compras.Nuevo
                 compraA.formaPago = "EFECTIVO";
                 compraA.idCompraValor = currentOrdenCompra != null ? currentOrdenCompra.idCompra : 0;
 
-                compraA.idPersonal =PersonalModel.personal.idPersonal;
+                compraA.idPersonal = PersonalModel.personal.idPersonal;
                 compraA.idProveedor = currentProveedor.idProveedor;
                 compraA.idSucursal = ConfigModel.sucursal.idSucursal;
                 compraA.idTipoDocumento = 1;// orden compra
@@ -1153,12 +1294,12 @@ namespace Admeli.Compras.Nuevo
                 compraA.plazoEntrega = date; // ver si es correcto
                 compraA.rucDni = currentProveedor.ruc;
                 compraA.subTotal = this.subTotal;
-                compraA.tipoCambio = Convert.ToInt32( txtTipoCambio.Text);
+                compraA.tipoCambio = Convert.ToInt32(txtTipoCambio.Text);
                 compraA.tipoCompra = "Con productos";
                 compraA.total = this.total;
                 compraA.ubicacion = txtLugarEntrega.Text;
                 compraA.nombreProveedor = currentProveedor.razonSocial;
-               
+
                 //orden de compra
                 ordenCompraA.ubicacion = txtLugarEntrega.Text;
                 ordenCompraA.total = total;
@@ -1176,7 +1317,7 @@ namespace Admeli.Compras.Nuevo
                 ordenCompraA.numeroDocumento = "";
                 ordenCompraA.idProveedor = currentProveedor.idProveedor;
                 ordenCompraA.tipoCompra = "con productos";
-                ordenCompraA.subTotal =this.subTotal;
+                ordenCompraA.subTotal = this.subTotal;
 
                 ordenCompraA.estado = 1;
                 ordenCompraA.idPersonal = PersonalModel.personal.idPersonal;
@@ -1208,7 +1349,9 @@ namespace Admeli.Compras.Nuevo
             }
             else
                 btnComprar.Enabled = false;
-        }     
+
+
+        }
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
 
@@ -1303,6 +1446,7 @@ namespace Admeli.Compras.Nuevo
             CurrentUbicacionGeografica = formGeografia.ubicacionGeografica;
             txtLugarEntrega.Text = formGeografia.cadena;
 
+            txtDireccionEntrega.Focus();
         }
 
         private void txtLugarEntrega_DoubleClick(object sender, EventArgs e)
@@ -1348,8 +1492,15 @@ namespace Admeli.Compras.Nuevo
             cargarPresentacion();
         }
 
-        private async void btnComprarOrdenCompra_Click(object sender, EventArgs e)
+        private  void btnComprarOrdenCompra_Click(object sender, EventArgs e)
         {
+            ComprarOrden();
+
+        }
+
+        private async void ComprarOrden()
+        {
+
             if (currentOrdenCompra != null)
             {
 
@@ -1378,9 +1529,9 @@ namespace Admeli.Compras.Nuevo
                     MessageBox.Show("Error: " + ex.Message, "consulta sunat", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 }
-            
+
                 MessageBox.Show("Orden de compra realizada", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-              
+
                 btnComprar.Enabled = false;
             }
 
@@ -1393,8 +1544,120 @@ namespace Admeli.Compras.Nuevo
             Validator.isDecimal(e, txtRuc.Text);
         }
 
+
         #endregion=========== Eventos ========================
 
-       
+        private void panel14_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cbxCodigoProducto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void cbxDescripcion_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void cbxVariacion_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void txtCantidad_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void txtPrecioUnitario_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void txtDescuento_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void txtTotalProducto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnAgregar.Focus();
+        }
+
+        private void btnAgregar_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+                cbxCodigoProducto.Focus();
+        }
+
+        private void txtRuc_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void cbxProveedor_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void txtDireccionProveedor_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnBuscarLugar.Focus();
+        }
+
+        private void btnBuscarLugar_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btnBuscarLugar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void txtDireccionEntrega_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void cbxTipoMoneda_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void dtpFechaEntrega_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnComprarOrdenCompra.Focus();
+        }
+
+        private void btnComprarOrdenCompra_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+
+        private void txtObservaciones_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
     }
 }

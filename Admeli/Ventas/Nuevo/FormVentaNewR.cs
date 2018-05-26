@@ -272,8 +272,7 @@ namespace Admeli.Ventas.Nuevo
             cargartiposDocumentos();
             cargarClientes();
             cargarTipoComprobantes();
-            cargarImpuesto();
-           
+            cargarImpuesto();         
             cargarObjetos();
             cargarAlmacen();
             lisenerKeyEvents = true;
