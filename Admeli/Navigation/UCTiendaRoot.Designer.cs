@@ -72,7 +72,7 @@
             this.btnReporte.Name = "btnReporte";
             this.btnReporte.Size = new System.Drawing.Size(58, 55);
             this.btnReporte.TabIndex = 25;
-            this.btnReporte.Text = "report";
+            this.btnReporte.Text = "Reporte";
             this.btnReporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip1.SetToolTip(this.btnReporte, "Reportes");
@@ -116,7 +116,7 @@
             this.btnHerramienta.Name = "btnHerramienta";
             this.btnHerramienta.Size = new System.Drawing.Size(58, 55);
             this.btnHerramienta.TabIndex = 24;
-            this.btnHerramienta.Text = "tools";
+            this.btnHerramienta.Text = "Tools";
             this.btnHerramienta.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnHerramienta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip1.SetToolTip(this.btnHerramienta, "Herramientas");
@@ -162,7 +162,7 @@
             this.btnAlmacen.Name = "btnAlmacen";
             this.btnAlmacen.Size = new System.Drawing.Size(58, 55);
             this.btnAlmacen.TabIndex = 22;
-            this.btnAlmacen.Text = "almacen";
+            this.btnAlmacen.Text = "Almacen";
             this.btnAlmacen.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAlmacen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip1.SetToolTip(this.btnAlmacen, "Almacenes");
@@ -185,7 +185,7 @@
             this.btnProducto.Name = "btnProducto";
             this.btnProducto.Size = new System.Drawing.Size(58, 55);
             this.btnProducto.TabIndex = 23;
-            this.btnProducto.Text = "product";
+            this.btnProducto.Text = "Producto";
             this.btnProducto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip1.SetToolTip(this.btnProducto, "Productos");
@@ -208,7 +208,7 @@
             this.btnCompra.Name = "btnCompra";
             this.btnCompra.Size = new System.Drawing.Size(58, 55);
             this.btnCompra.TabIndex = 19;
-            this.btnCompra.Text = "compra";
+            this.btnCompra.Text = "Compra";
             this.btnCompra.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip1.SetToolTip(this.btnCompra, "Compras");
@@ -231,7 +231,7 @@
             this.btnVenta.Name = "btnVenta";
             this.btnVenta.Size = new System.Drawing.Size(58, 55);
             this.btnVenta.TabIndex = 20;
-            this.btnVenta.Text = "venta";
+            this.btnVenta.Text = "Venta";
             this.btnVenta.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip1.SetToolTip(this.btnVenta, "Ventas");
@@ -254,7 +254,7 @@
             this.btnConfiguracion.Name = "btnConfiguracion";
             this.btnConfiguracion.Size = new System.Drawing.Size(58, 55);
             this.btnConfiguracion.TabIndex = 27;
-            this.btnConfiguracion.Text = "config";
+            this.btnConfiguracion.Text = "Config.";
             this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnConfiguracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip1.SetToolTip(this.btnConfiguracion, "Configuración");

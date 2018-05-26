@@ -165,6 +165,7 @@ namespace Admeli.AlmacenBox.Nuevo
 
         private void FormNotaSalidaNew_Load(object sender, EventArgs e)
         {
+            cbxEstado.SelectedIndex = 0;
             if (nuevo == true)
             {
                 this.reLoad();
@@ -375,7 +376,7 @@ namespace Admeli.AlmacenBox.Nuevo
         {
             txtNroDocumento.Text = currentNotaSalida.serie + "-" + currentNotaSalida.correlativo;
             txtMotivo.Text = currentNotaSalida.motivo;
-
+            detalleNotaSalidaBindingSource.DataSource = null;
         }
 
 
@@ -589,10 +590,80 @@ namespace Admeli.AlmacenBox.Nuevo
             lbinfo.Text = CurrentDetalle.codigoProducto + " seleccionado";  
             btnEliminar.Enabled = true;
 
+
         }
 
+        private bool validarCampos()
+        {
+            errorProvider1.Clear();
+            if (txtNroDocumento.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtNroDocumento, "Campo obligatorio");
+                return false;
+            }
+            if (txtSerie.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtSerie, "Campo obligatorio");
+                return false;
+            }
+            if (txtCorrelativo.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtCorrelativo, "Campo obligatorio");
+                return false;
+            }
+
+            if (txtMarca.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtMarca, "Campo obligatorio");
+                return false;
+            }
+            if (txtLicConducir.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtLicConducir, "Campo obligatorio");
+                return false;
+            }
+            if (txtDirreccionOrigen.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtDirreccionOrigen, "Campo obligatorio");
+                return false;
+            }
+            if (txtDireccionDestino.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtDireccionDestino, "Campo obligatorio");
+                return false;
+            }
+            if (txtOrigen.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtOrigen, "Campo obligatorio");
+                return false;
+            }
+            if (txtDestino.Text.Trim() == "")
+            {
+                errorProvider1.SetError(txtDestino, "Campo obligatorio");
+                return false;
+            }
+            if (cbxEstado.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(cbxEstado, "Campo obligatorio");
+                return false;
+            }
+            if (cbxMotivo.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(cbxMotivo, "Campo obligatorio");
+                return false;
+            }
+            if (cbxETransporte.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(cbxETransporte, "Campo obligatorio");
+                return false;
+            }
+
+            return true;
+        }
         private async void guardar_Click(object sender, EventArgs e)
         {
+            Bloqueo.bloquear(this, true);
+            if (!validarCampos()) { Bloqueo.bloquear(this, false);  return; }
             guiaRemisionGuardar.correlativo = txtCorrelativo.Text;
             guiaRemisionGuardar.destino = ubicacionGeograficaDestino!=null ? ubicacionGeograficaDestino.idUbicacionGeografica: currentguiaRemision.destino;
             guiaRemisionGuardar.direccionDestino = txtDireccionDestino.Text;
@@ -609,8 +680,6 @@ namespace Admeli.AlmacenBox.Nuevo
                 case "Enviado":
                     estado = 1;
                     break;
-
-
             }
             guiaRemisionGuardar.estado = estado;
             guiaRemisionGuardar.idEmpresaTransporte =(int) cbxETransporte.SelectedValue;
@@ -680,18 +749,20 @@ namespace Admeli.AlmacenBox.Nuevo
                     MessageBox.Show(responseNotaGuardar.msj, "guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ListDetallesGuiaRemision.Clear();
                     guardar.Enabled = false;
+                    Bloqueo.bloquear(this, false);
                     this.Close();
                 }
                 else
                 {
                     MessageBox.Show(responseNotaGuardar.msj, "guardar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                    Bloqueo.bloquear(this, false);
 
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Response Nota Guardar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Bloqueo.bloquear(this, false);
             }
 
         }

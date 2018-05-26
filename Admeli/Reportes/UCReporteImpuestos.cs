@@ -7,10 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LiveCharts;
-using LiveCharts.Wpf;
 using Modelo;
 using Entidad;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Admeli.Reportes
 {
@@ -104,34 +103,23 @@ namespace Admeli.Reportes
 
         private void dibujarGrafico()
         {
-            cartesianChart1.Series.Clear();
-            cartesianChart1.AxisX.Clear();
-            cartesianChart1.AxisY.Clear();
+            //Los vectores con datos
+            string[] series = { "Ana", "Clau", "Dino" };
+            int[] puntos = { 23, 10, 70 };
 
-            cartesianChart1.Series = new SeriesCollection
+            //Cambiar la combinacion
+            //chart1.Palette = ChartColorPalette.Pastel;
+
+            chart1.Titles.Add("Numero Ventas");
+
+            for(int i = 0; i < series.Length; i++)
             {
-                new ColumnSeries
-                {
-                    Title = "",
-                    Values = new ChartValues<double> { 90, 50, 39, 50 }
-                }
-            };
-
-            //adding series will update and animate the chart automatically
-
-
-            //also adding values updates and animates the chart automatically
-
-
-            cartesianChart1.AxisX.Add(new Axis
-            {
-                Labels = new[] { "Compras", "Ventas", "Ingresos", "Egresos" }
-            });
-
-            cartesianChart1.AxisY.Add(new Axis
-            {
-                LabelFormatter = value => value.ToString("N")
-            });
+                //Titulos
+                Series serie = chart1.Series.Add(series[i]);
+                //Cantidades
+                serie.Label = puntos[i].ToString();
+                serie.Points.Add(puntos[i]);
+            }
         }
         private void panelBody_Paint(object sender, PaintEventArgs e)
         {
