@@ -134,13 +134,23 @@ namespace Admeli.Ventas.buscar
         }
         #endregion=========================estados=====================
 
-       
-       
 
-        
-        
 
-      
+
+        private string quitarC(string texto)
+        {
+
+
+            string textoNormalizado = texto.Normalize(NormalizationForm.FormD);
+            //coincide todo lo que no sean letras y números ascii o espacio
+            //y lo reemplazamos por una cadena vacía.
+            Regex reg = new Regex("[^a-zA-Z0-9 ]");
+            return reg.Replace(textoNormalizado, "");
+
+        }
+
+
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             cargarProducto();
@@ -170,14 +180,12 @@ namespace Admeli.Ventas.buscar
             listProductosfiltrada = new List<ProductoVenta>();
 
             List<List<ProductoVenta>> matrizProducto = new List<List<ProductoVenta>>();
-
-
             for (int i = 0; i < list.Count(); i++)
             {
                 string palabra = list[i];
                 if (palabra != "")
                 {
-                    List<ProductoVenta> listventa = listProductos.Where(obj => obj.nombreProducto.ToUpper().Contains(palabra.Trim().ToUpper())).ToList();
+                    List<ProductoVenta> listventa = listProductos.Where(obj => quitarC(obj.nombreProducto).ToUpper().Contains(quitarC(palabra).Trim().ToUpper())).ToList();
                     matrizProducto.Add(listventa);
                 }
             }
