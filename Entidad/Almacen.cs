@@ -44,13 +44,14 @@ namespace Entidad
     }
     //para hacer cambios
 
-    public class AlmacenComra
+    public class AlmacenCompra
     {
 
         public int idAlmacen { get; set; }
         public string nombre { get; set; }
         public int idPersonalAlmacen { get; set; }
         public bool principal { get; set; }
+        public int cantidad { get; set; } // solo para ventas con varios almacenes asignados
 
     }
 

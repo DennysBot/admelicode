@@ -182,7 +182,7 @@ namespace Admeli.AlmacenBox.Nuevo
         private void reLoad()
         {
 
-            cargarProductos();
+           
             cargarMotivo();
             cargarEmpresa();
             cargarFormatoDocumento();

@@ -123,7 +123,30 @@ namespace Entidad
         public int idCombinacionAlternativa { get; set; }
         public int cantidad { get; set; }
         public int idAlmacen { get; set; }
-        public string descripcion { get; set; }
+        public string descripcion { get; set; }      
+        public int idPresentacion { get; set; }
+        public string nro { get; set; }
+        public string nombreProducto { get; set; }     
+        public string nombreCombinacion { get; set; }
+        public string almacen { get; set; }
+        public decimal stock { get; set; }
+        public decimal stockOriginal;
+        public decimal stockTotal { get; set; }
+        public decimal stockGuardar { get; set; }     
+        public string cantidadUnitaria { get; set; }
+        public string nombrePresentacion { get; set; }
+        public string ventaVarianteSinStock { get; set; }
+        public decimal cantidadVenta { get; set; }
+        public decimal cantidadVentaRestante { get; set; }
+
+        public decimal StockOriginal { get {
+
+                return stock; 
+
+            } set {
+                stockOriginal = value;
+            } }
+
     }
 
     public class NotasalidaVenta
@@ -147,6 +170,15 @@ namespace Entidad
     {      
         public int idCajaSesion { get; set; }
         public int idVenta { get; set; }
+    }
+
+    public class DatosVentaAbastece 
+    {
+        public int idVenta { get; set; }
+        public int idAlmacen { get; set; }
+        public int idPersonal { get; set; }
+        public int idSucursal { get; set; }
+        public List<List<object>> dato { get; set; }
     }
 
 

@@ -1,6 +1,6 @@
-﻿namespace Admeli.Productos.buscar
+﻿namespace Admeli.Ventas.buscar
 {
-    partial class FormBuscarProducto
+    partial class FormAsignarDetalleVenta
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBuscarProducto));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAsignarDetalleVenta));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -41,19 +41,25 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.progressStatus = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtMotivo = new Bunifu.Framework.UI.BunifuMetroTextbox();
-            this.label1 = new System.Windows.Forms.Label();
             this.dgvProductos = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.idPresentacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigoProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idPresentacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioVentaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreMarcaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ventaVarianteSinStockDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nombreCombinacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.almacenDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockGuardar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadVentaRestante = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productoVentaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idCombinacionAlternativa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadUnitariaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombrePresentacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ventaVarianteSinStockDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.stockTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datosNotaSalidaVentaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel28 = new System.Windows.Forms.TableLayoutPanel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -65,31 +71,24 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productoVentaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.presentacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.detalleNotaSalidaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productoVentaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datosNotaSalidaVentaBindingSource)).BeginInit();
             this.tableLayoutPanel28.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoVentaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.detalleNotaSalidaBindingSource)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitter1
@@ -117,7 +116,6 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.tableLayoutPanel2);
             this.panel3.Controls.Add(this.flowLayoutPanel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 490);
@@ -168,6 +166,7 @@
             this.btnsalir.AutoSize = true;
             this.btnsalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(34)))), ((int)(((byte)(24)))));
             this.btnsalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnsalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnsalir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
             this.btnsalir.FlatAppearance.BorderSize = 0;
             this.btnsalir.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
@@ -213,167 +212,139 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dgvProductos, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dgvProductos, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.69325F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.30676F));
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1092, 381);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.txtMotivo);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1086, 84);
-            this.panel1.TabIndex = 0;
-            // 
-            // txtMotivo
-            // 
-            this.txtMotivo.BackColor = System.Drawing.Color.White;
-            this.txtMotivo.BorderColorFocused = System.Drawing.Color.DodgerBlue;
-            this.txtMotivo.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(157)))), ((int)(((byte)(157)))));
-            this.txtMotivo.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(157)))), ((int)(((byte)(157)))));
-            this.txtMotivo.BorderThickness = 1;
-            this.txtMotivo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMotivo.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMotivo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtMotivo.isPassword = false;
-            this.txtMotivo.Location = new System.Drawing.Point(354, 15);
-            this.txtMotivo.Margin = new System.Windows.Forms.Padding(5);
-            this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.Padding = new System.Windows.Forms.Padding(3, 0, 7, 2);
-            this.txtMotivo.Size = new System.Drawing.Size(384, 52);
-            this.txtMotivo.TabIndex = 82;
-            this.txtMotivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtMotivo.OnValueChanged += new System.EventHandler(this.txtMotivo_OnValueChanged);
-            this.txtMotivo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMotivo_KeyUp);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 31);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(272, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "INGRESE EL NOMBRE DEL PRODUCTO";
             // 
             // dgvProductos
             // 
             this.dgvProductos.AllowUserToAddRows = false;
             this.dgvProductos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductos.AutoGenerateColumns = false;
             this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProductos.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idPresentacionDataGridViewTextBoxColumn,
-            this.codigoProductoDataGridViewTextBoxColumn,
+            this.idPresentacion,
             this.nombreProductoDataGridViewTextBoxColumn,
-            this.precioVentaDataGridViewTextBoxColumn,
-            this.precioCompra,
-            this.nombreMarcaDataGridViewTextBoxColumn,
+            this.nombreCombinacionDataGridViewTextBoxColumn,
+            this.almacenDataGridViewTextBoxColumn,
+            this.stockGuardar,
+            this.stock,
+            this.cantidadVentaRestante,
+            this.descripcionDataGridViewTextBoxColumn,
+            this.idProductoDataGridViewTextBoxColumn,
+            this.idCombinacionAlternativa,
+            this.cantidadDataGridViewTextBoxColumn,
+            this.idAlmacen,
+            this.nroDataGridViewTextBoxColumn,
+            this.cantidadUnitariaDataGridViewTextBoxColumn,
+            this.nombrePresentacionDataGridViewTextBoxColumn,
             this.ventaVarianteSinStockDataGridViewCheckBoxColumn,
-            this.idProductoDataGridViewTextBoxColumn});
-            this.dgvProductos.DataSource = this.productoVentaBindingSource;
+            this.stockTotal});
+            this.dgvProductos.DataSource = this.datosNotaSalidaVentaBindingSource;
             this.dgvProductos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProductos.DoubleBuffered = true;
+            this.dgvProductos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvProductos.EnableHeadersVisualStyles = false;
             this.dgvProductos.GridColor = System.Drawing.SystemColors.Control;
             this.dgvProductos.HeaderBgColor = System.Drawing.Color.DodgerBlue;
             this.dgvProductos.HeaderForeColor = System.Drawing.Color.White;
-            this.dgvProductos.Location = new System.Drawing.Point(3, 93);
+            this.dgvProductos.Location = new System.Drawing.Point(3, 3);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvProductos.RowTemplate.Height = 24;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductos.Size = new System.Drawing.Size(1086, 285);
+            this.dgvProductos.Size = new System.Drawing.Size(1086, 375);
             this.dgvProductos.TabIndex = 1;
             this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bunifuCustomDataGrid1_CellContentClick);
             this.dgvProductos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellDoubleClick);
-            this.dgvProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProductos_KeyDown);
+            this.dgvProductos.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvProductos_CellValidating);
+            this.dgvProductos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductos_EditingControlShowing);
+            this.dgvProductos.Enter += new System.EventHandler(this.dgvProductos_Enter);
             // 
-            // idPresentacionDataGridViewTextBoxColumn
+            // idPresentacion
             // 
-            this.idPresentacionDataGridViewTextBoxColumn.DataPropertyName = "idPresentacion";
-            this.idPresentacionDataGridViewTextBoxColumn.FillWeight = 20F;
-            this.idPresentacionDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.idPresentacionDataGridViewTextBoxColumn.Name = "idPresentacionDataGridViewTextBoxColumn";
-            this.idPresentacionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idPresentacionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // codigoProductoDataGridViewTextBoxColumn
-            // 
-            this.codigoProductoDataGridViewTextBoxColumn.DataPropertyName = "codigoProducto";
-            this.codigoProductoDataGridViewTextBoxColumn.FillWeight = 50F;
-            this.codigoProductoDataGridViewTextBoxColumn.HeaderText = "Código";
-            this.codigoProductoDataGridViewTextBoxColumn.Name = "codigoProductoDataGridViewTextBoxColumn";
-            this.codigoProductoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codigoProductoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.idPresentacion.DataPropertyName = "idPresentacion";
+            this.idPresentacion.FillWeight = 10F;
+            this.idPresentacion.HeaderText = "ID";
+            this.idPresentacion.Name = "idPresentacion";
+            this.idPresentacion.ReadOnly = true;
             // 
             // nombreProductoDataGridViewTextBoxColumn
             // 
             this.nombreProductoDataGridViewTextBoxColumn.DataPropertyName = "nombreProducto";
+            this.nombreProductoDataGridViewTextBoxColumn.FillWeight = 70F;
             this.nombreProductoDataGridViewTextBoxColumn.HeaderText = "Nombre";
             this.nombreProductoDataGridViewTextBoxColumn.Name = "nombreProductoDataGridViewTextBoxColumn";
             this.nombreProductoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreProductoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // precioVentaDataGridViewTextBoxColumn
+            // nombreCombinacionDataGridViewTextBoxColumn
             // 
-            this.precioVentaDataGridViewTextBoxColumn.DataPropertyName = "precioVenta";
-            this.precioVentaDataGridViewTextBoxColumn.HeaderText = "P. Venta";
-            this.precioVentaDataGridViewTextBoxColumn.Name = "precioVentaDataGridViewTextBoxColumn";
-            this.precioVentaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.precioVentaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.precioVentaDataGridViewTextBoxColumn.Visible = false;
+            this.nombreCombinacionDataGridViewTextBoxColumn.DataPropertyName = "nombreCombinacion";
+            this.nombreCombinacionDataGridViewTextBoxColumn.FillWeight = 60F;
+            this.nombreCombinacionDataGridViewTextBoxColumn.HeaderText = "Variación";
+            this.nombreCombinacionDataGridViewTextBoxColumn.Name = "nombreCombinacionDataGridViewTextBoxColumn";
+            this.nombreCombinacionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // precioCompra
+            // almacenDataGridViewTextBoxColumn
             // 
-            this.precioCompra.DataPropertyName = "precioCompra";
-            this.precioCompra.FillWeight = 40F;
-            this.precioCompra.HeaderText = "P. Compra";
-            this.precioCompra.Name = "precioCompra";
-            this.precioCompra.ReadOnly = true;
-            this.precioCompra.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.almacenDataGridViewTextBoxColumn.DataPropertyName = "almacen";
+            this.almacenDataGridViewTextBoxColumn.FillWeight = 60F;
+            this.almacenDataGridViewTextBoxColumn.HeaderText = "Almacen";
+            this.almacenDataGridViewTextBoxColumn.Name = "almacenDataGridViewTextBoxColumn";
+            this.almacenDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // nombreMarcaDataGridViewTextBoxColumn
+            // stockGuardar
             // 
-            this.nombreMarcaDataGridViewTextBoxColumn.DataPropertyName = "nombreMarca";
-            this.nombreMarcaDataGridViewTextBoxColumn.FillWeight = 40F;
-            this.nombreMarcaDataGridViewTextBoxColumn.HeaderText = "Marca";
-            this.nombreMarcaDataGridViewTextBoxColumn.Name = "nombreMarcaDataGridViewTextBoxColumn";
-            this.nombreMarcaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreMarcaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.stockGuardar.DataPropertyName = "stockGuardar";
+            this.stockGuardar.FillWeight = 30F;
+            this.stockGuardar.HeaderText = "Stock Actual";
+            this.stockGuardar.Name = "stockGuardar";
+            this.stockGuardar.ReadOnly = true;
             // 
-            // ventaVarianteSinStockDataGridViewCheckBoxColumn
+            // stock
             // 
-            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.DataPropertyName = "ventaVarianteSinStock";
-            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.HeaderText = "ventaVarianteSinStock";
-            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.Name = "ventaVarianteSinStockDataGridViewCheckBoxColumn";
-            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.Visible = false;
+            this.stock.DataPropertyName = "stock";
+            this.stock.FillWeight = 30F;
+            this.stock.HeaderText = "Cantidad";
+            this.stock.Name = "stock";
+            this.stock.ReadOnly = true;
+            // 
+            // cantidadVentaRestante
+            // 
+            this.cantidadVentaRestante.DataPropertyName = "cantidadVentaRestante";
+            this.cantidadVentaRestante.FillWeight = 60F;
+            this.cantidadVentaRestante.HeaderText = "Cantidad Restante";
+            this.cantidadVentaRestante.Name = "cantidadVentaRestante";
+            this.cantidadVentaRestante.ReadOnly = true;
+            this.cantidadVentaRestante.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.descripcionDataGridViewTextBoxColumn.Visible = false;
             // 
             // idProductoDataGridViewTextBoxColumn
             // 
@@ -383,9 +354,74 @@
             this.idProductoDataGridViewTextBoxColumn.ReadOnly = true;
             this.idProductoDataGridViewTextBoxColumn.Visible = false;
             // 
-            // productoVentaBindingSource
+            // idCombinacionAlternativa
             // 
-            this.productoVentaBindingSource.DataSource = typeof(Entidad.ProductoVenta);
+            this.idCombinacionAlternativa.DataPropertyName = "idCombinacionAlternativa";
+            this.idCombinacionAlternativa.HeaderText = "idCombinacionAlternativa";
+            this.idCombinacionAlternativa.Name = "idCombinacionAlternativa";
+            this.idCombinacionAlternativa.ReadOnly = true;
+            this.idCombinacionAlternativa.Visible = false;
+            // 
+            // cantidadDataGridViewTextBoxColumn
+            // 
+            this.cantidadDataGridViewTextBoxColumn.DataPropertyName = "cantidad";
+            this.cantidadDataGridViewTextBoxColumn.FillWeight = 80F;
+            this.cantidadDataGridViewTextBoxColumn.HeaderText = "cantidad";
+            this.cantidadDataGridViewTextBoxColumn.Name = "cantidadDataGridViewTextBoxColumn";
+            this.cantidadDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cantidadDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // idAlmacen
+            // 
+            this.idAlmacen.DataPropertyName = "idAlmacen";
+            this.idAlmacen.HeaderText = "idAlmacen";
+            this.idAlmacen.Name = "idAlmacen";
+            this.idAlmacen.ReadOnly = true;
+            this.idAlmacen.Visible = false;
+            // 
+            // nroDataGridViewTextBoxColumn
+            // 
+            this.nroDataGridViewTextBoxColumn.DataPropertyName = "nro";
+            this.nroDataGridViewTextBoxColumn.HeaderText = "nro";
+            this.nroDataGridViewTextBoxColumn.Name = "nroDataGridViewTextBoxColumn";
+            this.nroDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nroDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // cantidadUnitariaDataGridViewTextBoxColumn
+            // 
+            this.cantidadUnitariaDataGridViewTextBoxColumn.DataPropertyName = "cantidadUnitaria";
+            this.cantidadUnitariaDataGridViewTextBoxColumn.HeaderText = "cantidadUnitaria";
+            this.cantidadUnitariaDataGridViewTextBoxColumn.Name = "cantidadUnitariaDataGridViewTextBoxColumn";
+            this.cantidadUnitariaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cantidadUnitariaDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nombrePresentacionDataGridViewTextBoxColumn
+            // 
+            this.nombrePresentacionDataGridViewTextBoxColumn.DataPropertyName = "nombrePresentacion";
+            this.nombrePresentacionDataGridViewTextBoxColumn.HeaderText = "nombrePresentacion";
+            this.nombrePresentacionDataGridViewTextBoxColumn.Name = "nombrePresentacionDataGridViewTextBoxColumn";
+            this.nombrePresentacionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombrePresentacionDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // ventaVarianteSinStockDataGridViewCheckBoxColumn
+            // 
+            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.DataPropertyName = "ventaVarianteSinStock";
+            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.HeaderText = "ventaVarianteSinStock";
+            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.Name = "ventaVarianteSinStockDataGridViewCheckBoxColumn";
+            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.ventaVarianteSinStockDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // stockTotal
+            // 
+            this.stockTotal.DataPropertyName = "stockTotal";
+            this.stockTotal.HeaderText = "stockTotal";
+            this.stockTotal.Name = "stockTotal";
+            this.stockTotal.ReadOnly = true;
+            this.stockTotal.Visible = false;
+            // 
+            // datosNotaSalidaVentaBindingSource
+            // 
+            this.datosNotaSalidaVentaBindingSource.DataSource = typeof(Entidad.DatosNotaSalidaVenta);
             // 
             // tableLayoutPanel28
             // 
@@ -432,9 +468,9 @@
             this.label9.Location = new System.Drawing.Point(68, 17);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(110, 18);
+            this.label9.Size = new System.Drawing.Size(256, 18);
             this.label9.TabIndex = 0;
-            this.label9.Text = "PRODUCTOS ";
+            this.label9.Text = "DETALLES DE LA NOTA DE SALIDA";
             // 
             // splitter2
             // 
@@ -490,6 +526,28 @@
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "stock";
+            this.dataGridViewTextBoxColumn6.HeaderText = "stock";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            this.dataGridViewTextBoxColumn6.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "stockTotal";
+            this.dataGridViewTextBoxColumn7.HeaderText = "stockTotal";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            this.dataGridViewTextBoxColumn7.Width = 66;
+            // 
+            // productoVentaBindingSource
+            // 
+            this.productoVentaBindingSource.DataSource = typeof(Entidad.ProductoVenta);
+            // 
             // presentacionBindingSource
             // 
             this.presentacionBindingSource.DataSource = typeof(Entidad.Presentacion);
@@ -498,86 +556,7 @@
             // 
             this.detalleNotaSalidaBindingSource.DataSource = typeof(Entidad.DetalleNotaSalida);
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.panel12, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel5, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 15);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(310, 74);
-            this.tableLayoutPanel2.TabIndex = 16;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.SystemColors.Control;
-            this.panel12.Controls.Add(this.label17);
-            this.panel12.Controls.Add(this.label21);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(3, 2);
-            this.panel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(304, 33);
-            this.panel12.TabIndex = 0;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(108, 9);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(123, 17);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "IR AL BUSCADOR";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label21.Location = new System.Drawing.Point(55, 6);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(30, 20);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "F2";
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label22);
-            this.panel5.Controls.Add(this.label23);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 39);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(304, 33);
-            this.panel5.TabIndex = 1;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(108, 7);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(187, 17);
-            this.label22.TabIndex = 2;
-            this.label22.Text = "SELECCIONAR PRODUCTO";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(17)))), ((int)(((byte)(159)))));
-            this.label23.Location = new System.Drawing.Point(19, 4);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(70, 20);
-            this.label23.TabIndex = 1;
-            this.label23.Text = "ENTER";
-            // 
-            // FormBuscarProducto
+            // FormAsignarDetalleVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -588,31 +567,28 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "FormBuscarProducto";
+            this.Name = "FormAsignarDetalleVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Buscar Producto";
+            this.Text = "DETALLE VENTA - ALMACENES";
             this.Load += new System.EventHandler(this.FormNotaSalidaNew_Load);
+            this.Enter += new System.EventHandler(this.FormBuscarProducto_Enter);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormBuscarProducto_KeyUp);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormBuscarProducto_MouseClick);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productoVentaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datosNotaSalidaVentaBindingSource)).EndInit();
             this.tableLayoutPanel28.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoVentaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.detalleNotaSalidaBindingSource)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -637,28 +613,30 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private Bunifu.Framework.UI.BunifuMetroTextbox txtMotivo;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgvProductos;
         private System.Windows.Forms.BindingSource presentacionBindingSource;
         private System.Windows.Forms.ProgressBar progressStatus;
         private System.Windows.Forms.BindingSource productoVentaBindingSource;
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idPresentacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigoProductoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource datosNotaSalidaVentaBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idPresentacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProductoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioVentaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioCompra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreMarcaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ventaVarianteSinStockDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCombinacionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn almacenDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockGuardar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadVentaRestante;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idProductoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idCombinacionAlternativa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idAlmacen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nroDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadUnitariaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombrePresentacionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ventaVarianteSinStockDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockTotal;
     }
 }

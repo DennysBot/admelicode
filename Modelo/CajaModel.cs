@@ -156,6 +156,21 @@ namespace Modelo
             }
         }
 
+        //cierrecajaingresomenosegresocompra/mediopago/1/cajasesion/4/compra/0
+        public async Task<List<Moneda>> cierreCajaCompra(int mediopago, int cajaSesion,int idCompra)
+        {
+            try
+            {
+                // localhost/admeli/xcore/services.php/cierrecajaingresomenosegreso/mediopago/1/cajasesion/7
+                //List<Moneda> list = await webService.GET<List<Moneda>>("cajasesionesinicializadas", String.Format("mediopago/{0}/cajasesion/{1}", mediopago, cajaSesion));
+                List<Moneda> list = await webService.GET<List<Moneda>>("cierrecajaingresomenosegresocompra", String.Format("mediopago/{0}/cajasesion/{1}/compra/{2}", mediopago, cajaSesion, idCompra));
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

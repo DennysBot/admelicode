@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOrdenCompraNew));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnComprarOrdenCompra = new System.Windows.Forms.Button();
@@ -78,6 +78,7 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.progresStatus = new System.Windows.Forms.ProgressBar();
             this.dgvDetalleOrdenCompra = new System.Windows.Forms.DataGridView();
             this.idDetalleCompraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idPresentacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -124,24 +125,26 @@
             this.label31 = new System.Windows.Forms.Label();
             this.tableLayoutPanel26 = new System.Windows.Forms.TableLayoutPanel();
             this.cbxDescripcion = new System.Windows.Forms.ComboBox();
-            this.presentacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label30 = new System.Windows.Forms.Label();
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
             this.cbxCodigoProducto = new System.Windows.Forms.ComboBox();
-            this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label29 = new System.Windows.Forms.Label();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnComprar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbTotal = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.lbImpuesto = new System.Windows.Forms.Label();
+            this.lbTotal = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbSubtotal = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lbDescuentoCompras = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbSubtotal = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.detalleCompraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label35 = new System.Windows.Forms.Label();
@@ -161,11 +164,8 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnComprar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.progresStatus = new System.Windows.Forms.ProgressBar();
+            this.presentacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.detalleCompraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -192,12 +192,12 @@
             this.tableLayoutPanel27.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaCombinacionBindingSource)).BeginInit();
             this.tableLayoutPanel26.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).BeginInit();
-            this.tableLayoutPanel25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
+            this.tableLayoutPanel25.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.detalleCompraBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -205,8 +205,8 @@
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.detalleCompraBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -735,24 +735,32 @@
             this.panel13.Size = new System.Drawing.Size(1336, 505);
             this.panel13.TabIndex = 9;
             // 
+            // progresStatus
+            // 
+            this.progresStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progresStatus.Location = new System.Drawing.Point(23, 472);
+            this.progresStatus.Name = "progresStatus";
+            this.progresStatus.Size = new System.Drawing.Size(1290, 15);
+            this.progresStatus.TabIndex = 51;
+            // 
             // dgvDetalleOrdenCompra
             // 
             this.dgvDetalleOrdenCompra.AllowUserToAddRows = false;
             this.dgvDetalleOrdenCompra.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvDetalleOrdenCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvDetalleOrdenCompra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvDetalleOrdenCompra.AutoGenerateColumns = false;
             this.dgvDetalleOrdenCompra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetalleOrdenCompra.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDetalleOrdenCompra.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleOrdenCompra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(115)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleOrdenCompra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDetalleOrdenCompra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDetalleCompraDataGridViewTextBoxColumn,
             this.idPresentacionDataGridViewTextBoxColumn,
@@ -774,14 +782,14 @@
             this.nombrePresentacionDataGridViewTextBoxColumn,
             this.idSucursalDataGridViewTextBoxColumn});
             this.dgvDetalleOrdenCompra.DataSource = this.detalleOrdenBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleOrdenCompra.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleOrdenCompra.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvDetalleOrdenCompra.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetalleOrdenCompra.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvDetalleOrdenCompra.Location = new System.Drawing.Point(23, 18);
@@ -789,17 +797,17 @@
             this.dgvDetalleOrdenCompra.Name = "dgvDetalleOrdenCompra";
             this.dgvDetalleOrdenCompra.ReadOnly = true;
             this.dgvDetalleOrdenCompra.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleOrdenCompra.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleOrdenCompra.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvDetalleOrdenCompra.RowHeadersWidth = 40;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.dgvDetalleOrdenCompra.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.dgvDetalleOrdenCompra.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvDetalleOrdenCompra.RowTemplate.Height = 30;
             this.dgvDetalleOrdenCompra.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleOrdenCompra.Size = new System.Drawing.Size(1290, 469);
@@ -1370,9 +1378,9 @@
             this.cbxDescripcion.SelectedIndexChanged += new System.EventHandler(this.cbxDescripcion_SelectedIndexChanged);
             this.cbxDescripcion.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxDescripcion_KeyUp);
             // 
-            // presentacionBindingSource
+            // productoBindingSource
             // 
-            this.presentacionBindingSource.DataSource = typeof(Entidad.Presentacion);
+            this.productoBindingSource.DataSource = typeof(Entidad.Producto);
             // 
             // label30
             // 
@@ -1422,10 +1430,6 @@
             this.cbxCodigoProducto.SelectedIndexChanged += new System.EventHandler(this.cbxCodigoProducto_SelectedIndexChanged);
             this.cbxCodigoProducto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbxCodigoProducto_KeyUp);
             // 
-            // productoBindingSource
-            // 
-            this.productoBindingSource.DataSource = typeof(Entidad.Producto);
-            // 
             // label29
             // 
             this.label29.AutoSize = true;
@@ -1464,6 +1468,78 @@
             this.panel3.Size = new System.Drawing.Size(1429, 284);
             this.panel3.TabIndex = 0;
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.btnComprar);
+            this.flowLayoutPanel2.Controls.Add(this.btnSalir);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(1134, 15);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(278, 254);
+            this.flowLayoutPanel2.TabIndex = 24;
+            // 
+            // btnComprar
+            // 
+            this.btnComprar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
+            this.btnComprar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
+            this.btnComprar.FlatAppearance.BorderSize = 0;
+            this.btnComprar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
+            this.btnComprar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
+            this.btnComprar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
+            this.btnComprar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComprar.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComprar.ForeColor = System.Drawing.Color.White;
+            this.btnComprar.Image = ((System.Drawing.Image)(resources.GetObject("btnComprar.Image")));
+            this.btnComprar.Location = new System.Drawing.Point(14, 12);
+            this.btnComprar.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnComprar.Name = "btnComprar";
+            this.btnComprar.Size = new System.Drawing.Size(226, 86);
+            this.btnComprar.TabIndex = 13;
+            this.btnComprar.Text = "Finalizar";
+            this.btnComprar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnComprar.UseVisualStyleBackColor = false;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(34)))), ((int)(((byte)(24)))));
+            this.btnSalir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
+            this.btnSalir.FlatAppearance.BorderSize = 0;
+            this.btnSalir.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
+            this.btnSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
+            this.btnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.ForeColor = System.Drawing.Color.White;
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(14, 110);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(226, 86);
+            this.btnSalir.TabIndex = 14;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnSalir.UseVisualStyleBackColor = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.pictureBox1);
+            this.panel4.Controls.Add(this.lbImpuesto);
+            this.panel4.Controls.Add(this.lbTotal);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.lbSubtotal);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.lbDescuentoCompras);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(425, 15);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(524, 254);
+            this.panel4.TabIndex = 13;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -1474,6 +1550,18 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 66;
             this.pictureBox1.TabStop = false;
+            // 
+            // lbImpuesto
+            // 
+            this.lbImpuesto.AutoSize = true;
+            this.lbImpuesto.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbImpuesto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(57)))), ((int)(((byte)(57)))));
+            this.lbImpuesto.Location = new System.Drawing.Point(166, 88);
+            this.lbImpuesto.Name = "lbImpuesto";
+            this.lbImpuesto.Size = new System.Drawing.Size(85, 19);
+            this.lbImpuesto.TabIndex = 63;
+            this.lbImpuesto.Text = "S/. 250.00";
+            this.lbImpuesto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbTotal
             // 
@@ -1487,6 +1575,18 @@
             this.lbTotal.Text = "S/. 250.00";
             this.lbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(76, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 19);
+            this.label1.TabIndex = 58;
+            this.label1.Text = "Subtotal:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -1499,17 +1599,29 @@
             this.label7.Text = "Total a pagar:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lbImpuesto
+            // lbSubtotal
             // 
-            this.lbImpuesto.AutoSize = true;
-            this.lbImpuesto.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbImpuesto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(57)))), ((int)(((byte)(57)))));
-            this.lbImpuesto.Location = new System.Drawing.Point(166, 88);
-            this.lbImpuesto.Name = "lbImpuesto";
-            this.lbImpuesto.Size = new System.Drawing.Size(85, 19);
-            this.lbImpuesto.TabIndex = 63;
-            this.lbImpuesto.Text = "S/. 250.00";
-            this.lbImpuesto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbSubtotal.AutoSize = true;
+            this.lbSubtotal.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(57)))), ((int)(((byte)(57)))));
+            this.lbSubtotal.Location = new System.Drawing.Point(166, 20);
+            this.lbSubtotal.Name = "lbSubtotal";
+            this.lbSubtotal.Size = new System.Drawing.Size(85, 19);
+            this.lbSubtotal.TabIndex = 59;
+            this.lbSubtotal.Text = "S/. 250.00";
+            this.lbSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(56, 52);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 19);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Descuento:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbDescuentoCompras
             // 
@@ -1535,46 +1647,6 @@
             this.label3.TabIndex = 61;
             this.label3.Text = "Impuesto:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(56, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 19);
-            this.label4.TabIndex = 60;
-            this.label4.Text = "Descuento:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lbSubtotal
-            // 
-            this.lbSubtotal.AutoSize = true;
-            this.lbSubtotal.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(57)))), ((int)(((byte)(57)))));
-            this.lbSubtotal.Location = new System.Drawing.Point(166, 20);
-            this.lbSubtotal.Name = "lbSubtotal";
-            this.lbSubtotal.Size = new System.Drawing.Size(85, 19);
-            this.lbSubtotal.TabIndex = 59;
-            this.lbSubtotal.Text = "S/. 250.00";
-            this.lbSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(76, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 19);
-            this.label1.TabIndex = 58;
-            this.label1.Text = "Subtotal:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // detalleCompraBindingSource
-            // 
-            this.detalleCompraBindingSource.DataSource = typeof(Entidad.DetalleCompra);
             // 
             // tableLayoutPanel1
             // 
@@ -1789,85 +1861,13 @@
             this.label28.TabIndex = 2;
             this.label28.Text = "F5";
             // 
-            // panel4
+            // presentacionBindingSource
             // 
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Controls.Add(this.lbImpuesto);
-            this.panel4.Controls.Add(this.lbTotal);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.lbSubtotal);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.lbDescuentoCompras);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(425, 15);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(524, 254);
-            this.panel4.TabIndex = 13;
+            this.presentacionBindingSource.DataSource = typeof(Entidad.Presentacion);
             // 
-            // flowLayoutPanel2
+            // detalleCompraBindingSource
             // 
-            this.flowLayoutPanel2.Controls.Add(this.btnComprar);
-            this.flowLayoutPanel2.Controls.Add(this.btnSalir);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(1134, 15);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(278, 254);
-            this.flowLayoutPanel2.TabIndex = 24;
-            // 
-            // btnComprar
-            // 
-            this.btnComprar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
-            this.btnComprar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
-            this.btnComprar.FlatAppearance.BorderSize = 0;
-            this.btnComprar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
-            this.btnComprar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
-            this.btnComprar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
-            this.btnComprar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnComprar.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnComprar.ForeColor = System.Drawing.Color.White;
-            this.btnComprar.Image = ((System.Drawing.Image)(resources.GetObject("btnComprar.Image")));
-            this.btnComprar.Location = new System.Drawing.Point(14, 12);
-            this.btnComprar.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.btnComprar.Name = "btnComprar";
-            this.btnComprar.Size = new System.Drawing.Size(226, 86);
-            this.btnComprar.TabIndex = 13;
-            this.btnComprar.Text = "Finalizar";
-            this.btnComprar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnComprar.UseVisualStyleBackColor = false;
-            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(34)))), ((int)(((byte)(24)))));
-            this.btnSalir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
-            this.btnSalir.FlatAppearance.BorderSize = 0;
-            this.btnSalir.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
-            this.btnSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
-            this.btnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalir.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.ForeColor = System.Drawing.Color.White;
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.Location = new System.Drawing.Point(14, 110);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(226, 86);
-            this.btnSalir.TabIndex = 14;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnSalir.UseVisualStyleBackColor = false;
-            // 
-            // progresStatus
-            // 
-            this.progresStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progresStatus.Location = new System.Drawing.Point(23, 472);
-            this.progresStatus.Name = "progresStatus";
-            this.progresStatus.Size = new System.Drawing.Size(1290, 15);
-            this.progresStatus.TabIndex = 51;
+            this.detalleCompraBindingSource.DataSource = typeof(Entidad.DetalleCompra);
             // 
             // FormOrdenCompraNew
             // 
@@ -1922,13 +1922,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.alternativaCombinacionBindingSource)).EndInit();
             this.tableLayoutPanel26.ResumeLayout(false);
             this.tableLayoutPanel26.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.tableLayoutPanel25.ResumeLayout(false);
             this.tableLayoutPanel25.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.detalleCompraBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -1942,9 +1943,8 @@
             this.panel16.PerformLayout();
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.presentacionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.detalleCompraBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

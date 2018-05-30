@@ -766,8 +766,13 @@ namespace Admeli.Ventas.Nuevo
                         return;
 
                     }
+                    else
+                    {
+                        limpiarCamposProducto();
+                        cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
 
-                    cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
+                    }
+                 
 
                 }
 
@@ -1067,7 +1072,7 @@ namespace Admeli.Ventas.Nuevo
                 {
                     foreach (DetalleV V in detalleVentas)
                     {
-                        if (V.idPresentacion == (int)cbxDescripcion.SelectedValue && V.idCombinacionAlternativa == (int)cbxVariacion.SelectedValue)
+                        if (V.idPresentacion == currentProducto.idPresentacion && V.idCombinacionAlternativa == (int)cbxVariacion.SelectedValue)
                         {
                             stockDetalle = toDouble(V.cantidad);
                         }
@@ -1175,14 +1180,22 @@ namespace Admeli.Ventas.Nuevo
 
                 if (cbxDescripcion.SelectedIndex == -1) return; /// validacion
                                                                 /// cargando las alternativas del producto
-                alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(cbxDescripcion.SelectedValue));
+                alternativaCombinacion = await alternativaModel.cAlternativa31(currentProducto.idPresentacion);
                 alternativaCombinacionBindingSource.DataSource = alternativaCombinacion;
                 cbxVariacion.SelectedIndex = -1;
                 if (!seleccionado)
+                {
                     cbxVariacion.SelectedValue = alternativaCombinacion[0].idCombinacionAlternativa;
+                    
+
+                }
+                    
                 else
                 {
-
+                    txtCantidad.Text = currentdetalleV.cantidad;
+                    txtDescuento.Text = currentdetalleV.descuento;
+                    txtPrecioUnitario.Text = currentdetalleV.precioVenta;
+                    txtTotalProducto.Text = currentdetalleV.total;
                     cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
 
                 }
@@ -1470,7 +1483,7 @@ namespace Admeli.Ventas.Nuevo
 
                 txtCantidad.Text = darformato(toDouble(currentdetalleV.cantidad));
                 cbxCodigoProducto.Text = currentdetalleV.codigoProducto;
-                cbxDescripcion.Text = currentdetalleV.nombrePresentacion;
+                cbxDescripcion.Text = currentdetalleV.descripcion;
                 cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
                 txtCantidad.Text = darformato(toDouble(currentdetalleV.cantidad));
 
@@ -1508,27 +1521,24 @@ namespace Admeli.Ventas.Nuevo
 
 
 
-                DetalleV aux = detalleVentas.Find(x => x.idPresentacion == (int)cbxDescripcion.SelectedValue);
-
-
-                aux.idCombinacionAlternativa = (int)cbxVariacion.SelectedValue;
-                aux.nombreCombinacion = cbxVariacion.Text;
-                aux.cantidad = txtCantidad.Text.Trim();
-                aux.cantidadUnitaria = txtCantidad.Text.Trim();
+                currentdetalleV.idCombinacionAlternativa = (int)cbxVariacion.SelectedValue;
+                currentdetalleV.nombreCombinacion = cbxVariacion.Text;
+                currentdetalleV.cantidad = txtCantidad.Text.Trim();
+                currentdetalleV.cantidadUnitaria = txtCantidad.Text.Trim();
                 double descuento = toDouble(txtDescuento.Text.Trim());
-                aux.descuento = darformato(descuento);
+                currentdetalleV.descuento = darformato(descuento);
                 double precioUnitario = toDouble(txtPrecioUnitario.Text.Trim());
 
-                aux.precioVentaReal = darformato(precioUnitario);
+                currentdetalleV.precioVentaReal = darformato(precioUnitario);
                 double precioUnitarioDescuento = precioUnitario - (descuento / 100) * precioUnitario;
-                aux.precioVenta = darformato(precioUnitarioDescuento);
+                currentdetalleV.precioVenta = darformato(precioUnitarioDescuento);
 
                 // si es que exite impuesto al producto 
 
                 // impuestoProducto
                 // calculamos lo impuesto posibles del producto
-                double porcentual = toDouble(aux.Porcentual);
-                double efectivo = toDouble(aux.Efectivo);
+                double porcentual = toDouble(currentdetalleV.Porcentual);
+                double efectivo = toDouble(currentdetalleV.Efectivo);
                 double precioUnitarioI1 = precioUnitarioDescuento;
                 if (porcentual != 0)
                 {
@@ -1536,9 +1546,9 @@ namespace Admeli.Ventas.Nuevo
                     precioUnitarioI1 = precioUnitarioDescuento / datoaux;
                 }
                 double precioUnitarioImpuesto = precioUnitarioI1 - efectivo;
-                aux.precioUnitario = darformato(precioUnitarioImpuesto);
-                aux.total = darformato(precioUnitarioImpuesto * toDouble(aux.cantidad));// utilizar para sacar el subtotal
-                aux.totalGeneral = darformato(precioUnitarioDescuento * toDouble(aux.cantidad));//utilizar para sacar el suTotal 
+                currentdetalleV.precioUnitario = darformato(precioUnitarioImpuesto);
+                currentdetalleV.total = darformato(precioUnitarioImpuesto * toDouble(currentdetalleV.cantidad));// utilizar para sacar el subtotal
+                currentdetalleV.totalGeneral = darformato(precioUnitarioDescuento * toDouble(currentdetalleV.cantidad));//utilizar para sacar el suTotal 
 
                 // modificar
                 detalleVBindingSource.DataSource = null;
@@ -1586,8 +1596,7 @@ namespace Admeli.Ventas.Nuevo
                 bool seleccionado = false;
                 if (cbxCodigoProducto.SelectedValue != null)
                     seleccionado = true;
-                if (cbxDescripcion.SelectedValue != null && seleccionado)
-                    seleccionado = true;
+                
                 // if(idProducto)
 
 
@@ -1596,7 +1605,7 @@ namespace Admeli.Ventas.Nuevo
                     if (detalleVentas == null) detalleVentas = new List<DetalleV>();
                     DetalleV detalleV = new DetalleV();
 
-                    DetalleV aux = buscarElemento((int)cbxDescripcion.SelectedValue, (int)cbxVariacion.SelectedValue);
+                    DetalleV aux = buscarElemento(currentProducto.idPresentacion, (int)cbxVariacion.SelectedValue);
                     if (aux != null)
                     {
 
@@ -1626,7 +1635,7 @@ namespace Admeli.Ventas.Nuevo
                     detalleV.idCotizacion = currentCotizacion != null ? currentCotizacion.idCotizacion : 0;// depende luego 
                     detalleV.cantidadUnitaria = darformato(txtCantidad.Text.Trim());
                     detalleV.codigoProducto = cbxCodigoProducto.Text.Trim();
-                    detalleV.descripcion = currentProducto.nombreProducto;
+                    detalleV.descripcion = cbxDescripcion.Text;
 
                     double descuento = toDouble(txtDescuento.Text.Trim());
                     detalleV.descuento = darformato(descuento);
@@ -1674,12 +1683,12 @@ namespace Admeli.Ventas.Nuevo
 
                     detalleV.estado = 1;//5
                     detalleV.idCombinacionAlternativa = Convert.ToInt32(cbxVariacion.SelectedValue);//7
-                    detalleV.idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
+                    detalleV.idPresentacion =currentProducto.idPresentacion;
                     detalleV.idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue);
                     detalleV.idSucursal = ConfigModel.sucursal.idSucursal;
                     detalleV.nombreCombinacion = cbxVariacion.Text;
                     detalleV.nombreMarca = currentProducto.nombreMarca;
-                    detalleV.nombrePresentacion = cbxDescripcion.Text;
+                    detalleV.nombrePresentacion = currentProducto.nombreProducto;
                     detalleV.nro = 1;
                     // determinar el impuesto                 
 
@@ -2073,7 +2082,7 @@ namespace Admeli.Ventas.Nuevo
             {
 
 
-                loadState(false);
+                loadState(true);
             }
             Response response = null;
             try

@@ -40,6 +40,7 @@
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.Observaciones = new System.Windows.Forms.Label();
             this.panelNotaSalida = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtDDestino = new Admeli.Componentes.PlaceHolderTextBox();
             this.cbxEstado = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
             this.chbxEntrega = new Bunifu.Framework.UI.BunifuCheckbox();
             this.cbxAlmacenEntrada = new System.Windows.Forms.ComboBox();
             this.almacenBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -222,7 +224,7 @@
             this.panel5.Controls.Add(this.txtObservaciones);
             this.panel5.Controls.Add(this.Observaciones);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 827);
+            this.panel5.Location = new System.Drawing.Point(0, 871);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(384, 117);
             this.panel5.TabIndex = 3;
@@ -251,6 +253,7 @@
             // 
             // panelNotaSalida
             // 
+            this.panelNotaSalida.Controls.Add(this.label15);
             this.panelNotaSalida.Controls.Add(this.txtDDestino);
             this.panelNotaSalida.Controls.Add(this.cbxEstado);
             this.panelNotaSalida.Controls.Add(this.label11);
@@ -261,17 +264,27 @@
             this.panelNotaSalida.Controls.Add(this.txtMotivo);
             this.panelNotaSalida.Controls.Add(this.panel4);
             this.panelNotaSalida.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelNotaSalida.Location = new System.Drawing.Point(0, 590);
+            this.panelNotaSalida.Location = new System.Drawing.Point(0, 600);
             this.panelNotaSalida.Margin = new System.Windows.Forms.Padding(5);
             this.panelNotaSalida.Name = "panelNotaSalida";
-            this.panelNotaSalida.Size = new System.Drawing.Size(384, 237);
+            this.panelNotaSalida.Size = new System.Drawing.Size(384, 271);
             this.panelNotaSalida.TabIndex = 2;
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label15.Location = new System.Drawing.Point(15, 61);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(342, 37);
+            this.label15.TabIndex = 209;
+            this.label15.Text = "llenar estos datos si desea crear un nota de  salida en la oficina origen ";
             // 
             // txtDDestino
             // 
             this.txtDDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic);
             this.txtDDestino.ForeColor = System.Drawing.Color.Gray;
-            this.txtDDestino.Location = new System.Drawing.Point(132, 161);
+            this.txtDDestino.Location = new System.Drawing.Point(132, 186);
             this.txtDDestino.Name = "txtDDestino";
             this.txtDDestino.PlaceHolderText = "Dirección";
             this.txtDDestino.Size = new System.Drawing.Size(206, 26);
@@ -287,7 +300,7 @@
             "Pendiente",
             "Revisado",
             "Enviado"});
-            this.cbxEstado.Location = new System.Drawing.Point(132, 120);
+            this.cbxEstado.Location = new System.Drawing.Point(132, 145);
             this.cbxEstado.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(208, 28);
@@ -298,7 +311,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(56, 203);
+            this.label11.Location = new System.Drawing.Point(56, 228);
             this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(60, 19);
@@ -309,7 +322,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(40, 124);
+            this.label14.Location = new System.Drawing.Point(40, 149);
             this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(76, 19);
@@ -322,7 +335,7 @@
             this.cbxAlmacenSalida.DisplayMember = "nombre";
             this.cbxAlmacenSalida.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxAlmacenSalida.FormattingEnabled = true;
-            this.cbxAlmacenSalida.Location = new System.Drawing.Point(132, 75);
+            this.cbxAlmacenSalida.Location = new System.Drawing.Point(132, 100);
             this.cbxAlmacenSalida.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbxAlmacenSalida.Name = "cbxAlmacenSalida";
             this.cbxAlmacenSalida.Size = new System.Drawing.Size(208, 28);
@@ -339,7 +352,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(16, 79);
+            this.label6.Location = new System.Drawing.Point(16, 104);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 19);
@@ -350,7 +363,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(25, 168);
+            this.label7.Location = new System.Drawing.Point(25, 193);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(91, 19);
@@ -360,7 +373,7 @@
             // txtMotivo
             // 
             this.txtMotivo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMotivo.Location = new System.Drawing.Point(134, 196);
+            this.txtMotivo.Location = new System.Drawing.Point(134, 221);
             this.txtMotivo.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtMotivo.MaxLength = 100;
             this.txtMotivo.Name = "txtMotivo";
@@ -404,6 +417,7 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.label18);
             this.panel8.Controls.Add(this.chbxEntrega);
             this.panel8.Controls.Add(this.cbxAlmacenEntrada);
             this.panel8.Controls.Add(this.label5);
@@ -419,8 +433,18 @@
             this.panel8.Location = new System.Drawing.Point(0, 326);
             this.panel8.Margin = new System.Windows.Forms.Padding(5);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(384, 264);
+            this.panel8.Size = new System.Drawing.Size(384, 274);
             this.panel8.TabIndex = 1;
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label18.Location = new System.Drawing.Point(158, 220);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(182, 39);
+            this.label18.TabIndex = 212;
+            this.label18.Text = "si recepciono o no los productos";
             // 
             // chbxEntrega
             // 
@@ -436,6 +460,7 @@
             this.chbxEntrega.Name = "chbxEntrega";
             this.chbxEntrega.Size = new System.Drawing.Size(20, 20);
             this.chbxEntrega.TabIndex = 58;
+            this.chbxEntrega.OnChange += new System.EventHandler(this.chbxEntrega_OnChange);
             this.chbxEntrega.KeyUp += new System.Windows.Forms.KeyEventHandler(this.chbxEntrega_KeyUp);
             // 
             // cbxAlmacenEntrada
@@ -1419,7 +1444,7 @@
             // 
             // panel10
             // 
-            this.panel10.BackColor = System.Drawing.SystemColors.Control;
+            this.panel10.BackColor = System.Drawing.Color.White;
             this.panel10.Controls.Add(this.label35);
             this.panel10.Controls.Add(this.label36);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1561,6 +1586,7 @@
             this.label26.Size = new System.Drawing.Size(160, 17);
             this.label26.TabIndex = 2;
             this.label26.Text = "REALIZAR OPERACION";
+            this.label26.Click += new System.EventHandler(this.label26_Click);
             // 
             // label27
             // 
@@ -1929,5 +1955,7 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ProgressBar progresStatus;
         private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label18;
     }
 }

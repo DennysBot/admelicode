@@ -36,7 +36,7 @@ namespace Admeli.Productos.buscar
 
         private List<Producto> listProductosfiltrada { get; set; }
 
-
+        private bool lisenerKeyEvents = true;
 
         public FormBuscarProducto(List<Producto> listProductos)
         {
@@ -54,6 +54,12 @@ namespace Admeli.Productos.buscar
         private void FormNotaSalidaNew_Load(object sender, EventArgs e)
         {
             reLoad();
+            this.ParentChanged += ParentChange; // Evetno que se dispara cuando el padre cambia // Este eveto se usa para desactivar lisener key events de este modulo
+            if (TopLevelControl is Form) // Escuchando los eventos del formulario padre
+            {
+                (TopLevelControl as Form).KeyPreview = true;
+                TopLevelControl.KeyUp += TopLevelControl_KeyUp;
+            }
 
         }
         private void reLoad()
@@ -120,13 +126,38 @@ namespace Admeli.Productos.buscar
         }
         #endregion=========================estados=====================
 
-       
-       
 
-        
-        
+        #region ======================== KEYBOARD ========================
+        // Evento que se dispara cuando el padre cambia
+        private void ParentChange(object sender, EventArgs e)
+        {
+            // cambiar la propiedad de lisenerKeyEvents de este modulo
+            if (lisenerKeyEvents) lisenerKeyEvents = false;
+        }
 
-      
+        // Escuchando los Eventos de teclado
+        private void TopLevelControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!lisenerKeyEvents) return;
+            switch (e.KeyCode)
+            {
+                case Keys.F2: // productos
+                    txtMotivo.Focus();
+                    break;
+
+
+            }
+
+
+
+
+        }
+        #endregion
+
+
+
+
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             cargarProducto();
@@ -154,14 +185,23 @@ namespace Admeli.Productos.buscar
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (listProductosfiltrada.Count == 1)
+                if (listProductosfiltrada.Count > 0)
                 {
 
                     cargarProducto();
                 }
 
             }
-
+            if (e.KeyCode == Keys.Down)
+            {
+                if (listProductosfiltrada.Count >0)
+                {
+                    dgvProductos.Focus();
+                    dgvProductos.ClearSelection();
+                    dgvProductos.Rows[0].Selected = true;
+                    return;
+                }
+            }
 
             string textBuscar = txtMotivo.Text;
             if (textBuscar.Length == 0) return;
@@ -247,6 +287,16 @@ namespace Admeli.Productos.buscar
         private void txtMotivo_OnValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                e.SuppressKeyPress = true;
+                cargarProducto();
+            }
         }
     }
 }

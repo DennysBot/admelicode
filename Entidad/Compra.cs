@@ -163,7 +163,13 @@ namespace Entidad
         public int idCajaSesion { get; set; }
         public double pagarCompra { get; set; }
     }
-
+    public class DatosParaNotaEntrada
+    {
+        public int idCompra { get; set; }
+        public int idSucursal { get; set; }
+        public int idPersonal { get; set; }
+        public List<List<int>> dato { get; set; }
+    }
     public class DatoNotaEntradaC
     {
         public int idProducto { get; set; }
@@ -171,6 +177,23 @@ namespace Entidad
         public double cantidad { get; set; }
         public int idAlmacen { get; set; }
         public string descripcion { get; set; }
+
+
+        public string nro { get; set; }
+
+        public string nombreProducto { get; set; }
+
+        public string nombreCombinacion { get; set; }
+
+        public string almacen { get; set; }
+        public decimal stock { get; set; }
+        public decimal stockTotal { get; set; }
+        public decimal stockGuardar { get; set; }
+        public int idPresentacion { get; set; }
+        public string cantidadUnitaria { get; set; }
+        public string nombrePresentacion { get; set; }
+        public decimal stockCompraRestante { get; set; }
+        public decimal stockCompra { get; set; }
     }
 
     public class NotaentradaC

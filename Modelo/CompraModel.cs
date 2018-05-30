@@ -67,7 +67,18 @@ namespace Modelo
                 throw ex;
             }
         }
-        
+        public async Task<List< DatoNotaEntradaC>> ListaStockSucursal(DatosParaNotaEntrada param)
+        {
+            try
+            {
+                // localhost/admeli/xcore/services.php/compra/anular
+                return await webService.POST<DatosParaNotaEntrada,List<DatoNotaEntradaC>>("listaralmacenesstockproductocombinacion", param);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<RootObject<Compra>> getByPersonalEstado(int idSucursal, int idPersonal, string idEstado, int page, int items)
         {
             try

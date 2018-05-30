@@ -721,59 +721,27 @@ namespace Admeli.Compras.Nuevo
         private void calcularPrecioUnitario(int tipo)
         {
 
-            if (tipo == 0)
-            {
+           
                 if (cbxCodigoProducto.SelectedIndex == -1) return; /// Validación
                 try
                 {
-                    if (cbxDescripcion.SelectedIndex == -1)
-                    {
-                        txtPrecioUnitario.Text =darformato( currentProducto.precioCompra);
-                    }
-                    else
-                    {
-                        // Buscar presentacion elegida
-                       
-                        // Realizando el calculo
-                        double precioCompra = (double) currentProducto.precioCompra;
-                        double cantidadUnitario = 1;
-                        double precioUnidatio = precioCompra * cantidadUnitario;
+                if (!btnModificar.Enabled)
+                    txtCantidad.Text = currentDetalleOrden == null ? darformato(1) : darformato(currentDetalleOrden.cantidad);
+                    txtDescuento.Text = currentDetalleOrden == null ? darformato(0) : darformato(currentDetalleOrden.descuento);
+                     double precioCompra = currentDetalleOrden == null ? (double)currentProducto.precioCompra : currentDetalleOrden.precioUnitario;
+                     double cantidadUnitario = 1;
+                     double precioUnidatio = precioCompra * cantidadUnitario;
+                     txtPrecioUnitario.Text = darformato(precioUnidatio);
 
-                        // Imprimiendo valor
-                        txtPrecioUnitario.Text = String.Format(CultureInfo.GetCultureInfo("en-US"), formato, precioUnidatio);
-                    }
+            
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "determinar precio unitario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-            }
-            else
-            {
-                if (cbxDescripcion.SelectedIndex == -1) return; /// Validación
-                try
-                {
-
-                    // Buscar presentacion elegida
-
-                    // Realizando el calculo
-                    double precioCompra = (double)currentProducto.precioCompra;
-                    double cantidadUnitario = 1;
-                    double precioUnidatio = precioCompra * cantidadUnitario;
-
-                    // Imprimiendo valor
-                    txtPrecioUnitario.Text = String.Format(CultureInfo.GetCultureInfo("en-US"), formato, precioUnidatio);
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "determinar precio unitario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-
-
-            }
+            
+           
 
         }
 
@@ -867,6 +835,7 @@ namespace Admeli.Compras.Nuevo
         {
             cbxCodigoProducto.SelectedIndex = -1;
             cbxDescripcion.SelectedIndex = -1;
+            cbxDescripcion.Text = "";
 
             cbxVariacion.SelectedIndex = -1;
             txtCantidad.Text = "";
@@ -992,7 +961,7 @@ namespace Admeli.Compras.Nuevo
             cbxCodigoProducto.Text = currentDetalleOrden.codigoProducto;
             cbxDescripcion.Text = currentDetalleOrden.descripcion;
             cbxVariacion.Text = currentDetalleOrden.nombreCombinacion;
-            cbxDescripcion.Text = currentDetalleOrden.nombrePresentacion;
+            cbxDescripcion.Text = currentDetalleOrden.descripcion;
             txtCantidad.Text =darformato(currentDetalleOrden.cantidad);
             txtPrecioUnitario.Text = darformato(currentDetalleOrden.precioUnitario);
             txtDescuento.Text = darformato(currentDetalleOrden.descuento);
@@ -1091,7 +1060,7 @@ namespace Admeli.Compras.Nuevo
                 detalleCompra.idSucursal = ConfigModel.sucursal.idSucursal;
                 detalleCompra.nombreCombinacion = cbxVariacion.Text;
                 detalleCompra.nombreMarca = currentProducto.nombreMarca;
-                detalleCompra.nombrePresentacion = cbxDescripcion.Text;
+                detalleCompra.nombrePresentacion = currentProducto.nombreProducto;
                 detalleCompra.nro = 1;
                 detalleCompra.precioUnitario = toDouble(txtPrecioUnitario.Text.Trim());
                 detalleCompra.total = toDouble(txtTotalProducto.Text.Trim());
@@ -1142,8 +1111,7 @@ namespace Admeli.Compras.Nuevo
                     /// Buscando el producto seleccionado
                     int idProducto = Convert.ToInt32(cbxCodigoProducto.SelectedValue);
                     currentProducto = productos.Find(x => x.idProducto == idProducto);
-
-                                      
+                    cbxDescripcion.SelectedValue = currentProducto.idPresentacion;
                     cargarAlternativas(tipo);
                 }
                 catch (Exception ex)
@@ -1160,7 +1128,8 @@ namespace Admeli.Compras.Nuevo
                     /// Buscando el producto seleccionado
                     int idPresentacion = Convert.ToInt32(cbxDescripcion.SelectedValue);
                     currentProducto = productos.Find(x => x.idPresentacion == idPresentacion.ToString());
-                    
+                    cbxCodigoProducto.SelectedValue = currentProducto.idProducto;
+
                 }
                 catch (Exception ex)
                 {
@@ -1172,25 +1141,7 @@ namespace Admeli.Compras.Nuevo
 
         }
 
-        private void cargarPresentacionDescripcion(int tipo)
-        {
-            cbxDescripcion.Text = currentPresentacion.descripcion;
-            txtCantidad.Text = "1";
-            txtDescuento.Text = string.Format(CultureInfo.GetCultureInfo("en-US"), formato, 0);
-            calcularPrecioUnitario(tipo);
-            calcularTotal();
-
-        }
-        private async void cargarPresentaciones(int idProducto, int tipo)
-        {
-            List<Presentacion> presentaciones = await presentacionModel.presentacionVentas(idProducto);
-            currentPresentacion = presentaciones[0];
-            cbxDescripcion.Text = currentPresentacion.descripcion;
-            txtCantidad.Text = "1";
-            txtDescuento.Text = string.Format(CultureInfo.GetCultureInfo("en-US"), formato, 0);
-            calcularPrecioUnitario(tipo);
-            calcularTotal();
-        }
+     
 
         private async void cargarAlternativas(int tipo)
         {
@@ -1198,6 +1149,14 @@ namespace Admeli.Compras.Nuevo
             try {
                 List<AlternativaCombinacion> alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32( currentProducto.idPresentacion));
                 alternativaCombinacionBindingSource.DataSource = alternativaCombinacion;
+                if (btnModificar.Enabled)
+                {
+
+                    txtCantidad.Text = darformato(currentDetalleOrden.cantidad);
+                    txtPrecioUnitario.Text = darformato(currentDetalleOrden.precioUnitario);
+                    txtTotalProducto.Text = darformato(currentDetalleOrden.total);
+
+                }
                 /// calculos
                 calcularPrecioUnitario(tipo);
                 calcularTotal();

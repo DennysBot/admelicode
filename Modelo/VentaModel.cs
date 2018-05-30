@@ -44,7 +44,18 @@ namespace Modelo
                 throw ex;
             }
         }
-
+        public async Task<List<DatosNotaSalidaVenta>> verificarabastecealmacenventa(DatosVentaAbastece param)
+        {
+            try
+            {
+                // localhost:8080/admeli/xcore2/xcore/services.php/listarstockproductocombinacion
+                return await webService.POST<DatosVentaAbastece, List<DatosNotaSalidaVenta>>("listarstockproductocombinacion", param);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void modificar()
         {
@@ -133,6 +144,8 @@ namespace Modelo
                 throw ex;
             }
         }
+
+
         //ventacorrelativo/tipodoc/4/pv/1
     }
 }

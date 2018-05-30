@@ -129,9 +129,10 @@ namespace Entidad
             }
         }
 
+        public decimal stockALmacenLocal{ get; set; } // vara ver stock del almacen local
 
 
-    }
+}
 
 public class CobroVenta
 {

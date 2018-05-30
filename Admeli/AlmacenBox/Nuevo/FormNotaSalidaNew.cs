@@ -685,15 +685,17 @@ namespace Admeli.AlmacenBox.Nuevo
         private async void cargarAlternativas(int tipo)
         {
             if (cbxCodigoProducto.SelectedIndex == -1) return; /// validacion
+            loadState(true);
             try
             {
-                List<AlternativaCombinacion> alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(cbxCodigoProducto.SelectedValue));
+                List<AlternativaCombinacion> alternativaCombinacion = await alternativaModel.cAlternativa31(currentProducto.idPresentacion);
                 alternativaCombinacionBindingSource.DataSource = alternativaCombinacion;
             }                                                  /// cargando las alternativas del producto
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Listar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            loadState(false);
         }
        
         private void cbxCodigoProducto_SelectedIndexChanged(object sender, EventArgs e)
@@ -1085,7 +1087,7 @@ namespace Admeli.AlmacenBox.Nuevo
 
                         if (notaGuardarE.id > 0)
                         {
-                            MessageBox.Show(notaGuardar.msj + " " + "corectamente", "guardar Nota Entrada - " + ConfigModel.alamacenes.Find(X => X.idAlmacen == (int)cbxAlmacenEntrada.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(notaGuardar.msj + " " + "corectamente", "guardar Nota Entrada - " + listAlmacenOrigen.Find(X => X.idAlmacen == (int)cbxAlmacenEntrada.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
                         }
@@ -1127,7 +1129,7 @@ namespace Admeli.AlmacenBox.Nuevo
                     if (!modificar)
                     {
 
-                        DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + ConfigModel.alamacenes.Find(X => X.idAlmacen == (int)cbxAlmacen.SelectedValue).nombre,
+                        DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + listAlmacenOrigen.Find(X => X.idAlmacen == (int)cbxAlmacen.SelectedValue).nombre,
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                         if (dialog == DialogResult.No)
                         {
@@ -1535,6 +1537,8 @@ namespace Admeli.AlmacenBox.Nuevo
             {
                 int idAlmacen = (int)cbxAlmacenEntrada.SelectedValue;
                 int idAlmacenS = (int)cbxAlmacen.SelectedValue;
+
+
                 if (idAlmacen == 0)
                 {
                     txtCantidadRecibida.Enabled = false;
@@ -1546,6 +1550,22 @@ namespace Admeli.AlmacenBox.Nuevo
                 }
                 else
                 {
+                    Almacen almacen1 = listAlmacenOrigen.Find(X=>X.idAlmacen== idAlmacen);
+                    Almacen almacen2= listAlmacenOrigen.Find(X => X.idAlmacen == idAlmacenS);
+                    if (almacen1.idSucursal == almacen2.idSucursal)
+                    {
+                        chbxEntrega.Checked = true;
+                        chbxEntrega.Enabled = true;
+                        cbxEstado.SelectedIndex = 2;
+                        cbxEstado.Enabled = true;
+                    }
+                    else
+                    {
+                        chbxEntrega.Checked = false;
+                        chbxEntrega.Enabled = false;
+                        cbxEstado.SelectedIndex = 0;
+                        cbxEstado.Enabled = false;
+                    }
                     txtCantidadRecibida.Enabled = true;
                     label1.Enabled = true;
                     dgvDetalleNotaSalida.Columns["cantidadRecibida"].Visible = true;

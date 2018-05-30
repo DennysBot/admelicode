@@ -605,11 +605,6 @@ namespace Admeli.AlmacenBox.Nuevo
                     cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
 
                 }
-
-
-
-
-
             }
             catch (Exception ex)
 
@@ -799,7 +794,7 @@ namespace Admeli.AlmacenBox.Nuevo
 
                         if (notaGuardarE.id > 0)
                         {
-                            MessageBox.Show(notaGuardarE.msj + " " + "satisfactoriamente", "guardar Nota Entrada - " + ConfigModel.alamacenes.Find(X => X.idAlmacen == (int)cbxAlmacenEntrada.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(notaGuardarE.msj + " " + "satisfactoriamente", "guardar Nota Entrada - " + listAlmacenEntrada.Find(X => X.idAlmacen == (int)cbxAlmacenEntrada.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
 
                         }
@@ -838,7 +833,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 {
 
 
-                    DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + listAlmacenSalida.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre,
+                    DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + listAlmacenEntrada.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre,
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (dialog == DialogResult.No)
                     {
@@ -1001,14 +996,20 @@ namespace Admeli.AlmacenBox.Nuevo
         private async void cargarAlternativas(int tipo)
         {
             if (cbxCodigoProducto.SelectedIndex == -1) return; /// validacion
+
+            loadState(true);
             try
             {
-                List<AlternativaCombinacion> alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(cbxCodigoProducto.SelectedValue));
+                List<AlternativaCombinacion> alternativaCombinacion = await alternativaModel.cAlternativa31(Convert.ToInt32(currentProducto.idPresentacion));
                 alternativaCombinacionBindingSource.DataSource = alternativaCombinacion;                              
             }                                                  /// cargando las alternativas del producto
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "cargar combinaciones", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                loadState(false);
             }
         }
        
@@ -1542,7 +1543,26 @@ namespace Admeli.AlmacenBox.Nuevo
             {
                 int idAlmacen = (int)cbxAlmacenSalida.SelectedValue;
                 int idAlmacenE= (int)cbxAlmacenEntrada.SelectedValue;
-
+                if (idAlmacen != 0)
+                {
+                    Almacen almacen1 = listAlmacenEntrada.Find(X => X.idAlmacen == idAlmacen);
+                    Almacen almacen2 = listAlmacenEntrada.Find(X => X.idAlmacen == idAlmacenE);
+                    if (almacen1.idSucursal == almacen2.idSucursal)
+                    {
+                        chbxEntrega.Checked = true;
+                        chbxEntrega.Enabled = true;
+                        cbxEstado.SelectedIndex = 2;
+                        cbxEstado.Enabled = true;
+                    }
+                    else
+                    {
+                        chbxEntrega.Checked = false;
+                        chbxEntrega.Enabled = false;
+                        cbxEstado.SelectedIndex = 0;
+                        cbxEstado.Enabled = false;
+                    }
+                }
+                
                 BindingList<Almacen> filtered = new BindingList<Almacen>(listAlmacenEntrada.Where(obj => obj.idAlmacen != idAlmacen).ToList());
                 cbxAlmacenEntrada.DataSource = filtered;
                 cbxAlmacenEntrada.Update();
@@ -1713,6 +1733,16 @@ namespace Admeli.AlmacenBox.Nuevo
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void chbxEntrega_OnChange(object sender, EventArgs e)
+        {
+            //if(chbxEntrega.)
+        }
+
+        private void label26_Click(object sender, EventArgs e)
         {
 
         }

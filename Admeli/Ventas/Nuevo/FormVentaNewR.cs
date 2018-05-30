@@ -40,6 +40,10 @@ namespace Admeli.Ventas.Nuevo
         private List<DatosNotaSalidaVenta> datosNotaSalidaVenta { get; set; }
         private NotasalidaVenta notasalidaVenta { get; set; }
         private VentaTotal ventaTotal { get; set; }
+
+        private DatosVentaAbastece datosVentaAbastece { get; set; }
+        List<List<object>> datoaAbastece { get; set; }
+
         //webservice utilizados
         private TipoDocumentoModel tipoDocumentoModel = new TipoDocumentoModel();
         private DocCorrelativoModel docCorrelativoModel = new DocCorrelativoModel();
@@ -72,11 +76,11 @@ namespace Admeli.Ventas.Nuevo
         private List<DetalleV> detalleVentas { get; set; }
        
         private List<ImpuestoProducto> listImpuestosProducto { get; set; }
-        private List<AlmacenComra> listAlmecenes { get; set; }
+        private List<AlmacenCompra> listAlmecenes { get; set; }
         List<AlternativaCombinacion> alternativaCombinacion { get; set; }
         public UbicacionGeografica CurrentUbicacionGeografica;
         /// Llenan los datos en las interacciones en el formulario 
-        private AlmacenComra almacenVenta { get; set; }
+        private AlmacenCompra almacenVenta { get; set; }
         private Presentacion currentPresentacion { get; set; }
         private CorrelativoCotizacion correlativoCotizacion { get; set; }
         private ProductoVenta currentProducto { get; set; }
@@ -562,10 +566,19 @@ namespace Admeli.Ventas.Nuevo
             dato = new List<List<object>>();
             verificarStock = new VerificarStock();
             abastece = new AbasteceV();
-
+            datosVentaAbastece = new DatosVentaAbastece();
+            datoaAbastece = new List<List<object>>();
 
         }
-       
+        private void limpiarObjetos()
+        {
+
+            dato.Clear();
+
+            datoaAbastece.Clear();
+            datosNotaSalidaVenta.Clear();
+
+        }
         private async void cargarProductos()
         {
             try
@@ -1016,6 +1029,10 @@ namespace Admeli.Ventas.Nuevo
                 {
 
                     cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
+                    txtCantidad.Text = currentdetalleV.cantidad;
+                    txtDescuento.Text = currentdetalleV.descuento;
+                    txtPrecioUnitario.Text = currentdetalleV.precioVenta;
+                    txtTotalProducto.Text = currentdetalleV.total;
 
                 }
                 if (!nuevo)
@@ -1040,6 +1057,7 @@ namespace Admeli.Ventas.Nuevo
 
             if (alternativaCombinacion[0].idCombinacionAlternativa <= 0)
                 calcularPrecioUnitarioProducto();
+            
             calcularTotal();
             decorationDataGridView();
         }
@@ -1294,7 +1312,7 @@ namespace Admeli.Ventas.Nuevo
                 /// Cargando presentaciones           
 
                 /// Cargando alternativas del producto
-                cargarAlternativasdescripcion();
+              
                 determinarDescuentoEImpuesto();
 
             }
@@ -1412,6 +1430,7 @@ namespace Admeli.Ventas.Nuevo
 
         private void cbxCodigoProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             cargarProductoDetalle();
         }
         private void cbxDescripcion_SelectedIndexChanged(object sender, EventArgs e)
@@ -1521,29 +1540,29 @@ namespace Admeli.Ventas.Nuevo
             try
             {
 
+                cbxCodigoProducto.Enabled = false;
+                enModificar = true;
+                int index = dgvDetalleOrdenCompra.CurrentRow.Index; // Identificando la fila actual del datagridview
+                int idPresentacion = Convert.ToInt32(dgvDetalleOrdenCompra.Rows[index].Cells[0].Value);
+                int idCombinacion = Convert.ToInt32(dgvDetalleOrdenCompra.Rows[index].Cells[1].Value);
+                // obteniedo el idRegistro del datagridview
+                currentdetalleV = buscarElemento(idPresentacion, idCombinacion);
+                // obteniedo el idRegistro del datagridview
+                txtCantidad.Text = darformato(toDouble(currentdetalleV.cantidad));
+                cbxCodigoProducto.SelectedValue = currentdetalleV.idProducto;
+                cbxDescripcion.Text = currentdetalleV.descripcion;
+                txtCantidad.Text = darformato(toDouble(currentdetalleV.cantidad));
 
-             enModificar = true;
-            int index = dgvDetalleOrdenCompra.CurrentRow.Index; // Identificando la fila actual del datagridview
-            int idPresentacion = Convert.ToInt32(dgvDetalleOrdenCompra.Rows[index].Cells[0].Value);
-            int idCombinacion = Convert.ToInt32(dgvDetalleOrdenCompra.Rows[index].Cells[1].Value);
-            // obteniedo el idRegistro del datagridview
-            currentdetalleV = buscarElemento(idPresentacion, idCombinacion);
-            // obteniedo el idRegistro del datagridview
-            txtCantidad.Text = darformato(toDouble(currentdetalleV.cantidad));
-            cbxCodigoProducto.SelectedValue = currentdetalleV.idProducto;
-            cbxDescripcion.SelectedValue = currentdetalleV.idPresentacion;
-            txtCantidad.Text = darformato(toDouble(currentdetalleV.cantidad));
-
-            cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
-            txtPrecioUnitario.Text = darformato(currentdetalleV.precioVentaReal);
-            txtDescuento.Text = darformato(currentdetalleV.descuento);
-            txtTotalProducto.Text = darformato(currentdetalleV.totalGeneral);
-            btnAgregar.Enabled = false;
-            btnModificar.Enabled = true;
-            cbxCodigoProducto.Enabled = false;
-            cbxDescripcion.Enabled = false;
-            seleccionado = true;
-            cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
+                cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
+                txtPrecioUnitario.Text = darformato(currentdetalleV.precioVentaReal);
+                txtDescuento.Text = darformato(currentdetalleV.descuento);
+                txtTotalProducto.Text = darformato(currentdetalleV.totalGeneral);
+                btnAgregar.Enabled = false;
+                btnModificar.Enabled = true;
+            
+                cbxDescripcion.Enabled = false;
+                seleccionado = true;
+                cbxVariacion.SelectedValue = currentdetalleV.idCombinacionAlternativa;
 
 
 
@@ -1655,7 +1674,7 @@ namespace Admeli.Ventas.Nuevo
                 detalleV.cantidadUnitaria = darformato(txtCantidad.Text.Trim());
                 detalleV.codigoProducto = cbxCodigoProducto.Text.Trim();
                 detalleV.descripcion =cbxDescripcion.Text;
-
+                detalleV.stockALmacenLocal = currentProducto.stock;
                 double descuento = toDouble(txtDescuento.Text.Trim());
                 detalleV.descuento = darformato(descuento);
                 double precioUnitario = toDouble(txtPrecioUnitario.Text.Trim());
@@ -2227,8 +2246,14 @@ namespace Admeli.Ventas.Nuevo
                         return;
                        
                     }
+                    else
+                    {
+                        limpiarCamposProducto();
+                        cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
 
-                    cbxCodigoProducto.SelectedValue = formBuscarProducto.currentProducto.idProducto;
+                    }
+
+                 
 
                 }
 
@@ -2364,6 +2389,8 @@ namespace Admeli.Ventas.Nuevo
             loadState(true);
             try
             {
+
+                limpiarObjetos();
                 if (CurrentCliente == null)
                 {
 
@@ -2405,12 +2432,8 @@ namespace Admeli.Ventas.Nuevo
 
                 foreach (DetalleV V in detalleVentas)
                 {
-                    DatosNotaSalidaVenta aux = new DatosNotaSalidaVenta();
-                    aux.cantidad = toEntero(V.cantidad);
-                    aux.descripcion = V.descripcion;
-                    aux.idAlmacen = almacenVenta.idAlmacen;
-                    aux.idCombinacionAlternativa = V.idCombinacionAlternativa;
-                    aux.idProducto = V.idProducto;
+
+                
 
 
                     V.descuento = V.descuento.Replace(",", "");
@@ -2421,21 +2444,38 @@ namespace Admeli.Ventas.Nuevo
                     V.totalGeneral = V.totalGeneral.Replace(",", "");
                     V.valor = V.valor.Replace(",", "");
                     List<object> list = new List<object>();
+                    List<object> listAbastece = new List<object>();                   
                     list.Add(V.idProducto);
                     list.Add(V.idCombinacionAlternativa);
                     list.Add(toEntero(V.cantidad));
                     list.Add(V.ventaVarianteSinStock);
 
+                    listAbastece.Add(V.idProducto);
+                    listAbastece.Add(V.idCombinacionAlternativa);
+                    listAbastece.Add(V.idPresentacion);
+                    listAbastece.Add(toEntero(V.cantidad));
+                    listAbastece.Add(V.ventaVarianteSinStock);
+
+
+
                     dato.Add(list);
 
-
+                    datoaAbastece.Add(listAbastece);                  
+                    DatosNotaSalidaVenta aux = new DatosNotaSalidaVenta();
+                    aux.descripcion = V.descripcion;
+                    aux.idAlmacen = ConfigModel.currentIdAlmacen;
+                    aux.idCombinacionAlternativa = V.idCombinacionAlternativa;
+                    aux.idProducto = V.idProducto;
+                    aux.idPresentacion = V.idPresentacion;
+                    aux.cantidad =Convert.ToInt32(V.cantidad);
                     datosNotaSalidaVenta.Add(aux);
+                    
                 }
 
-                notasalidaVenta.datosNotaSalida = datosNotaSalidaVenta;
-                notasalidaVenta.generarNotaSalida = chbxNotaEntrada.Checked ? 1 : 0;
-                notasalidaVenta.idPersonal = PersonalModel.personal.idPersonal;
-                notasalidaVenta.idTipoDocumento = 8; // de nota de salida
+                //FormAsignarDetalleVenta formAsignar = new FormAsignarDetalleVenta(datosNotaSalidaVenta);
+
+
+       
 
                 ventav.correlativo = txtCorrelativo.Text.Trim();
                 ventav.descuento = darformato(this.Descuento).Replace(",", "");
@@ -2482,11 +2522,102 @@ namespace Admeli.Ventas.Nuevo
                 dato.Clear();
                 if (chbxNotaEntrada.Checked)
                 {
-
                     if (abasteceReceive.abastece == 0)
                     {
-                        MessageBox.Show("no exite suficiente stock para hacer esta venta", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        return;
+
+                        datosVentaAbastece.idAlmacen = ConfigModel.currentIdAlmacen;
+                        datosVentaAbastece.idPersonal = PersonalModel.personal.idPersonal;
+                        datosVentaAbastece.idSucursal = ConfigModel.sucursal.idSucursal;
+                        datosVentaAbastece.idVenta = 0;
+                        datosVentaAbastece.dato = datoaAbastece;
+
+                        List< DatosNotaSalidaVenta > listNota= await ventaModel.verificarabastecealmacenventa(datosVentaAbastece);
+                        int cantidadRestante = 0;
+                        foreach (DetalleV V in   detalleVentas)
+                        {
+                            List<DatosNotaSalidaVenta> listAux = listNota.Where(X => X.idPresentacion == V.idPresentacion &&X.idCombinacionAlternativa== V.idCombinacionAlternativa ).ToList();
+                            DatosNotaSalidaVenta  notaPrincipal= listNota.Find(X => X.idPresentacion == V.idPresentacion && X.idCombinacionAlternativa == V.idCombinacionAlternativa && X.idAlmacen== ConfigModel.currentIdAlmacen);
+
+                            if (listAux.Count == 0) continue;
+                            int cantidadAlmacen =(int) notaPrincipal.stock;
+                            int cantidad =Int32.Parse( V.cantidad);
+                            cantidadRestante = cantidad- cantidadAlmacen;
+                            bool saltar = false;
+                            foreach (DatosNotaSalidaVenta nota in listAux)
+                            {
+
+                                nota.descripcion = V.descripcion;
+                                if (nota.idAlmacen != ConfigModel.currentIdAlmacen)
+                                {
+                                    cantidadRestante -=(int)nota.stock;
+                                    if (cantidadRestante < 0)
+                                    {
+                                        if (!saltar)
+                                        {
+                                            nota.stockGuardar =Math.Abs(cantidadRestante);
+                                            cantidadRestante += (int)nota.stock;
+                                            nota.stock = (cantidadRestante);
+                                            cantidadRestante = 0;
+                                            saltar = true;
+                                        }
+                                        else
+                                        {
+                                            nota.stock = 0;
+                                            nota.stockGuardar = (int)nota.stockTotal;
+                                        }
+                                        
+                                    }
+                                    if (cantidadRestante == 0)
+                                    {
+                                        saltar = true;
+
+                                    }
+                                    nota.cantidadVentaRestante = 0;
+                                   
+                                }
+                                nota.cantidadVenta =Decimal.Parse( V.cantidad);
+                            }
+
+                        }
+
+
+                        FormAsignarDetalleVenta formAsignar = new FormAsignarDetalleVenta(listNota);
+                       
+                        if (formAsignar.ShowDialog() == DialogResult.Cancel)
+
+                        {
+                            loadState(false);
+                            return;
+
+                        }
+
+                        listNota = formAsignar.list;
+
+                        List<DatosNotaSalidaVenta> listaux= listNota.GroupBy(test => test.idPresentacion)
+                                                                                                       .Select(grp => grp.First())
+                                                                                                       .ToList();
+                      
+
+                            foreach(DatosNotaSalidaVenta ListA in listaux)
+                            {
+
+                                int idPresentacion = ListA.idPresentacion;
+                                int idCombinacion = ListA.idCombinacionAlternativa;
+                                DatosNotaSalidaVenta aux = datosNotaSalidaVenta.Find(X => X.idPresentacion == idPresentacion && X.idCombinacionAlternativa == idCombinacion);
+                                if (aux != null)
+                                {
+                                    
+                                    datosNotaSalidaVenta.Remove(aux);
+
+                                }
+
+                            }
+                            datosNotaSalidaVenta.AddRange(listNota);
+
+
+                       
+                      
+                       
                     }
 
 
@@ -2501,6 +2632,15 @@ namespace Admeli.Ventas.Nuevo
                     this.Close();
                     return;
                 }
+
+
+                //nota de salida
+
+                notasalidaVenta.datosNotaSalida = datosNotaSalidaVenta;
+                notasalidaVenta.generarNotaSalida = chbxNotaEntrada.Checked ? 1 : 0;
+                notasalidaVenta.idPersonal = PersonalModel.personal.idPersonal;
+                notasalidaVenta.idTipoDocumento = 8; // de nota de salida
+
                 ventaTotal.cobro = cobrov;
                 ventaTotal.cobroventa = cobroVentaV;
                 ventaTotal.detalle = detalleVentas;

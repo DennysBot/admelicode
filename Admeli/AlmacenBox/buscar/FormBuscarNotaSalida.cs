@@ -94,7 +94,7 @@ namespace Admeli.AlmacenBox.buscar
         private void loadState(bool state)
         {
             appLoadState(state);
-            this.Enabled = true;
+            this.Enabled = !state;
         }
 
         public void appLoadState(bool state)

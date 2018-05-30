@@ -130,12 +130,12 @@ namespace Modelo
                 throw ex;
             }
         }
-        public async Task<List<AlmacenComra>> almacenesCompra( int idSucursal,int idPersonal)
+        public async Task<List<AlmacenCompra>> almacenesCompra( int idSucursal,int idPersonal)
         {
             try
             {
                 // http://localhost:8080/admeli/xcore/services.php/personalalmacenes/per/1/suc/1
-                List<AlmacenComra> list = await webService.GET<List<AlmacenComra>>("personalalmacenes", String.Format("per/{0}/suc/{1}", idPersonal, idSucursal));
+                List<AlmacenCompra> list = await webService.GET<List<AlmacenCompra>>("personalalmacenes", String.Format("per/{0}/suc/{1}", idPersonal, idSucursal));
                 return list;
             }
             catch (Exception ex)
