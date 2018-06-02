@@ -93,9 +93,56 @@ namespace Admeli
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
-            dataGridView1.Columns[e.ColumnIndex].Visible= false;
+            
+            
+
+            //e.Location
             propertyGrid1.SelectedObject = dataGridView1;
         }
-    
+
+        private void dataGridView1_AllowUserToOrderColumnsChanged(object sender, EventArgs e)
+        {
+            int j = dataGridView1.CurrentCell.RowIndex;
+            int i = dataGridView1.CurrentCell.ColumnIndex; 
+         }
+
+        private void dataGridView1_DragEnter(object sender, DragEventArgs e)
+        {
+            int j = dataGridView1.CurrentCell.RowIndex;
+            int i = dataGridView1.CurrentCell.ColumnIndex;
+        }
+
+        private void dataGridView1_Sorted(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dataGridView1_Move(object sender, EventArgs e)
+        {
+            int inf = 0;
+        }
+
+        private void dataGridView1_DragDrop(object sender, DragEventArgs e)
+        {
+            int j = dataGridView1.CurrentCell.RowIndex;
+            int i = dataGridView1.CurrentCell.ColumnIndex;
+        }
+
+        private void dataGridView1_DragLeave(object sender, EventArgs e)
+        {
+            int j = dataGridView1.CurrentCell.RowIndex;
+            int i = dataGridView1.CurrentCell.ColumnIndex;
+        }
+
+        private void dataGridView1_DragOver(object sender, DragEventArgs e)
+        {
+            int j = dataGridView1.CurrentCell.RowIndex;
+            int i = dataGridView1.CurrentCell.ColumnIndex;
+        }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

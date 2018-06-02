@@ -37,8 +37,8 @@ namespace Entidad
         {
             get
             {
-                if (estado == 1) { return "Activo"; }
-                else { return "Anulado"; }
+                if (estadoEntrega == 1) { return "Entregado"; }
+                else { return "Pendiente"; }
             }
             set
             {

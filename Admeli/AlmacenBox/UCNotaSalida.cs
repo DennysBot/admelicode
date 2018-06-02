@@ -222,7 +222,8 @@ namespace Admeli.AlmacenBox
             {
                 List<Almacen> listAlm = new List<Almacen>();
                 List<Almacen> listAlmCargar = new List<Almacen>();
-                listAlm = ConfigModel.alamacenes;
+                listAlm = await almacenModel.almacenesAsignados(0, PersonalModel.personal.idPersonal);//  para todos las asignadas al personal
+
                 Almacen almacen = new Almacen();
                 almacen.idAlmacen = 0;
                 almacen.nombre = "Todos los almacenes";
@@ -254,6 +255,7 @@ namespace Admeli.AlmacenBox
                 if (ConfigModel.asignacionPersonal.idPuntoGerencia != 0 || ConfigModel.asignacionPersonal.idPuntoAdministracion != 0)
                 {
                     personalBindingSource.DataSource = await personalModel.listarPersonalAlmacen(ConfigModel.sucursal.idSucursal);
+                    cbxPersonales.SelectedValue = PersonalModel.personal.idPersonal;
                 }
                 else
                 {

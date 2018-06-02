@@ -44,6 +44,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vistaPrevia = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.flowLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +68,7 @@
             this.panel3.Location = new System.Drawing.Point(267, 74);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1096, 464);
+            this.panel3.Size = new System.Drawing.Size(1269, 464);
             this.panel3.TabIndex = 3;
             // 
             // flowLayoutPanel1
@@ -77,13 +80,14 @@
             this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Controls.Add(this.button4);
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
+            this.flowLayoutPanel1.Controls.Add(this.vistaPrevia);
             this.flowLayoutPanel1.Controls.Add(this.button6);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1363, 74);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1536, 74);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // radioButton1
@@ -226,7 +230,7 @@
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(110)))), ((int)(((byte)(122)))));
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(1162, 12);
+            this.button6.Location = new System.Drawing.Point(1355, 12);
             this.button6.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -261,11 +265,49 @@
             this.editarToolStripMenuItem.Text = "Editar";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 
+            // vistaPrevia
+            // 
+            this.vistaPrevia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.vistaPrevia.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(225)))), ((int)(((byte)(228)))));
+            this.vistaPrevia.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(236)))));
+            this.vistaPrevia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(236)))));
+            this.vistaPrevia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(236)))));
+            this.vistaPrevia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.vistaPrevia.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vistaPrevia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(110)))), ((int)(((byte)(122)))));
+            this.vistaPrevia.Image = ((System.Drawing.Image)(resources.GetObject("vistaPrevia.Image")));
+            this.vistaPrevia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.vistaPrevia.Location = new System.Drawing.Point(1162, 12);
+            this.vistaPrevia.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
+            this.vistaPrevia.Name = "vistaPrevia";
+            this.vistaPrevia.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.vistaPrevia.Size = new System.Drawing.Size(180, 49);
+            this.vistaPrevia.TabIndex = 13;
+            this.vistaPrevia.Text = "Vista Previa";
+            this.vistaPrevia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.vistaPrevia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.vistaPrevia.UseVisualStyleBackColor = true;
+            this.vistaPrevia.Click += new System.EventHandler(this.vistaPrevia_Click);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
             // FormDiseñoComprobantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1363, 538);
+            this.ClientSize = new System.Drawing.Size(1536, 538);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -297,5 +339,8 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.Button vistaPrevia;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

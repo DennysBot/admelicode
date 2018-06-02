@@ -3065,6 +3065,7 @@ namespace Admeli.Ventas.Nuevo
 
         private void txtDocumentoCliente_KeyUp(object sender, KeyEventArgs e)
         {
+            
             if (e.KeyCode == Keys.Enter && !faltaCliente && !faltaProducto)
             {
                 this.SelectNextControl((Control)sender, true, true, true, true);
@@ -3240,6 +3241,11 @@ namespace Admeli.Ventas.Nuevo
             // cambiar de moneda
             //post//valormonedas
 
+        }
+
+        private void txtDocumentoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validator.isNumber(e);
         }
     }
 }

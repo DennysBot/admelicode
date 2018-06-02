@@ -197,14 +197,11 @@ namespace Admeli.Ventas.buscar
 
             if (e.KeyCode == Keys.Enter)
             {
-
-
-                if (listProductosfiltrada.Count > 0)
+                if (listProductosfiltrada.Count == 1)
                 {
 
                     cargarProducto();
                 }
-
 
             }
             if (e.KeyCode == Keys.Down)

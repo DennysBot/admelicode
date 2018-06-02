@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Admeli.AlmacenBox.buscar;
 using Admeli.Componentes;
+using Admeli.Productos.Nuevo;
 using Admeli.Properties;
 using Admeli.Ventas.buscar;
 using Entidad;
@@ -425,7 +426,10 @@ namespace Admeli.AlmacenBox.Nuevo
                 almacen.idAlmacen = 0;
                 almacen.nombre = "Ninguno";
                 listAlmacenDestino.Add(almacen);
-                listAlmacenDestino.AddRange(listAlmacenOrigen);
+
+                List<Almacen> listAlmacenDestinoaux = await AlmacenModel.almacenesAsignados(0,0);// todos los almacenes
+
+                listAlmacenDestino.AddRange(listAlmacenDestinoaux);
 
                 almacenBindingSource1.DataSource = listAlmacenDestino;
                 currentAlmacen = listAlmacenOrigen.Find(X=>X.idAlmacen== ConfigModel.currentIdAlmacen);
@@ -447,7 +451,7 @@ namespace Admeli.AlmacenBox.Nuevo
             finally
             {
                 if (listProducto != null)
-                    loadState(true);
+                    loadState(false);
 
             }
 
@@ -1547,25 +1551,50 @@ namespace Admeli.AlmacenBox.Nuevo
                     dgvDetalleNotaSalida.Columns["cantidadRecibida"].Visible=false;
 
 
+                    lbentrega.Visible = false;
+                    label38.Visible = false;
+                    chbxEntrega.Visible = false;
+                    label18.Visible = false;
+
                 }
                 else
                 {
+                    lbentrega.Visible = true;
+                    label38.Visible = true;
+                    chbxEntrega.Visible = true;
+                    label18.Visible = true;
                     Almacen almacen1 = listAlmacenOrigen.Find(X=>X.idAlmacen== idAlmacen);
                     Almacen almacen2= listAlmacenOrigen.Find(X => X.idAlmacen == idAlmacenS);
-                    if (almacen1.idSucursal == almacen2.idSucursal)
+                   
+                    if (almacen1 == null)
                     {
-                        chbxEntrega.Checked = true;
-                        chbxEntrega.Enabled = true;
-                        cbxEstado.SelectedIndex = 2;
-                        cbxEstado.Enabled = true;
+                        chbxEntrega.Checked = false;
+
+                        cbxEstado.SelectedIndex = 0;
+
+
                     }
                     else
                     {
-                        chbxEntrega.Checked = false;
-                        chbxEntrega.Enabled = false;
-                        cbxEstado.SelectedIndex = 0;
-                        cbxEstado.Enabled = false;
+                        if (almacen1.idSucursal == almacen2.idSucursal)
+                        {
+                            chbxEntrega.Checked = true;
+                            chbxEntrega.Enabled = true;
+                            cbxEstado.SelectedIndex = 2;
+                            cbxEstado.Enabled = true;
+                        }
+                        else
+                        {
+                            chbxEntrega.Checked = false;
+
+                            cbxEstado.SelectedIndex = 0;
+
+                        }
+                       
+
                     }
+
+
                     txtCantidadRecibida.Enabled = true;
                     label1.Enabled = true;
                     dgvDetalleNotaSalida.Columns["cantidadRecibida"].Visible = true;
@@ -1742,6 +1771,40 @@ namespace Admeli.AlmacenBox.Nuevo
             {
                 this.SelectNextControl((Control)sender, true, true, true, true);
             }
+        }
+
+        private void btnActulizar_Click(object sender, EventArgs e)
+        {
+            loadState(true);
+            cargarProductos();
+
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            cbxCodigoProducto.Enabled = true;
+            cbxDescripcion.Enabled = true;
+            limpiarCamposProducto();
+        }
+
+        private void btnNuevoProducto_Click(object sender, EventArgs e)
+        {
+            loadState(true);
+            FormProductoNuevo formProductoNuevo = new FormProductoNuevo();
+            formProductoNuevo.ShowDialog();
+            cargarProductos();
+
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            cbxCodigoProducto.Enabled = true;
+            cbxDescripcion.Enabled = true;
+
+            limpiarCamposProducto();
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

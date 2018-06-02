@@ -149,8 +149,8 @@ namespace Admeli.AlmacenBox
             {
 
                 int personalId = (cbxPersonales.SelectedIndex == -1) ? PersonalModel.personal.idPersonal : Convert.ToInt32(cbxPersonales.SelectedValue);
-                int sucursalId = (cbxSucursales.SelectedIndex == -1) ? ConfigModel.sucursal.idSucursal : Convert.ToInt32(cbxSucursales.SelectedValue);
-                int almacenId = (cbxAlmacenes.SelectedIndex == -1) ? ConfigModel.currentIdAlmacen : Convert.ToInt32(cbxAlmacenes.SelectedValue);
+                int sucursalId = (cbxSucursales.SelectedIndex == -1) ? 0 : Convert.ToInt32(cbxSucursales.SelectedValue);
+                int almacenId = (cbxAlmacenes.SelectedIndex == -1) ? 0 : Convert.ToInt32(cbxAlmacenes.SelectedValue);
                 int estado = (cbxEstados.SelectedIndex == -1) ? 0 : Convert.ToInt32(cbxEstados.SelectedValue);
 
                 RootObject<NotaEntrada> rootData = await notaEntradaModel.notaEntradas(sucursalId, almacenId, personalId, estado, paginacion.currentPage, paginacion.speed);
@@ -219,7 +219,8 @@ namespace Admeli.AlmacenBox
             {
                 List<Almacen> listAlm = new List<Almacen>();
                 List<Almacen> listAlmCargar = new List<Almacen>();
-                listAlm = ConfigModel.alamacenes;
+                listAlm= await almacenModel.almacenesAsignados(0, PersonalModel.personal.idPersonal);//  para todos las asignadas al personal
+
                 Almacen almacen = new Almacen();
                 almacen.idAlmacen = 0;
                 almacen.nombre = "Todos los almacenes";
@@ -251,6 +252,7 @@ namespace Admeli.AlmacenBox
                 if (ConfigModel.asignacionPersonal.idPuntoGerencia != 0 || ConfigModel.asignacionPersonal.idPuntoAdministracion != 0)
                 {
                     personalBindingSource.DataSource = await personalModel.listarPersonalAlmacen(ConfigModel.sucursal.idSucursal);
+                    cbxPersonales.SelectedValue = PersonalModel.personal.idPersonal;
                 }
                 else
                 {

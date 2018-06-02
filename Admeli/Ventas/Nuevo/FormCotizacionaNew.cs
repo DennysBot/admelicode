@@ -2788,6 +2788,11 @@ namespace Admeli.Ventas.Nuevo
         {
 
         }
+
+        private void txtDocumentoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validator.isNumber(e);
+        }
     }
 
   

@@ -559,59 +559,72 @@ namespace Admeli.Compras.Nuevo
         {
             if (cbxTipoMoneda.SelectedValue == null)
                 return;
-            double subTotalLocal = 0;
-            foreach (DetalleC item in detalleC)
+            try
             {
-                subTotalLocal += item.total;
 
-            }
-            Moneda moneda = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
-            this.subTotal = subTotalLocal;
-
-            lbSubtotal.Text = moneda.simbolo + ". " + darformato(subTotalLocal);
-            // determinar impuesto de cada producto
-          
-
-            double impuesto = 0;
-            foreach (DetalleC item in detalleC)
-            {
-                List<Impuesto> list = await ImpuestoModel.impuestoProductoSucursal(item.idPresentacion, ConfigModel.sucursal.idSucursal);
-               
-                double porcentual = 0;
-                double efectivo = 0;
-                foreach (Impuesto I in list)
+                double subTotalLocal = 0;
+                foreach (DetalleC item in detalleC)
                 {
+                    subTotalLocal += item.total;
 
-                    if (item.estado == 1)
+                }
+                Moneda moneda = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
+                this.subTotal = subTotalLocal;
+
+                lbSubtotal.Text = moneda.simbolo + ". " + darformato(subTotalLocal);
+                // determinar impuesto de cada producto
+
+
+                double impuesto = 0;
+                foreach (DetalleC item in detalleC)
+                {
+                    List<Impuesto> list = await ImpuestoModel.impuestoProductoSucursal(item.idPresentacion, ConfigModel.sucursal.idSucursal);
+
+                    double porcentual = 0;
+                    double efectivo = 0;
+                    foreach (Impuesto I in list)
                     {
 
-                        if (I.porcentual)
-                            porcentual += I.valorImpuesto;
-                        else
+                        if (item.estado == 1)
                         {
-                            efectivo += I.valorImpuesto;
+
+                            if (I.porcentual)
+                                porcentual += I.valorImpuesto;
+                            else
+                            {
+                                efectivo += I.valorImpuesto;
+                            }
+
                         }
 
                     }
 
+                    double i1 = item.cantidad * item.precioUnitario * porcentual / 100;
+
+                    i1 += efectivo;
+
+                    impuesto += i1;
+
                 }
 
-                double i1 = item.cantidad * item.precioUnitario * porcentual / 100;
 
-                i1 += efectivo;
+                this.impuesto = impuesto;
 
-                impuesto += i1;
+                lbImpuesto.Text = moneda.simbolo + ". " + darformato(impuesto);
+
+                // determinar impuesto de cada producto
+                this.total = impuesto + subTotalLocal;
+                lbTotalCompra.Text = moneda.simbolo + ". " + darformato(total);
+
 
             }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show("Error: " + ex.Message, "calcular subtotal ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            this.impuesto = impuesto;
-
-            lbImpuesto.Text = moneda.simbolo + ". " + darformato(impuesto);
-
-            // determinar impuesto de cada producto
-            this.total = impuesto + subTotalLocal;
-            lbTotalCompra.Text = moneda.simbolo + ". " + darformato(total);
+            }
+           
         }
 
         /// <summary>
@@ -1252,7 +1265,7 @@ namespace Admeli.Compras.Nuevo
                     dato.Add(datoaux);                 
                 }
 
-                if (Almacen.Count > 0)
+                if (Almacen.Count > 1&& chbxNotaEntrada.Checked)
                 {
                     DatosParaNotaEntrada datosPara = new DatosParaNotaEntrada();
                     datosPara.idCompra = currentCompra != null ? currentCompra.idCompra : 0;
@@ -1291,7 +1304,8 @@ namespace Admeli.Compras.Nuevo
                     }
 
                     FormAsignarDetalleEntrada formAsignar = new FormAsignarDetalleEntrada(listCompraNota);
-                    if (formAsignar.ShowDialog() == DialogResult.Cancel)
+                    formAsignar.ShowDialog();
+                    if (formAsignar.cancelar)
 
                     {
                         loadState(false);
@@ -1307,7 +1321,7 @@ namespace Admeli.Compras.Nuevo
                 }
                 else
                 {
-                    if (Almacen.Count == 0)
+                    if (Almacen.Count == 1)
                     {
 
                         foreach (DetalleC detalle in detalleC)
@@ -1835,6 +1849,11 @@ namespace Admeli.Compras.Nuevo
                 }
             }
             monedaActual = monedaCambio;
+        }
+
+        private void txtRuc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validator.isNumber(e);
         }
     }
 }

@@ -34,6 +34,7 @@ namespace Admeli.Compras.buscar
         public List<DatoNotaEntradaC> list { get; set; }
         TextBox txt;
         string stockActual = "0";
+        public  bool cancelar = false;
         public FormAsignarDetalleEntrada(List<DatoNotaEntradaC> list)
         {
             InitializeComponent();
@@ -239,6 +240,8 @@ namespace Admeli.Compras.buscar
         }
         private void btnsalir_Click(object sender, EventArgs e)
         {
+
+            this.cancelar = true;
             this.Close();
         }
 
