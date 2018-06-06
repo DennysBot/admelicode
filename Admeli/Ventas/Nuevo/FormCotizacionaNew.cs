@@ -387,7 +387,7 @@ namespace Admeli.Ventas.Nuevo
             loadState(true);
             try
             {
-                listProductos = await productoModel.productos(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
+                listProductos = await productoModel.productos(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal, ConfigModel.currentIdAlmacen) ;
                 productoVentaBindingSource.DataSource = listProductos;
                 cbxCodigoProducto.SelectedIndex = -1;
                 cbxDescripcion.SelectedIndex = -1;

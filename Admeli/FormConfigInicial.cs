@@ -79,7 +79,7 @@ namespace Admeli
                     // Estableciendo el almacen y punto de venta al personal asignado
                     ConfigModel.currentIdAlmacen = Convert.ToInt32(cbxAlmacenes.SelectedValue.ToString());
                     
-                    ConfigModel.currentPuntoVenta = cbxPuntosVenta.SelectedValue!=null ? Convert.ToInt32(cbxPuntosVenta.SelectedValue.ToString()):-1;
+                    ConfigModel.currentPuntoVenta = cbxPuntosVenta.SelectedValue!=null ? Convert.ToInt32(cbxPuntosVenta.SelectedValue.ToString()):0;
 
                     // Mostrando el formulario principal
                     this.Hide();
@@ -188,34 +188,53 @@ namespace Admeli
             cargar();
         }
 
-        public  async void cargar(){
+        public async void cargar() {
 
             btnContinuar.Enabled = false;
             cbxPuntosVenta.Enabled = false;
             cbxAlmacenes.Enabled = false;
             await configModel.loadAlmacenes(PersonalModel.personal.idPersonal, 0);
             listAlmacenes = ConfigModel.alamacenes;
-            foreach(Almacen A in  listAlmacenes)
+
+
+            foreach (Almacen A in listAlmacenes)
             {
                 A.nombreSucursal = ConfigModel.listSucursales.Find(X => X.idSucursal == A.idSucursal).nombre;
-                
+
             }
 
             await configModel.loadPuntoDeVenta(PersonalModel.personal.idPersonal, 0);
             listpuntos = ConfigModel.puntosDeVenta;
-           
+
 
             cbxPuntosVenta.Enabled = true;
             cbxAlmacenes.Enabled = true;
+            if (listAlmacenes.Count == 0)
+            {        
+                foreach(Sucursal S in        ConfigModel.listSucursales)
+                {
 
+                    Almacen almacen = new Almacen();
+                    almacen.idAlmacen = 0;
+                    almacen.idSucursal = S.idSucursal;
+                    almacen.nombre = "Ninguno ";
+                    almacen.nombreSucursal =S.nombre;
+                    listAlmacenes.Add(almacen);
+                    
+
+
+
+                }
+                
+            }
 
             almacenBindingSource.DataSource = listAlmacenes;
             cbxAlmacenes.SelectedIndex = -1;
-
-
+          
 
             puntoDeVentaBindingSource.DataSource = listpuntos;
-            cbxPuntosVenta.SelectedIndex = -1;
+            cbxPuntosVenta.SelectedIndex = -1; 
+
             cbxAlmacenes.SelectedIndex = 0;
             btnContinuar.Enabled = true;
             btnContinuar.Focus();
@@ -224,22 +243,43 @@ namespace Admeli
         private void cbxAlmacenes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxAlmacenes.SelectedIndex == -1) return;
-            Almacen almacen = listAlmacenes.Find(X=>X.idAlmacen== (int)cbxAlmacenes.SelectedValue);
-            ConfigModel.sucursal=ConfigModel.listSucursales.Find(X => X.idSucursal == almacen.idSucursal);
-             List<PuntoDeVenta> list = listpuntos.Where(X => X.idSucursal == ConfigModel.sucursal.idSucursal).ToList();
-            if (list.Count == 0)
+            if (listAlmacenes.Count > 0)
             {
+                Almacen almacen = null;
+                if ((int)cbxAlmacenes.SelectedValue == 0)
+                {
+                    almacen = listAlmacenes[cbxAlmacenes.SelectedIndex];
 
-                cbxPuntosVenta.SelectedIndex = -1;
-                puntoDeVentaBindingSource.DataSource = null;
-                puntoDeVentaBindingSource.DataSource = list;
+                }
+                else
+                {
+
+                    almacen = listAlmacenes.Find(X => X.idAlmacen == (int)cbxAlmacenes.SelectedValue);
+                }
                 
-            }
-            else
-            {
+                ConfigModel.sucursal=ConfigModel.listSucursales.Find(X => X.idSucursal == almacen.idSucursal);
+                List<PuntoDeVenta> list = listpuntos.Where(X => X.idSucursal == ConfigModel.sucursal.idSucursal).ToList();
+                if (list.Count == 0)
+                {
 
-                puntoDeVentaBindingSource.DataSource = list;
+                    cbxPuntosVenta.SelectedIndex = -1;
+                    puntoDeVentaBindingSource.DataSource = null;
+
+                    puntoDeVentaBindingSource.DataSource = list;
+                    cbxPuntosVenta.Text = "no hay punto de venta";
+
+
+                }
+                else
+                {
+
+                    puntoDeVentaBindingSource.DataSource = list;
+                }
+
+
             }
+           
+          
 
            
         }
@@ -249,6 +289,16 @@ namespace Admeli
             DrawShape drawShape = new DrawShape();
             drawShape.lineBorder(panel2, 157, 157, 157);
             drawShape.lineBorder(panel3, 157, 157, 157);
+        }
+
+        private void cbxPuntosVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbxPuntosVenta.SelectedIndex==-1)
+            if (listAlmacenes.Count == 0)
+            {
+                    int idSucursal = listpuntos.Find(X => X.idPuntoVenta == (int)cbxPuntosVenta.SelectedValue).idSucursal;
+                    ConfigModel.sucursal= ConfigModel.listSucursales.Find(X => X.idSucursal == idSucursal);
+            }
         }
     }
 }

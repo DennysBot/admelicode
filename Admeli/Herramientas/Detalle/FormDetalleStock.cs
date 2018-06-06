@@ -55,6 +55,7 @@ namespace Admeli.Herramientas.Detalle
             cargarCombinaciones();
             cargarDetalles();
             cargarPrecioVenta();
+            darFormatoDecimales();
         }
 
 
@@ -64,7 +65,19 @@ namespace Admeli.Herramientas.Detalle
         #endregion
 
         #region ============================== Load ==============================
-        
+
+        private void darFormatoDecimales()
+        {
+
+            dgvCombinacion.Columns["PrecioVentaTotal"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+            dgvCombinacion.Columns["stock"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+            dgvCombinacion.Columns["precio"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+
+            dgvCombinacion.Columns["PrecioVentaTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvCombinacion.Columns["stock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvCombinacion.Columns["precio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+        }
         private  void cargarCombinaciones()
         {
 
@@ -103,7 +116,7 @@ namespace Admeli.Herramientas.Detalle
                 foreach( CombinacionStock combinacionStock in list)
                 {
 
-                    combinacionStock.precioVenta = (double)productoData.precioVenta;
+                    combinacionStock.precioVenta = productoData.precioVenta;
 
                 }
             }

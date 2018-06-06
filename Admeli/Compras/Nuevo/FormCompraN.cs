@@ -182,7 +182,12 @@ namespace Admeli.Compras.Nuevo
 
                 btnComprar.Text = "Modificar compra";
             }
+            if (ConfigModel.currentIdAlmacen == 0)
+            {
+                chbxNotaEntrada.Enabled = false;
+                chbxNotaEntrada.Checked = false;
 
+            }
             AddButtonColumn();
             btnModificar.Enabled = false;
             this.ParentChanged += ParentChange; // Evetno que se dispara cuando el padre cambia // Este eveto se usa para desactivar lisener key events de este modulo
@@ -389,7 +394,8 @@ namespace Admeli.Compras.Nuevo
                 txtTipoCambio.Text = "1";
                 txtObservaciones.Text = currentCompra.observacion;
                 txtNroOrdenCompra.Text = currentCompra.nroOrdenCompra;
-                txtNroDocumento.Enabled = false; 
+                txtNroDocumento.Enabled = false;
+                cbxTipoDocumento.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -490,8 +496,11 @@ namespace Admeli.Compras.Nuevo
         private async void cargarAlmacen()
         {
 
+            AlmacenCompra almacen = new AlmacenCompra();
+            almacen.idAlmacen = ConfigModel.currentIdAlmacen;
+            almacen.nombre = "ninguno";
             Almacen = await almacenModel.almacenesCompra(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
-            currentAlmacenCompra = Almacen[0];
+            currentAlmacenCompra = ConfigModel.currentIdAlmacen == 0? almacen:Almacen[0];
         }
 
         #endregion
@@ -1321,7 +1330,7 @@ namespace Admeli.Compras.Nuevo
                 }
                 else
                 {
-                    if (Almacen.Count == 1)
+                    if (Almacen.Count <= 1 )
                     {
 
                         foreach (DetalleC detalle in detalleC)
@@ -1342,7 +1351,7 @@ namespace Admeli.Compras.Nuevo
                 }
             
                 pagocompraC.idCaja = FormPrincipal.asignacion.idCaja;
-                pagocompraC.idPago = currentCompra != null ? currentCompra.idPago : 0; ;
+                pagocompraC.idPago = currentCompra != null ? currentCompra.idPago : 0; 
                 pagocompraC.moneda = moneda.moneda;
                 pagocompraC.idMoneda = moneda.idMoneda;
                 pagocompraC.idMedioPago = medioPagos[0].idMedioPago;

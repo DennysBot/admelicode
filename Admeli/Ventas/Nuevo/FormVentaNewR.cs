@@ -257,7 +257,12 @@ namespace Admeli.Ventas.Nuevo
             AddButtonColumn();
 
             btnModificar.Enabled = false;
+            if (ConfigModel.currentIdAlmacen == 0)
+            {
 
+                chbxNotaEntrada.Enabled = false;
+                chbxNotaEntrada.Checked = false;
+            }
 
             this.ParentChanged += ParentChange; // Evetno que se dispara cuando el padre cambia // Este eveto se usa para desactivar lisener key events de este modulo
             if (TopLevelControl is Form) // Escuchando los eventos del formulario padre
@@ -383,7 +388,11 @@ namespace Admeli.Ventas.Nuevo
             try
             {
                 listAlmecenes = await almacenModel.almacenesCompra(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
-                almacenVenta = listAlmecenes[0];
+                // 
+                AlmacenCompra almacen = new AlmacenCompra();
+                almacen.idAlmacen = ConfigModel.currentIdAlmacen;
+                almacen.nombre = "ninguno";
+                almacenVenta =ConfigModel.currentIdAlmacen==0? almacen : listAlmecenes[0];
             }
 
             catch (Exception ex)
@@ -586,7 +595,7 @@ namespace Admeli.Ventas.Nuevo
 
                
 
-                listProductos = await productoModel.productos(ConfigModel.sucursal.idSucursal, ConfigModel.currentIdAlmacen);// ver como funciona
+                listProductos = await productoModel.productos(ConfigModel.sucursal.idSucursal,PersonalModel.personal.idPersonal,  ConfigModel.currentIdAlmacen);// ver como funciona
                 productoVentaBindingSource.DataSource = listProductos;
                 cbxCodigoProducto.SelectedIndex = -1;
                 cbxDescripcion.SelectedIndex = -1;
@@ -705,8 +714,15 @@ namespace Admeli.Ventas.Nuevo
                     txtObservaciones.Text = currentVenta.observacion;
                     this.Descuento = toDouble(currentVenta.descuento);
 
+                    if(Descuento!=0)
                     lbDescuentoVenta.Text = moneda.simbolo + ". " + darformato(Descuento);
+                    else
+                    {
+                        lbDescuentoVenta.Visible = false;
+                        label4.Visible = false;
 
+
+                    }
                     this.total = toDouble(currentVenta.total);
                     lbTotal.Text = moneda.simbolo + ". " + darformato(total);
 
@@ -1238,10 +1254,20 @@ namespace Admeli.Ventas.Nuevo
 
         public async void determinarStock(double cantidad)
         {
+          
+            
             if (cbxVariacion.SelectedIndex == -1) return;
             try
             {
-                List<StockReceive> stockReceive = await stockModel.getStockProductoCombinacion((int)cbxCodigoProducto.SelectedValue, cbxVariacion.SelectedValue == null ? 0 : (int)cbxVariacion.SelectedValue, ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
+                int idPersonal = PersonalModel.personal.idPersonal;
+                if (ConfigModel.currentIdAlmacen==0)
+                {
+
+                    idPersonal = 0;
+
+                }
+
+                List<StockReceive> stockReceive = await stockModel.getStockProductoCombinacion((int)cbxCodigoProducto.SelectedValue, cbxVariacion.SelectedValue == null ? 0 : (int)cbxVariacion.SelectedValue, ConfigModel.sucursal.idSucursal, idPersonal);
                 if (stockReceive.Count == 0)
                     return;
                 double stockTotal = stockReceive[0].stock_total;
@@ -2423,8 +2449,8 @@ namespace Admeli.Ventas.Nuevo
                 cobrov.montoPagar = 0;
 
                 cobroVentaV.idCaja = FormPrincipal.asignacion.idCaja;
-                cobroVentaV.idCajaSesion = ConfigModel.cajaSesion != null ? ConfigModel.cajaSesion.idCajaSesion : 0;
-                cobroVentaV.idMedioPago = 1;
+                cobroVentaV.idCajaSesion = ConfigModel.cajaIniciada  ? ConfigModel.cajaSesion.idCajaSesion : 0;
+                cobroVentaV.idMedioPago = 1;// efectivo
                 cobroVentaV.idMoneda = (int)cbxTipoMoneda.SelectedValue;
                 cobroVentaV.moneda = cbxTipoMoneda.Text;
                 cobroVentaV.pagarVenta = chbxPagarCompra.Checked ? 1 : 0;
@@ -2509,7 +2535,14 @@ namespace Admeli.Ventas.Nuevo
                 // datos para comprobara stock
 
                 verificarStock.dato = dato;
-                verificarStock.idPersonal = PersonalModel.personal.idPersonal;
+                int idPersonal = PersonalModel.personal.idPersonal;
+                if (ConfigModel.currentIdAlmacen == 0)
+                {
+                    idPersonal = 0;
+
+                }
+
+                verificarStock.idPersonal = idPersonal;
                 verificarStock.idSucursal = ConfigModel.sucursal.idSucursal;
                 verificarStock.idVenta = 0;
 
@@ -2518,87 +2551,102 @@ namespace Admeli.Ventas.Nuevo
                 abastece.idVenta = 0;
                 List<verificarStockReceive> verificarStockReceive = await stockModel.verificarstockproductossucursal(verificarStock);
 
-                abasteceReceive = await stockModel.Abastece(abastece);
-                dato.Clear();
+              
                 if (chbxNotaEntrada.Checked)
                 {
+
+                    abasteceReceive = await stockModel.Abastece(abastece);
+                    dato.Clear();
                     if (abasteceReceive.abastece == 0)
                     {
 
-                        datosVentaAbastece.idAlmacen = ConfigModel.currentIdAlmacen;
-                        datosVentaAbastece.idPersonal = PersonalModel.personal.idPersonal;
-                        datosVentaAbastece.idSucursal = ConfigModel.sucursal.idSucursal;
-                        datosVentaAbastece.idVenta = 0;
-                        datosVentaAbastece.dato = datoaAbastece;
 
-                        List< DatosNotaSalidaVenta > listNota= await ventaModel.verificarabastecealmacenventa(datosVentaAbastece);
-                        int cantidadRestante = 0;
-                        foreach (DetalleV V in   detalleVentas)
+                        if (listAlmecenes.Count > 1)
                         {
-                            List<DatosNotaSalidaVenta> listAux = listNota.Where(X => X.idPresentacion == V.idPresentacion &&X.idCombinacionAlternativa== V.idCombinacionAlternativa ).ToList();
-                            DatosNotaSalidaVenta  notaPrincipal= listNota.Find(X => X.idPresentacion == V.idPresentacion && X.idCombinacionAlternativa == V.idCombinacionAlternativa && X.idAlmacen== ConfigModel.currentIdAlmacen);
+                            datosVentaAbastece.idAlmacen = ConfigModel.currentIdAlmacen;
+                            datosVentaAbastece.idPersonal = PersonalModel.personal.idPersonal;
+                            datosVentaAbastece.idSucursal = ConfigModel.sucursal.idSucursal;
+                            datosVentaAbastece.idVenta = 0;
+                            datosVentaAbastece.dato = datoaAbastece;
 
-                            if (listAux.Count == 0) continue;
-                            int cantidadAlmacen =(int) notaPrincipal.stock;
-                            int cantidad =Int32.Parse( V.cantidad);
-                            cantidadRestante = cantidad- cantidadAlmacen;
-                            bool saltar = false;
-                            foreach (DatosNotaSalidaVenta nota in listAux)
+                            List<DatosNotaSalidaVenta> listNota = await ventaModel.verificarabastecealmacenventa(datosVentaAbastece);
+                            int cantidadRestante = 0;
+                            bool hayStock = true;
+                            foreach (DetalleV V in detalleVentas)
                             {
+                                List<DatosNotaSalidaVenta> listAux = listNota.Where(X => X.idPresentacion == V.idPresentacion && X.idCombinacionAlternativa == V.idCombinacionAlternativa).ToList();
+                                DatosNotaSalidaVenta notaPrincipal = listNota.Find(X => X.idPresentacion == V.idPresentacion && X.idCombinacionAlternativa == V.idCombinacionAlternativa && X.idAlmacen == ConfigModel.currentIdAlmacen);
 
-                                nota.descripcion = V.descripcion;
-                                if (nota.idAlmacen != ConfigModel.currentIdAlmacen)
+                                if (listAux.Count == 0) continue;
+                                int cantidadAlmacen = (int)notaPrincipal.stock;
+                                int cantidad = Int32.Parse(V.cantidad);
+                                cantidadRestante = cantidad - cantidadAlmacen;
+                                bool saltar = false;
+
+                                //ver si no exite stock en ninguna almacen
+
+                                foreach (DatosNotaSalidaVenta nota in listAux)
                                 {
-                                    cantidadRestante -=(int)nota.stock;
-                                    if (cantidadRestante < 0)
+                                    if (nota.cantidad == 0 && nota.stock == 0 && nota.stockTotal == 0)
+                                        hayStock = false;
+
+                                    nota.descripcion = V.descripcion;
+                                    if (nota.idAlmacen != ConfigModel.currentIdAlmacen)
                                     {
-                                        if (!saltar)
+                                        cantidadRestante -= (int)nota.stock;
+                                        if (cantidadRestante < 0)
                                         {
-                                            nota.stockGuardar =Math.Abs(cantidadRestante);
-                                            cantidadRestante += (int)nota.stock;
-                                            nota.stock = (cantidadRestante);
-                                            cantidadRestante = 0;
+                                            if (!saltar)
+                                            {
+                                                nota.stockGuardar = Math.Abs(cantidadRestante);
+                                                cantidadRestante += (int)nota.stock;
+                                                nota.stock = (cantidadRestante);
+                                                cantidadRestante = 0;
+                                                saltar = true;
+                                            }
+                                            else
+                                            {
+                                                nota.stock = 0;
+                                                nota.stockGuardar = (int)nota.stockTotal;
+                                            }
+
+                                        }
+                                        if (cantidadRestante == 0)
+                                        {
                                             saltar = true;
+
                                         }
-                                        else
-                                        {
-                                            nota.stock = 0;
-                                            nota.stockGuardar = (int)nota.stockTotal;
-                                        }
-                                        
-                                    }
-                                    if (cantidadRestante == 0)
-                                    {
-                                        saltar = true;
+                                        nota.cantidadVentaRestante = 0;
 
                                     }
-                                    nota.cantidadVentaRestante = 0;
-                                   
+                                    nota.cantidadVenta = Decimal.Parse(V.cantidad);
                                 }
-                                nota.cantidadVenta =Decimal.Parse( V.cantidad);
+
                             }
 
-                        }
+                            if(hayStock == false)
+                            {
+                                MessageBox.Show("No exite stock Suficiente en los Almacenes Asignados", "Verificar stock", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+
+                            }
+                            FormAsignarDetalleVenta formAsignar = new FormAsignarDetalleVenta(listNota);
+                            formAsignar.ShowDialog();
+                            if (formAsignar.salir)
+                            {
+                                loadState(false);
+                                return;
+
+                            }
+
+                            listNota = formAsignar.list;
+
+                            List<DatosNotaSalidaVenta> listaux = listNota.GroupBy(test => test.idPresentacion)
+                                                                                                           .Select(grp => grp.First())
+                                                                                                           .ToList();
 
 
-                        FormAsignarDetalleVenta formAsignar = new FormAsignarDetalleVenta(listNota);
-                       
-                        if (formAsignar.ShowDialog() == DialogResult.Cancel)
-
-                        {
-                            loadState(false);
-                            return;
-
-                        }
-
-                        listNota = formAsignar.list;
-
-                        List<DatosNotaSalidaVenta> listaux= listNota.GroupBy(test => test.idPresentacion)
-                                                                                                       .Select(grp => grp.First())
-                                                                                                       .ToList();
-                      
-
-                            foreach(DatosNotaSalidaVenta ListA in listaux)
+                            foreach (DatosNotaSalidaVenta ListA in listaux)
                             {
 
                                 int idPresentacion = ListA.idPresentacion;
@@ -2606,7 +2654,7 @@ namespace Admeli.Ventas.Nuevo
                                 DatosNotaSalidaVenta aux = datosNotaSalidaVenta.Find(X => X.idPresentacion == idPresentacion && X.idCombinacionAlternativa == idCombinacion);
                                 if (aux != null)
                                 {
-                                    
+
                                     datosNotaSalidaVenta.Remove(aux);
 
                                 }
@@ -2615,11 +2663,25 @@ namespace Admeli.Ventas.Nuevo
                             datosNotaSalidaVenta.AddRange(listNota);
 
 
+                        }
+                        else
+                        {
+                            if (listAlmecenes.Count == 1)
+                            {
+                                MessageBox.Show("No exite stock Suficiente en el Almacen", "Verificar stock", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+
+                            }
+
+
+                        } 
+
                        
                       
                        
                     }
 
+                    
 
                 }
                 

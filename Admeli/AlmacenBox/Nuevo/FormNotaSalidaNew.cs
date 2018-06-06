@@ -475,7 +475,7 @@ namespace Admeli.AlmacenBox.Nuevo
         {
             try
             {
-                listProducto  = await productoModel.productos(ConfigModel.sucursal.idSucursal, ConfigModel.currentIdAlmacen );
+                listProducto  = await productoModel.productos(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal,ConfigModel.currentIdAlmacen );
                 productoVentaBindingSource.DataSource = listProducto;
                 cbxCodigoProducto.SelectedIndex = -1;
                 cbxDescripcion.SelectedIndex = -1;
@@ -1091,9 +1091,7 @@ namespace Admeli.AlmacenBox.Nuevo
 
                         if (notaGuardarE.id > 0)
                         {
-                            MessageBox.Show(notaGuardar.msj + " " + "corectamente", "guardar Nota Entrada - " + listAlmacenOrigen.Find(X => X.idAlmacen == (int)cbxAlmacenEntrada.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
+                            MessageBox.Show(notaGuardar.msj + " " + "corectamente", "guardar Nota Entrada - " + listAlmacenDestino.Find(X => X.idAlmacen == (int)cbxAlmacenEntrada.SelectedValue).nombre, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
                     }

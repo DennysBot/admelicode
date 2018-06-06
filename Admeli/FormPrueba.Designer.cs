@@ -33,6 +33,8 @@
             this.btnOcultar = new System.Windows.Forms.Button();
             this.panelAsideMain = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbinfo = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -71,10 +73,10 @@
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnToggleMenuRigth = new System.Windows.Forms.Button();
             this.lblTitlePage = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lbinfo = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panelAsideContainer.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
@@ -86,7 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelAsideContainer
@@ -149,6 +150,27 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(359, 167);
             this.panel5.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbinfo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 86);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(359, 26);
+            this.panel1.TabIndex = 11;
+            // 
+            // lbinfo
+            // 
+            this.lbinfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbinfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(203)))), ((int)(((byte)(34)))));
+            this.lbinfo.Location = new System.Drawing.Point(0, 0);
+            this.lbinfo.Name = "lbinfo";
+            this.lbinfo.Size = new System.Drawing.Size(359, 26);
+            this.lbinfo.TabIndex = 0;
+            this.lbinfo.Text = "nombre almacen";
+            this.lbinfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button10
             // 
@@ -520,6 +542,7 @@
             this.panel3.Controls.Add(this.btnFullScreen);
             this.panel3.Controls.Add(this.btnToggleMenuRigth);
             this.panel3.Controls.Add(this.lblTitlePage);
+            this.panel3.Controls.Add(this.menuStrip1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -538,7 +561,7 @@
             this.btnVentaTocuh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVentaTocuh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.btnVentaTocuh.Image = ((System.Drawing.Image)(resources.GetObject("btnVentaTocuh.Image")));
-            this.btnVentaTocuh.Location = new System.Drawing.Point(415, 0);
+            this.btnVentaTocuh.Location = new System.Drawing.Point(341, 0);
             this.btnVentaTocuh.Margin = new System.Windows.Forms.Padding(4);
             this.btnVentaTocuh.Name = "btnVentaTocuh";
             this.btnVentaTocuh.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
@@ -558,7 +581,7 @@
             this.btnCompra2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCompra2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.btnCompra2.Image = ((System.Drawing.Image)(resources.GetObject("btnCompra2.Image")));
-            this.btnCompra2.Location = new System.Drawing.Point(582, 0);
+            this.btnCompra2.Location = new System.Drawing.Point(508, 0);
             this.btnCompra2.Margin = new System.Windows.Forms.Padding(4);
             this.btnCompra2.Name = "btnCompra2";
             this.btnCompra2.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
@@ -578,7 +601,7 @@
             this.btnVenta2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVenta2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.btnVenta2.Image = ((System.Drawing.Image)(resources.GetObject("btnVenta2.Image")));
-            this.btnVenta2.Location = new System.Drawing.Point(731, 0);
+            this.btnVenta2.Location = new System.Drawing.Point(657, 0);
             this.btnVenta2.Margin = new System.Windows.Forms.Padding(4);
             this.btnVenta2.Name = "btnVenta2";
             this.btnVenta2.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
@@ -598,7 +621,7 @@
             this.btnProductos2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductos2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.btnProductos2.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos2.Image")));
-            this.btnProductos2.Location = new System.Drawing.Point(864, 0);
+            this.btnProductos2.Location = new System.Drawing.Point(790, 0);
             this.btnProductos2.Margin = new System.Windows.Forms.Padding(4);
             this.btnProductos2.Name = "btnProductos2";
             this.btnProductos2.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
@@ -614,10 +637,10 @@
             this.button3.Dock = System.Windows.Forms.DockStyle.Right;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(1028, 0);
+            this.button3.Location = new System.Drawing.Point(954, 0);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(64, 58);
+            this.button3.Size = new System.Drawing.Size(108, 58);
             this.button3.TabIndex = 9;
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -628,7 +651,7 @@
             this.btnFullScreen.FlatAppearance.BorderSize = 0;
             this.btnFullScreen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
-            this.btnFullScreen.Location = new System.Drawing.Point(1092, 0);
+            this.btnFullScreen.Location = new System.Drawing.Point(1062, 0);
             this.btnFullScreen.Margin = new System.Windows.Forms.Padding(4);
             this.btnFullScreen.Name = "btnFullScreen";
             this.btnFullScreen.Size = new System.Drawing.Size(64, 58);
@@ -643,7 +666,7 @@
             this.btnToggleMenuRigth.FlatAppearance.BorderSize = 0;
             this.btnToggleMenuRigth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnToggleMenuRigth.Image = ((System.Drawing.Image)(resources.GetObject("btnToggleMenuRigth.Image")));
-            this.btnToggleMenuRigth.Location = new System.Drawing.Point(1156, 0);
+            this.btnToggleMenuRigth.Location = new System.Drawing.Point(1126, 0);
             this.btnToggleMenuRigth.Margin = new System.Windows.Forms.Padding(4);
             this.btnToggleMenuRigth.Name = "btnToggleMenuRigth";
             this.btnToggleMenuRigth.Size = new System.Drawing.Size(64, 58);
@@ -665,26 +688,15 @@
             this.lblTitlePage.Text = "Nombre del modulo actual";
             this.lblTitlePage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel1
+            // menuStrip1
             // 
-            this.panel1.Controls.Add(this.lbinfo);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 86);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(359, 26);
-            this.panel1.TabIndex = 11;
-            // 
-            // lbinfo
-            // 
-            this.lbinfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbinfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbinfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(203)))), ((int)(((byte)(34)))));
-            this.lbinfo.Location = new System.Drawing.Point(0, 0);
-            this.lbinfo.Name = "lbinfo";
-            this.lbinfo.Size = new System.Drawing.Size(359, 26);
-            this.lbinfo.TabIndex = 0;
-            this.lbinfo.Text = "nombre almacen";
-            this.lbinfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Location = new System.Drawing.Point(1190, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(30, 58);
+            this.menuStrip1.TabIndex = 14;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // FormPrincipal
             // 
@@ -695,6 +707,7 @@
             this.Controls.Add(this.progressBarApp);
             this.Controls.Add(this.panelAsideContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormPrincipal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -702,6 +715,7 @@
             this.Load += new System.EventHandler(this.FormPrueba_Load);
             this.panelAsideContainer.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
@@ -715,7 +729,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -766,5 +780,6 @@
         private System.Windows.Forms.Label lbTotalEfectivo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbinfo;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }

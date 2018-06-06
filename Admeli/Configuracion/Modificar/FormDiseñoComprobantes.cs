@@ -2879,8 +2879,7 @@ namespace Admeli.Configuracion.Modificar
 
             }
             this.panel4.Controls.Remove(control);
-            panel1.Controls.Clear();
-            cargarNoSeleccionados();
+            reload();
         }
 
         private void editarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4026,8 +4025,15 @@ namespace Admeli.Configuracion.Modificar
              
                 return;
             }
-            detalle.Columns[e.ColumnIndex].Visible = false;
-            
+            string name = detalle.Columns[e.ColumnIndex].Name;
+
+            detalle.Columns.Remove(detalle.Columns[e.ColumnIndex]);
+           
+
+            vineta aux1 = buscarVineta(name, listGridField);
+            aux1.usado = 0;
+            reload();
+
         }
     }
 }

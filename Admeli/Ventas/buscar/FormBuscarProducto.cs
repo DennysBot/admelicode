@@ -38,6 +38,8 @@ namespace Admeli.Ventas.buscar
 
         private bool lisenerKeyEvents =true;
 
+        public  bool salir  = false;
+
         public FormBuscarProducto(List<ProductoVenta> listProductos)
         {
             InitializeComponent();
@@ -54,6 +56,15 @@ namespace Admeli.Ventas.buscar
         private void FormNotaSalidaNew_Load(object sender, EventArgs e)
         {
             reLoad();
+
+            if (ConfigModel.currentIdAlmacen == 0)
+            {
+                dgvProductos.Columns["StockTotal"].Visible = false;
+                dgvProductos.Columns["stockFalte"].Visible = false;
+
+
+            }
+
             this.ParentChanged += ParentChange; // Evetno que se dispara cuando el padre cambia // Este eveto se usa para desactivar lisener key events de este modulo
             if (TopLevelControl is Form) // Escuchando los eventos del formulario padre
             {
@@ -90,7 +101,17 @@ namespace Admeli.Ventas.buscar
                 listProductosfiltrada = listProductos;
 
                 ProductoVenta productoVenta = listProductos[0];
-                lbl.Text = ConfigModel.alamacenes.Find(X=>X.idAlmacen==ConfigModel.currentIdAlmacen).nombre;
+                if (ConfigModel.currentIdAlmacen == 0)
+                {
+                    label2.Text = "Sucursal";
+                    lbl.Text = ConfigModel.sucursal.nombre;
+
+                }
+                else
+                {
+                     lbl.Text = ConfigModel.alamacenes.Find(X=>X.idAlmacen==ConfigModel.currentIdAlmacen).nombre;
+                }
+              
             }
             catch (Exception ex)
             {
@@ -111,9 +132,13 @@ namespace Admeli.Ventas.buscar
            
             dgvProductos.Columns["precioVenta"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
             dgvProductos.Columns["stock"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
-           
+            dgvProductos.Columns["StockTotal"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+            dgvProductos.Columns["stockFalte"].DefaultCellStyle.Format = ConfigModel.configuracionGeneral.formatoDecimales;
+
             dgvProductos.Columns["precioVenta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProductos.Columns["stock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductos.Columns["StockTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductos.Columns["stockFalte"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
         #endregion
 
@@ -295,6 +320,7 @@ namespace Admeli.Ventas.buscar
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();
+                salir = true;
         }
 
         private void txtMotivo_OnValueChanged(object sender, EventArgs e)

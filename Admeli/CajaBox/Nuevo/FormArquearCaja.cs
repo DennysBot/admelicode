@@ -348,7 +348,7 @@ namespace Admeli.CajaBox.Nuevo
             if (!validarCampos()) { bloquear(false); return; }
             try
             {   
-                List<Moneda> listResponse = await cajaModel.verificarActividad(currentIdCajaSesion);
+                List<Moneda> listResponse = await cajaModel.verificarActividad(currentIdCajaSesion);// lista las actividad  pero no lo utiliza chilca lo arregalara
                 
                 createObject();
                 if (nuevo)

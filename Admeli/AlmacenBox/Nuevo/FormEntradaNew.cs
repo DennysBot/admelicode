@@ -618,6 +618,25 @@ namespace Admeli.AlmacenBox.Nuevo
 
         }
 
+        private void decorationDataGridView()
+        {
+
+            if (dgvDetalleNota.Rows.Count == 0) return;
+
+            foreach (DataGridViewRow row in dgvDetalleNota.Rows)
+            {
+                int idPresentacion = Convert.ToInt32(row.Cells["idPresentacion"].Value); // obteniedo el idCategoria del datagridview
+                int idCombinacion = Convert.ToInt32(row.Cells["idCombinacionAlternativa"].Value);
+                CargaCompraSinNota aux = listcargaCompraSinNota.Find(x => x.idPresentacion == idPresentacion && x.idCombinacionAlternativa == idCombinacion); // Buscando la categoria en las lista de categorias
+                if (aux.noExiteStock)
+                {
+                    dgvDetalleNota.ClearSelection();
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 224, 224);
+                    row.DefaultCellStyle.ForeColor = Color.FromArgb(250, 5, 73);
+                }
+            }
+        }
+
         private async void hacerNotas()
         {
 
@@ -697,6 +716,7 @@ namespace Admeli.AlmacenBox.Nuevo
                     numert++;
 
                 }
+                numert = 0;
                 comprobarNotaS.dato = listintS;
                 try
                 {
@@ -720,13 +740,75 @@ namespace Admeli.AlmacenBox.Nuevo
                     {
 
 
-
-
-                        MessageBox.Show("no exite stock suficiente ", "verificar Nota Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                        string[] productos = responseNotaSalida.abastece.productos.Split(',');
+                        string[] combinaciones = responseNotaSalida.abastece.combinaciones.Split(',');
+                        // limpiamos los productos anteriros
                         dictionaryS.Clear();
                         DetallesNotaSalida.Clear();
                         listintS.Clear();
+
+                        if (productos.Count() == listcargaCompraSinNota.Count)
+                        {
+                            MessageBox.Show(" ningun producto tiene stock suficiente", "verificar Nota Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        }
+                        else
+                        {
+                            lbAdvertencia.Visible = true;
+                            lbAdvertencia.Text += "\n\r  los productos";
+                            List<CargaCompraSinNota> notas = new List<CargaCompraSinNota>();
+                            int j = 0;
+                            for(int i=0; i < productos.Count(); i++)
+                            {
+                                int idProducto = Convert.ToInt32(productos[i]);
+                                int idCombinacion= Convert.ToInt32(combinaciones[i]);
+                                CargaCompraSinNota nota = listcargaCompraSinNota.Find(X => X.idProducto == idProducto && X.idCombinacionAlternativa == idCombinacion);
+                                nota.noExiteStock = true;// para ver si no tiene stock
+                                notas.Add(nota);
+                                lbAdvertencia.Text += ", "+nota.codigoProducto;
+                                if (j == 2)
+                                {
+                                    lbAdvertencia.Text += "\n\r  los productos";
+                                    j = 0;
+                                }
+                                j++; 
+                            }
+                            lbAdvertencia.Text += "  no se guardar por falta de stock";
+
+                            decorationDataGridView();
+
+
+                            IEnumerable<CargaCompraSinNota> except = listcargaCompraSinNota.Except(notas, new CargaCompraSinNotaComparer());
+                            foreach(var nota  in except)
+                            {
+                                List<object> listaux = new List<object>();
+                                listaux.Add(nota.idProducto);
+                                listaux.Add(nota.idCombinacionAlternativa);
+                                int cantidad = Convert.ToInt32(nota.cantidad, CultureInfo.GetCultureInfo("en-US"));
+                                listaux.Add(cantidad);
+                                listaux.Add(nota.ventaVarianteSinStock);
+                                listintS.Add(listaux);
+                                DetallesNotaSalida.Add("id" + numert, nota);
+                                dictionaryS.Add("id" + numert, nota.cantidadUnitaria);
+                                numert++;
+
+                            }
+                            listElementosNotaSalida.Add(almacenSalida);
+                            listElementosNotaSalida.Add(ventaSalida);
+                            listElementosNotaSalida.Add(DetallesNotaSalida);
+                            listElementosNotaSalida.Add(dictionaryS);
+                            listElementosNotaSalida.Add(object4S);
+                            listElementosNotaSalida.Add(object5S);
+                            listElementosNotaSalida.Add(object6S);
+                            listElementosNotaSalida.Add(object7S);
+                            notaGuardar = await notaSalidaModel.guardar(listElementosNotaSalida);
+
+
+                        }
+
+                       
+
+
 
                     }
                 }
@@ -836,7 +918,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 {
 
 
-                    DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + listAlmacenEntrada.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre,
+                    DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + listAlmacenSalida.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre,
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (dialog == DialogResult.No)
                     {
@@ -1365,10 +1447,6 @@ namespace Admeli.AlmacenBox.Nuevo
                         //    YI += 30;
                         //}
                         XI += X + (int)(doc.w);
-
-
-
-
                         break;
                     case "Img":
 

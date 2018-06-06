@@ -96,8 +96,8 @@
             this.codigoProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreMarcaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idPresentacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idCombinacionAlternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idPresentacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idCombinacionAlternativa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreCombinacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadRecibidaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -137,6 +137,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lbAdvertencia = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label35 = new System.Windows.Forms.Label();
@@ -911,8 +912,8 @@
             this.codigoProductoDataGridViewTextBoxColumn,
             this.descripcionDataGridViewTextBoxColumn,
             this.nombreMarcaDataGridViewTextBoxColumn,
-            this.idPresentacionDataGridViewTextBoxColumn,
-            this.idCombinacionAlternativaDataGridViewTextBoxColumn,
+            this.idPresentacion,
+            this.idCombinacionAlternativa,
             this.nombreCombinacionDataGridViewTextBoxColumn,
             this.cantidadDataGridViewTextBoxColumn,
             this.cantidadRecibidaDataGridViewTextBoxColumn,
@@ -982,22 +983,22 @@
             this.nombreMarcaDataGridViewTextBoxColumn.ReadOnly = true;
             this.nombreMarcaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // idPresentacionDataGridViewTextBoxColumn
+            // idPresentacion
             // 
-            this.idPresentacionDataGridViewTextBoxColumn.DataPropertyName = "idPresentacion";
-            this.idPresentacionDataGridViewTextBoxColumn.HeaderText = "IDPresentación";
-            this.idPresentacionDataGridViewTextBoxColumn.Name = "idPresentacionDataGridViewTextBoxColumn";
-            this.idPresentacionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idPresentacionDataGridViewTextBoxColumn.Visible = false;
+            this.idPresentacion.DataPropertyName = "idPresentacion";
+            this.idPresentacion.HeaderText = "IDPresentación";
+            this.idPresentacion.Name = "idPresentacion";
+            this.idPresentacion.ReadOnly = true;
+            this.idPresentacion.Visible = false;
             // 
-            // idCombinacionAlternativaDataGridViewTextBoxColumn
+            // idCombinacionAlternativa
             // 
-            this.idCombinacionAlternativaDataGridViewTextBoxColumn.DataPropertyName = "idCombinacionAlternativa";
-            this.idCombinacionAlternativaDataGridViewTextBoxColumn.HeaderText = "IDCombinación Alternativa";
-            this.idCombinacionAlternativaDataGridViewTextBoxColumn.Name = "idCombinacionAlternativaDataGridViewTextBoxColumn";
-            this.idCombinacionAlternativaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idCombinacionAlternativaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.idCombinacionAlternativaDataGridViewTextBoxColumn.Visible = false;
+            this.idCombinacionAlternativa.DataPropertyName = "idCombinacionAlternativa";
+            this.idCombinacionAlternativa.HeaderText = "IDCombinación Alternativa";
+            this.idCombinacionAlternativa.Name = "idCombinacionAlternativa";
+            this.idCombinacionAlternativa.ReadOnly = true;
+            this.idCombinacionAlternativa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.idCombinacionAlternativa.Visible = false;
             // 
             // nombreCombinacionDataGridViewTextBoxColumn
             // 
@@ -1514,6 +1515,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.lbAdvertencia);
             this.panel3.Controls.Add(this.tableLayoutPanel3);
             this.panel3.Controls.Add(this.txtNombreDocumento);
             this.panel3.Controls.Add(this.flowLayoutPanel2);
@@ -1525,6 +1527,18 @@
             this.panel3.Size = new System.Drawing.Size(1267, 260);
             this.panel3.TabIndex = 0;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // lbAdvertencia
+            // 
+            this.lbAdvertencia.AutoSize = true;
+            this.lbAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAdvertencia.ForeColor = System.Drawing.Color.Red;
+            this.lbAdvertencia.Location = new System.Drawing.Point(478, 78);
+            this.lbAdvertencia.Name = "lbAdvertencia";
+            this.lbAdvertencia.Size = new System.Drawing.Size(106, 20);
+            this.lbAdvertencia.TabIndex = 19;
+            this.lbAdvertencia.Text = "Información: ";
+            this.lbAdvertencia.Visible = false;
             // 
             // tableLayoutPanel3
             // 
@@ -2010,21 +2024,6 @@
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.TextBox txtNombreDocumento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigoProductoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreMarcaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idPresentacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idCombinacionAlternativaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCombinacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadRecibidaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alternativasDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDetalleNotaEntradaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadUnitariaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombrePresentacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idProductoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idNotaEntradaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ventaVarianteSinStockDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource productoVentaBindingSource;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -2069,5 +2068,21 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoProductoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreMarcaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idPresentacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idCombinacionAlternativa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCombinacionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadRecibidaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alternativasDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDetalleNotaEntradaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadUnitariaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombrePresentacionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idProductoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idNotaEntradaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ventaVarianteSinStockDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.Label lbAdvertencia;
     }
 }

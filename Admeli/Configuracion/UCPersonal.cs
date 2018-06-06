@@ -437,7 +437,7 @@ namespace Admeli.Configuracion
                 currentPersonal.estado = 0;
 
                 // Procediendo con las desactivacion
-                Response response = await personalModel.modificar(currentPersonal);
+                Response response = await personalModel.anular(currentPersonal);
                 MessageBox.Show(response.msj, "Desactivar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cargarRegistros(); // recargando los registros en el datagridview
             }
