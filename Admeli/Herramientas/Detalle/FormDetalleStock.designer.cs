@@ -43,6 +43,7 @@
             this.btnsalir = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
             this.dgvCombinacion = new System.Windows.Forms.DataGridView();
+            this.combinacionStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel28 = new System.Windows.Forms.TableLayoutPanel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -52,13 +53,12 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.combinacionStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.detalleNotaSalidaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigoSkuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreCombinacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioVentaTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadRestante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idCombinacionAlternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,10 +71,10 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCombinacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combinacionStockBindingSource)).BeginInit();
             this.tableLayoutPanel28.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.combinacionStockBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.detalleNotaSalidaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,8 +211,8 @@
             this.idProductoDataGridViewTextBoxColumn,
             this.codigoSkuDataGridViewTextBoxColumn,
             this.nombreCombinacionDataGridViewTextBoxColumn,
-            this.precioDataGridViewTextBoxColumn,
-            this.stockDataGridViewTextBoxColumn,
+            this.precio,
+            this.stock,
             this.PrecioVentaTotal,
             this.cantidadRestante,
             this.idCombinacionAlternativaDataGridViewTextBoxColumn,
@@ -256,6 +256,10 @@
             this.dgvCombinacion.TabIndex = 50;
             this.dgvCombinacion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNotaSalida_CellDoubleClick);
             this.dgvCombinacion.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvCombinacion_EditingControlShowing);
+            // 
+            // combinacionStockBindingSource
+            // 
+            this.combinacionStockBindingSource.DataSource = typeof(Entidad.CombinacionStock);
             // 
             // tableLayoutPanel28
             // 
@@ -346,10 +350,6 @@
             this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn4.Visible = false;
             // 
-            // combinacionStockBindingSource
-            // 
-            this.combinacionStockBindingSource.DataSource = typeof(Entidad.CombinacionStock);
-            // 
             // detalleNotaSalidaBindingSource
             // 
             this.detalleNotaSalidaBindingSource.DataSource = typeof(Entidad.DetalleNotaSalida);
@@ -379,21 +379,21 @@
             this.nombreCombinacionDataGridViewTextBoxColumn.ReadOnly = true;
             this.nombreCombinacionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // precioDataGridViewTextBoxColumn
+            // precio
             // 
-            this.precioDataGridViewTextBoxColumn.DataPropertyName = "precio";
-            this.precioDataGridViewTextBoxColumn.HeaderText = "P. Extra";
-            this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
-            this.precioDataGridViewTextBoxColumn.ReadOnly = true;
-            this.precioDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.precio.DataPropertyName = "precio";
+            this.precio.HeaderText = "P. Extra";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // stockDataGridViewTextBoxColumn
+            // stock
             // 
-            this.stockDataGridViewTextBoxColumn.DataPropertyName = "stock";
-            this.stockDataGridViewTextBoxColumn.HeaderText = "Stock";
-            this.stockDataGridViewTextBoxColumn.Name = "stockDataGridViewTextBoxColumn";
-            this.stockDataGridViewTextBoxColumn.ReadOnly = true;
-            this.stockDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.stock.DataPropertyName = "stock";
+            this.stock.HeaderText = "Stock";
+            this.stock.Name = "stock";
+            this.stock.ReadOnly = true;
+            this.stock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // PrecioVentaTotal
             // 
@@ -472,11 +472,11 @@
             this.flowLayoutPanel2.PerformLayout();
             this.panel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCombinacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combinacionStockBindingSource)).EndInit();
             this.tableLayoutPanel28.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.combinacionStockBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.detalleNotaSalidaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -505,8 +505,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idProductoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoSkuDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreCombinacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVentaTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadRestante;
         private System.Windows.Forms.DataGridViewTextBoxColumn idCombinacionAlternativaDataGridViewTextBoxColumn;

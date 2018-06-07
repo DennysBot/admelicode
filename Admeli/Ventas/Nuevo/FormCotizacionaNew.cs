@@ -387,7 +387,7 @@ namespace Admeli.Ventas.Nuevo
             loadState(true);
             try
             {
-                listProductos = await productoModel.productos(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal);
+                listProductos = await productoModel.productos(ConfigModel.sucursal.idSucursal, PersonalModel.personal.idPersonal, ConfigModel.currentIdAlmacen) ;
                 productoVentaBindingSource.DataSource = listProductos;
                 cbxCodigoProducto.SelectedIndex = -1;
                 cbxDescripcion.SelectedIndex = -1;
@@ -2787,6 +2787,11 @@ namespace Admeli.Ventas.Nuevo
         private void panel14_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void txtDocumentoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validator.isNumber(e);
         }
     }
 

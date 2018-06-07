@@ -14,7 +14,11 @@ using Entidad;
 using Newtonsoft.Json;
 using Admeli.Productos.Importar;
 using Entidad.Configuracion;
-using Admeli.Herramientas.Detalle;
+using System.Globalization;
+using Admeli.Productos.Detalle;
+using Admeli.Properties;
+using System.IO;
+using System.Reflection;
 
 namespace Admeli.Productos
 {
@@ -27,11 +31,10 @@ namespace Admeli.Productos
         private SucursalModel sucursalModel = new SucursalModel();
         private AlmacenModel almacenModel = new AlmacenModel();
         private LocationModel locationModel = new LocationModel();
-        
+        private MonedaModel monedaModel = new MonedaModel();
         private PuntoModel puntoModel = new PuntoModel();
 
        
-
         private PuntoAdministracion puntoAdministracion { get; set; }
         private PuntoCompra puntoCompra { get; set; }
         private List<PuntoDeVenta> puntosDeVenta { get; set; }
@@ -52,8 +55,17 @@ namespace Admeli.Productos
         private List<Sucursal> listSucCargar { get; set; }
         private List<Almacen> listAlm { get; set; }
         private List<Almacen> listAlmCargar { get; set; }
+
+        private List<Moneda> listMoneda { get; set; }
+
+        private Moneda monedaActual { get; set; }
         private Producto currentProducto { get; set; }
+        private decimal valorDeCambio = 1;
         private int index = 0;
+        private Assembly _assembly;
+        private StreamReader _textStreamReader;
+        private bool hayConfiguracion = false;
+        Moneda monedaConfiguracion { get; set; }
         #region ============================== Constructor ==============================
         public UCListadoProducto()
         {
@@ -78,13 +90,28 @@ namespace Admeli.Productos
             lblSpeedPages.Text = ConfigModel.configuracionGeneral.itemPorPagina.ToString();     // carganto los items por página
             paginacion = new Paginacion(Convert.ToInt32(lblCurrentPage.Text), Convert.ToInt32(lblSpeedPages.Text));
             visualizar();
+            if (!formPrincipal.hayAlmacen)
+            {
+                panelCrud.Visible = false;
+                flowLayoutPanel1.Visible = false;
+                button1.Visible = false;
+                button4.Visible = false;
+            }
         }
         private void visualizar()
         {
             loadPuntoCompra();
             loadPuntoVenta();
         }
+        private double toDouble(string texto)
+        {
 
+            if (texto == "")
+            {
+                return 0;
+            }
+            return double.Parse(texto, CultureInfo.GetCultureInfo("en-US")); ;
+        }
 
         private async void loadPuntoCompra()
         {
@@ -114,6 +141,67 @@ namespace Admeli.Productos
         #region ============================== Root Load ==============================
         private void UCListadoProducto_Load(object sender, EventArgs e)
         {
+
+            try
+            {
+                
+                if(File.Exists("configuracion.txt"))
+                {
+
+                    FileStream stream = new FileStream("configuracion.txt", FileMode.Open, FileAccess.Read);
+                    _textStreamReader = new StreamReader(stream);
+                    string sLine = "";
+                    List<string> arrText = new List<string>();
+
+                    while (sLine != null)
+                    {
+                        sLine = _textStreamReader.ReadLine();
+                        if (sLine != null)
+                            arrText.Add(sLine);
+                    }
+                    _textStreamReader.Close();
+                    string monedaS = "";
+                    foreach(string dato in arrText)
+                    {
+                        monedaS += dato;
+
+                    }
+                    monedaConfiguracion = JsonConvert.DeserializeObject<Moneda>(monedaS);
+                    if (monedaConfiguracion != null)
+                    {
+                        hayConfiguracion = true;
+                        
+                    }
+                    else
+                    {
+                        hayConfiguracion = false;
+
+                    }
+
+                }
+                else
+                {
+                    hayConfiguracion = false;
+                }
+
+                //Stream idPre = _assembly.GetManifestResourceStream("Admeli.configuracion.txt");
+
+               
+               
+
+
+
+
+
+
+            }
+            catch(Exception ex )
+            {
+                MessageBox.Show("Error: " + ex.Message, "cargar load", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
+
+
             this.darFormatoDecimales();
             this.reLoad();
 
@@ -144,6 +232,7 @@ namespace Admeli.Productos
                 cargarSucursales();
                 cargarAlmacenes();
                 cargarStock();
+                cargarMonedas();
             }
             lisenerKeyEvents = true; // Active lisener key events
         }
@@ -154,14 +243,47 @@ namespace Admeli.Productos
             DrawShape drawShape = new DrawShape();
             drawShape.lineBorder(panelContainer);
             drawShape.lineBorder(panel7);
+            drawShape.lineBorder(panelsucursal);
+            drawShape.lineBorder(panelAlmacen);
+            drawShape.lineBorder(panelMoneda);
+
         }
 
         #region ======================== KEYBOARD ========================
         // Evento que se dispara cuando el padre cambia
         private void ParentChange(object sender, EventArgs e)
         {
+           
+
+            if (lisenerKeyEvents) {
+
+                try
+                {
+
+                    //Pass the filepath and filename to the StreamWriter Constructor
+                    StreamWriter sw = new StreamWriter("configuracion.txt");
+                    string monedaS = JsonConvert.SerializeObject(monedaActual); 
+                    //Write a line of text
+                    sw.WriteLine(monedaS);               
+                    //Close the file
+                    sw.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception: " + ex.Message);
+                }
+                
+            }
+            else
+            {
+
+
+            }
             // cambiar la propiedad de lisenerKeyEvents de este modulo
             if (lisenerKeyEvents) lisenerKeyEvents = false;
+
+
+
         }
 
         // Escuchando los Eventos de teclado
@@ -193,8 +315,10 @@ namespace Admeli.Productos
         {
             if (dataGridView.Rows.Count == 0) return;
 
-            foreach (DataGridViewRow row in dataGridView.Rows)
+            try
             {
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                 {
                 int idProducto = Convert.ToInt32(row.Cells["idProductoDataGridViewTextBoxColumn"].Value); // obteniedo el idCategoria del datagridview
                 int idAlmacen = Convert.ToInt32(row.Cells["idAlmacen"].Value);
                 //Prodcutos con combinacion
@@ -214,10 +338,52 @@ namespace Admeli.Productos
                     row.DefaultCellStyle.ForeColor = Color.FromArgb(250, 5, 73);
                 }
             }
+
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "cargar Decoracion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+            
         }
         #endregion
 
         #region ======================= Loads =======================
+
+        private async void cargarMonedas()
+        {
+            loadState(true);
+            try
+            {
+                
+                listMoneda = await monedaModel.monedas();
+                monedaBindingSource.DataSource = listMoneda;
+
+                //monedas/estado/1
+                if (monedaActual == null)
+                {
+
+                    monedaActual = listMoneda.Find(X => X.porDefecto == true);
+                    cbxMoneda.SelectedValue = monedaActual.idMoneda;
+                    if (hayConfiguracion)
+                    {
+                        cbxMoneda.SelectedValue = monedaConfiguracion.idMoneda;
+
+                    }
+
+                }
+                
+                
+                
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "cargar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void cargarSucursales()
         {
             // Cargando el combobox de personales
@@ -424,10 +590,13 @@ namespace Admeli.Productos
                 paginacion.reload();
 
                 // Ingresando
+                
                 this.productos = productos_combinacion.datos;
+                cambiarPVPC();
                 this.combinaciones = productos_combinacion.combinacion;
                 productoBindingSource.DataSource = null;
                 productoBindingSource.DataSource = productos;
+                dataGridView.DataSource = productoBindingSource;
                 dataGridView.Refresh();
 
                 // Mostrando la paginacion
@@ -465,8 +634,10 @@ namespace Admeli.Productos
                 this.productos = productos_combinacion.datos;
                 this.combinaciones = productos_combinacion.combinacion;
                 // Ingresando
+                cambiarPVPC();
                 productoBindingSource.DataSource = null;
                 productoBindingSource.DataSource = productos;
+                dataGridView.DataSource = productoBindingSource;
                 dataGridView.Refresh();
                 mostrarPaginado();
             }
@@ -502,10 +673,13 @@ namespace Admeli.Productos
                 paginacion.reload();
 
                 // Ingresando
+                
                 this.productos = productos_combinacion.datos;
+                cambiarPVPC();
                 this.combinaciones = productos_combinacion.combinacion;
                 productoBindingSource.DataSource = null;
                 productoBindingSource.DataSource = productos;
+                dataGridView.DataSource = productoBindingSource;
                 dataGridView.Refresh();
                 mostrarPaginado();
             }
@@ -540,10 +714,13 @@ namespace Admeli.Productos
                 paginacion.reload();
 
                 // Ingresando
+               
                 this.productos = productos_combinacion.datos;
+                cambiarPVPC();
                 this.combinaciones = productos_combinacion.combinacion;
                 productoBindingSource.DataSource = null;
                 productoBindingSource.DataSource = productos;
+                dataGridView.DataSource = productoBindingSource;
                 dataGridView.Refresh();
                 mostrarPaginado();
             }
@@ -556,6 +733,34 @@ namespace Admeli.Productos
                 decorationDataGridView();
                 loadState(false);
             }
+        }
+
+        private void cambiarPVPC()
+        {
+            if (productos != null)
+            {
+
+                if (productos.Count > 0)
+                {
+
+                    foreach (Producto v in productos)
+                    {
+                        v.precioCompra = cambiarValor(v.precioCompra, valorDeCambio);
+                        v.precioVenta = cambiarValor(v.precioVenta, valorDeCambio);
+
+
+                    }
+
+
+
+                 
+                }
+
+
+
+            }
+
+
         }
         #endregion
 
@@ -1073,7 +1278,7 @@ namespace Admeli.Productos
 
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            return;
+           
             if (e.Button == MouseButtons.Right)
             {
                 if (dataGridView.Rows.Count == 0 || dataGridView.CurrentRow == null)
@@ -1092,17 +1297,79 @@ namespace Admeli.Productos
                 combinacionesProducto = combinaciones.Where(X => X.idPresentacion == idPresentacion && X.idAlmacen == idAlmacen).ToList();
                 if (combinacionesProducto.Count > 0)
                 {
-                    ProductoData data = new ProductoData();
-                    data.nombreProducto = producto.nombreProducto;
-                    data.almacen = producto.nombreAlmacen;
-                    data.precioVenta = producto.precioVenta;
-                    data.idAlmacen = producto.idAlmacen;
-                    data.idProducto = producto.idProducto;
-                    FormDetalleStock detalleStock = new FormDetalleStock(combinacionesProducto, data);
+                  
+                    FormDetalleStock detalleStock = new FormDetalleStock(combinacionesProducto, producto);
                     detalleStock.ShowDialog();
                 }
-                cargarStock();
+               
             }
+        }
+
+
+        public decimal cambiarValor(decimal valor, decimal valorCambio)
+        {
+
+            return valor * valorCambio;
+        }
+        private  async void cbxMoneda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxMoneda.SelectedIndex == -1)
+                return;
+
+
+            Moneda monedaCambio = listMoneda.Find(X => X.idMoneda == (int)cbxMoneda.SelectedValue);
+
+            CambioMoneda cambio = new CambioMoneda();
+            cambio.idMonedaActual = monedaActual.idMoneda;
+            cambio.idMonedaCambio = monedaCambio.idMoneda;
+
+
+
+            ValorcambioMoneda valorcambioMoneda = await monedaModel.cambiarMoneda(cambio);
+
+            valorDeCambio = (decimal) (toDouble(valorcambioMoneda.cambioMonedaCambio) / toDouble(valorcambioMoneda.cambioMonedaActual));
+          
+            if (productos != null)
+                {
+
+               if (productos.Count > 0)
+                    {
+
+                        foreach (Producto v in productos)
+                        {
+                            v.precioCompra= cambiarValor(v.precioCompra, valorDeCambio);
+                            v.precioVenta = cambiarValor(v.precioVenta, valorDeCambio);
+                            
+
+                        }
+
+                        dataGridView.DataSource = null;
+                        dataGridView.DataSource = productos;
+                       
+
+                        decorationDataGridView();
+
+
+
+                    }
+                
+
+               
+            }
+             monedaActual = monedaCambio;
+
+
+
+        }
+
+        private void panelTools_Paint(object sender, PaintEventArgs e)
+        {
+            DrawShape drawShape = new DrawShape();
+            drawShape.lineBorder(panelContainer);
+            drawShape.lineBorder(panel7);
+            drawShape.lineBorder(panelsucursal);
+            drawShape.lineBorder(panelAlmacen);
+            drawShape.lineBorder(panelMoneda);
         }
     }
 }

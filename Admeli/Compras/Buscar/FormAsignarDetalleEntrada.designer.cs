@@ -42,6 +42,18 @@
             this.progressStatus = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvProductos = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.tableLayoutPanel28 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idPresentacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreCombinacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,28 +72,16 @@
             this.nombrePresentacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockCompraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datoNotaEntradaCBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tableLayoutPanel28 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.splitter2 = new System.Windows.Forms.Splitter();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datoNotaEntradaCBindingSource)).BeginInit();
             this.tableLayoutPanel28.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datoNotaEntradaCBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitter1
@@ -159,7 +159,6 @@
             this.btnsalir.AutoSize = true;
             this.btnsalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(34)))), ((int)(((byte)(24)))));
             this.btnsalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnsalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnsalir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
             this.btnsalir.FlatAppearance.BorderSize = 0;
             this.btnsalir.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(141)))), ((int)(((byte)(239)))));
@@ -273,6 +272,121 @@
             this.dgvProductos.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvProductos_CellValidating);
             this.dgvProductos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductos_EditingControlShowing);
             this.dgvProductos.Enter += new System.EventHandler(this.dgvProductos_Enter);
+            // 
+            // tableLayoutPanel28
+            // 
+            this.tableLayoutPanel28.ColumnCount = 1;
+            this.tableLayoutPanel28.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 92.65708F));
+            this.tableLayoutPanel28.Controls.Add(this.panel7, 0, 0);
+            this.tableLayoutPanel28.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel28.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel28.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel28.Name = "tableLayoutPanel28";
+            this.tableLayoutPanel28.Padding = new System.Windows.Forms.Padding(7, 6, 7, 0);
+            this.tableLayoutPanel28.RowCount = 1;
+            this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel28.Size = new System.Drawing.Size(1138, 73);
+            this.tableLayoutPanel28.TabIndex = 7;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
+            this.panel7.Controls.Add(this.pictureBox2);
+            this.panel7.Controls.Add(this.label9);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(11, 10);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1116, 55);
+            this.panel7.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(15, 7);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(43, 37);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(68, 17);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(256, 18);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "DETALLES DE LA NOTA DE SALIDA";
+            // 
+            // splitter2
+            // 
+            this.splitter2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter2.Location = new System.Drawing.Point(0, 594);
+            this.splitter2.Margin = new System.Windows.Forms.Padding(5);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(1138, 10);
+            this.splitter2.TabIndex = 1;
+            this.splitter2.TabStop = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "alternativas";
+            this.dataGridViewTextBoxColumn1.HeaderText = "alternativas";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "alternativas";
+            this.dataGridViewTextBoxColumn2.HeaderText = "alternativas";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "alternativas";
+            this.dataGridViewTextBoxColumn3.HeaderText = "alternativas";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "alternativas";
+            this.dataGridViewTextBoxColumn4.HeaderText = "alternativas";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "alternativas";
+            this.dataGridViewTextBoxColumn5.HeaderText = "alternativas";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "stock";
+            this.dataGridViewTextBoxColumn6.HeaderText = "stock";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            this.dataGridViewTextBoxColumn6.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "stockTotal";
+            this.dataGridViewTextBoxColumn7.HeaderText = "stockTotal";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            this.dataGridViewTextBoxColumn7.Width = 66;
             // 
             // idPresentacion
             // 
@@ -411,121 +525,6 @@
             // 
             this.datoNotaEntradaCBindingSource.DataSource = typeof(Entidad.DatoNotaEntradaC);
             // 
-            // tableLayoutPanel28
-            // 
-            this.tableLayoutPanel28.ColumnCount = 1;
-            this.tableLayoutPanel28.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 92.65708F));
-            this.tableLayoutPanel28.Controls.Add(this.panel7, 0, 0);
-            this.tableLayoutPanel28.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel28.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel28.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel28.Name = "tableLayoutPanel28";
-            this.tableLayoutPanel28.Padding = new System.Windows.Forms.Padding(7, 6, 7, 0);
-            this.tableLayoutPanel28.RowCount = 1;
-            this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel28.Size = new System.Drawing.Size(1138, 73);
-            this.tableLayoutPanel28.TabIndex = 7;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
-            this.panel7.Controls.Add(this.pictureBox2);
-            this.panel7.Controls.Add(this.label9);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(11, 10);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1116, 55);
-            this.panel7.TabIndex = 1;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(15, 7);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(43, 37);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(68, 17);
-            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(256, 18);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "DETALLES DE LA NOTA DE SALIDA";
-            // 
-            // splitter2
-            // 
-            this.splitter2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 594);
-            this.splitter2.Margin = new System.Windows.Forms.Padding(5);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(1138, 10);
-            this.splitter2.TabIndex = 1;
-            this.splitter2.TabStop = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "alternativas";
-            this.dataGridViewTextBoxColumn1.HeaderText = "alternativas";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "alternativas";
-            this.dataGridViewTextBoxColumn2.HeaderText = "alternativas";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "alternativas";
-            this.dataGridViewTextBoxColumn3.HeaderText = "alternativas";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "alternativas";
-            this.dataGridViewTextBoxColumn4.HeaderText = "alternativas";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "alternativas";
-            this.dataGridViewTextBoxColumn5.HeaderText = "alternativas";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "stock";
-            this.dataGridViewTextBoxColumn6.HeaderText = "stock";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            this.dataGridViewTextBoxColumn6.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "stockTotal";
-            this.dataGridViewTextBoxColumn7.HeaderText = "stockTotal";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Visible = false;
-            this.dataGridViewTextBoxColumn7.Width = 66;
-            // 
             // FormAsignarDetalleEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -551,11 +550,11 @@
             this.panel13.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datoNotaEntradaCBindingSource)).EndInit();
             this.tableLayoutPanel28.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datoNotaEntradaCBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

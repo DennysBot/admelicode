@@ -61,6 +61,15 @@ namespace Admeli.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a id:1.
+        /// </summary>
+        internal static string configuracion {
+            get {
+                return ResourceManager.GetString("configuracion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a logo.
         /// </summary>
         internal static string logo {

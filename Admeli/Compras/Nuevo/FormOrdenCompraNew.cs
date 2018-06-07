@@ -1500,7 +1500,7 @@ namespace Admeli.Compras.Nuevo
         }
         private void txtRuc_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validator.isDecimal(e, txtRuc.Text);
+            Validator.isNumber(e);
         }
 
 

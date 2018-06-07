@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Admeli.AlmacenBox.buscar;
 using Admeli.Componentes;
 using Admeli.Productos.buscar;
+using Admeli.Productos.Nuevo;
 using Admeli.Properties;
 using Entidad;
 using Entidad.Configuracion;
@@ -376,7 +377,9 @@ namespace Admeli.AlmacenBox.Nuevo
                 almacen.idAlmacen = 0;
                 almacen.nombre = "Ninguno";
                 listAlmacenSalida.Add(almacen);
-                listAlmacenSalida.AddRange(listAlmacenEntrada);
+                List<Almacen> listAlmacenDestinoaux = await AlmacenModel.almacenesAsignados(0, 0);// todos los almacenes
+
+                listAlmacenSalida.AddRange(listAlmacenDestinoaux);
 
                 almacenBindingSource1.DataSource = listAlmacenSalida;
                 currentAlmacen = listAlmacenEntrada.Find(X => X.idAlmacen == ConfigModel.currentIdAlmacen);
@@ -615,6 +618,25 @@ namespace Admeli.AlmacenBox.Nuevo
 
         }
 
+        private void decorationDataGridView()
+        {
+
+            if (dgvDetalleNota.Rows.Count == 0) return;
+
+            foreach (DataGridViewRow row in dgvDetalleNota.Rows)
+            {
+                int idPresentacion = Convert.ToInt32(row.Cells["idPresentacion"].Value); // obteniedo el idCategoria del datagridview
+                int idCombinacion = Convert.ToInt32(row.Cells["idCombinacionAlternativa"].Value);
+                CargaCompraSinNota aux = listcargaCompraSinNota.Find(x => x.idPresentacion == idPresentacion && x.idCombinacionAlternativa == idCombinacion); // Buscando la categoria en las lista de categorias
+                if (aux.noExiteStock)
+                {
+                    dgvDetalleNota.ClearSelection();
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 224, 224);
+                    row.DefaultCellStyle.ForeColor = Color.FromArgb(250, 5, 73);
+                }
+            }
+        }
+
         private async void hacerNotas()
         {
 
@@ -660,7 +682,7 @@ namespace Admeli.AlmacenBox.Nuevo
                     case "Revisado":
                         estado = 1;
                         break;
-                    case "Enviado":
+                    case "Recepcionado":
                         estado = 2;
                         break;
 
@@ -694,6 +716,7 @@ namespace Admeli.AlmacenBox.Nuevo
                     numert++;
 
                 }
+                numert = 0;
                 comprobarNotaS.dato = listintS;
                 try
                 {
@@ -716,11 +739,76 @@ namespace Admeli.AlmacenBox.Nuevo
                     else
                     {
 
-                        MessageBox.Show("no exite stock suficiente ", "verificar Nota Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                        string[] productos = responseNotaSalida.abastece.productos.Split(',');
+                        string[] combinaciones = responseNotaSalida.abastece.combinaciones.Split(',');
+                        // limpiamos los productos anteriros
                         dictionaryS.Clear();
                         DetallesNotaSalida.Clear();
                         listintS.Clear();
+
+                        if (productos.Count() == listcargaCompraSinNota.Count)
+                        {
+                            MessageBox.Show(" ningun producto tiene stock suficiente", "verificar Nota Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        }
+                        else
+                        {
+                            lbAdvertencia.Visible = true;
+                            lbAdvertencia.Text += "\n\r  los productos";
+                            List<CargaCompraSinNota> notas = new List<CargaCompraSinNota>();
+                            int j = 0;
+                            for(int i=0; i < productos.Count(); i++)
+                            {
+                                int idProducto = Convert.ToInt32(productos[i]);
+                                int idCombinacion= Convert.ToInt32(combinaciones[i]);
+                                CargaCompraSinNota nota = listcargaCompraSinNota.Find(X => X.idProducto == idProducto && X.idCombinacionAlternativa == idCombinacion);
+                                nota.noExiteStock = true;// para ver si no tiene stock
+                                notas.Add(nota);
+                                lbAdvertencia.Text += ", "+nota.codigoProducto;
+                                if (j == 2)
+                                {
+                                    lbAdvertencia.Text += "\n\r  los productos";
+                                    j = 0;
+                                }
+                                j++; 
+                            }
+                            lbAdvertencia.Text += "  no se guardar por falta de stock";
+
+                            decorationDataGridView();
+
+
+                            IEnumerable<CargaCompraSinNota> except = listcargaCompraSinNota.Except(notas, new CargaCompraSinNotaComparer());
+                            foreach(var nota  in except)
+                            {
+                                List<object> listaux = new List<object>();
+                                listaux.Add(nota.idProducto);
+                                listaux.Add(nota.idCombinacionAlternativa);
+                                int cantidad = Convert.ToInt32(nota.cantidad, CultureInfo.GetCultureInfo("en-US"));
+                                listaux.Add(cantidad);
+                                listaux.Add(nota.ventaVarianteSinStock);
+                                listintS.Add(listaux);
+                                DetallesNotaSalida.Add("id" + numert, nota);
+                                dictionaryS.Add("id" + numert, nota.cantidadUnitaria);
+                                numert++;
+
+                            }
+                            listElementosNotaSalida.Add(almacenSalida);
+                            listElementosNotaSalida.Add(ventaSalida);
+                            listElementosNotaSalida.Add(DetallesNotaSalida);
+                            listElementosNotaSalida.Add(dictionaryS);
+                            listElementosNotaSalida.Add(object4S);
+                            listElementosNotaSalida.Add(object5S);
+                            listElementosNotaSalida.Add(object6S);
+                            listElementosNotaSalida.Add(object7S);
+                            notaGuardar = await notaSalidaModel.guardar(listElementosNotaSalida);
+
+
+                        }
+
+                       
+
+
 
                     }
                 }
@@ -743,6 +831,8 @@ namespace Admeli.AlmacenBox.Nuevo
                 date1 = date1.Substring(0, date1.Length - 1);
                 almacenNEntrada.fechaEntrada = date1;// probar con el otro 
                 almacenNEntrada.idAlmacen = (int)cbxAlmacenEntrada.SelectedValue;
+         
+
                 almacenNEntrada.idPersonal = PersonalModel.personal.idPersonal;
                 almacenNEntrada.idTipoDocumento = 7;// nota de entrada
                 almacenNEntrada.observacion = txtObservaciones.Text;
@@ -821,11 +911,6 @@ namespace Admeli.AlmacenBox.Nuevo
 
                     this.cbxCodigoProducto.Focus();
                 }
-
-
-            
-
-
             if (notaGuardar != null)
             {
 
@@ -833,7 +918,7 @@ namespace Admeli.AlmacenBox.Nuevo
                 {
 
 
-                    DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + listAlmacenEntrada.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre,
+                    DialogResult dialog = MessageBox.Show("guardado correctamente,  ¿Desea hacer la guia de remision?", "Nota de Salida - " + listAlmacenSalida.Find(X => X.idAlmacen == (int)cbxAlmacenSalida.SelectedValue).nombre,
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (dialog == DialogResult.No)
                     {
@@ -1362,10 +1447,6 @@ namespace Admeli.AlmacenBox.Nuevo
                         //    YI += 30;
                         //}
                         XI += X + (int)(doc.w);
-
-
-
-
                         break;
                     case "Img":
 
@@ -1380,13 +1461,14 @@ namespace Admeli.AlmacenBox.Nuevo
 
             }
 
-            Point point = dictionary["codigoProducto"];
+            KeyValuePair<string, Point> primero = dictionary.First();
+            Point point = primero.Value;
             int YI = point.Y + 30;
             Point point1 = new Point();
 
             if (listcargaCompraSinNota == null) listcargaCompraSinNota = new List<CargaCompraSinNota>();
 
-
+            int fuente = 8;
 
             for (int i = numberOfItemsPrintedSoFar; i < listcargaCompraSinNota.Count; i++)
             {
@@ -1403,45 +1485,58 @@ namespace Admeli.AlmacenBox.Nuevo
                         {
 
                             point1 = dictionary["codigoProducto"];
-                            e.Graphics.DrawString(listcargaCompraSinNota[i].codigoProducto, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(listcargaCompraSinNota[i].codigoProducto, new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
 
                         if (dictionary.ContainsKey("nombreCombinacion"))
                         {
                             point1 = dictionary["nombreCombinacion"];
-                            e.Graphics.DrawString(listcargaCompraSinNota[i].nombreCombinacion, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(listcargaCompraSinNota[i].nombreCombinacion, new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
 
+                        }
+                        if (dictionary.ContainsKey("variante"))
+                        {
+
+                            point1 = dictionary["variante"];
+                            e.Graphics.DrawString(listcargaCompraSinNota[i].variante, new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                        }
+
+                        if (dictionary.ContainsKey("presentacion"))
+                        {
+
+                            point1 = dictionary["presentacion"];
+                            e.Graphics.DrawString(listcargaCompraSinNota[i].nombrePresentacion, new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
                         if (dictionary.ContainsKey("cantidad"))
                         {
                             point1 = dictionary["cantidad"];
-                            e.Graphics.DrawString(darformato(listcargaCompraSinNota[i].cantidad), new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(darformato(listcargaCompraSinNota[i].cantidad), new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
                         if (dictionary.ContainsKey("cantidadcantidadUnitaria"))
                         {
                             point1 = dictionary["cantidadcantidadUnitaria"];
-                            e.Graphics.DrawString(darformato(listcargaCompraSinNota[i].cantidadUnitaria), new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(darformato(listcargaCompraSinNota[i].cantidadUnitaria), new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
                         if (dictionary.ContainsKey("cantidadRecibida"))
                         {
                             point1 = dictionary["cantidadRecibida"];
-                            e.Graphics.DrawString(darformato(listcargaCompraSinNota[i].cantidadRecibida), new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(darformato(listcargaCompraSinNota[i].cantidadRecibida), new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
                         if (dictionary.ContainsKey("nombrePresentacion"))
                         {
                             point1 = dictionary["nombrePresentacion"];
-                            e.Graphics.DrawString(listcargaCompraSinNota[i].nombrePresentacion, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(listcargaCompraSinNota[i].nombrePresentacion, new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
                         if (dictionary.ContainsKey("descripcion"))
                         {
                             point1 = dictionary["descripcion"];
-                            e.Graphics.DrawString(listcargaCompraSinNota[i].descripcion, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(listcargaCompraSinNota[i].descripcion, new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
 
                         }
                         if (dictionary.ContainsKey("nombreMarca"))
                         {
                             point1 = dictionary["nombreMarca"];
-                            e.Graphics.DrawString(listcargaCompraSinNota[i].nombreMarca, new Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
+                            e.Graphics.DrawString(listcargaCompraSinNota[i].nombreMarca, new Font("Arial", fuente, FontStyle.Regular), Brushes.Black, new Point(point1.X, YI));
                         }
 
 
@@ -1545,24 +1640,64 @@ namespace Admeli.AlmacenBox.Nuevo
                 int idAlmacenE= (int)cbxAlmacenEntrada.SelectedValue;
                 if (idAlmacen != 0)
                 {
+                    label14.Visible = true;
+                    label37.Visible = true;
+                    cbxEstado.Visible = true;
+                    label7.Visible = true;
+                    txtDDestino.Visible = true;
+                    label11.Visible = true;
+                    txtMotivo.Visible = true;
+
                     Almacen almacen1 = listAlmacenEntrada.Find(X => X.idAlmacen == idAlmacen);
                     Almacen almacen2 = listAlmacenEntrada.Find(X => X.idAlmacen == idAlmacenE);
-                    if (almacen1.idSucursal == almacen2.idSucursal)
+
+
+
+                    if (almacen1 == null)
                     {
-                        chbxEntrega.Checked = true;
-                        chbxEntrega.Enabled = true;
-                        cbxEstado.SelectedIndex = 2;
-                        cbxEstado.Enabled = true;
+                        chbxEntrega.Checked = false;
+
+                        cbxEstado.SelectedIndex = 0;
+
+
                     }
                     else
                     {
-                        chbxEntrega.Checked = false;
-                        chbxEntrega.Enabled = false;
-                        cbxEstado.SelectedIndex = 0;
-                        cbxEstado.Enabled = false;
+                        if (almacen1.idSucursal == almacen2.idSucursal)
+                        {
+                            chbxEntrega.Checked = true;
+                            chbxEntrega.Enabled = true;
+                            cbxEstado.SelectedIndex = 2;
+                            cbxEstado.Enabled = true;
+                        }
+                        else
+                        {
+                            chbxEntrega.Checked = false;
+
+                            cbxEstado.SelectedIndex = 0;
+
+                        }
+
+
                     }
+
+
+                   
                 }
-                
+                else
+                {
+
+                  
+                    label14.Visible = false;
+                    label37.Visible = false;
+                    cbxEstado.Visible = false;
+                    label7.Visible = false;
+                    txtDDestino.Visible = false;
+                    label11.Visible = false;
+                    txtMotivo.Visible = false;
+                   
+
+                }
                 BindingList<Almacen> filtered = new BindingList<Almacen>(listAlmacenEntrada.Where(obj => obj.idAlmacen != idAlmacen).ToList());
                 cbxAlmacenEntrada.DataSource = filtered;
                 cbxAlmacenEntrada.Update();
@@ -1743,6 +1878,50 @@ namespace Admeli.AlmacenBox.Nuevo
         }
 
         private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnActulizar_Click(object sender, EventArgs e)
+        {
+            loadState(true);
+            cargarProductos();
+
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;   
+            cbxCodigoProducto.Enabled = true;
+            cbxDescripcion.Enabled = true;          
+            limpiarCamposProducto();
+        }
+
+        private void btnNuevoProducto_Click(object sender, EventArgs e)
+        {
+            loadState(true);
+            FormProductoNuevo formProductoNuevo = new FormProductoNuevo();
+            formProductoNuevo.ShowDialog();
+            cargarProductos();
+
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            cbxCodigoProducto.Enabled = true;
+            cbxDescripcion.Enabled = true;
+        
+            limpiarCamposProducto();
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Observaciones_Click(object sender, EventArgs e)
         {
 
         }

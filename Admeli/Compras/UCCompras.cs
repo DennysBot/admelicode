@@ -235,6 +235,7 @@ namespace Admeli.Compras
             }
             finally
             {
+                this.formPrincipal.cargarDatosAsideRight();
                 loadState(false);
             }
         }
@@ -376,7 +377,7 @@ namespace Admeli.Compras
             FormCompraN formCompraN = new FormCompraN();
             formCompraN.ShowDialog();
 
-
+            cargarRegistros();
         }
 
         private void executeModificar()

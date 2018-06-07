@@ -34,6 +34,7 @@ namespace Admeli.Ventas.buscar
         public   List<DatosNotaSalidaVenta> list { get; set; }
         TextBox txt;
         string stockActual = "0";
+        public bool salir = false;
         public FormAsignarDetalleVenta(List<DatosNotaSalidaVenta> list)
         {
             InitializeComponent();
@@ -240,6 +241,7 @@ namespace Admeli.Ventas.buscar
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();
+            salir = true;
         }
 
         private void txtMotivo_OnValueChanged(object sender, EventArgs e)

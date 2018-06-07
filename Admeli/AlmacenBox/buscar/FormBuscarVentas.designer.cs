@@ -38,6 +38,7 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.progressStatus = new System.Windows.Forms.ProgressBar();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
             this.idVentaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,7 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.progressStatus = new System.Windows.Forms.ProgressBar();
             this.panel2.SuspendLayout();
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
@@ -115,6 +115,14 @@
             this.panel13.Padding = new System.Windows.Forms.Padding(23, 18, 23, 18);
             this.panel13.Size = new System.Drawing.Size(1138, 346);
             this.panel13.TabIndex = 9;
+            // 
+            // progressStatus
+            // 
+            this.progressStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressStatus.Location = new System.Drawing.Point(23, 318);
+            this.progressStatus.Name = "progressStatus";
+            this.progressStatus.Size = new System.Drawing.Size(1092, 10);
+            this.progressStatus.TabIndex = 51;
             // 
             // dgvVentas
             // 
@@ -514,14 +522,6 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Visible = false;
             this.dataGridViewTextBoxColumn1.Width = 105;
-            // 
-            // progressStatus
-            // 
-            this.progressStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressStatus.Location = new System.Drawing.Point(23, 318);
-            this.progressStatus.Name = "progressStatus";
-            this.progressStatus.Size = new System.Drawing.Size(1092, 10);
-            this.progressStatus.TabIndex = 51;
             // 
             // FormBuscarVentas
             // 

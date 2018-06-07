@@ -280,6 +280,7 @@ namespace Admeli.Ventas
             }
             finally
             {
+                this.formPrincipal.cargarDatosAsideRight();
                 loadState(false);
             }
         }
@@ -410,6 +411,7 @@ namespace Admeli.Ventas
             FormVentaNewR formVentaNuevo = new FormVentaNewR();
             formVentaNuevo.ShowDialog();
             cargarRegistros();
+            
         }
 
         private void executeModificar()

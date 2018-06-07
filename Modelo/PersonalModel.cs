@@ -93,7 +93,18 @@ namespace Modelo
                 throw ex;
             }
         }
-
+        public async Task<Response> anular<T>(T param)
+        {
+            try
+            {
+                // localhost:8080/admeli/xcore2/xcore/services.php/personal/anular
+                return await webService.POST<T, Response>("personal", "anular", param);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<Response> eliminar(Personal param)
         {
             try

@@ -34,5 +34,14 @@ namespace Admeli.Properties {
                 this["percy"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("  Consultar")]
+        public string cyper {
+            get {
+                return ((string)(this["cyper"]));
+            }
+        }
     }
 }

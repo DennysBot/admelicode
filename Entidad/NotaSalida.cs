@@ -35,14 +35,32 @@ namespace Entidad
         {
             get
             {
-                if (estado == 1) { return "Activo"; }
-                else { return "Anulado"; }
+                string estadoEnvioString="";
+                switch(estadoEnvio)
+                {
+                    case 0:
+                        estadoEnvioString = "Pendiente";
+                    break;
+                    case 1:
+                        estadoEnvioString = "Revisado";
+                        break;
+                    case 2:
+                        estadoEnvioString = "Entregado";
+                        break;
+                }
+
+
+
+                return estadoEnvioString;
+
             }
             set
             {
                 estadoString = value;
             }
         }
+
+
     }
 
 

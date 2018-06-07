@@ -598,6 +598,7 @@
             this.txtDocumentoCliente.TabIndex = 402;
             this.txtDocumentoCliente.Text = "ingrese su Dni o ....";
             this.txtDocumentoCliente.TextChanged += new System.EventHandler(this.txtDni_TextChanged);
+            this.txtDocumentoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumentoCliente_KeyPress);
             this.txtDocumentoCliente.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDocumentoCliente_KeyUp);
             // 
             // cbxTipoDocumento

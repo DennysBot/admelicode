@@ -43,20 +43,6 @@
             this.btnsalir = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
             this.dgvNotaSalida = new System.Windows.Forms.DataGridView();
-            this.idCotizacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rucDniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monedaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descuentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idGrupoClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoCambioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cotizacionBuscarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel28 = new System.Windows.Forms.TableLayoutPanel();
             this.progressBarApp = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -86,12 +72,25 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idCotizacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rucDniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monedaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descuentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idGrupoClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoCambioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cotizacionBuscarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotaSalida)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cotizacionBuscarBindingSource)).BeginInit();
             this.tableLayoutPanel28.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
@@ -103,6 +102,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cotizacionBuscarBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitter1
@@ -281,102 +281,6 @@
             this.dgvNotaSalida.Size = new System.Drawing.Size(1218, 377);
             this.dgvNotaSalida.TabIndex = 50;
             this.dgvNotaSalida.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNotaSalida_CellDoubleClick);
-            // 
-            // idCotizacionDataGridViewTextBoxColumn
-            // 
-            this.idCotizacionDataGridViewTextBoxColumn.DataPropertyName = "idCotizacion";
-            this.idCotizacionDataGridViewTextBoxColumn.HeaderText = "idCotizacion";
-            this.idCotizacionDataGridViewTextBoxColumn.Name = "idCotizacionDataGridViewTextBoxColumn";
-            this.idCotizacionDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nombreClienteDataGridViewTextBoxColumn
-            // 
-            this.nombreClienteDataGridViewTextBoxColumn.DataPropertyName = "nombreCliente";
-            this.nombreClienteDataGridViewTextBoxColumn.HeaderText = "Cliente";
-            this.nombreClienteDataGridViewTextBoxColumn.Name = "nombreClienteDataGridViewTextBoxColumn";
-            this.nombreClienteDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // rucDniDataGridViewTextBoxColumn
-            // 
-            this.rucDniDataGridViewTextBoxColumn.DataPropertyName = "rucDni";
-            this.rucDniDataGridViewTextBoxColumn.FillWeight = 60F;
-            this.rucDniDataGridViewTextBoxColumn.HeaderText = "RUC/DNI";
-            this.rucDniDataGridViewTextBoxColumn.Name = "rucDniDataGridViewTextBoxColumn";
-            this.rucDniDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // direccionDataGridViewTextBoxColumn
-            // 
-            this.direccionDataGridViewTextBoxColumn.DataPropertyName = "direccion";
-            this.direccionDataGridViewTextBoxColumn.HeaderText = "Dirección";
-            this.direccionDataGridViewTextBoxColumn.Name = "direccionDataGridViewTextBoxColumn";
-            this.direccionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // monedaDataGridViewTextBoxColumn
-            // 
-            this.monedaDataGridViewTextBoxColumn.DataPropertyName = "moneda";
-            this.monedaDataGridViewTextBoxColumn.HeaderText = "Moneda";
-            this.monedaDataGridViewTextBoxColumn.Name = "monedaDataGridViewTextBoxColumn";
-            this.monedaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // descuentoDataGridViewTextBoxColumn
-            // 
-            this.descuentoDataGridViewTextBoxColumn.DataPropertyName = "descuento";
-            this.descuentoDataGridViewTextBoxColumn.HeaderText = "Descuento";
-            this.descuentoDataGridViewTextBoxColumn.Name = "descuentoDataGridViewTextBoxColumn";
-            this.descuentoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // subTotalDataGridViewTextBoxColumn
-            // 
-            this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "subTotal";
-            this.subTotalDataGridViewTextBoxColumn.HeaderText = "SubTotal";
-            this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
-            this.subTotalDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // totalDataGridViewTextBoxColumn
-            // 
-            this.totalDataGridViewTextBoxColumn.DataPropertyName = "total";
-            this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
-            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
-            this.totalDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // idGrupoClienteDataGridViewTextBoxColumn
-            // 
-            this.idGrupoClienteDataGridViewTextBoxColumn.DataPropertyName = "idGrupoCliente";
-            this.idGrupoClienteDataGridViewTextBoxColumn.HeaderText = "idGrupoCliente";
-            this.idGrupoClienteDataGridViewTextBoxColumn.Name = "idGrupoClienteDataGridViewTextBoxColumn";
-            this.idGrupoClienteDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // tipoCambioDataGridViewTextBoxColumn
-            // 
-            this.tipoCambioDataGridViewTextBoxColumn.DataPropertyName = "tipoCambio";
-            this.tipoCambioDataGridViewTextBoxColumn.HeaderText = "tipoCambio";
-            this.tipoCambioDataGridViewTextBoxColumn.Name = "tipoCambioDataGridViewTextBoxColumn";
-            this.tipoCambioDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // idClienteDataGridViewTextBoxColumn
-            // 
-            this.idClienteDataGridViewTextBoxColumn.DataPropertyName = "idCliente";
-            this.idClienteDataGridViewTextBoxColumn.HeaderText = "idCliente";
-            this.idClienteDataGridViewTextBoxColumn.Name = "idClienteDataGridViewTextBoxColumn";
-            this.idClienteDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // tipoDocumentoDataGridViewTextBoxColumn
-            // 
-            this.tipoDocumentoDataGridViewTextBoxColumn.DataPropertyName = "tipoDocumento";
-            this.tipoDocumentoDataGridViewTextBoxColumn.HeaderText = "tipoDocumento";
-            this.tipoDocumentoDataGridViewTextBoxColumn.Name = "tipoDocumentoDataGridViewTextBoxColumn";
-            this.tipoDocumentoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // cotizacionBuscarBindingSource
-            // 
-            this.cotizacionBuscarBindingSource.DataSource = typeof(Entidad.CotizacionBuscar);
             // 
             // tableLayoutPanel28
             // 
@@ -763,6 +667,102 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Visible = false;
             // 
+            // idCotizacionDataGridViewTextBoxColumn
+            // 
+            this.idCotizacionDataGridViewTextBoxColumn.DataPropertyName = "idCotizacion";
+            this.idCotizacionDataGridViewTextBoxColumn.HeaderText = "idCotizacion";
+            this.idCotizacionDataGridViewTextBoxColumn.Name = "idCotizacionDataGridViewTextBoxColumn";
+            this.idCotizacionDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nombreClienteDataGridViewTextBoxColumn
+            // 
+            this.nombreClienteDataGridViewTextBoxColumn.DataPropertyName = "nombreCliente";
+            this.nombreClienteDataGridViewTextBoxColumn.HeaderText = "Cliente";
+            this.nombreClienteDataGridViewTextBoxColumn.Name = "nombreClienteDataGridViewTextBoxColumn";
+            this.nombreClienteDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // rucDniDataGridViewTextBoxColumn
+            // 
+            this.rucDniDataGridViewTextBoxColumn.DataPropertyName = "rucDni";
+            this.rucDniDataGridViewTextBoxColumn.FillWeight = 60F;
+            this.rucDniDataGridViewTextBoxColumn.HeaderText = "RUC/DNI";
+            this.rucDniDataGridViewTextBoxColumn.Name = "rucDniDataGridViewTextBoxColumn";
+            this.rucDniDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // direccionDataGridViewTextBoxColumn
+            // 
+            this.direccionDataGridViewTextBoxColumn.DataPropertyName = "direccion";
+            this.direccionDataGridViewTextBoxColumn.HeaderText = "Dirección";
+            this.direccionDataGridViewTextBoxColumn.Name = "direccionDataGridViewTextBoxColumn";
+            this.direccionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // monedaDataGridViewTextBoxColumn
+            // 
+            this.monedaDataGridViewTextBoxColumn.DataPropertyName = "moneda";
+            this.monedaDataGridViewTextBoxColumn.HeaderText = "Moneda";
+            this.monedaDataGridViewTextBoxColumn.Name = "monedaDataGridViewTextBoxColumn";
+            this.monedaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // descuentoDataGridViewTextBoxColumn
+            // 
+            this.descuentoDataGridViewTextBoxColumn.DataPropertyName = "descuento";
+            this.descuentoDataGridViewTextBoxColumn.HeaderText = "Descuento";
+            this.descuentoDataGridViewTextBoxColumn.Name = "descuentoDataGridViewTextBoxColumn";
+            this.descuentoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // subTotalDataGridViewTextBoxColumn
+            // 
+            this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "subTotal";
+            this.subTotalDataGridViewTextBoxColumn.HeaderText = "SubTotal";
+            this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
+            this.subTotalDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // totalDataGridViewTextBoxColumn
+            // 
+            this.totalDataGridViewTextBoxColumn.DataPropertyName = "total";
+            this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
+            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
+            this.totalDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // idGrupoClienteDataGridViewTextBoxColumn
+            // 
+            this.idGrupoClienteDataGridViewTextBoxColumn.DataPropertyName = "idGrupoCliente";
+            this.idGrupoClienteDataGridViewTextBoxColumn.HeaderText = "idGrupoCliente";
+            this.idGrupoClienteDataGridViewTextBoxColumn.Name = "idGrupoClienteDataGridViewTextBoxColumn";
+            this.idGrupoClienteDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // tipoCambioDataGridViewTextBoxColumn
+            // 
+            this.tipoCambioDataGridViewTextBoxColumn.DataPropertyName = "tipoCambio";
+            this.tipoCambioDataGridViewTextBoxColumn.HeaderText = "tipoCambio";
+            this.tipoCambioDataGridViewTextBoxColumn.Name = "tipoCambioDataGridViewTextBoxColumn";
+            this.tipoCambioDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // idClienteDataGridViewTextBoxColumn
+            // 
+            this.idClienteDataGridViewTextBoxColumn.DataPropertyName = "idCliente";
+            this.idClienteDataGridViewTextBoxColumn.HeaderText = "idCliente";
+            this.idClienteDataGridViewTextBoxColumn.Name = "idClienteDataGridViewTextBoxColumn";
+            this.idClienteDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // tipoDocumentoDataGridViewTextBoxColumn
+            // 
+            this.tipoDocumentoDataGridViewTextBoxColumn.DataPropertyName = "tipoDocumento";
+            this.tipoDocumentoDataGridViewTextBoxColumn.HeaderText = "tipoDocumento";
+            this.tipoDocumentoDataGridViewTextBoxColumn.Name = "tipoDocumentoDataGridViewTextBoxColumn";
+            this.tipoDocumentoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // cotizacionBuscarBindingSource
+            // 
+            this.cotizacionBuscarBindingSource.DataSource = typeof(Entidad.CotizacionBuscar);
+            // 
             // FormBuscarCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -783,7 +783,6 @@
             this.flowLayoutPanel2.PerformLayout();
             this.panel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotaSalida)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cotizacionBuscarBindingSource)).EndInit();
             this.tableLayoutPanel28.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
@@ -802,6 +801,7 @@
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cotizacionBuscarBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

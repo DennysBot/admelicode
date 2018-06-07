@@ -31,6 +31,30 @@ namespace Admeli.Navigation.SubMenu
             InitializeComponent();
             this.formPrincipal = formPrincipal;
             this.uCTiendaRoot = uCTiendaRoot;
+            if (!uCTiendaRoot.hayAlmacen)
+            {
+                if (this.Controls.Contains(btnMarcas))
+                {
+                    this.btnMarcas.Click -= new System.EventHandler(this.btnMarcas_Click);
+                    this.Controls.Remove(btnMarcas);
+                    btnMarcas.Dispose();
+                }
+                if (this.Controls.Contains(btnCategorias))
+                {
+                    this.btnCategorias.Click -= new System.EventHandler(this.btnCategorias_Click);
+                    this.Controls.Remove(btnCategorias);
+                    btnCategorias.Dispose();
+                }
+                if (this.Controls.Contains(btnUnidadMedida))
+                {
+                    this.btnUnidadMedida.Click -= new System.EventHandler(this.btnUnidadMedida_Click);
+                    this.Controls.Remove(btnUnidadMedida);
+                    btnUnidadMedida.Dispose();
+                }
+
+                
+            }
+            formPrincipal.hayAlmacen = uCTiendaRoot.hayAlmacen;
         }
 
         public void togglePanelMain(string panelName)

@@ -26,7 +26,7 @@ namespace Admeli.Navigation
 
         private FormPrincipal formPrincipal;
 
-
+        public  bool hayAlmacen = true;
         // para hacer pruebas
 
         public UCTiendaRoot()
@@ -36,6 +36,8 @@ namespace Admeli.Navigation
 
         public UCTiendaRoot(FormPrincipal formPrincipal)
         {
+           
+            bool hayCompra = true;
             InitializeComponent();
             this.formPrincipal = formPrincipal;
             //No mostrar botons a los que no puede acceder
@@ -61,8 +63,9 @@ namespace Admeli.Navigation
                 {
                     this.btnProducto.Click -= new System.EventHandler(this.btnProducto_Click);
                     panel4.Controls.Remove(btnProducto);
-                    btnProducto.Dispose();
+                   
                 }
+                hayAlmacen = false;
             }
 
             if (ConfigModel.asignacionPersonal.idPuntoCompra == 0)
@@ -72,6 +75,16 @@ namespace Admeli.Navigation
                     this.btnCompra.Click -= new System.EventHandler(this.btnCompra_Click);
                     panel4.Controls.Remove(btnCompra);
                     btnCompra.Dispose();
+                }
+                hayCompra = false;
+            }
+            else
+            {
+                if (!hayAlmacen)
+                {
+                    this.btnProducto.Click += new System.EventHandler(this.btnProducto_Click);
+                    panel4.Controls.Add(btnProducto);
+                    hayCompra = true;
                 }
             }
 
@@ -83,6 +96,16 @@ namespace Admeli.Navigation
                     panel4.Controls.Remove(btnVenta);
                     btnVenta.Dispose();
                 }
+            }
+            else
+            {
+                if (!hayAlmacen && !hayCompra)
+                {
+                    this.btnProducto.Click += new System.EventHandler(this.btnProducto_Click);
+                    panel4.Controls.Add(btnProducto);
+                    hayCompra = true;
+                }
+
             }
 
             if (ConfigModel.asignacionPersonal.idPuntoAdministracion == 0)

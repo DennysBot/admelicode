@@ -92,11 +92,10 @@ namespace Entidad
        
             public  new string precioVenta { get; set; }
             public new int idPresentacion { get; set; }
-
-
-        public  new string precioCompra { get; set; }
+             public  new string precioCompra { get; set; }
             public string cantidadUnitaria { get; set; }
-
+            public decimal StockTotal { get; set; }
+            public decimal stockFalte { get; set; }
     }
 
     public class ProductoSinImpuesto

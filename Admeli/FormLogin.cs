@@ -83,7 +83,16 @@ namespace Admeli
                             // este ya esta definido arriba
 
                             if (ConfigModel.puntosDeVenta.Count > 0) { ConfigModel.currentPuntoVenta = ConfigModel.puntosDeVenta[0].idAsignarPuntoVenta; }
+                            else
+                            {
+                                ConfigModel.currentPuntoVenta = 0; 
+                            }
                             if (ConfigModel.alamacenes.Count > 0) { ConfigModel.currentIdAlmacen = ConfigModel.alamacenes[0].idAlmacen; }
+                            else
+                            {
+
+                                ConfigModel.currentIdAlmacen = 0;
+                            }
                             //
 
                             // Ocultar este formulario
