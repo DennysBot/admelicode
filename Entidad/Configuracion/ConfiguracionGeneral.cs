@@ -18,5 +18,6 @@ namespace Entidad.Configuracion
         public int idDatosGenerales { get; set; }
         public int estado { get; set; }
         public bool arquearMarcador { get; set; }
+        public string version { get; set; }
     }
 }

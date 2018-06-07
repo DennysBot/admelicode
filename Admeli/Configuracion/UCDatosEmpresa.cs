@@ -108,7 +108,7 @@ namespace Admeli.Configuracion
             textNumeroDigitos.Text = configuracionGeneral.numeroDecimales.ToString();
             textPorcentajeUtilidad.Text = configuracionGeneral.porcentajeUtilidad;
             chkArquearMarcador.Checked = configuracionGeneral.arquearMarcador;
-
+            textVersionSistema.Text = configuracionGeneral.version;
             textNombreEmpresa.Padding = new Padding(3, 10, 20, 2);
         }
         #endregion
@@ -126,6 +126,7 @@ namespace Admeli.Configuracion
                 formPrincipal.appLoadState(state);
                 Cursor.Current = Cursors.Default;
             }
+            this.Enabled = !state;
         }
         #endregion
 
@@ -287,7 +288,7 @@ namespace Admeli.Configuracion
         #endregion
 
         #region ============================ Guardar ============================
-        private void actualizarObejeto()
+        private void actualizarObjetoDatos()
         {
             // Actualizando los datos generales
             datosGenerales.razonSocial = textNombreEmpresa.Text;
@@ -296,41 +297,115 @@ namespace Admeli.Configuracion
             datosGenerales.direccion = textDireccion.Text;
             datosGenerales.cuentaBancaria = textFormaDePago.Text;
 
-            // Actualizando las configuraciones generales
-            configuracionGeneral.numeroDecimales = Convert.ToInt32(textNumeroDigitos.Text);
-            configuracionGeneral.itemPorPagina = Convert.ToInt32(textItemPagina.Text);
-            configuracionGeneral.porcentajeUtilidad = textPorcentajeUtilidad.Text;
-            configuracionGeneral.arquearMarcador = chkArquearMarcador.Checked;
-
             // Ubicacion geografica
             ubicacionGeografica.idPais = (cbxPaises.SelectedIndex == -1) ? ubicacionGeografica.idPais : Convert.ToInt32(cbxPaises.SelectedValue);
             ubicacionGeografica.idNivel1 = (cbxNivel1.SelectedIndex == -1) ? ubicacionGeografica.idNivel1 : Convert.ToInt32(cbxNivel1.SelectedValue);
             ubicacionGeografica.idNivel2 = (cbxNivel2.SelectedIndex == -1) ? ubicacionGeografica.idNivel2 : Convert.ToInt32(cbxNivel2.SelectedValue);
             ubicacionGeografica.idNivel3 = (cbxNivel3.SelectedIndex == -1) ? ubicacionGeografica.idNivel3 : Convert.ToInt32(cbxNivel3.SelectedValue);
         }
-
-        private bool validarCampos()
+        private void actualizarObjetoConfiguracion()
         {
+            // Actualizando las configuraciones generales
+            configuracionGeneral.numeroDecimales = Convert.ToInt32(textNumeroDigitos.Text);
+            configuracionGeneral.itemPorPagina = Convert.ToInt32(textItemPagina.Text);
+            configuracionGeneral.porcentajeUtilidad = textPorcentajeUtilidad.Text;
+            configuracionGeneral.arquearMarcador = chkArquearMarcador.Checked;
+            configuracionGeneral.version = textVersionSistema.Text;
+        }
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (!validarCamposDatos()) { return; }
+            executeGuardarDatos();
+
+        }
+        private bool validarCamposDatos()
+        {
+            errorProvider1.Clear();
+            if (textNombreEmpresa.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textNombreEmpresa, "Campo obligatorio");
+                return false;
+            }
+            if (textNumeroIdentificacion.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textNumeroIdentificacion, "Campo obligatorio");
+                return false;
+            }
+            if (textEmail.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textEmail, "Campo obligatorio");
+                return false;
+            }
+            if (cbxPaises .SelectedIndex == -1)
+            {
+                errorProvider1.SetError(panelLevelPais, "Campo obligatorio");
+                return false;
+            }
+            if (cbxNivel1.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(panelLevel1, "Campo obligatorio");
+                return false;
+            }
+            if (textDireccion .Text.Trim() == "")
+            {
+                errorProvider1.SetError(textDireccion, "Campo obligatorio");
+                return false;
+            }
+            return true;
+        }
+        private bool validarCamposConfiguracion()
+        {
+            errorProvider1.Clear();
+            if (textNumeroDigitos.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textNumeroDigitos, "Campo obligatorio");
+                return false;
+            }
+            if (textItemPagina.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textItemPagina, "Campo obligatorio");
+                return false;
+            }
+            if (textPorcentajeUtilidad.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textPorcentajeUtilidad, "Campo obligatorio");
+                return false;
+            }
+            if (textVersionSistema.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textVersionSistema, "Campo obligatorio");
+                return false;
+            }
             return true;
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private async void executeGuardarDatos()
         {
-            if (validarCampos())
-            {
-                executeGuardar();
-            }
-        }
-
-        private async void executeGuardar()
-        {
+            loadStateApp(true);
             try
             {
-                loadStateApp(true);
-                actualizarObejeto();
-                Response responseCG = await configModel.guardarConfigGeneral(configuracionGeneral);
+                actualizarObjetoDatos();
                 Response responseDG = await configModel.guardarDatosGenerales(ubicacionGeografica, datosGenerales);
                 MessageBox.Show(responseDG.msj, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error! " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                loadStateApp(false);
+            }
+
+        }
+        private async void executeGuardarConfiguracion()
+        {
+            loadStateApp(true);
+            try
+            {
+                actualizarObjetoConfiguracion();
+                Response responseCG = await configModel.guardarConfigGeneral(configuracionGeneral);
+                MessageBox.Show(responseCG.msj, "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -417,6 +492,12 @@ namespace Admeli.Configuracion
         private void btnSuburFoto_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnGuardarConfiguracion_Click(object sender, EventArgs e)
+        {
+            if (!validarCamposConfiguracion()) { return; }
+            executeGuardarConfiguracion();
         }
     }
 }
