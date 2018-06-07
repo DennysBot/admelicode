@@ -25,7 +25,7 @@ namespace Admeli
 
         private int nLoads { get; set; }
         private int currentLoad { get; set; }
-
+        private string versionSistema = "1.0.0.0";
         public FormLogin()
         {
             InitializeComponent();
@@ -44,7 +44,8 @@ namespace Admeli
                 if (validarCampos())
                 {
                     await personalModel.loginPersonal(textUsuario.Text, textPassword.Text);
-                   
+                    await configModel.loadConfiGeneral(versionSistema);
+
                     // cargar componentes desde el webservice
                     await cargarComponente();
 
@@ -54,7 +55,7 @@ namespace Admeli
                         while (true)
                         {
                             Thread.Sleep(50);
-                            if (nLoads >= 10) // IMPORTANTE IMPORTANTE el numero tiene que ser igual al numero de web service que se este llamando
+                            if (nLoads >= 9) // IMPORTANTE IMPORTANTE el numero tiene que ser igual al numero de web service que se este llamando
                             {
                                 break;
                             }
@@ -143,30 +144,34 @@ namespace Admeli
 
         private async Task cargarComponente()
         {
+            try
+            {
+                loadDatosGenerales();
 
-            loadDatosGenerales();
+                await configModel.loadSucursalPersonal(PersonalModel.personal.idPersonal);
+                this.nLoads++;
+                loadState("sucursales");
 
-            await configModel.loadSucursalPersonal(PersonalModel.personal.idPersonal);
-            this.nLoads++;
-            loadState("sucursales");
+                await configModel.loadAsignacionPersonales(PersonalModel.personal.idPersonal, ConfigModel.sucursal.idSucursal);
+                this.nLoads++;
+                loadState("asignacion del personal");
 
-            await configModel.loadAsignacionPersonales(PersonalModel.personal.idPersonal, ConfigModel.sucursal.idSucursal);
-            this.nLoads++;
-            loadState("asignacion del personal");
+                loadMonedas();
 
-            loadConfiGeneral();
+                loadTipoCambioMonedas();
 
-            loadMonedas();
+                loadTipoDocumento();
 
-            loadTipoCambioMonedas();
+                loadAlmacenes();
 
-            loadTipoDocumento();
+                loadPuntoDeVenta();
 
-            loadAlmacenes();
-
-            loadPuntoDeVenta();
-
-            loadCajaSesion();
+                loadCajaSesion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             // await configModel.loadCierreIngresoEgreso(1, ConfigModel.cajaSesion.idCajaSesion); // Falta Buscar de donde viene el primer parametro
         }
@@ -177,9 +182,9 @@ namespace Admeli
             loadState("datos generales");
         }
 
-        private async void loadConfiGeneral()
+        private async void loadConfiGeneral(string version)
         {
-            await configModel.loadConfiGeneral();
+            await configModel.loadConfiGeneral(version);
             this.nLoads++;
             loadState("configuracion general");
         }

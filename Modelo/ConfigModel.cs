@@ -83,13 +83,18 @@ namespace Modelo
         ///  Cargando la configuracion general
         /// </summary>
         /// <returns></returns>
-        public async Task loadConfiGeneral()
+        public async Task loadConfiGeneral(string version)
         {
             try
             {
                 // www.lineatienda.com/services.php/configeneral
                 List<ConfiguracionGeneral> list = await webService.GET<List<ConfiguracionGeneral>>("configeneral");
                 configuracionGeneral = list[0];
+                if (configuracionGeneral.version != version)
+                {
+                    throw new Exception("Está usando una versión diferente, descargue la versión correcta del sistema!!");
+                }
+
             }
             catch (Exception ex)
             {
