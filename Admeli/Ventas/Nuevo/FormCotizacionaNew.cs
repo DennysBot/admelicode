@@ -17,6 +17,7 @@ using Admeli.Productos.Nuevo;
 using Admeli.Properties;
 using Admeli.Ventas.buscar;
 using Admeli.Ventas.Buscar;
+using Admeli.Ventas.Nuevo.detalle;
 using Entidad;
 using Entidad.Configuracion;
 using Entidad.Location;
@@ -54,6 +55,8 @@ namespace Admeli.Ventas.Nuevo
         private PresentacionModel presentacionModel = new PresentacionModel();
         private DescuentoModel descuentoModel = new DescuentoModel();
         private StockModel stockModel = new StockModel();
+        private CajaModel cajaModel = new CajaModel();
+        private IngresoModel ingresoModel = new IngresoModel();
         /// Sus datos se cargan al abrir el formulario
         private List<Moneda> monedas { get; set; }
         private List<TipoDocumento> tipoDocumentos { get; set; }
@@ -79,6 +82,7 @@ namespace Admeli.Ventas.Nuevo
         private ProductoVenta currentProducto { get; set; }
         private ImpuestoProducto impuestoProducto { get; set; }
         private Cliente CurrentCliente { get; set; }
+        private SaveObject currentSaveObject { get; set; }
         DescuentoSubmit descuentoSubmit { get; set; }
         private DetalleV currentdetalleV { get; set; }
 
@@ -110,6 +114,11 @@ namespace Admeli.Ventas.Nuevo
 
         private double valorDeCambio = 1;
         private Moneda monedaActual { get; set; }
+
+
+        // datos para hacer adelantos
+        private string NOperacion { get; set; }
+        private double Adelanto { get; set; }
 
         #region ================================ Construtor ================================
 
@@ -225,6 +234,7 @@ namespace Admeli.Ventas.Nuevo
             cargarImpuesto();          
             cargarObjetos();
             cargarFormatoDocumento();
+            cargarCorrelativoCaja();
             lisenerKeyEvents = true;
 
         }
@@ -274,6 +284,24 @@ namespace Admeli.Ventas.Nuevo
 
 
         #region ============================== Load ==============================
+        struct CorrelativoData
+        {
+            public string correlativoActual { get; set; }
+            public string serie { get; set; }
+        }
+
+        private async void cargarCorrelativoCaja()
+        {
+            try
+            {
+                CorrelativoData response = await cajaModel.correlativoSerie<CorrelativoData>(ConfigModel.asignacionPersonal.idCaja, 1);
+                NOperacion = String.Format("{0} - {1}", response.serie, response.correlativoActual);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void cargarFormatoDocumento()
         {
 
@@ -1993,7 +2021,7 @@ namespace Admeli.Ventas.Nuevo
             {
                 detalleVentas = new List<DetalleV>();
             }
-
+            int I = 0;
             loadState(true);
             try
             {
@@ -2020,13 +2048,37 @@ namespace Admeli.Ventas.Nuevo
                     return;
 
                 }
+                // vemos si desea hacer un adelanto
+                FormMotivo formMotivo = new FormMotivo(this.total);
+                formMotivo.ShowDialog();
+                if (formMotivo.guardar)
+                {
+
+                    Adelanto = formMotivo.adelanto;
+                    txtObservaciones.Text = "se hizo un adelanto de: " + Adelanto;
+                    // hacer el adelanto
+                    crearObjetoIngreso();
+                    cotizacionG.estado = 2;// cotizacion con adelanto
+                    
+                    
+
+
+                }
+                else
+                {
+                    cotizacionG.estado = 1;// solo es cotizacion comun sin adelanto
+                    
+                }
+
+                
+                
 
                 cotizacionG.correlativo = txtCorrelativo.Text.Trim();
                 cotizacionG.descuento = darformatoGuardar(this.Descuento);
                 cotizacionG.direccion = txtDireccionCliente.Text.Trim();
                 cotizacionG.documentoIdentificacion = cbxTipoDocumento.Text;
                 cotizacionG.editar = currentCotizacion != null ? false : chbxEditar.Checked;
-                cotizacionG.estado = 1;
+                cotizacionG.estado = 1;// solo es cotizacion comun sin adelanto
 
                 string fechaEmision = String.Format("{0:u}", dtpFechaEmision.Value);
                 fechaEmision = fechaEmision.Substring(0, fechaEmision.Length - 1);
@@ -2087,8 +2139,18 @@ namespace Admeli.Ventas.Nuevo
             Response response = null;
             try
             {
-
-                response = await cotizacionModel.guardar(totalCotizacion);
+               
+                response = await cotizacionModel.guardar(totalCotizacion);// primero  creamos la cotizacion 
+                I++;
+                Response responseCaja = await ingresoModel.guardarEnUno(currentSaveObject);// segundo el ingreso (adelanto)
+                I++;
+                Adelanto adelanto = new Adelanto();
+                adelanto.idCotizacion = response.id;
+                adelanto.idIngreso = responseCaja.id;             
+                Response responseAdelanto= await ingresoModel.guardarAdelanto(adelanto);
+                I++;
+                // hacer metodo que relacione estas dos tablas 
+                MessageBox.Show(response.msj, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
             }
@@ -2120,8 +2182,30 @@ namespace Admeli.Ventas.Nuevo
 
         }
 
+
+
+        private void crearObjetoIngreso()
+        {
+            currentSaveObject = new SaveObject();
+            currentSaveObject.estado = 1;
+            currentSaveObject.fechaPago = dtpFechaEmision.Value.ToString("yyyy-MM-dd HH':'mm':'ss");
+            currentSaveObject.idCaja = ConfigModel.asignacionPersonal.idCaja;
+            currentSaveObject.idCajaSesion = ConfigModel.cajaSesion.idCajaSesion;
+            currentSaveObject.idMedioPago = 1;// efectivo la unica forma de pago
+            currentSaveObject.idMoneda = Convert.ToInt32(cbxTipoMoneda.SelectedValue);
+            currentSaveObject.medioPago = "";
+            currentSaveObject.moneda = cbxTipoMoneda.Text;
+            currentSaveObject.monto = darformato(Adelanto);
+            currentSaveObject.motivo = "Adelanto";
+            currentSaveObject.numeroOperacion =NOperacion;
+            currentSaveObject.observacion = "Adelanto por Cotizacion";
+            currentSaveObject.personal = PersonalModel.personal.nombres;
+          
+
+        }
+
         // para graficar lo que va imprimir
-        
+
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
@@ -2795,6 +2879,24 @@ namespace Admeli.Ventas.Nuevo
         }
     }
 
-  
+    class SaveObject
+    {
+        // public int idIngreso { get; set; }
+        public int estado { get; set; }
+        public string fechaPago { get; set; }
+        public int idCaja { get; set; }
+        public int idCajaSesion { get; set; }
+        public int idMedioPago { get; set; }
+        public int idMoneda { get; set; }
+        public string medioPago { get; set; }
+        public string moneda { get; set; }
+        public string monto { get; set; }
+        public string motivo { get; set; }
+        public string numeroOperacion { get; set; }
+        public string observacion { get; set; }
+        public string personal { get; set; }
+    }
+
+    
 
 }

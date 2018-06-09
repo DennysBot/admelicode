@@ -116,6 +116,21 @@ namespace Modelo
                 throw ex;
             }
         }
+        // hacer adelantos utilizando una cotizacion 
+
+        public async Task<Response> guardarAdelanto(Adelanto param)
+        {
+            try
+            {
+                // www.admeli.com/demo2/services.php//Adelanto/guardar
+                Response response = await webService.POST<Adelanto, Response>("Adelanto", "guardar", param);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

@@ -197,11 +197,7 @@ namespace Admeli
             listAlmacenes = ConfigModel.alamacenes;
 
 
-            foreach (Almacen A in listAlmacenes)
-            {
-                A.nombreSucursal = ConfigModel.listSucursales.Find(X => X.idSucursal == A.idSucursal).nombre;
-
-            }
+            
 
             await configModel.loadPuntoDeVenta(PersonalModel.personal.idPersonal, 0);
             listpuntos = ConfigModel.puntosDeVenta;
@@ -209,24 +205,34 @@ namespace Admeli
 
             cbxPuntosVenta.Enabled = true;
             cbxAlmacenes.Enabled = true;
-            if (listAlmacenes.Count == 0)
-            {        
-                foreach(Sucursal S in        ConfigModel.listSucursales)
+
+            // ver si hay almacenes asignados por sucursal
+            foreach (Sucursal S in ConfigModel.listSucursales)
+            {
+                List<Almacen> list = listAlmacenes.Where(X => X.idSucursal == S.idSucursal).ToList();
+
+
+                if (list.Count == 0)
                 {
-
-                    Almacen almacen = new Almacen();
-                    almacen.idAlmacen = 0;
-                    almacen.idSucursal = S.idSucursal;
-                    almacen.nombre = "Ninguno ";
-                    almacen.nombreSucursal =S.nombre;
-                    listAlmacenes.Add(almacen);
-                    
-
-
+                 Almacen almacen = new Almacen();
+                almacen.idAlmacen = 0;
+                almacen.idSucursal = S.idSucursal;
+                almacen.nombre = "Ninguno ";
+                almacen.nombreSucursal = S.nombre;
+                listAlmacenes.Add(almacen);
 
                 }
-                
+               
+
+
             }
+
+            foreach (Almacen A in listAlmacenes)
+            {
+                A.nombreSucursal = ConfigModel.listSucursales.Find(X => X.idSucursal == A.idSucursal).nombre;
+
+            }
+
 
             almacenBindingSource.DataSource = listAlmacenes;
             cbxAlmacenes.SelectedIndex = -1;

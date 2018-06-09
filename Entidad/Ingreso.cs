@@ -45,4 +45,13 @@ namespace Entidad
             }
         }
     }
+    public class Adelanto
+    {
+        // public int idIngreso { get; set; }
+        public int idCotizacion { get; set; }
+
+        public int idIngreso { get; set; }
+
+    }
+
 }

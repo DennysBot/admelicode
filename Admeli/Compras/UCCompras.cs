@@ -432,5 +432,10 @@ namespace Admeli.Compras
         }
 
         #endregion
+
+        private void btnConsultar_Click_1(object sender, EventArgs e)
+        {
+            cargarRegistros();
+        }
     }
 }

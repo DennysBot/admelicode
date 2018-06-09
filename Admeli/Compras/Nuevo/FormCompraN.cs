@@ -419,9 +419,42 @@ namespace Admeli.Compras.Nuevo
             try
             {
                 monedas = await monedaModel.monedas();
-               monedaBindingSource.DataSource = monedas;
+                monedaBindingSource.DataSource = monedas;
                 monedaActual = monedas.Find(X => X.porDefecto == true);
                 cbxTipoMoneda.SelectedValue = monedaActual.idMoneda;
+
+
+              
+                if (!nuevo)
+                {
+
+                    cbxTipoMoneda.Text = currentCompra.moneda;
+                    Moneda moneda = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
+                    cbxTipoMoneda.Text = currentCompra.moneda;
+                    txtObservaciones.Text = currentCompra.observacion;
+                    this.Descuento = toDouble(currentCompra.descuento);
+
+                    if (Descuento != 0)
+                        lbDescuentoCompras.Text = moneda.simbolo + ". " + darformato(Descuento);
+                    else
+                    {
+                        lbDescuentoCompras.Visible = false;
+                        label4.Visible = false;
+
+
+                    }
+                    this.total = toDouble(currentCompra.total);
+                    lbTotalCompra.Text = moneda.simbolo + ". " + darformato(total);
+
+                    this.subTotal = toDouble(currentCompra.subTotal);
+                    lbSubtotal.Text = moneda.simbolo + ". " + darformato(subTotal);
+                    double impuesto = total - subTotal;
+                    lbImpuesto.Text = moneda.simbolo + ". " + darformato(impuesto);
+                    valorDeCambio = 1;
+
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -1487,6 +1520,7 @@ namespace Admeli.Compras.Nuevo
                     // Calculo de totales y subtotales
                     calculoSubtotal();
                     calcularDescuento();
+                  
                 }
             }
             catch (Exception ex)

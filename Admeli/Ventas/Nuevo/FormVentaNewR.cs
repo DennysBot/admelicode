@@ -98,7 +98,7 @@ namespace Admeli.Ventas.Nuevo
         private bool nuevo { get; set; }
         private bool enModificar { get; set; }
         private bool seleccionado { get; set; }
-        int nroDecimales = 2;
+        int nroDecimales = ConfigModel.configuracionGeneral.numeroDecimales;
         string formato { get; set; }
         private double subTotal = 0;
         private double Descuento = 0;

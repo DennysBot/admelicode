@@ -11,6 +11,7 @@ using Admeli.Componentes;
 using Admeli.Ventas.Nuevo;
 using Modelo;
 using Entidad;
+using Admeli.Properties;
 
 namespace Admeli.Ventas
 {
@@ -26,6 +27,10 @@ namespace Admeli.Ventas
         private CotizacionModel cotizacionModel = new CotizacionModel();
         private PersonalModel personalModel = new PersonalModel();
         private SucursalModel sucursalModel = new SucursalModel();
+        private bool inactivo = false;
+        private bool normal = false;
+        private bool reservado = true;
+        private bool Realizada = false;
 
         #region ================================ CONSTRUCTOR ================================
         public UCCotizacionCliente()
@@ -447,6 +452,114 @@ namespace Admeli.Ventas
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnInactivo_Click(object sender, EventArgs e)
+        {
+            if (!inactivo)
+            {
+                Image image = Resources.check;
+                btnInactivo.Image = image;
+                inactivo = true;
+               
+                this.btnInactivo.BackColor = Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(43)))), ((int)(((byte)(33)))));
+                this.btnInactivo.FlatAppearance.MouseDownBackColor = Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(31)))), ((int)(((byte)(25)))));
+                this.btnInactivo.FlatAppearance.MouseOverBackColor = Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(31)))), ((int)(((byte)(25)))));
+
+
+            }
+            else
+            {
+
+                Image image = Resources.verificar;
+                btnInactivo.Image = image;
+                inactivo = false;
+                this.btnInactivo.BackColor = Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(31)))), ((int)(((byte)(25)))));
+                this.btnInactivo.FlatAppearance.MouseDownBackColor = Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(43)))), ((int)(((byte)(33)))));
+                this.btnInactivo.FlatAppearance.MouseOverBackColor = Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(43)))), ((int)(((byte)(33)))));
+
+            }
+
+        }
+
+        private void btnNormal_Click(object sender, EventArgs e)
+        {
+            if (!normal)
+            {
+                Image image = Resources.check;
+                btnNormal.Image = image;
+                normal = true;               
+                this.btnNormal.BackColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(108)))), ((int)(((byte)(51)))));
+                this.btnNormal.FlatAppearance.MouseDownBackColor = Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(78)))), ((int)(((byte)(37)))));
+                this.btnNormal.FlatAppearance.MouseOverBackColor = Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(78)))), ((int)(((byte)(37)))));
+
+            }
+            else
+            {
+
+                Image image = Resources.verificar;
+                btnNormal.Image = image;
+                normal = false;
+               
+                this.btnNormal.BackColor = Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(78)))), ((int)(((byte)(37)))));
+                this.btnNormal.FlatAppearance.MouseDownBackColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(108)))), ((int)(((byte)(51)))));
+                this.btnNormal.FlatAppearance.MouseOverBackColor = Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(108)))), ((int)(((byte)(51)))));
+
+
+            }
+        }
+
+        private void btnReservada_Click(object sender, EventArgs e)
+        {
+            if (!reservado)
+            {
+                Image image = Resources.check;
+                btnReservada.Image = image;
+                reservado = true;
+              
+                this.btnReservada.BackColor = Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(36)))));
+                this.btnReservada.FlatAppearance.MouseDownBackColor = Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(187)))), ((int)(((byte)(29)))));
+                this.btnReservada.FlatAppearance.MouseOverBackColor = Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(187)))), ((int)(((byte)(29)))));
+
+            }
+            else
+            {
+            
+                Image image = Resources.verificar;
+                btnReservada.Image = image;
+                reservado = false;
+                this.btnReservada.BackColor = Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(187)))), ((int)(((byte)(29)))));
+                this.btnReservada.FlatAppearance.MouseDownBackColor = Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(36)))));
+                this.btnReservada.FlatAppearance.MouseOverBackColor = Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(36)))));
+
+            }
+        }
+
+        private void btnRealizada_Click(object sender, EventArgs e)
+        {
+            if (!Realizada)
+            {
+                Image image = Resources.check;
+                btnRealizada.Image = image;
+                Realizada = true;
+               
+              
+                this.btnRealizada.BackColor = Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(196)))), ((int)(((byte)(34)))));
+                this.btnRealizada.FlatAppearance.MouseDownBackColor = Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(161)))), ((int)(((byte)(28)))));
+                this.btnRealizada.FlatAppearance.MouseOverBackColor = Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(161)))), ((int)(((byte)(28)))));
+
+            }
+            else
+            {
+
+                Image image = Resources.verificar;
+                btnRealizada.Image = image;
+                Realizada = false;
+                this.btnRealizada.BackColor = Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(161)))), ((int)(((byte)(28)))));
+                this.btnRealizada.FlatAppearance.MouseDownBackColor = Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(196)))), ((int)(((byte)(34)))));
+                this.btnRealizada.FlatAppearance.MouseOverBackColor = Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(196)))), ((int)(((byte)(34)))));
+
+            }
         }
     }
 }
