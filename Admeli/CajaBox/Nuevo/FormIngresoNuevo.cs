@@ -176,7 +176,6 @@ namespace Admeli.CajaBox.Nuevo
             currentSaveObject.numeroOperacion = textNOperacion.Text;
             currentSaveObject.observacion = textObcervacion.Text;
             currentSaveObject.personal = PersonalModel.personal.nombres;
-
             // currentSaveObject
             currentSaveObject.idMoneda = Convert.ToInt32(cbxMoneda.SelectedValue);
 

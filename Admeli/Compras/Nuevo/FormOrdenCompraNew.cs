@@ -512,6 +512,36 @@ namespace Admeli.Compras.Nuevo
             {
                 monedas = await monedaModel.monedas();
                 cbxTipoMoneda.DataSource = monedas;
+
+
+                if (!nuevo)
+                {
+
+                    cbxTipoMoneda.Text = currentOrdenCompra.moneda;
+                    Moneda moneda = monedas.Find(X => X.idMoneda == (int)cbxTipoMoneda.SelectedValue);
+                    cbxTipoMoneda.Text = currentOrdenCompra.moneda;
+                    txtObservaciones.Text = currentOrdenCompra.observacion;
+                    this.Descuento =0;
+
+                    if (Descuento != 0)
+                        lbDescuentoCompras.Text = moneda.simbolo + ". " + darformato(Descuento);
+                    else
+                    {
+                        lbDescuentoCompras.Visible = false;
+                        label4.Visible = false;
+
+
+                    }
+                    this.total = toDouble(currentOrdenCompra.total);
+                    lbTotal.Text = moneda.simbolo + ". " + darformato(total);
+
+                    this.subTotal = toDouble(currentOrdenCompra.subTotal);
+                    lbSubtotal.Text = moneda.simbolo + ". " + darformato(subTotal);
+                    double impuesto = total - subTotal;
+                    lbImpuesto.Text = moneda.simbolo + ". " + darformato(impuesto);
+                    //valorDeCambio = 1;
+
+                }
             }
             catch (Exception ex)
             {
@@ -1244,7 +1274,7 @@ namespace Admeli.Compras.Nuevo
                 compraA.idPersonal = PersonalModel.personal.idPersonal;
                 compraA.idProveedor = currentProveedor.idProveedor;
                 compraA.idSucursal = ConfigModel.sucursal.idSucursal;
-                compraA.idTipoDocumento = 1;// orden compra
+                compraA.idTipoDocumento = 3;// en la compra es una factura
 
                 compraA.moneda = cbxTipoMoneda.Text;// ver si es correcto
 
@@ -1319,15 +1349,14 @@ namespace Admeli.Compras.Nuevo
 
             currentProveedor = buscarProveedor.currentProveedor;
 
+            if (currentProveedor != null)
+            {
+                txtRuc.Text = currentProveedor.ruc;
+                cbxProveedor.SelectedValue = currentProveedor.idProveedor;
+                txtDireccionProveedor.Text = currentProveedor.direccion;
 
-            //cargando datas del proveedor
-            txtRuc.Text = currentProveedor.ruc;
-            cbxProveedor.SelectedValue = currentProveedor.idProveedor;
-            txtDireccionProveedor.Text = currentProveedor.direccion;
-
-           
-
-
+            }
+         
         }
 
         private async void txtRuc_TextChanged_1(object sender, EventArgs e)
@@ -1479,7 +1508,8 @@ namespace Admeli.Compras.Nuevo
                 {
 
                     await ordenCompraModel.comprarOrdenCompra(compra);
-
+                    btnComprarOrdenCompra.Enabled = false;
+                    btnComprarOrdenCompra.Text = "ya se  compro esta orden de compra";
 
                 }
                 catch (Exception ex)

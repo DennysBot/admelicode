@@ -159,6 +159,7 @@ namespace Admeli.Productos
                         if (sLine != null)
                             arrText.Add(sLine);
                     }
+                    
                     _textStreamReader.Close();
                     string monedaS = "";
                     foreach(string dato in arrText)
@@ -272,6 +273,7 @@ namespace Admeli.Productos
                 {
                     Console.WriteLine("Exception: " + ex.Message);
                 }
+                valorDeCambio = 1;
                 
             }
             else
@@ -360,7 +362,8 @@ namespace Admeli.Productos
                 
                 listMoneda = await monedaModel.monedas();
                 monedaBindingSource.DataSource = listMoneda;
-
+                cbxMoneda.SelectedIndex = -1;
+               
                 //monedas/estado/1
                 if (monedaActual == null)
                 {
@@ -374,7 +377,14 @@ namespace Admeli.Productos
                     }
 
                 }
-                
+                else
+                {
+                    Moneda monedaActual1 = monedaActual;
+                    monedaActual = listMoneda.Find(X => X.porDefecto == true);
+                   
+                    cbxMoneda.SelectedValue = monedaActual1.idMoneda;
+
+                }
                 
                 
 
@@ -750,10 +760,7 @@ namespace Admeli.Productos
 
 
                     }
-
-
-
-                 
+                
                 }
 
 
@@ -1317,46 +1324,62 @@ namespace Admeli.Productos
                 return;
 
 
-            Moneda monedaCambio = listMoneda.Find(X => X.idMoneda == (int)cbxMoneda.SelectedValue);
+            loadState(true);
+            try
+            {
+                Moneda monedaCambio = listMoneda.Find(X => X.idMoneda == (int)cbxMoneda.SelectedValue);
 
-            CambioMoneda cambio = new CambioMoneda();
-            cambio.idMonedaActual = monedaActual.idMoneda;
-            cambio.idMonedaCambio = monedaCambio.idMoneda;
+                CambioMoneda cambio = new CambioMoneda();
+                cambio.idMonedaActual = monedaActual.idMoneda;
+                cambio.idMonedaCambio = monedaCambio.idMoneda;
 
 
 
-            ValorcambioMoneda valorcambioMoneda = await monedaModel.cambiarMoneda(cambio);
+                ValorcambioMoneda valorcambioMoneda = await monedaModel.cambiarMoneda(cambio);
 
-            valorDeCambio = (decimal) (toDouble(valorcambioMoneda.cambioMonedaCambio) / toDouble(valorcambioMoneda.cambioMonedaActual));
-          
-            if (productos != null)
+                valorDeCambio = (decimal)(toDouble(valorcambioMoneda.cambioMonedaCambio) / toDouble(valorcambioMoneda.cambioMonedaActual));
+
+                if (productos != null)
                 {
 
-               if (productos.Count > 0)
+                    if (productos.Count > 0)
                     {
 
                         foreach (Producto v in productos)
                         {
-                            v.precioCompra= cambiarValor(v.precioCompra, valorDeCambio);
+                            v.precioCompra = cambiarValor(v.precioCompra, valorDeCambio);
                             v.precioVenta = cambiarValor(v.precioVenta, valorDeCambio);
-                            
+
 
                         }
 
                         dataGridView.DataSource = null;
                         dataGridView.DataSource = productos;
-                       
+
 
                         decorationDataGridView();
 
 
 
                     }
-                
 
-               
+
+
+                }
+                monedaActual = monedaCambio;
+
             }
-             monedaActual = monedaCambio;
+           catch(Exception ex)
+            {
+                MessageBox.Show("error: "+ ex.Message, "cambio de moneda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+
+            }
+            finally
+            {
+                loadState(false);
+
+            }
 
 
 
