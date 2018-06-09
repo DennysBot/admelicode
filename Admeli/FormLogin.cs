@@ -25,6 +25,7 @@ namespace Admeli
 
         private int nLoads { get; set; }
         private int currentLoad { get; set; }
+
         private string versionSistema = "1.0.0.1";
         public FormLogin()
         {

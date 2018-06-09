@@ -27,6 +27,7 @@ namespace Modelo.Recursos
 
             //this.domainName = "http://190.117.145.7:8080";
             //this.directory = "service_fact_prueba/xcore/services.php";
+
             //////this.directory = "service_fact_pegaso/xcore/services.php";
             ////////this.directory = "service_fact_test/xcore/services.php";
 

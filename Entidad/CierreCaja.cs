@@ -20,6 +20,14 @@ namespace Entidad
         public string nombre { get; set; }
     }
 
+    public class EstadoCuentas
+    {
+        public string personal { get; set; }
+        public string tatalIngreso { get; set; }
+        public string totalEgreso { get; set; }
+        public string moneda { get; set; }
+        public decimal total { get; set; }
+    }
 
     public class  DineroCompra
     {
