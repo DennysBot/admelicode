@@ -35,6 +35,7 @@
             this.btnPorCobrar = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnIngreso = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnEgreso = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnEstadoCajas = new Bunifu.Framework.UI.BunifuFlatButton();
             this.SuspendLayout();
             // 
             // btnCierreCaja
@@ -259,11 +260,49 @@
             this.btnEgreso.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEgreso.Click += new System.EventHandler(this.btnEgreso_Click);
             // 
+            // btnEstadoCajas
+            // 
+            this.btnEstadoCajas.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(32)))), ((int)(((byte)(37)))));
+            this.btnEstadoCajas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.btnEstadoCajas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEstadoCajas.BorderRadius = 0;
+            this.btnEstadoCajas.ButtonText = "Estado de Cajas";
+            this.btnEstadoCajas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEstadoCajas.DisabledColor = System.Drawing.Color.Gray;
+            this.btnEstadoCajas.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadoCajas.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnEstadoCajas.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnEstadoCajas.Iconimage")));
+            this.btnEstadoCajas.Iconimage_right = null;
+            this.btnEstadoCajas.Iconimage_right_Selected = null;
+            this.btnEstadoCajas.Iconimage_Selected = ((System.Drawing.Image)(resources.GetObject("btnEstadoCajas.Iconimage_Selected")));
+            this.btnEstadoCajas.IconMarginLeft = 0;
+            this.btnEstadoCajas.IconMarginRight = 0;
+            this.btnEstadoCajas.IconRightVisible = true;
+            this.btnEstadoCajas.IconRightZoom = 0D;
+            this.btnEstadoCajas.IconVisible = true;
+            this.btnEstadoCajas.IconZoom = 80D;
+            this.btnEstadoCajas.IsTab = true;
+            this.btnEstadoCajas.Location = new System.Drawing.Point(0, 288);
+            this.btnEstadoCajas.Margin = new System.Windows.Forms.Padding(0);
+            this.btnEstadoCajas.Name = "btnEstadoCajas";
+            this.btnEstadoCajas.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.btnEstadoCajas.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.btnEstadoCajas.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnEstadoCajas.selected = false;
+            this.btnEstadoCajas.Size = new System.Drawing.Size(200, 48);
+            this.btnEstadoCajas.TabIndex = 14;
+            this.btnEstadoCajas.Text = "Estado de Cajas";
+            this.btnEstadoCajas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEstadoCajas.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(192)))), ((int)(((byte)(196)))));
+            this.btnEstadoCajas.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadoCajas.Click += new System.EventHandler(this.btnEstadoCajas_Click);
+            // 
             // UCCajaNav
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.Controls.Add(this.btnEstadoCajas);
             this.Controls.Add(this.btnCierreCaja);
             this.Controls.Add(this.btnIniciarCaja);
             this.Controls.Add(this.btnCuentaPagar);
@@ -284,5 +323,6 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnPorCobrar;
         private Bunifu.Framework.UI.BunifuFlatButton btnIngreso;
         private Bunifu.Framework.UI.BunifuFlatButton btnEgreso;
+        private Bunifu.Framework.UI.BunifuFlatButton btnEstadoCajas;
     }
 }

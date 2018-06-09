@@ -19,6 +19,7 @@ namespace Admeli.Navigation.SubMenu
         private UCIniciarCaja uCIniciarCaja;
         private UCCuentaCobrar uCCuentasCobrar;
         private UCCuentaPagar uCCuentasPagar;
+        private UCEstadoCajas uCEstadoCajas;
 
         private FormPrincipal formPrincipal;
         private UCTiendaRoot uCTiendaRoot;
@@ -148,6 +149,25 @@ namespace Admeli.Navigation.SubMenu
                     }
                     this.formPrincipal.lblTitlePage.Text = "Cuentas - Pagar";
                     break;
+                case "estadoCajas":
+                    if (uCEstadoCajas == null)
+                    {
+                        //this.uCCierreCaja = new Admeli.CajaBox.UCCierreCaja(this.formPrincipal);
+                        this.uCEstadoCajas = new UCEstadoCajas(this.formPrincipal);
+                        this.formPrincipal.panelMain.Controls.Add(uCEstadoCajas);
+                        this.uCEstadoCajas.Dock= System.Windows.Forms.DockStyle.Fill;
+                        this.uCEstadoCajas.Location = new Point(0, 0);
+                        this.uCEstadoCajas.Name = "uCEstadoCajas";
+                        this.uCEstadoCajas.Size = new Size(250, 776);
+                        this.uCEstadoCajas.TabIndex = 0;
+                    }
+                    else
+                    {
+                        this.formPrincipal.panelMain.Controls.Add(uCEstadoCajas);
+                        this.uCEstadoCajas.reLoad();
+                    }
+                    this.formPrincipal.lblTitlePage.Text = "Caja - Estado de Cajas";
+                    break;
                 default:
                     break;
             }
@@ -212,5 +232,11 @@ namespace Admeli.Navigation.SubMenu
             btnCierreCaja.Textcolor = Color.White; /// Color
         }
 
+        private void btnEstadoCajas_Click(object sender, EventArgs e)
+        {
+            btnColor(); /// Reset
+            togglePanelMain("estadoCajas");
+            btnCierreCaja.Textcolor = Color.White; /// Color
+        }
     }
 }
